@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>GitHub Workflows &mdash; MIT Libraries 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MIT Libraries 0.1.0 documentation" href="index.html" />
+    <link rel="prev" title="MIT Libraries Developer Documentation" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="MIT Libraries Developer Documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MIT Libraries 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="github-workflows">
+<h1>GitHub Workflows<a class="headerlink" href="#github-workflows" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="github-flow">
+<h2>GitHub Flow<a class="headerlink" href="#github-flow" title="Permalink to this headline">¶</a></h2>
+<p>In most cases, <a class="reference external" href="https://guides.github.com/introduction/flow/">GitHub flow</a>
+will be the best choice for projects. For small teams there is usually no
+need for anything more complicated than this. Thoughtbot has some
+<a class="reference external" href="https://github.com/thoughtbot/guides/tree/master/protocol/git">additional recommendations</a> which should be followed.</p>
+<p>Ideally, feature branches should encompass small, targeted changes.
+Keeping your work focused will mean fewer merge conflicts. When building
+a new code base this may not always be possible, but what you want to try
+and avoid are long running branches. By the time you want to merge, the
+distance between your feature branch and master will usually mean a lot
+of conflict resolution in your future.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure to pay attention to the sections on commit messages and
+code review.</p>
+</div>
+</div>
+<div class="section" id="merging-and-rebasing">
+<h2>Merging and Rebasing<a class="headerlink" href="#merging-and-rebasing" title="Permalink to this headline">¶</a></h2>
+<p>The thoughtbot guide recommends pushing your feature branch to remote
+only when you are ready to issue a PR. This will make it easier to rebase
+and squash commits without making life difficult for other developers.
+Generally, this should be your workflow, but it&#8217;s still acceptable to
+rebase and squash commits on a remote branch. If no one else has based
+any work off your branch, this shouldn&#8217;t present any problems. If other
+developers have based work off your branch, you will need to coordinate
+any rebasing or squashing. In either case, you should clearly communicate
+to the team that you have done either of these actions.</p>
+<p>The one important difference to note from the thoughtbot guide is in the
+section on merging. Merging GitHub PRs through the Web interface will
+always use <cite>&#8211;no-ff</cite>. If merging from the command line, instead of doing:</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ git merge &lt;branch-name&gt; --ff-only
+</pre></div>
+</div>
+<p>you should do:</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ git merge &lt;branch-name&gt; --no-ff
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">MIT Libraries</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=MITLibraries&repo=mitlibraries.github.io&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">GitHub Workflows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#github-flow">GitHub Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#merging-and-rebasing">Merging and Rebasing</a></li>
+</ul>
+</li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.2</a>
+      
+      |
+      <a href="_sources/git.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>
