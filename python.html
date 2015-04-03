@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python Guidelines &mdash; MIT Libraries 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MIT Libraries 0.1.0 documentation" href="index.html" />
+    <link rel="prev" title="GitHub Workflows" href="git.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="git.html" title="GitHub Workflows"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MIT Libraries 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="python-guidelines">
+<h1>Python Guidelines<a class="headerlink" href="#python-guidelines" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="python-versions">
+<h2>Python Versions<a class="headerlink" href="#python-versions" title="Permalink to this headline">¶</a></h2>
+<p>We still have 2.6 on some servers, so for now, you should support 2.6+ and 3.3+.</p>
+</div>
+<div class="section" id="style-and-coding-conventions">
+<h2>Style and Coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h2>
+<p>In general, you should follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> and
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP 257</a>. Unless otherwise stated here, assume those two guidelines are in effect.</p>
+<p>Use <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reST</a> in your docstrings. In addition to a description of what a function does, you should document the parameters:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">frobber</span><span class="p">(</span><span class="n">widget</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Frob the widget.</span>
+
+<span class="sd">    A widget has to be frobbed before being passed to the</span>
+<span class="sd">    Dusenbury Device.</span>
+
+<span class="sd">    :param widget: widget what needs frobbing</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">frob</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All files should start with the following two lines as the first two lines (unless, of course, you are using a shebang):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+</pre></div>
+</div>
+<p>You may want to create a python template in your editor to make sure they are always there.</p>
+</div>
+<div class="section" id="project-documentation">
+<h2>Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> is recommended for generating project documentation. <a class="reference external" href="https://github.com/davisp/ghp-import">GitHub Pages Import</a> can be useful for managing your built documentation.</p>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>Use <a class="reference external" href="https://tox.readthedocs.org/en/latest/">tox</a>. Keep any test-specific dependencies, i.e. unittest2, mock, etc., out of your <code class="docutils literal"><span class="pre">requirements.txt</span></code> file. Those should be specified in your <code class="docutils literal"><span class="pre">tox.ini</span></code> where necessary. You may want to consider using <a class="reference external" href="http://pytest.org/latest/">pytest</a> to run your tests and <a class="reference external" href="https://pypi.python.org/pypi/pytest-cov">pytest-cov</a> for coverage.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">MIT Libraries</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=MITLibraries&repo=mitlibraries.github.io&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="git.html">GitHub Workflows</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Python Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#python-versions">Python Versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#style-and-coding-conventions">Style and Coding Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-documentation">Project Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.2</a>
+      
+      |
+      <a href="_sources/python.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    git
+   python
 
 Making Changes to this Documentation
 ------------------------------------
