@@ -1,3 +1,6 @@
+---
+order: 10
+---
 # GitHub Workflows
 
 In most cases, [GitHub flow](https://guides.github.com/introduction/flow/) will be the best choice for projects. For small teams there is usually no need for anything more complicated than this. Thoughtbot has some [additional recommendations](https://github.com/thoughtbot/guides/tree/master/protocol/git) which should be followed.

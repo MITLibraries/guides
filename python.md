@@ -1,3 +1,6 @@
+---
+order: 20
+---
 # Python Guidelines
 
 ## Python Versions

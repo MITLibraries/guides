@@ -1,16 +1,7 @@
+---
+order: 30
+---
 # Rails at MIT Libraries
-
-* [Style and Conventions](#style-and-conventions)
-* [Test Frameworks](#test-frameworks)
-* [Rails Development Environment](#rails-development-environment)
-* [Deployments](#deployments)
-* [Ruby Versions](#ruby-versions)
-* [Rails Versions](#rails-versions)
-* [Upgrading Ruby on Rails and Deprecations](#upgrading-ruby-on-rails-and-deprecations)
-* [Gems and Updates](#gems-and-updates)
-* [Authentication](#authentication)
-* [Authorization](#authorization)
-* [Custom App Template](#custom-app-template)
 
 ## Style and Conventions
 - follow [The Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide)
