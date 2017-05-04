@@ -1,6 +1,7 @@
 ---
 order: 1
 link: 'Home'
+permalink: /
 ---
 
 # MIT Libraries Developer Documentation
