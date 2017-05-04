@@ -1,7 +1,12 @@
+---
+order: 1
+link: 'Home'
+---
+
 # MIT Libraries Developer Documentation
 
-Contents:
+Welcome to the MIT Libraries Developer Documentation site.
 
-* [GitHub Workflows](github.md)
-* [Python Guidelines](python.md)
-* [Ruby on Rails Guidelines](rails.md)
+While this site is public and you are welcome to use it, our main goals are
+internally facing. That said, feel free to open an Issue if you have suggestions
+or feedback.

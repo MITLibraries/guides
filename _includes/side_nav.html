@@ -1,0 +1,16 @@
+<nav>
+  {% assign pages = site.html_pages | sort: 'order' %}
+  <ul>
+  {% for node in pages %}
+    <li{% if page.url contains node.url %} class="active"{% endif %}>
+      <a href="{{ node.url }}">
+        {% if node.link %}
+          {{ node.link }}
+        {% else %}
+          {{ node.title }}
+        {% endif %}
+      </a>
+    </li>
+  {% endfor %}
+  </ul>
+</nav>
