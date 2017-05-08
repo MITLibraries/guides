@@ -9,10 +9,10 @@ The task involves downloading the New Relic agent and attaching it to Tomcat. Co
 
 - Download and unzip the New Relic Java agent to `/etc/newrelic`.
 - Make `tomcat` user/group the owner (as on dspace-staging) and verify file permissions.
-- Open `newrelic.yml`: update the `license_key` (from account settings in New Relic), `app_name` (e.g., dspace_prod), and `log_file_path` (e.g., `/var/log/newrelic`) references.
+- Open `newrelic.yml`: update the `license_key` (from account settings in New Relic), `app_name` (e.g., dspace-prod), and `log_file_path` (e.g., `/var/log/newrelic`) references.
 - Edit `/usr/share/tomcat6/conf/tomcat6.cnf`, and append to JAVA_OPTS variable, the path to the agent JAR (make sure there's only one line for JAVA_OPTS):
 ```
--javaagent:/usr/share/tomcat6/newrelic/newrelic.jar
+-javaagent:/etc/newrelic/newrelic.jar
 ```
 - Create the log directory `/var/log/newrelic` (to allow the agent to write its log file), and change the owner of `/var/log/newrelic` to user `tomcat`.
 - Restart Tomcat
