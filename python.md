@@ -1,5 +1,5 @@
 ---
-order: 20
+order: 1000
 ---
 # Python Guidelines
 

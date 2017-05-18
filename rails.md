@@ -1,5 +1,5 @@
 ---
-order: 30
+order: 1000
 ---
 # Rails at MIT Libraries
 
