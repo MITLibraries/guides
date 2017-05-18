@@ -40,10 +40,24 @@ is free for daily with a one week retention even on the free pg plan
 that comes with every app). You do need to
 [Schedule your DB backups](https://devcenter.heroku.com/articles/heroku-postgres-backups)!
 
+### Static vs Dynamic IPs
+
+Many servers have traditionally had Static IPs. You do _not_ get
+Static IPs from Heroku by default. Most apps don't need Static IPs
+and this poses no problem at all.
+
+However, if you are working with a vendor who insists on API access
+via a static IP, you can activate and configure an add-on such as
+[Proximo](https://devcenter.heroku.com/articles/proximo)
+to get a set of static IPs the vendor can approve for access.
+
+This will route outbound traffic over a static IP. Inbound traffic
+will continue to use the Heroku supplied dynamic IP.
+
 
 ## Billing
 
-We have a shared billing account. Password is in our Last Pass. That
+We have a shared billing account. Password is in our LastPass. That
 account should be the owner rather than setting up billing for each
 app individually.
 
@@ -121,6 +135,11 @@ make decide what to do about that.
 It takes a few seconds to restart. If things are _not_ good, rollback
 in the Dashboard.
 
+NOTE: rollback only rolls back ENV and code changes. If your deploy
+modified your db schema or migrated data in any way, you _will_ need
+to roll that back separately.
+[Rollback Docs](https://devcenter.heroku.com/articles/releases#rollback)
+
 ### Inform stakeholders if appropriate
 
 You just made a change to production. Tell people that care.
@@ -143,6 +162,9 @@ You use the CLI to run with a local `.env` file in development
 with the [`heroku local`](https://devcenter.heroku.com/articles/heroku-local)
 command.
 
+You should store a copy of your staging and production ENV in our
+shared LastPass folder.
+
 
 ## Deploy Hooks
 
@@ -154,8 +176,10 @@ Deploy Hooks can send email and / or notify a slack channel on new
 builds. Using a Moira list with an email hook allows for interested
 stakeholders to stay in the loop (note: keep in mind the
 deploy hooks don't always have a ton of context as to what has
-changed so only alerting truly engaged stakeholders with this
-feature is best).
+changed, so only alerting stakeholders that are comfortable with
+receiving emails with cryptic notes about a specific SHA being
+deployed to staging / production is best).
+
 
 ## Dynos
 
@@ -180,3 +204,15 @@ We have not yet tried
 [Automated Certificate Management](https://devcenter.heroku.com/articles/automated-certificate-management)
 but it is a compelling option to only have to request DNS and
 allow ACM to automatically handle the certs and is worth trying.
+
+
+## MIT Authentication
+
+MIT officially only supports
+[Shibboleth / Touchstone](https://wikis.mit.edu/confluence/display/TOUCHSTONE/Provisioning+Steps)
+which traditionally is enabled via an Apache httpd module. The
+nature of Heroku makes that idea outdated.
+
+If you are in need of doing MIT Authentication on Heroku, please
+see our [MIT OpenID Pilot policy](/oauth.md) to help determine
+whether your use case is allowed.
