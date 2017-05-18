@@ -157,6 +157,7 @@ production.
 
 Using ENV for config is common for Heroku deploys. You can view and
 change settings via either the Heroku CLI or the Web UI.
+[Heroku Config Vars Documentation](https://devcenter.heroku.com/articles/config-vars#setting-up-config-vars-for-a-deployed-application)
 
 You use the CLI to run with a local `.env` file in development
 with the [`heroku local`](https://devcenter.heroku.com/articles/heroku-local)
