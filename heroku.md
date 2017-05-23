@@ -106,7 +106,12 @@ normally a quick blip and doesn’t require downtime announcements.
 
 ### Tag a release in GitHub with release notes that are useful
 
-The tag is purely informational. It is not currently used to push
+From the repo code page on GitHub, go to Releases, and then click the 
+"Draft a new release" button. Number the release appropriately, and 
+use the number for the title if you don't have a title. Put notes on 
+what's changed in the release in the description.
+
+FYI: The tag is purely informational. It is not currently used to push
 to production using Pipelines. Pushing to prod moves whatever is on
 staging, which is quite likely `master` unless you are doing weird
 things (note: don't do weird things).
