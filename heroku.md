@@ -16,6 +16,10 @@ Heroku has no persistent file system. Don’t write anything and
 expect it to be there even on the next request (it often is, but
 isn’t reliable… use S3).
 
+NOTE: files stored in your code repository or generated at deploy time, such as
+css/js/images, are okay to use the Heroku file system for. If your app expects
+to be exceptionally popular, a CDN may be appropriate.
+
 ### Logging
 
 Heroku expects you to ship logs elsewhere (because of the no
@@ -106,9 +110,9 @@ normally a quick blip and doesn’t require downtime announcements.
 
 ### Tag a release in GitHub with release notes that are useful
 
-From the repo code page on GitHub, go to Releases, and then click the 
-"Draft a new release" button. Number the release appropriately, and 
-use the number for the title if you don't have a title. Put notes on 
+From the repo code page on GitHub, go to Releases, and then click the
+"Draft a new release" button. Number the release appropriately, and
+use the number for the title if you don't have a title. Put notes on
 what's changed in the release in the description.
 
 FYI: The tag is purely informational. It is not currently used to push
