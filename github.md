@@ -6,10 +6,15 @@ order: 1000
 ## Recommended repo settings
 
 In the admin settings for repos on GitHub, the recommended settings are: 
-* default branch should be "master" (Branches > Default branch)
-* disable force push to `master`. For everyone. Even admins. (Branches > Protected branches)
-    * check: `protect this branch`, `require pull request reviews before merging`, `dismiss stale pull request approvals when new commits are pushed`, `require that branches are up to date`, `include administrators`
-* allow merge commits (Options > Merge button)
+* Default branch should be "master" (`Branches > Default branch`)
+* Disable force push to  the master branch. For everyone. Even admins. (`Branches > Protected branches`)
+* Edit the protected branch and check these option settings: 
+    - protect this branch
+    - require pull request reviews before merging
+    - dismiss stale pull request approvals when new commits are pushed
+    - require that branches are up to date
+    - include administrators
+* Allow merge commits (`Options > Merge button`)
 
 ## Workflows
 
@@ -33,7 +38,7 @@ you should do:
 $ git merge <branch-name> --no-ff
 ```
 
-### Pull Request Reviews
+## Pull Request Reviews
 
 In most (all) cases, pull requests should be reviewed by at least one other developer, even if it is just for syntax or raise general questions in the case of unfamiliarity with a particular language. 
 
@@ -62,21 +67,23 @@ In general, if you are creating code on GitHub, commenting and review should hap
 
 This process assumes you have: a terminal program (like the OS terminal or iTerm with oh-my-zsh), an editor program (like Sublime Text or Atom), a github account and access to the MIT Libraries repos, and have already cloned the repos to your local machine. (For help with those steps, contact one of the MITLib devs.)
 
-*Start fresh*: Checkout master branch
+**Start fresh**: Checkout master branch
+
 ```git checkout master```
 
-*Get latest*: Get the latest changes that have been merged 
+**Get latest**: Get the latest changes that have been merged 
 ```
 git fetch
 git merge
 ```
 
-*Create a branch*: Create a new branch starting with master (or the branch you want to base your work on): This is the clean separate space where you will put your work.
+**Create a branch**: Create a new branch starting with master (or the branch you want to base your work on): This is the clean separate space where you will put your work.
+
 ```git checkout -b [branchname]```
 
-*Do stuff*: open the repo in your editor and write code or make edits that relate to the fix/feature/experiment you are working on.
+**Do stuff**: open the repo in your editor and write code or make edits that relate to the fix/feature/experiment you are working on.
 
-*Commit your changes regularly*: once you have a few changes that add up to something (eg. 'added new js function to load rss' or 'added new css to support adjusted mini-cal alignment') or if you have to stop for a bit or switch to something else, add the files you are ready to commit, then commit them to your branch and push them to github.
+**Commit your changes regularly**: once you have a few changes that add up to something (eg. 'added new js function to load rss' or 'added new css to support adjusted mini-cal alignment') or if you have to stop for a bit or switch to something else, add the files you are ready to commit, then commit them to your branch and push them to github.
 
 ```
 git add [filename] 
@@ -87,19 +94,19 @@ git commit
 git push
 ```
 
-*Do more stuff*: keep working and committing (repeat steps 4 and 5) until your work for that fix/feature/experiment is as complete as you can make it.
+**Do more stuff**: keep working and committing (repeat steps 4 and 5) until your work for that fix/feature/experiment is as complete as you can make it.
 
-*Make a PR*: go to github and create a new PR for your branch against master/prod branch (see Pull Request Reviews above). 
+**Make a PR**: go to github and create a new PR for your branch against master/prod branch (see Pull Request Reviews above). 
 
-*Respond to PR feedback*: as feedback comes in, create additional commits to address and push them up. Do NOT squash/rebase during review as that makes headaches for reviewers.
+**Respond to PR feedback**: as feedback comes in, create additional commits to address and push them up. Do NOT squash/rebase during review as that makes headaches for reviewers.
 
-*Get thumbs*: once each reviewer is done with their review and happy with the code that will be merged, they should approve the PR and give a thumbs up  :+1:
+**Get thumbs**: once each reviewer is done with their review and happy with the code that will be merged, they should approve the PR and give a thumbs up  :+1:
 
-*Squash commits (optional)*: before merging, squash all your work into logical commits - or one single commit - that summarizes the changes.
+**Squash commits (optional)**: before merging, squash all your work into logical commits - or one single commit - that summarizes the changes.
 
-*Merge the PR*: merge the PR on github and delete the branch.
+**Merge the PR**: merge the PR on github and delete the branch.
 
-*Fetch latest master*: Return to your terminal, checkout the master branch and fetch and merge the latest changes.
+**Fetch latest master**: Return to your terminal, checkout the master branch and fetch and merge the latest changes.
 ```
 git checkout master
 git fetch
@@ -107,6 +114,6 @@ git merge
 ```
 
 ### Advanced topics 
-The following topics are useful to get to know but often require someone knowledgable with git to be teach or at least have nearby for questions/abort commands.
+The following topics are useful to get to know but often require someone knowledgable with git to teach or at least have nearby for questions/abort commands.
 * Rebasing
 * Merge conflicts
