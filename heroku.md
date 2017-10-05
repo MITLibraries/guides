@@ -215,6 +215,24 @@ We have not yet tried
 but it is a compelling option to only have to request DNS and
 allow ACM to automatically handle the certs and is worth trying.
 
+### Example email to TS3 help (not fix-lib) to start the process
+
+```
+The [YOUR PROJECT NAME] project requests the following domain name
+registration:
+
+CNAME: [YOUR_DESIRED_REGISTRATION].mit.edu
+Target: [YOUR_DESIRED_REGISTRATION].mit.edu.herokudns.com
+
+Additionally, we'll need an SSL cert for that domain. General information is
+available here on what we'll need:
+https://devcenter.heroku.com/articles/ssl
+
+Essentially, once we have the cert I can upload it and the private key to
+Heroku.
+
+Please let me know if you need any additional information.
+```
 
 ## MIT Authentication
 
