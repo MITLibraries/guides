@@ -223,7 +223,7 @@ registration:
 
 CNAME: [YOUR_DESIRED_REGISTRATION].mit.edu
 Target: [YOUR_DESIRED_REGISTRATION].mit.edu.herokudns.com
-Account number: please include our standard billing account number
+Account number: please include our standard billing account number [put that literal text in the request]
 
 Please let me know if you need any additional information.
 ```
