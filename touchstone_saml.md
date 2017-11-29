@@ -1,6 +1,8 @@
 ---
 order: 1000
 ---
+# Touchstone / Shibboleth / SAML Authentication
+
 # What is Touchstone?
 
 [Touchstone at MIT](http://ist.mit.edu/touchstone-detail)
@@ -142,7 +144,7 @@ reasonable.
 Send an email to `touchstone-support@mit.edu` with the following information:
 
 ```
-I would like to register the following SAML application with Touchstone.
+I would like to register the following SAML SP with Touchstone.
 
 SP Metadata URL: https://YOUR_APP.mit.edu/users/auth/saml/metadata
 Contact email address: lib-touchstone@mit.edu
