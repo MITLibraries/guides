@@ -40,3 +40,28 @@ The accounts are maintained by DLE, so ask in our channel on Slack if don't yet 
   <script>Raven.config('<%= ENV['JS_EXCEPTION_LOGGER_KEY'] %>').install()</script>
 <% end %>
 ```
+
+## How can I add Sentry to my Python application
+
+For both Django and Flask, add `SENTRY_DSN` to your ENV and set this to whatever value the project you just created provides.
+
+### Django
+1. `pipenv install raven`
+2. Add the following to your config:
+
+   ```python
+   INSTALLED_APPS = (
+     'raven.contrib.django.raven_compat',
+   )
+   ```
+
+### Flask
+1. `pipenv install raven[flask]`
+2. Add the following to your app config:
+
+   ```python
+   from raven.contrib.flask import Sentry
+
+   app = Flask(__name__)
+   Sentry(app)
+   ```
