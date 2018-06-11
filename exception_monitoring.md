@@ -65,3 +65,23 @@ For both Django and Flask, add `SENTRY_DSN` to your ENV and set this to whatever
    app = Flask(__name__)
    Sentry(app)
    ```
+
+## How can I add Sentry to my PHP application
+
+There is a [Sentry PHP library](https://github.com/getsentry/sentry-php) that will do most of the work for you. Depending on what PHP framework you are using, the final integration will vary.
+
+### Drupal
+
+Sentry integration within Drupal is provided via [Raven](https://www.drupal.org/project/raven).
+
+For Drupal 8, add Raven via `composer require drupal/raven`, which will install both Raven and the Sentry PHP library.
+
+For Drupal 7, you will need [X Autoload](https://www.drupal.org/project/xautoload) and the [Libraries API](https://www.drupal.org/project/libraries). Additionally, you will need to place the Sentry PHP library at `/sites/all/libraries/sentry-php/` so that the path to the client is `/sites/all/libraries/sentry-php/lib/Raven/Client.php`.
+
+After installing, log into the Drupal application to configure the DSN and other settings at `/admin/config/development/raven`.
+
+### WordPress
+
+Sentry integration within WordPress is provided via [WP Sentry Integration](https://wordpress.org/plugins/wp-sentry-integration/).
+
+Further WordPress instructions will be available soon.
