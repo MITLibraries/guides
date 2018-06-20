@@ -62,7 +62,7 @@ See also:
 
 ## Where do I get a template?
 
-https://docs.google.com/document/d/1yfL1XPPQrwhnMdIw7CLpBM56uY2b-SCZfNerkwCGDqU/edit?usp=sharing
+[Incident Response Template](https://docs.google.com/document/d/1yfL1XPPQrwhnMdIw7CLpBM56uY2b-SCZfNerkwCGDqU/edit?usp=sharing)
 
 ## How do I submit my completed report?
 
