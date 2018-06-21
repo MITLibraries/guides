@@ -14,9 +14,8 @@ The intent is to make it clear what happened and how we responded.
 
 ## What requires an incident response?
 
-Any outage that lasts more than 45 minutes.
-
-Every suspected security breach, regardless of whether an outage was involved
+- Any outage that lasts more than 45 minutes.
+- Every suspected security breach, regardless of whether an outage was involved
 or if it was determined after the fact that no security breach occurred.
 
 ## Who should write them?
