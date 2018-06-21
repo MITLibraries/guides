@@ -9,7 +9,7 @@ For our purposes, we are describing an incident as any extended outage to a
 system or service under our control as well as any security breach that may
 involve MIT data on said systems.
 
-An incident response is our documentation as to how we handled those incidents.
+An incident response is no-blame documentation about the root cause of the incident, how we handled the response, and what we can do to prevent something similar from happening again.
 The intent is to make it clear what happened and how we responded.
 
 ## What requires an incident response?
