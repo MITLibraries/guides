@@ -83,7 +83,7 @@ git merge
 
 **Do stuff**: open the repo in your editor and write code or make edits that relate to the fix/feature/experiment you are working on.
 
-**Commit your changes regularly**: once you have a few changes that add up to something (eg. 'added new js function to load rss' or 'added new css to support adjusted mini-cal alignment') or if you have to stop for a bit or switch to something else, add the files you are ready to commit, then commit them to your branch and push them to github.
+**Commit your changes regularly**: once you have a few changes that add up to something (eg. 'added new js function to load rss' or 'added new css to support adjusted mini-cal alignment') or if you have to stop for a bit or switch to something else, add the files you are ready to commit, then commit them to your branch and push them to github. Please use helpful commit messages! Here are some [guidelines for writing good commit messages](https://chris.beams.io/posts/git-commit/).
 
 ```
 git add [filename] 
