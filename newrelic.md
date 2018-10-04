@@ -1,11 +1,11 @@
 ---
 order: 1000
 ---
-# New Relic for DSpace
+### New Relic for DSpace
 
 The task involves downloading the New Relic agent and attaching it to Tomcat. Consult the [New Relic Java Agent](https://docs.newrelic.com/docs/agents/java-agent/installation/install-java-agent) insturctions if you run into any issues.
 
-## Steps
+#### Steps
 
 - Download and unzip the New Relic Java agent to `/etc/newrelic`.
 - Make `tomcat` user/group the owner (as on dspace-staging) and verify file permissions.
