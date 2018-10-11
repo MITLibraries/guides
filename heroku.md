@@ -1,16 +1,16 @@
 ---
 order: 1000
 ---
-# Heroku
+### Heroku
 
 This is not intended to replace the Heroku documentation. Some common
 practices are documented here for convenience.
 However, [read the docs](https://devcenter.heroku.com).
 
 
-## What’s weird about Heroku at first?
+#### What’s weird about Heroku at first?
 
-### File system
+##### File system
 
 Heroku has no persistent file system. Don’t write anything and
 expect it to be there even on the next request (it often is, but
@@ -20,7 +20,7 @@ NOTE: files stored in your code repository or generated at deploy time, such as
 css/js/images, are okay to use the Heroku file system for. If your app expects
 to be exceptionally popular, a CDN may be appropriate.
 
-### Logging
+##### Logging
 
 Heroku expects you to ship logs elsewhere (because of the no
 persistent filesystem). With well tuned logs on low usage apps
@@ -28,7 +28,7 @@ persistent filesystem). With well tuned logs on low usage apps
 We can pay for more if we need it. Do set it up for staging and
 production.
 
-### Exception Logging
+##### Exception Logging
 
 Use something that captures the stack and sends it out.
 
@@ -37,14 +37,14 @@ In theory this will be in the logs, but
 exception reporting with the ability to open tickets and not spam on
 multiple errors, etc
 
-### Database Backups
+##### Database Backups
 
 Make sure to configure backups. This is not automatic (it
 is free for daily with a one week retention even on the free pg plan
 that comes with every app). You do need to
 [Schedule your DB backups](https://devcenter.heroku.com/articles/heroku-postgres-backups)!
 
-### Static vs Dynamic IPs
+##### Static vs Dynamic IPs
 
 Many servers have traditionally had Static IPs. You do _not_ get
 Static IPs from Heroku by default. Most apps don't need Static IPs
@@ -59,7 +59,7 @@ This will route outbound traffic over a static IP. Inbound traffic
 will continue to use the Heroku supplied dynamic IP.
 
 
-## Billing
+#### Billing
 
 We have a shared billing account. Password is in our LastPass. That
 account should be the owner rather than setting up billing for each
@@ -82,7 +82,7 @@ There is no fixed rule, so getting other thoughts on the cost /
 benefit is the best current option.
 
 
-## Pipelines
+#### Pipelines
 
 TL;DR: Use [pipelines](https://devcenter.heroku.com/articles/pipelines).
 They are :mega: :rainbow: :beers: :fireworks:
@@ -106,9 +106,9 @@ On deploy or ENV change, the application will restart. It is
 normally a quick blip and doesn’t require downtime announcements.
 
 
-## Production Deploy with Pipelines Cheatsheet
+#### Production Deploy with Pipelines Cheatsheet
 
-### Tag a release in GitHub with release notes that are useful
+##### Tag a release in GitHub with release notes that are useful
 
 From the repo code page on GitHub, go to Releases, and then click the
 "Draft a new release" button. Number the release appropriately, and
@@ -120,7 +120,7 @@ to production using Pipelines. Pushing to prod moves whatever is on
 staging, which is quite likely `master` unless you are doing weird
 things (note: don't do weird things).
 
-### Confirm everything is all good on staging.
+##### Confirm everything is all good on staging.
 
 Staging probably has `master`. If it works, pushing to prod should
 be :rainbow: unless you forgot you'll need changes to ENV for any new
@@ -131,7 +131,7 @@ appropriate (i.e. only push stuff that has been approved to go live
 and / or is a bug / security fix)… but ideally that has been done
 before merge with PR builds… right? right‽
 
-### Login to Heroku Dashboard
+##### Login to Heroku Dashboard
 
 On the app Pipeline page, click "Promote to Production"
 
@@ -140,7 +140,7 @@ indeed what you expect it to be. If it is, go back and click
 "Promote". If it is not, determine why it is not what you expect then
 make decide what to do about that.
 
-### Confirm the app restarts and seems good
+##### Confirm the app restarts and seems good
 It takes a few seconds to restart. If things are _not_ good, rollback
 in the Dashboard.
 
@@ -149,12 +149,12 @@ modified your db schema or migrated data in any way, you _will_ need
 to roll that back separately.
 [Rollback Docs](https://devcenter.heroku.com/articles/releases#rollback)
 
-### Inform stakeholders if appropriate
+##### Inform stakeholders if appropriate
 
 You just made a change to production. Tell people that care.
 
 
-## Manual Deploys
+#### Manual Deploys
 
 You can still of course manually deploy when using Pipelines,
 but it is best to do this to staging and then promote from there
@@ -162,7 +162,7 @@ rather than just hoping everything is going to be great in
 production.
 
 
-## Viewing / changing Environment Variables
+#### Viewing / changing Environment Variables
 
 Using ENV for config is common for Heroku deploys. You can view and
 change settings via either the Heroku CLI or the Web UI.
@@ -176,7 +176,7 @@ You should store a copy of your staging and production ENV in our
 shared LastPass folder.
 
 
-## Deploy Hooks
+#### Deploy Hooks
 
 It is often useful to get notifications when staging or production apps are deployed and
 [Deploy Hooks](https://devcenter.heroku.com/articles/deploy-hooks)
@@ -191,7 +191,7 @@ receiving emails with cryptic notes about a specific SHA being
 deployed to staging / production is best).
 
 
-## Dynos
+#### Dynos
 
 We use paid [Dynos](https://devcenter.heroku.com/articles/dynos).
 So far the $7 plan works fine for us in production and free dynos on
@@ -204,7 +204,7 @@ main dyno (or at least you can’t do one paid and one free… you may
 be able to do one higher and one cheap?).
 
 
-## Domain Names and SSL
+#### Domain Names and SSL
 
 It’s not significantly different than getting a DNS entry for a vm.
 ts3help is the best path and provide details on what is necessary
@@ -215,7 +215,7 @@ We have now tried
 and it seems :rainbow:. It's probably appropriate to use it unless you know
 your application has non-standard needs.
 
-### Example email to TS3 help (not fix-lib) to start the process
+##### Example email to TS3 help (not fix-lib) to start the process
 
 ```
 The [YOUR PROJECT NAME] project requests the following domain name
@@ -241,7 +241,7 @@ Essentially, once we have the cert I can upload it and the private key to
 Heroku.
 ```
 
-## MIT Authentication
+#### MIT Authentication
 
 MIT officially only supports
 [Shibboleth / Touchstone](https://wikis.mit.edu/confluence/display/TOUCHSTONE/Provisioning+Steps)

@@ -1,24 +1,24 @@
 ---
 order: 1000
 ---
-# Touchstone / Shibboleth / SAML Authentication
+### Touchstone / Shibboleth / SAML Authentication
 
-# What is Touchstone?
+### What is Touchstone?
 
 [Touchstone at MIT](http://ist.mit.edu/touchstone-detail)
 
 Touchstone is MIT's Shibboleth implementation that includes DUO for two factor
 authentication.
 
-# What is Shibboleth?
+### What is Shibboleth?
 
 [Shibboleth wikipedia entry](https://en.wikipedia.org/wiki/Shibboleth_(Shibboleth_Consortium))
 
-# What is SAML?
+### What is SAML?
 
 [Security Assertion Markup Language](https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language)
 
-# What are we doing here?
+### What are we doing here?
 
 We want to use Touchstone, and thus Shibboleth, but without the `mod_shib`
 Apache HTTPd plugin. We can do this by utilizing the SAML protocol that
@@ -40,7 +40,7 @@ application the principles should hold with other languages.
 A sample barebones functioning [rails application is available](https://github.com/MITLibraries/rails_saml_example).
 
 
-# Registering a SAML SP in MIT Touchstone
+### Registering a SAML SP in MIT Touchstone
 
 The request itself is simple, but preparing your application for _successful_
 submission takes some understanding of what is happening and providing what IST
@@ -48,7 +48,7 @@ needs in a way they can easily consume it. This is not hard, but it is
 confusing and opaque. Please ask for help if you find yourself thinking it
 would be easier to just `mod_shib` on a VM and make this someone else's problem.
 
-## Request DNS registration
+#### Request DNS registration
 
 IS&T TouchStone support prefers a `*.mit.edu` domain for each Touchstone
 protected application. The easiest path to that is to just request DNS
@@ -58,7 +58,7 @@ note: Local development, automated tests, and PR builds will likely use
 non-Touchstone authentication and thus don't require DNS or Touchstone
 registrations.
 
-## Generating a self-signed certificate for Touchstone
+#### Generating a self-signed certificate for Touchstone
 
 Touchstone support requests a long lived self signed certificate. The following
 command will give you a 10 year cert with no password which is useful for
@@ -78,7 +78,7 @@ Suggestions for the prompts:
 - APP_NAME.mit.edu
 - lib-touchstone@mit.edu [if you use this, make sure you are on the moira list]
 
-## Configuring the application
+#### Configuring the application
 
 - follow omniauth-saml instructions (which follow Facebook instructions)
   - add gem and bundle
@@ -87,7 +87,7 @@ Suggestions for the prompts:
 
 [sample app config](https://github.com/MITLibraries/rails_saml_example/blob/master/config/initializers/devise.rb#L278-L302)
 
-## Generating application metadata
+#### Generating application metadata
 
 Touchstone registers the application by consuming metadata that the SP
 generates. `ruby-saml` can provide this metadata on a devise configured application at `/users/auth/saml/metadata`
@@ -98,7 +98,7 @@ application. NOTE: they do not regularly poll the SP metadata so if you make
 configuration or code changes that change the SP metadata, you need to ask
 touchstone support to re-ingest the metadata.
 
-### testshib
+##### testshib
 
 I found it frustrating to configure a SAML application against MIT Touchstone with the information they provide which is all Shibboleth specific. However,
 [testshib.org](http://www.testshib.org) allows you to register your SP against
@@ -111,7 +111,7 @@ IdP to the MIT Touchstone IdP later will be simple.
 However, you need to be able to redirect back to your application from testshib
 for authentication to succeed. I found `ngrok` to be super helpful for that.
 
-### ngrok
+##### ngrok
 
 [ngrok](https://ngrok.com)
 
@@ -124,14 +124,14 @@ Note: every time you start ngrok you get a new endpoint. This means you will
 need to re-upload your SP metadata to testshib. This is only a minor
 inconvenience as the change takes place instantly.
 
-### SP Metadata
+##### SP Metadata
 
 Once you have ngrok running you can export your SP metadata and upload it to
 testshib.
 
 You can then test authentication and debug any issues.
 
-## Email Touchstone help
+#### Email Touchstone help
 
 Once you've confirmed you have your SP working with the testshib IdP, you can
 push your code to wherever it will run (Heroku, a container somewhere, etc).
@@ -153,7 +153,7 @@ Organization name: MIT Libraries
 Organization URL: https://libraries.mit.edu
 ```
 
-## Non-touchstone auth for PR builds and local development
+#### Non-touchstone auth for PR builds and local development
 
 Registering a local SP for Touchstone is probably more trouble than it's worth.
 Using an alternative authentication strategy for local, test and PR builds is

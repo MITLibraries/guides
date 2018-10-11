@@ -1,7 +1,7 @@
 ---
 order: 1000
 ---
-# SSL Encryption
+### SSL Encryption
 
 We support the trend of [adopting SSL encryption](https://www.eff.org/https-everywhere/deploying-https) across the internet.
 
