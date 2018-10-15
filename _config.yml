@@ -1,4 +1,6 @@
 title: MIT Libraries Developer Documentation
 
-gems:
+remote_theme: mitlibraries/mitlibraries-jekyll
+
+plugins:
   - jemoji

@@ -2,6 +2,7 @@
 order: 1
 link: 'Home'
 permalink: /
+layout: 'sidenav'
 ---
 
 #### Welcome to the MIT Libraries Developer Documentation site.
