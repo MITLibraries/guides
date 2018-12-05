@@ -215,7 +215,7 @@ We have now tried
 and it seems :rainbow:. It's probably appropriate to use it unless you know
 your application has non-standard needs.
 
-##### Example email to TS3 help (not fix-lib) to start the process
+##### Example email to ITS help (not fix-lib) to start the process
 
 ```
 The [YOUR PROJECT NAME] project requests the following domain name
@@ -223,7 +223,8 @@ registration:
 
 CNAME: [YOUR_DESIRED_REGISTRATION].mit.edu
 Target: [YOUR_DESIRED_REGISTRATION].mit.edu.herokudns.com
-Account number: please include our standard billing account number [put that literal text in the request]
+Cost Object: [ITS fill-in]
+Contact E-mail: [ITS fill-in]
 
 Please let me know if you need any additional information.
 ```
