@@ -39,6 +39,10 @@ application the principles should hold with other languages.
 
 A sample barebones functioning [rails application is available](https://github.com/MITLibraries/rails_saml_example).
 
+We also have at least one [Python/Flask app using Touchstone](https://github.com/MITLibraries/ebooks)
+running in production, in case that's helpful for setting up future
+Python projects.
+
 
 ### Registering a SAML SP in MIT Touchstone
 
@@ -80,6 +84,7 @@ Suggestions for the prompts:
 
 #### Configuring the application
 
+##### Rails
 - follow omniauth-saml instructions (which follow Facebook instructions)
   - add gem and bundle
   - run migrations
@@ -87,10 +92,21 @@ Suggestions for the prompts:
 
 [sample app config](https://github.com/MITLibraries/rails_saml_example/blob/master/config/initializers/devise.rb#L278-L302)
 
+##### Python/Flask
+- Follow instructions to use [OneLogin's SAML Python3 Toolkit](https://github.com/onelogin/python3-saml)
+- The ebooks example sets SAML configuration using env variables to populate
+the python3-saml settings.json file. See [here](https://github.com/MITLibraries/ebooks/blob/4c671f6aeae8a3b6fec74ba7b8942eb0fb35d2b9/ebooks/auth.py#L11) for example. Note that the
+settings used here are the minimum required ones for MIT Touchstone auth to work.
+
 #### Generating application metadata
 
 Touchstone registers the application by consuming metadata that the SP
-generates. `ruby-saml` can provide this metadata on a devise configured application at `/users/auth/saml/metadata`
+generates. `ruby-saml` can provide this metadata on a devise configured application at `/users/auth/saml/metadata`.
+
+`python3-saml` will similarly provide this metadata at whatever route is set in
+the view. Note it does not do this automagically like ruby-saml, you will need
+to write the view yourself...but the example given in the `python3-saml` demo
+app works fine, and is used in [ebooks](https://github.com/MITLibraries/ebooks/blob/4c671f6aeae8a3b6fec74ba7b8942eb0fb35d2b9/ebooks/views.py#L43_).
 
 Once you deploy your application and the DNS is working, you will provide that
 URL to IST and they will have everything they need in one place to register the
@@ -105,11 +121,16 @@ I found it frustrating to configure a SAML application against MIT Touchstone wi
 a test IdP and instantly see the results and error logs (you will have error
 logs).
 
+If testshib is not working (which happens sometimes), [OneLogin has good instructions](https://developers.onelogin.com/saml/python)
+for setting up a test IDP that you can use to ensure your app functions as a
+SAML SP before attempting to register/configure it with MIT Touchstone.
+
 If you [12 factor your app](https://12factor.net), changing from the testshib
 IdP to the MIT Touchstone IdP later will be simple.
 
 However, you need to be able to redirect back to your application from testshib
-for authentication to succeed. I found `ngrok` to be super helpful for that.
+or OneLogin's test IDP for authentication to succeed. I found `ngrok` to be
+super helpful for that.
 
 ##### ngrok
 
@@ -138,8 +159,8 @@ push your code to wherever it will run (Heroku, a container somewhere, etc).
 It should be using the DNS entry you will be registering with Touchstone at this
 time as well.
 
-Access the metadata at `FQDN/users/auth/saml/metadata` and confirm it looks
-reasonable.
+Access the metadata at `FQDN/users/auth/saml/metadata` or whatever your SAML
+metadata route is and confirm it looks reasonable.
 
 Send an email to `touchstone-support@mit.edu` with the following information:
 
@@ -152,6 +173,19 @@ Web server host name: YOUR_APP.mit.edu
 Organization name: MIT Libraries
 Organization URL: https://libraries.mit.edu
 ```
+
+IS&T's Touchstone documentation generally assumes you're running a Shibboleth server, and is confusing for SP applications. Here is some additional information learned in previous back-and-forths with them that may be helpful:
+- They will want to know which SAML attributes your application requires. This is not documented anywhere I could find, but the attributes they typically release are:
+  - eduPersonPrincipalName (ePPN): used as the unique user ID. Its value is the
+ user's Kerberos name, "scoped" to the mit.edu domain, e.g. "username@mit.edu".
+  - displayName
+  - affiliation attributes
+- Despite the fact that their documentation says the SP entity ID should be
+`/shibboleth`, they do not like that, and would prefer that it be `/saml`, must not have a trailing slash.
+- Their IDP does not support Single Logout, so don't try to configure that.
+- They require both a signing and an encryption cert defined in the metadata, but they can be the same.
+- The IDP SSO binding must be `HTTP-Redirect`.
+- For python3-saml, be sure to set `requestedAuthnContext` to false in settings.json if you want users to be able to choose between password and certificate login methods (otherwise it will default to password-only).
 
 #### Non-touchstone auth for PR builds and local development
 
