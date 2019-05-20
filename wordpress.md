@@ -48,6 +48,20 @@ this process should be directed to the Enterprise Systems team.
 
 3. Lock WordPress
 
+#### Database migrations
+
+At times it is necessary to move database content between tiers. For example,
+we copy production content down to the staging site in order to evaluate a
+significant site redesign. As part of this process, it is necessary to run a
+search-and-replace tool in order to change the site address throughout the
+database.
+
+The WordPress CLI has a [search-replace](https://developer.wordpress.org/cli/commands/search-replace/) command to accomplish this goal.
+The specific flags that we use include `network`, `path`, and `url`:
+
+```
+/usr/local/bin/wp --network --path=/var/www/html/htdocs --url=http://old.website.url search-replace old.website.url new.website.url
+```
 
 #### Locally Developed Code
 
