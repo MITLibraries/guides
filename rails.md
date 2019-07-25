@@ -27,6 +27,8 @@ order: 1000
 
 #### Ruby Versions
 - Use the latest stable release unless you have a documented reason not to
+  (an [ADR](https://github.com/npryce/adr-tools) would be a great place to
+  document this if the project is using them)
 - see also: `Upgrading Ruby on Rails and Deprecations` below
 
 #### Rails Versions
@@ -47,6 +49,9 @@ order: 1000
   [Dependabot](https://dependabot.com) or [Depfu](https://depfu.com) are
   efficient ways to do this. Keep everything up to date even after the project
   is in production to avoid accumulating unnecessary technical debt.
+
+#### Layout and Styles
+- Use our [mitlibraries-theme](https://github.com/MITLibraries/mitlibraries-theme) gem. See that repo for documentation.
 
 #### Authentication
 - See our general [Touchstone](/touchstone_saml.html) docs that include some
