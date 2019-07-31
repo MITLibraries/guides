@@ -84,6 +84,12 @@ Suggestions for the prompts:
 
 #### Configuring the application
 
+Regardless which language or library you are using, there are a few pieces of
+information you will need that should be the same for all apps:
+- The IdP metadata URL is https://touchstone.mit.edu/metadata/MIT-metadata.xml
+- The IdP entity ID is https://idp.mit.edu/shibboleth
+- The IdP SSO URL is https://idp.mit.edu/idp/profile/SAML2/Redirect/SSO
+
 ##### Rails
 - follow omniauth-saml instructions (which follow Facebook instructions)
   - add gem and bundle
