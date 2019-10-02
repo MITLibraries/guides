@@ -46,25 +46,36 @@ The accounts are maintained by DLE, so ask in our channel on Slack if don't yet 
 For both Django and Flask, add `SENTRY_DSN` to your ENV and set this to whatever value the project you just created provides.
 
 ##### Django
-1. `pipenv install raven`
-2. Add the following to your config:
+1. `pipenv install sentry-sdk`
+2. Add the following to your production settings file:
+```
+import os
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
-   ```python
-   INSTALLED_APPS = (
-     'raven.contrib.django.raven_compat',
-   )
-   ```
+sentry_sdk.init(
+    dsn="os.getenv(SENTRY_DSN)",
+    integrations=[DjangoIntegration()]
+)
+```
+   For more info, check out the [Sentry Django setup docs](https://docs.sentry.io/platforms/python/django/)
 
 ##### Flask
-1. `pipenv install raven[flask]`
-2. Add the following to your app config:
+1. `pipenv install sentry-sdk[flask]`
+2. Add the following to your production settings file:
+```
+import os
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 
-   ```python
-   from raven.contrib.flask import Sentry
+sentry_sdk.init(
+    dsn="os.getenv(SENTRY_DSN)",
+    integrations=[FlaskIntegration()]
+)
 
-   app = Flask(__name__)
-   Sentry(app)
-   ```
+app = Flask(__name__)
+```
+   For more info, check out the [Sentry Flask setup docs](https://docs.sentry.io/platforms/python/flask/)
 
 #### How can I add Sentry to my PHP application
 
