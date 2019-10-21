@@ -58,10 +58,7 @@ order: 1000
   Rails specific information
 - Use [Devise](https://github.com/plataformatec/devise), probably with
   [OmniAuth](https://github.com/omniauth/omniauth)
-- [MIT OpenID Pilot](https://oidc.mit.edu) needs to be approved on a per-project
-  basis if it will be public facing. It can be used with no approval for staff-only authentication needs
-- We maintain [omniauth-mit-oauth2](https://github.com/MITLibraries/omniauth-mit-oauth2)
-  to make it easy to integrate with OmniAuth
+- [MIT OpenID Pilot](https://oidc.mit.edu) should not be used unless it leaves pilot stage
 
 #### Authorization
 - Use [CanCanCan](https://github.com/CanCanCommunity/cancancan)
