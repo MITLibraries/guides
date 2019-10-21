@@ -1,7 +1,7 @@
 ---
-order: 1000
+order: 5
 ---
-### Touchstone / Shibboleth / SAML Authentication
+### Authentication: Touchstone / Shibboleth / SAML
 
 ### What is Touchstone?
 
@@ -22,7 +22,7 @@ authentication.
 
 We want to use Touchstone, and thus Shibboleth, but without the `mod_shib`
 Apache HTTPd plugin. We can do this by utilizing the SAML protocol that
-the Touchstone server can support.
+the Touchstone server supports.
 
 `mod_shib` traditionally is the Shibboleth SP (service provider). We'll be
 implementing an SP in our application. The Touchstone service that MIT provides
@@ -49,7 +49,7 @@ Python projects.
 The request itself is simple, but preparing your application for _successful_
 submission takes some understanding of what is happening and providing what IST
 needs in a way they can easily consume it. This is not hard, but it is
-confusing and opaque. Please ask for help if you find yourself thinking it
+confusing and opaque. Please ask for help in Slack if you find yourself thinking it
 would be easier to just `mod_shib` on a VM and make this someone else's problem.
 
 #### Request DNS registration
@@ -58,8 +58,8 @@ IS&T TouchStone support prefers a `*.mit.edu` domain for each Touchstone
 protected application. The easiest path to that is to just request DNS
 registration for both staging and production environments.
 
-note: Local development, automated tests, and PR builds will likely use
-non-Touchstone authentication and thus don't require DNS or Touchstone
+note: Local development, automated tests, and PR builds should use
+non-Touchstone authentication and thus don't require `*.mit.edu` or Touchstone
 registrations.
 
 #### Generating a self-signed certificate for Touchstone
@@ -107,10 +107,12 @@ settings used here are the minimum required ones for MIT Touchstone auth to work
 #### Generating application metadata
 
 Touchstone registers the application by consuming metadata that the SP
-generates. `ruby-saml` can provide this metadata on a devise configured application at `/users/auth/saml/metadata`.
+generates.
+
+`ruby-saml` can provide this metadata on a devise configured application at `/users/auth/saml/metadata`.
 
 `python3-saml` will similarly provide this metadata at whatever route is set in
-the view. Note it does not do this automagically like ruby-saml, you will need
+the view. Note it does not do this automagically like `ruby-saml`, you will need
 to write the view yourself...but the example given in the `python3-saml` demo
 app works fine, and is used in [ebooks](https://github.com/MITLibraries/ebooks/blob/4c671f6aeae8a3b6fec74ba7b8942eb0fb35d2b9/ebooks/views.py#L43_).
 
@@ -197,4 +199,4 @@ IS&T's Touchstone documentation generally assumes you're running a Shibboleth se
 
 Registering a local SP for Touchstone is probably more trouble than it's worth.
 Using an alternative authentication strategy for local, test and PR builds is
-recommended.
+recommended. For Rails apps, we use the `developer` authentication that is include with `Devise`.
