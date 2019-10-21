@@ -23,19 +23,22 @@ to be exceptionally popular, a CDN may be appropriate.
 ##### Logging
 
 Heroku expects you to ship logs elsewhere (because of the no
-persistent filesystem). With well tuned logs on low usage apps
-(nearly everything we build), a free tier of PaperTrail seems good.
-We can pay for more if we need it. Do set it up for staging and
-production.
+persistent filesystem). See our [Logging](/logging) documentation for our centralized solution.
+
+Use the Heroku CLI application to do the following:
+
+```bash
+heroku drains:add \
+'https://listener.logz.io:8081?token=OUR_LOGZ_TOKEN&app=YOUR_HEROKU_APP_NAME' \
+--app YOUR_HEROKU_APP_NAME
+```
+_Note: Ask on the `#engineering` Slack channel for our shared Logz.io token._
+
+You should set up log drains for both staging and production.
 
 ##### Exception Logging
 
-Use something that captures the stack and sends it out.
-
-In theory this will be in the logs, but
-[Rollbar](https://rollbar.com) seems fine enough to get real
-exception reporting with the ability to open tickets and not spam on
-multiple errors, etc
+Use our [Exception Monitoring](/exception_monitoring) service.
 
 ##### Database Backups
 
@@ -45,6 +48,9 @@ that comes with every app). You do need to
 [Schedule your DB backups](https://devcenter.heroku.com/articles/heroku-postgres-backups)!
 
 ##### Static vs Dynamic IPs
+
+_NOTE: if you need a static IP, please considering using an AWS solution. Ask in the `#engineering`
+channel to discuss options. The following is probably not what you need._
 
 Many servers have traditionally had Static IPs. You do _not_ get
 Static IPs from Heroku by default. Most apps don't need Static IPs
@@ -61,21 +67,23 @@ will continue to use the Heroku supplied dynamic IP.
 
 #### Billing
 
-We have a shared billing account. Password is in our LastPass. That
-account should be the owner rather than setting up billing for each
+We have a shared billing account. Password is in our LastPass. Ask in the `#engineering` Slack
+channel if you need access.
+That account should be the owner rather than setting up billing for each
 app individually.
 
 Only use that shared account to claim ownership or change settings
 that require the owner. Otherwise, use your own Heroku account. Add
-yourself to any projects you want (but at least your own!).
+yourself to any projects you want (but at least the ones you help maintain!).
 
-Not in DLAD? Ask someone in DLAD to add you to any projects you are
-working on. The only thing that shared account gives you is billing
+If you don't use Heroku regularly, such as not being a full time developer, you may
+ask a full time developer to assist in moving apps to the billing account.
+The only thing that shared account gives you is billing
 control (aka you aren’t missing anything important).
 
 Need a new app moved into our paid accounts? Set it up with your
 account then transfer ownership to the shared account when it is
-ready for billing. This is how DLAD works and so far it is fine.
+ready for billing.
 
 Not sure if something is too expensive to use as an add-on? Ask.
 There is no fixed rule, so getting other thoughts on the cost /
@@ -209,11 +217,8 @@ be able to do one higher and one cheap?).
 It’s not significantly different than getting a DNS entry for a vm.
 ts3help is the best path and provide details on what is necessary
 via the
-[Custom Domain](https://devcenter.heroku.com/articles/custom-domains) and [Heroku SSL](https://devcenter.heroku.com/articles/ssl) docs.
-We have now tried
-[Automated Certificate Management](https://devcenter.heroku.com/articles/automated-certificate-management)
-and it seems :rainbow:. It's probably appropriate to use it unless you know
-your application has non-standard needs.
+[Custom Domain](https://devcenter.heroku.com/articles/custom-domains) and
+[Automated Certificate Management](https://devcenter.heroku.com/articles/automated-certificate-management).
 
 ##### Example email to ITS help (not fix-lib) to start the process
 
@@ -229,9 +234,9 @@ Contact E-mail: [ITS fill-in]
 Please let me know if you need any additional information.
 ```
 
-If you are doing the Heroku default Let's Encrypt, that's enough. If you need an
-Incommon cert for some reason, include this next bit too. Initially the default
-Let's Encrypt integration seems fine.
+If you are doing the Heroku default Automated Certificate Management (Let's Encrypt), that's enough.
+If you need an
+Incommon cert for some reason, include this next bit too. Most applications are fine with Let's Encrypt.
 
 ```
 Additionally, we'll need an SSL cert for that domain. General information is
@@ -244,13 +249,6 @@ Heroku.
 
 #### MIT Authentication
 
-MIT officially only supports
-[Shibboleth / Touchstone](https://wikis.mit.edu/confluence/display/TOUCHSTONE/Provisioning+Steps)
-which traditionally is enabled via an Apache httpd module. The
-nature of Heroku makes that idea outdated.
+See [Touchstone via SAML](/touchstone_saml.md) for our authentication best practice.
 
-If you are in need of doing MIT Authentication on Heroku, please
-see our [MIT OpenID Pilot policy](/oauth.md) to help determine
-whether your use case is allowed.
-
-[Touchstone via SAML](/touchstone_saml.md) may also be a good choice.
+[MIT Pilot OAuth](/oauth) should not be used.
