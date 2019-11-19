@@ -1,0 +1,19 @@
+name: Test docs build
+on:
+  push:
+    branches-ignore:
+      - 'master'
+      - 'gh-pages'
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+      - name: Build docs
+        run: |
+          pip install pipenv
+          pipenv install --ignore-pipfile --deploy
+          pipenv run make html
