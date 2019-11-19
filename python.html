@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>order: 1000 &#8212; Guides  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <hr class="docutils" />
+<div class="section" id="order-1000">
+<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="python-guidelines">
+<h2>Python Guidelines<a class="headerlink" href="#python-guidelines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="python-versions">
+<h3>Python Versions<a class="headerlink" href="#python-versions" title="Permalink to this headline">¶</a></h3>
+<p>You should be using the most recent stable version. Don’t use Python 2.</p>
+</div>
+<div class="section" id="style-and-coding-conventions">
+<h3>Style and Coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h3>
+<p>In general, you should follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> and <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP 257</a>. Unless otherwise stated here, assume those two guidelines are in effect. It is recommended to use <a class="reference external" href="http://flake8.pycqa.org/en/latest/">flake8</a> during development and CI.</p>
+<p>If you are providing function docstrings, use <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reST</a>. In addition to a description of what a function does, you should document the parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">widgetize</span><span class="p">(</span><span class="n">widget</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Properly widgetize the widget.</span>
+
+<span class="sd">  This ensures that the widget conforms to the strict standards</span>
+<span class="sd">  governing conformant widgets.</span>
+
+<span class="sd">  :param widget: a widget what needs widgetizing</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="n">standardize</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<p>Use <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/">Pipenv</a> to manage dependencies. If there’s some reason you need to support pip, then you should still manage dependencies with pipenv, but generate your <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file as needed with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pipenv lock -r
+</pre></div>
+</div>
+</div>
+<div class="section" id="project-documentation">
+<h3>Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this headline">¶</a></h3>
+<p>Use <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> for generating project documentation.</p>
+</div>
+<div class="section" id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<p>Since we no longer have to support both Python 2 and 3 there’s less need for <a class="reference external" href="https://tox.readthedocs.org/en/latest/">tox</a>, though it can still be useful. Unless you are using something like Django that comes with its own testing framework, use <a class="reference external" href="https://docs.pytest.org">pytest</a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Guides</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/python.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

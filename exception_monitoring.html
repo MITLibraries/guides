@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>order: 1000 &#8212; Guides  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <hr class="docutils" />
+<div class="section" id="order-1000">
+<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exception-monitoring">
+<h2>Exception Monitoring<a class="headerlink" href="#exception-monitoring" title="Permalink to this headline">¶</a></h2>
+<p>This will provide some guidelines for adding exception monitoring to your application using our Sentry subscription.</p>
+<div class="section" id="what-software-needs-exception-monitoring">
+<h3>What software needs Exception Monitoring<a class="headerlink" href="#what-software-needs-exception-monitoring" title="Permalink to this headline">¶</a></h3>
+<p>In general, all of the deployed custom software we write should have exception monitoring. If a product is no longer being maintained and we are actively moving to replace or retire it, exception monitoring should probably not be included.</p>
+</div>
+<div class="section" id="what-are-we-using-for-exception-monitoring">
+<h3>What are we using for Exception Monitoring<a class="headerlink" href="#what-are-we-using-for-exception-monitoring" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://sentry.io/mit-libraries/">Sentry</a></p>
+</div>
+<div class="section" id="how-do-i-get-an-account">
+<h3>How do I get an account?<a class="headerlink" href="#how-do-i-get-an-account" title="Permalink to this headline">¶</a></h3>
+<p>The accounts are maintained by DLE, so ask in our channel on Slack if don’t yet have a Sentry login to our account.</p>
+</div>
+<div class="section" id="how-can-i-add-sentry-to-my-application">
+<h3>How can I add Sentry to my application<a class="headerlink" href="#how-can-i-add-sentry-to-my-application" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>From the main MIT Libraries Sentry page, choose “Add New &gt; Project”</p></li>
+<li><p>Choose the language for some general instructions and useful provide a name for the project</p></li>
+<li><p>Follow the instructions that are provided by Sentry (NOTE: see below for some language specific tips we’ve come up with beyond the official documentation)</p></li>
+</ol>
+</div>
+<div class="section" id="how-can-i-add-sentry-to-my-rails-application">
+<h3>How can I add Sentry to my Rails application<a class="headerlink" href="#how-can-i-add-sentry-to-my-rails-application" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>For most Rails application needs</p>
+<ul>
+<li><p>just add <code class="docutils literal notranslate"><span class="pre">gem</span> <span class="pre">'sentry-raven'</span></code> to your Gemfile</p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code> to your ENV. Set the value to whatever the project you just created provides.</p></li>
+<li><p>run the app and exceptions will be shipped to Sentry automatically with no additional initialization required</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="how-can-i-add-sentry-to-my-javascript-features-in-my-rails-application">
+<h3>How can I add Sentry to my JavaScript features in my Rails application<a class="headerlink" href="#how-can-i-add-sentry-to-my-javascript-features-in-my-rails-application" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Obtain a sentry js style DSN key by going to https://docs.sentry.io/clients/javascript/ and select your application from the configuration dropdown under “Configuring the Client”</p></li>
+<li><p>NOTE: do not use the DSN you used for your Rails application, it is important you use the specific JS key as it will be publicly shared unlike your Rails DSN.</p></li>
+<li><p>set <code class="docutils literal notranslate"><span class="pre">JS_EXCEPTION_LOGGER_KEY</span></code> value to the project specific JavaScript DSN in your ENV</p></li>
+<li><p>Include something like the following in your application template:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;% if ENV[&#39;JS_EXCEPTION_LOGGER_KEY&#39;].present? %&gt;
+  &lt;script src=&quot;https://cdn.ravenjs.com/3.25.2/raven.min.js&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;Raven.config(&#39;&lt;%= ENV[&#39;JS_EXCEPTION_LOGGER_KEY&#39;] %&gt;&#39;).install()&lt;/script&gt;
+&lt;% end %&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-can-i-add-sentry-to-my-python-application">
+<h3>How can I add Sentry to my Python application<a class="headerlink" href="#how-can-i-add-sentry-to-my-python-application" title="Permalink to this headline">¶</a></h3>
+<p>For both Django and Flask, add <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code> to your ENV and set this to whatever value the project you just created provides.</p>
+<div class="section" id="django">
+<h4>Django<a class="headerlink" href="#django" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">sentry-sdk</span></code></p></li>
+<li><p>Add the following to your production settings file:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sentry_sdk</span>
+<span class="kn">from</span> <span class="nn">sentry_sdk.integrations.django</span> <span class="k">import</span> <span class="n">DjangoIntegration</span>
+
+<span class="n">sentry_sdk</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;os.getenv(SENTRY_DSN)&quot;</span><span class="p">,</span>
+    <span class="n">integrations</span><span class="o">=</span><span class="p">[</span><span class="n">DjangoIntegration</span><span class="p">()]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>For more info, check out the <a class="reference external" href="https://docs.sentry.io/platforms/python/django/">Sentry Django setup docs</a></p>
+</div>
+<div class="section" id="flask">
+<h4>Flask<a class="headerlink" href="#flask" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">sentry-sdk[flask]</span></code></p></li>
+<li><p>Add the following to your production settings file:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sentry_sdk</span>
+<span class="kn">from</span> <span class="nn">sentry_sdk.integrations.flask</span> <span class="k">import</span> <span class="n">FlaskIntegration</span>
+
+<span class="n">sentry_sdk</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;os.getenv(SENTRY_DSN)&quot;</span><span class="p">,</span>
+    <span class="n">integrations</span><span class="o">=</span><span class="p">[</span><span class="n">FlaskIntegration</span><span class="p">()]</span>
+<span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For more info, check out the <a class="reference external" href="https://docs.sentry.io/platforms/python/flask/">Sentry Flask setup docs</a></p>
+</div>
+</div>
+<div class="section" id="how-can-i-add-sentry-to-my-php-application">
+<h3>How can I add Sentry to my PHP application<a class="headerlink" href="#how-can-i-add-sentry-to-my-php-application" title="Permalink to this headline">¶</a></h3>
+<p>There is a <a class="reference external" href="https://github.com/getsentry/sentry-php">Sentry PHP library</a> that will do most of the work for you. Depending on what PHP framework you are using, the final integration will vary.</p>
+<div class="section" id="drupal">
+<h4>Drupal<a class="headerlink" href="#drupal" title="Permalink to this headline">¶</a></h4>
+<p>Sentry integration within Drupal is provided via <a class="reference external" href="https://www.drupal.org/project/raven">Raven</a>.</p>
+<p>For Drupal 8, add Raven via <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">require</span> <span class="pre">drupal/raven</span></code>, which will install both Raven and the Sentry PHP library.</p>
+<p>For Drupal 7, you will need <a class="reference external" href="https://www.drupal.org/project/xautoload">X Autoload</a> and the <a class="reference external" href="https://www.drupal.org/project/libraries">Libraries API</a>. Additionally, you will need to place the Sentry PHP library at <code class="docutils literal notranslate"><span class="pre">/sites/all/libraries/sentry-php/</span></code> so that the path to the client is <code class="docutils literal notranslate"><span class="pre">/sites/all/libraries/sentry-php/lib/Raven/Client.php</span></code>.</p>
+<p>After installing, log into the Drupal application to configure the DSN and other settings at <code class="docutils literal notranslate"><span class="pre">/admin/config/development/raven</span></code>.</p>
+</div>
+<div class="section" id="wordpress">
+<h4>WordPress<a class="headerlink" href="#wordpress" title="Permalink to this headline">¶</a></h4>
+<p>Sentry integration within WordPress is provided via <a class="reference external" href="https://wordpress.org/plugins/wp-sentry-integration/">WP Sentry Integration</a>.</p>
+<p>Further WordPress instructions will be available soon.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Guides</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/exception_monitoring.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

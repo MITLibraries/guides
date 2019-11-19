@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>order: 6 &#8212; Guides  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <hr class="docutils" />
+<div class="section" id="order-6">
+<h1>order: 6<a class="headerlink" href="#order-6" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="authentication-oauth-at-mit-deprecated">
+<h2>Authentication: OAuth at MIT (deprecated)<a class="headerlink" href="#authentication-oauth-at-mit-deprecated" title="Permalink to this headline">¶</a></h2>
+<p><strong>IMPORTANT: The MIT OpenID Connect Pilot should not be used. See our <a class="reference internal" href="touchstone_saml.html"><span class="doc">Touchstone / SAML</span></a> docs instead. We have a few legacy applications still using this so the documentation will remain.</strong></p>
+<p>The <a class="reference external" href="https://oidc.mit.edu/">MIT OpenID Connect pilot</a> includes an OAuth provider which you can use for authentication. <a class="reference external" href="http://kb.mit.edu/confluence/display/istcontrib/Logging+in+Users+to+your+application+using+OpenID+Connect">Documentation</a> for MIT’s OAuth implementation is available in the <a class="reference external" href="http://kb.mit.edu/">Knowledge Base</a>. (This is different from, and superior to, the documentation on the OIDC web site.)</p>
+<div class="section" id="code-you-can-reuse">
+<h3>Code you can reuse<a class="headerlink" href="#code-you-can-reuse" title="Permalink to this headline">¶</a></h3>
+<p>The Libraries have already written several OAuth integrations you can and should reuse where applicable:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/MITLibraries/omniauth-mit-oauth2">Rails</a></p></li>
+<li><p><a class="reference external" href="https://github.com/MITLibraries/flask-mitoauth2">Flask</a></p></li>
+<li><p>Django, as part of the <a class="reference external" href="https://github.com/MITLibraries/solenoid">solenoid</a> project (see <code class="docutils literal notranslate"><span class="pre">solenoid/userauth/backends.py</span></code>)</p></li>
+</ul>
+</div>
+<div class="section" id="policy">
+<h3>Policy<a class="headerlink" href="#policy" title="Permalink to this headline">¶</a></h3>
+<p>There is ITDD policy on the use of Heroku, which may be relevant to you if you using OAuth.</p>
+<ul class="simple">
+<li><p>Apps that don’t require end-user authentication may be deployed to Heroku.</p></li>
+<li><p>Apps that use, store, or consume <a class="reference external" href="http://infoprotect.mit.edu/what-needs-protecting">sensitive data</a> require multi-factor/DUO authentication and therefore may not be deployed on Heroku.</p></li>
+<li><p>Other apps that do require end-user authentication may be deployed to Heroku (and use OIDC) if the work falls into one of these categories:</p>
+<ul>
+<li><p>The development work is clearly identified as an experiment/POC only and not intended for production, or</p></li>
+<li><p>The project is in the early stages of development, and will ultimately be transferred to a VM for production, or</p></li>
+<li><p>The app will only be used by fewer than 5 users from the Libraries staff, and no other user types, or</p></li>
+<li><p>You have cleared the use of Heroku/OIDC with the ITDD leadership team for a special case.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Guides</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/oauth.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

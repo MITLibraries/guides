@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Welcome to Guides’s documentation! &#8212; Guides  documentation</title>
+    <title>order: 1000 &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,18 +30,25 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-guides-s-documentation">
-<h1>Welcome to Guides’s documentation!<a class="headerlink" href="#welcome-to-guides-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
+  <hr class="docutils" />
+<div class="section" id="order-1000">
+<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="central-logging">
+<h2>Central Logging<a class="headerlink" href="#central-logging" title="Permalink to this headline">¶</a></h2>
+<p>We use Logz.io for central logging. All apps should be sending logs here. Note that this is different than <a class="reference external" href="https://mitlibraries.github.io/exception_monitoring.html">exception monitoring</a>.</p>
+<div class="section" id="logging-standards">
+<h3>Logging Standards<a class="headerlink" href="#logging-standards" title="Permalink to this headline">¶</a></h3>
+<p>Everything effectively goes into a big bucket in Logz, so we need to make sure that we are all following some baseline standards.</p>
+<div class="section" id="requirements">
+<h4>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>Every app must use an <code class="docutils literal notranslate"><span class="pre">app</span></code> field whose value follows the pattern: <code class="docutils literal notranslate"><span class="pre">&lt;app</span> <span class="pre">name&gt;-&lt;server</span> <span class="pre">type&gt;</span></code>. For example: <code class="docutils literal notranslate"><span class="pre">bento-prod</span></code>.</p></li>
+<li><p>Use JSON as your log format. If this is not possible use syslog format.</p></li>
+</ol>
+<p>Note: if you have trouble logging into Logz.io or finding our Logz.io token, contact ops. The token is also stored in our shared dev Lastpass folder.</p>
 </div>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
+</div>
 </div>
 
 
@@ -51,7 +58,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">Guides</a></h1>
+<h1 class="logo"><a href="index.html">Guides</a></h1>
 
 
 
@@ -65,7 +72,7 @@
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="#">Documentation overview</a><ul>
+  <li><a href="index.html">Documentation overview</a><ul>
   </ul></li>
 </ul>
 </div>
@@ -99,7 +106,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="_sources/index.rst.txt"
+      <a href="_sources/logging.md.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>order: 1000 &#8212; Guides  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <hr class="docutils" />
+<div class="section" id="order-1000">
+<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rails-at-mit-libraries">
+<h2>Rails at MIT Libraries<a class="headerlink" href="#rails-at-mit-libraries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="style-and-conventions">
+<h3>Style and Conventions<a class="headerlink" href="#style-and-conventions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>follow <a class="reference external" href="https://github.com/bbatsov/ruby-style-guide">The Ruby Style Guide</a></p></li>
+<li><p>use <a class="reference external" href="https://github.com/bbatsov/rubocop">rubocop</a> to lint before requesting
+code reviews</p></li>
+</ul>
+</div>
+<div class="section" id="test-frameworks">
+<h3>Test Frameworks<a class="headerlink" href="#test-frameworks" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>use of either <a class="reference external" href="https://github.com/seattlerb/minitest">minitest</a> or
+<a class="reference external" href="https://github.com/rspec/rspec-rails">rspec</a> is fine</p></li>
+</ul>
+</div>
+<div class="section" id="rails-development-environment">
+<h3>Rails Development Environment<a class="headerlink" href="#rails-development-environment" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>We maintain a <a class="reference external" href="https://github.com/MITLibraries/mit_vagrant_dev">VagrantFile</a>
+to help developers join our Rails projects with minimal effort</p></li>
+<li><p>It is not a requirement to use it, but if you are having (or causing)
+problems and aren’t using it, please use it and see if it helps</p></li>
+</ul>
+</div>
+<div class="section" id="deployments">
+<h3>Deployments<a class="headerlink" href="#deployments" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>We often target <a class="reference external" href="/heroku.html">Heroku</a> as a deployment platform and use Pipelines so custom
+deployment scripts are not necessary</p></li>
+<li><p>If the project requires deploying to a vm, use
+<a class="reference external" href="https://github.com/capistrano/capistrano">capistrano</a> or
+<a class="reference external" href="https://www.ansible.com">ansible</a> deployment scripts.</p></li>
+</ul>
+</div>
+<div class="section" id="ruby-versions">
+<h3>Ruby Versions<a class="headerlink" href="#ruby-versions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use the latest stable release unless you have a documented reason not to
+(an <a class="reference external" href="https://github.com/npryce/adr-tools">ADR</a> would be a great place to
+document this if the project is using them)</p></li>
+<li><p>see also: <code class="docutils literal notranslate"><span class="pre">Upgrading</span> <span class="pre">Ruby</span> <span class="pre">on</span> <span class="pre">Rails</span> <span class="pre">and</span> <span class="pre">Deprecations</span></code> below</p></li>
+</ul>
+</div>
+<div class="section" id="rails-versions">
+<h3>Rails Versions<a class="headerlink" href="#rails-versions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use the latest</p></li>
+<li><p>see also: <code class="docutils literal notranslate"><span class="pre">Upgrading</span> <span class="pre">Ruby</span> <span class="pre">on</span> <span class="pre">Rails</span> <span class="pre">and</span> <span class="pre">Deprecations</span></code> below</p></li>
+</ul>
+</div>
+<div class="section" id="upgrading-ruby-on-rails-and-deprecations">
+<h3>Upgrading Ruby on Rails and Deprecations<a class="headerlink" href="#upgrading-ruby-on-rails-and-deprecations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>read the upstream upgrade notes. They will exist and will be useful.</p></li>
+<li><p>upgrade and get stuff working. It’s okay to ignore deprecations during this
+initial upgrade step</p></li>
+<li><p>once everything works in the new version commit! you are not done though</p></li>
+<li><p>address the deprecations now. any deprecations that are not addressed
+immediately should get a ticket to remind us to go back and do it later</p></li>
+<li><p>if we deal with deprecations early, upgrading versions is usually easy</p></li>
+</ul>
+</div>
+<div class="section" id="gems-and-updates">
+<h3>Gems and Updates<a class="headerlink" href="#gems-and-updates" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>subscribe to security alerts for all gems used by your project.
+<a class="reference external" href="https://dependabot.com">Dependabot</a> or <a class="reference external" href="https://depfu.com">Depfu</a> are
+efficient ways to do this. Keep everything up to date even after the project
+is in production to avoid accumulating unnecessary technical debt.</p></li>
+</ul>
+</div>
+<div class="section" id="layout-and-styles">
+<h3>Layout and Styles<a class="headerlink" href="#layout-and-styles" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use our <a class="reference external" href="https://github.com/MITLibraries/mitlibraries-theme">mitlibraries-theme</a> gem. See that repo for documentation.</p></li>
+</ul>
+</div>
+<div class="section" id="authentication">
+<h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>See our general <a class="reference external" href="/touchstone_saml.html">Touchstone</a> docs that include some
+Rails specific information</p></li>
+<li><p>Use <a class="reference external" href="https://github.com/plataformatec/devise">Devise</a>, probably with
+<a class="reference external" href="https://github.com/omniauth/omniauth">OmniAuth</a></p></li>
+<li><p><a class="reference external" href="https://oidc.mit.edu">MIT OpenID Pilot</a> should not be used unless it leaves pilot stage</p></li>
+</ul>
+</div>
+<div class="section" id="authorization">
+<h3>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use <a class="reference external" href="https://github.com/CanCanCommunity/cancancan">CanCanCan</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Guides</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/rails.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

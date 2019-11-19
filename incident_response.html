@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>order: 1000 &#8212; Guides  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <hr class="docutils" />
+<div class="section" id="order-1000">
+<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="incident-response-guidelines">
+<h2>Incident Response Guidelines<a class="headerlink" href="#incident-response-guidelines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-an-incident-response">
+<h3>What is an incident response?<a class="headerlink" href="#what-is-an-incident-response" title="Permalink to this headline">¶</a></h3>
+<p>For our purposes, we are describing an incident as any extended outage to a
+system or service under our control as well as any security breach that may
+involve MIT data on said systems.</p>
+<p>An incident response is no-blame documentation about the root cause of the incident, how we handled the response, and what we can do to prevent something similar from happening again.
+The intent is to make it clear what happened and how we responded.</p>
+</div>
+<div class="section" id="what-requires-an-incident-response">
+<h3>What requires an incident response?<a class="headerlink" href="#what-requires-an-incident-response" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Any outage that lasts more than 45 minutes.</p></li>
+<li><p>Every suspected security breach, regardless of whether an outage was involved
+or if it was determined after the fact that no security breach occurred.</p></li>
+</ul>
+</div>
+<div class="section" id="who-should-write-them">
+<h3>Who should write them?<a class="headerlink" href="#who-should-write-them" title="Permalink to this headline">¶</a></h3>
+<p>The report should be initially created and shared with other responders as soon
+as the triggering criteria is met by whoever is currently investigating.
+However, writing full details of the report should not take precedence over
+fixing the problem. It is likely we can find a balance between documenting and
+fixing in which our documentation actually helps us with the fixing and in fact
+does not block getting a solution in place even though it may feel that way at
+times. Often details of a report will be filled in after the problem is
+resolved by referencing email, logs, and slack discussions, and other people
+involved for more information.</p>
+<p>Whenever we note in the timeline someone else’s name, that person should be
+expected to participate in the writing and reviewing of the report. <strong>The report
+becomes the shared responsibility of everyone who is named in the report.</strong></p>
+</div>
+<div class="section" id="what-goes-in-a-report">
+<h3>What goes in a report?<a class="headerlink" href="#what-goes-in-a-report" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://docs.google.com/document/d/1yfL1XPPQrwhnMdIw7CLpBM56uY2b-SCZfNerkwCGDqU/edit?usp=sharing">report template</a>
+provides an overview of what should be included, but the general idea is:</p>
+<p><strong>Issue Summary</strong>: Provide an overview of the issue.</p>
+<p><strong>Timeline</strong>: Provide a detailed timeline of the incident, include names of
+staff that were involved and invite them to directly provide additional details
+to the document as soon as you name them.</p>
+<p><strong>Root Cause</strong>: Describe what caused the problem (this may not be known when
+the report is initially created, but by the end it hopefully will be).
+Don’t hide or downplay the root cause for any reason.</p>
+<p><strong>Resolution and recovery</strong>: Describe how the problem was resolved.</p>
+<p><strong>Corrective and Preventative Measures</strong>: Describe how the problem might be
+avoided in the future or how we may have responded differently. This may list
+specific changes that will be implemented immediately as well as future
+projects to replace or improve problem components.</p>
+<p>See also:
+<a class="reference external" href="https://sysadmincasts.com/episodes/20-how-to-write-an-incident-report-postmortem">How to write an Incident Report / Postmortem</a></p>
+</div>
+<div class="section" id="where-do-i-get-a-template">
+<h3>Where do I get a template?<a class="headerlink" href="#where-do-i-get-a-template" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://docs.google.com/document/d/1yfL1XPPQrwhnMdIw7CLpBM56uY2b-SCZfNerkwCGDqU/edit?usp=sharing">Incident Response Template</a></p>
+</div>
+<div class="section" id="how-do-i-submit-my-completed-report">
+<h3>How do I submit my completed report?<a class="headerlink" href="#how-do-i-submit-my-completed-report" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Put it in the <a class="reference external" href="https://drive.google.com/open?id=1Gursqku_NsUyGTXyWa6LUESIFNTBcf3G">Google Drive folder</a></p></li>
+<li><p>Email it to TLT</p></li>
+<li><p>Share it on slack with appropriate teams</p></li>
+</ol>
+</div>
+<div class="section" id="additional-reading">
+<h3>Additional reading:<a class="headerlink" href="#additional-reading" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://sysadmincasts.com/episodes/20-how-to-write-an-incident-report-postmortem">How to write an Incident Report / Postmortem</a></p></li>
+<li><p><a class="reference external" href="https://landing.google.com/sre/book/chapters/managing-incidents.html">Managing Incidents</a></p></li>
+<li><p><a class="reference external" href="https://developers.googleblog.com/2013/05/google-api-infrastructure-outage_3.html">Google API infrastructure outage incident report</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Guides</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/incident_response.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
