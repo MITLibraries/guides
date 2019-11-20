@@ -1,11 +1,8 @@
----
-order: 1000
----
-### Containerizing Your App
+# Containerizing Your App
 
 This will provide some guidelines for getting your application ready for containers. This is mostly relevant for custom software, as existing solutions will (hopefully) already have a Dockerfile.
 
-#### Dockerfile Guidelines
+## Dockerfile Guidelines
 
 1. Keep your Dockerfile simple. If you have complicated logic that needs to be done, put it in a shell script and call it from your Dockerfile.
 2. Specify the minor language version in your base image, e.g. `FROM python:3.6`.
@@ -14,7 +11,7 @@ This will provide some guidelines for getting your application ready for contain
 5. Leave environment variables out of your Dockerfile. These should be set at run time through the orchestration framework.
 6. Use COPY instead of ADD (unless you really need ADD).
 
-##### ENTRYPOINT/CMD
+## ENTRYPOINT/CMD
 
 Deciding how and when to use ENTRYPOINT and CMD can be confusing. The suggested usage made here is done for clarity of intent and most predictable behavior. Each Dockerfile should have both an ENTRYPOINT and CMD. Think of your ENTRYPOINT as your application's main command and the CMD as the most common arguments. A few examples:
 
@@ -38,11 +35,11 @@ ENTRYPOINT bundle exec
 
 Note how `bundle exec` is not specified as an array. The simplest suggestion is don't do this. Using an array, as shown in the earlier examples, will almost always lead to fewer unexpected issues.
 
-#### .dockerignore
+## .dockerignore
 
 In most cases, your Dockerfile will be copying much of your project's source directory into the container. Copying a few extraneous files isn't usually a problem, but try to avoid copying local directories full of dependencies like `vendor/bundle` or a virtualenv. The easiest way to do this is to make sure you use a `.dockerignore` file. It works like `.gitignore`.
 
-#### Example Dockerfiles
+## Example Dockerfiles
 
 For a Python WSGI app:
 
