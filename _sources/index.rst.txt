@@ -10,7 +10,7 @@ Welcome to Guides's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   python
 
 
 Indices and tables
