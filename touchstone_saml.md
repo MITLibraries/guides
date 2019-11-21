@@ -1,24 +1,21 @@
----
-order: 5
----
-### Authentication: Touchstone / Shibboleth / SAML
+# Authentication: Touchstone / Shibboleth / SAML
 
-### What is Touchstone?
+## What is Touchstone?
 
 [Touchstone at MIT](http://ist.mit.edu/touchstone-detail)
 
 Touchstone is MIT's Shibboleth implementation that includes DUO for two factor
 authentication.
 
-### What is Shibboleth?
+## What is Shibboleth?
 
 [Shibboleth wikipedia entry](https://en.wikipedia.org/wiki/Shibboleth_(Shibboleth_Consortium))
 
-### What is SAML?
+## What is SAML?
 
 [Security Assertion Markup Language](https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language)
 
-### What are we doing here?
+## What are we doing here?
 
 We want to use Touchstone, and thus Shibboleth, but without the `mod_shib`
 Apache HTTPd plugin. We can do this by utilizing the SAML protocol that
@@ -43,8 +40,7 @@ We also have at least one [Python/Flask app using Touchstone](https://github.com
 running in production, in case that's helpful for setting up future
 Python projects.
 
-
-### Registering a SAML SP in MIT Touchstone
+## Registering a SAML SP in MIT Touchstone
 
 The request itself is simple, but preparing your application for _successful_
 submission takes some understanding of what is happening and providing what IST
@@ -52,7 +48,7 @@ needs in a way they can easily consume it. This is not hard, but it is
 confusing and opaque. Please ask for help in Slack if you find yourself thinking it
 would be easier to just `mod_shib` on a VM and make this someone else's problem.
 
-#### Request DNS registration
+### Request DNS registration
 
 IS&T TouchStone support prefers a `*.mit.edu` domain for each Touchstone
 protected application. The easiest path to that is to just request DNS
@@ -62,7 +58,7 @@ note: Local development, automated tests, and PR builds should use
 non-Touchstone authentication and thus don't require `*.mit.edu` or Touchstone
 registrations.
 
-#### Generating a self-signed certificate for Touchstone
+### Generating a self-signed certificate for Touchstone
 
 Touchstone support requests a long lived self signed certificate. The following
 command will give you a 10 year cert with no password which is useful for
@@ -82,7 +78,7 @@ Suggestions for the prompts:
 - APP_NAME.mit.edu
 - lib-touchstone@mit.edu [if you use this, make sure you are on the moira list]
 
-#### Configuring the application
+### Configuring the application
 
 Regardless which language or library you are using, there are a few pieces of
 information you will need that should be the same for all apps:
@@ -90,7 +86,7 @@ information you will need that should be the same for all apps:
 - The IdP entity ID is https://idp.mit.edu/shibboleth
 - The IdP SSO URL is https://idp.mit.edu/idp/profile/SAML2/Redirect/SSO
 
-##### Rails
+#### Rails
 - follow omniauth-saml instructions (which follow Facebook instructions)
   - add gem and bundle
   - run migrations
@@ -98,13 +94,13 @@ information you will need that should be the same for all apps:
 
 [sample app config](https://github.com/MITLibraries/rails_saml_example/blob/master/config/initializers/devise.rb#L278-L302)
 
-##### Python/Flask
+#### Python/Flask
 - Follow instructions to use [OneLogin's SAML Python3 Toolkit](https://github.com/onelogin/python3-saml)
 - The ebooks example sets SAML configuration using env variables to populate
 the python3-saml settings.json file. See [here](https://github.com/MITLibraries/ebooks/blob/4c671f6aeae8a3b6fec74ba7b8942eb0fb35d2b9/ebooks/auth.py#L11) for example. Note that the
 settings used here are the minimum required ones for MIT Touchstone auth to work.
 
-#### Generating application metadata
+### Generating application metadata
 
 Touchstone registers the application by consuming metadata that the SP
 generates.
@@ -122,7 +118,7 @@ application. NOTE: they do not regularly poll the SP metadata so if you make
 configuration or code changes that change the SP metadata, you need to ask
 touchstone support to re-ingest the metadata.
 
-##### testshib
+#### testshib
 
 I found it frustrating to configure a SAML application against MIT Touchstone with the information they provide which is all Shibboleth specific. However,
 [testshib.org](http://www.testshib.org) allows you to register your SP against
@@ -140,7 +136,7 @@ However, you need to be able to redirect back to your application from testshib
 or OneLogin's test IDP for authentication to succeed. I found `ngrok` to be
 super helpful for that.
 
-##### ngrok
+#### ngrok
 
 [ngrok](https://ngrok.com)
 
@@ -153,14 +149,14 @@ Note: every time you start ngrok you get a new endpoint. This means you will
 need to re-upload your SP metadata to testshib. This is only a minor
 inconvenience as the change takes place instantly.
 
-##### SP Metadata
+#### SP Metadata
 
 Once you have ngrok running you can export your SP metadata and upload it to
 testshib.
 
 You can then test authentication and debug any issues.
 
-#### Email Touchstone help
+### Email Touchstone help
 
 Once you've confirmed you have your SP working with the testshib IdP, you can
 push your code to wherever it will run (Heroku, a container somewhere, etc).
@@ -195,7 +191,7 @@ IS&T's Touchstone documentation generally assumes you're running a Shibboleth se
 - The IDP SSO binding must be `HTTP-Redirect`.
 - For python3-saml, be sure to set `requestedAuthnContext` to false in settings.json if you want users to be able to choose between password and certificate login methods (otherwise it will default to password-only).
 
-#### Non-touchstone auth for PR builds and local development
+### Non-touchstone auth for PR builds and local development
 
 Registering a local SP for Touchstone is probably more trouble than it's worth.
 Using an alternative authentication strategy for local, test and PR builds is

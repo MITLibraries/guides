@@ -3,18 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Guides's documentation!
-==================================
+Welcome to the MIT Libraries Developer Documentation site.
+==========================================================
+
+While this site is public and you are welcome to use it, our main goals are
+internally facing. That said, feel free to open an Issue if you have suggestions
+or feedback.
+
+* :ref:`search`
 
 .. toctree::
+   :caption: Documentation Pages 
    :maxdepth: 2
-   :caption: Contents:
+   :glob:
 
+   *
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
