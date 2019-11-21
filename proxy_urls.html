@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>order: 1000 &#8212; Guides  documentation</title>
+    <title>Proxy URLs &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,6 +14,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python Guidelines" href="python.html" />
+    <link rel="prev" title="Pantheon" href="pantheon.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,13 +32,10 @@
 
           <div class="body" role="main">
             
-  <hr class="docutils" />
-<div class="section" id="order-1000">
-<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="proxy-urls">
-<h2>Proxy URLs<a class="headerlink" href="#proxy-urls" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="proxy-urls">
+<h1>Proxy URLs<a class="headerlink" href="#proxy-urls" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="tl-dr">
-<h3>tl;dr<a class="headerlink" href="#tl-dr" title="Permalink to this headline">¶</a></h3>
+<h2>tl;dr<a class="headerlink" href="#tl-dr" title="Permalink to this headline">¶</a></h2>
 <p>When constructing a url for IP-restricted content that needs
 to be accessible both on-campus and off-campus best practice
 is to use a proxy URL.</p>
@@ -44,7 +43,7 @@ is to use a proxy URL.</p>
 <p><code class="docutils literal notranslate"><span class="pre">https://libproxy.mit.edu/login?url=&lt;target</span> <span class="pre">url&gt;</span></code></p>
 </div>
 <div class="section" id="what-is-a-proxy-url">
-<h3>What is a proxy URL?<a class="headerlink" href="#what-is-a-proxy-url" title="Permalink to this headline">¶</a></h3>
+<h2>What is a proxy URL?<a class="headerlink" href="#what-is-a-proxy-url" title="Permalink to this headline">¶</a></h2>
 <p>A proxy URL sends a request to our proxy server to create a
 proxied session to the target URL on behalf of a user.</p>
 <p>A proxy URL is constructed by appending a <strong>target url</strong> to
@@ -53,7 +52,7 @@ our <strong>proxy prefix</strong>.</p>
 <code class="docutils literal notranslate"><span class="pre">https://libproxy.mit.edu/login?url=https://www.nature.com</span></code></p>
 </div>
 <div class="section" id="why-use-a-proxy-url">
-<h3>Why use a proxy URL?<a class="headerlink" href="#why-use-a-proxy-url" title="Permalink to this headline">¶</a></h3>
+<h2>Why use a proxy URL?<a class="headerlink" href="#why-use-a-proxy-url" title="Permalink to this headline">¶</a></h2>
 <p>Our proxy server’s main purpose is to communicate with
 external service providers on behalf of MIT users in cases
 where the user’s browser is not on MIT’s network and where
@@ -80,7 +79,7 @@ ways to do that documented:
 <a class="reference external" href="https://wikis.mit.edu/confluence/display/LIBPROXSERV/Proxy+lookup+scripts">https://wikis.mit.edu/confluence/display/LIBPROXSERV/Proxy+lookup+scripts</a></p>
 </div>
 <div class="section" id="configuration-reqirements">
-<h3>Configuration Reqirements<a class="headerlink" href="#configuration-reqirements" title="Permalink to this headline">¶</a></h3>
+<h2>Configuration Reqirements<a class="headerlink" href="#configuration-reqirements" title="Permalink to this headline">¶</a></h2>
 <p>The proxy server will only proxy connections to service
 providers listed in its configuration file. A proxy URL with
 a target domain or hostname that is not known to the proxy
@@ -88,12 +87,11 @@ server will result in an error. Create a fix-lib ticket if
 you will be creating proxy URLs for a new service provider.</p>
 </div>
 <div class="section" id="how-ezproxy-works">
-<h3>How EZproxy works<a class="headerlink" href="#how-ezproxy-works" title="Permalink to this headline">¶</a></h3>
+<h2>How EZproxy works<a class="headerlink" href="#how-ezproxy-works" title="Permalink to this headline">¶</a></h2>
 <p>The proxy server runs commercial software called
 <a class="reference external" href="https://help.oclc.org/Library_Management/EZproxy">Ezproxy</a></p>
 <p><a class="reference external" href="https://help.oclc.org/Library_Management/EZproxy/Get_started/About_EZproxy">Read more about how it
 works</a></p>
-</div>
 </div>
 </div>
 
@@ -114,11 +112,38 @@ works</a></p>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Documentation Pages</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth.html">Authentication: OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Proxy URLs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tl-dr">tl;dr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-a-proxy-url">What is a proxy URL?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-use-a-proxy-url">Why use a proxy URL?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-reqirements">Configuration Reqirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-ezproxy-works">How EZproxy works</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssl.html">SSL Encryption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="touchstone_saml.html">Authentication: Touchstone / Shibboleth / SAML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="pantheon.html" title="previous chapter">Pantheon</a></li>
+      <li>Next: <a href="python.html" title="next chapter">Python Guidelines</a></li>
   </ul></li>
 </ul>
 </div>

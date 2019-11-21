@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>order: 1000 &#8212; Guides  documentation</title>
+    <title>WordPress at MIT Libraries &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,6 +14,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Authentication: Touchstone / Shibboleth / SAML" href="touchstone_saml.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,17 +31,14 @@
 
           <div class="body" role="main">
             
-  <hr class="docutils" />
-<div class="section" id="order-1000">
-<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="wordpress-at-mit-libraries">
-<h2>WordPress at MIT Libraries<a class="headerlink" href="#wordpress-at-mit-libraries" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="wordpress-at-mit-libraries">
+<h1>WordPress at MIT Libraries<a class="headerlink" href="#wordpress-at-mit-libraries" title="Permalink to this headline">¶</a></h1>
 <p>WordPress is one of several content management systems used at the MIT
 Libraries, and forms the majority of <a class="reference external" href="https://libraries.mit.edu">libraries.mit.edu</a>.</p>
 <div class="section" id="deployments">
-<h3>Deployments<a class="headerlink" href="#deployments" title="Permalink to this headline">¶</a></h3>
+<h2>Deployments<a class="headerlink" href="#deployments" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="local-deployments">
-<h4>Local deployments<a class="headerlink" href="#local-deployments" title="Permalink to this headline">¶</a></h4>
+<h3>Local deployments<a class="headerlink" href="#local-deployments" title="Permalink to this headline">¶</a></h3>
 <p>WordPress is used on locally-managed VMs that are administered by the
 Enterprise Services team. The Wordpress installation can be found at the
 Apache site root, which is usually:</p>
@@ -52,7 +50,7 @@ static HTML files. Full documentation of the structure of the site can be
 found on the <a class="reference external" href="https://wikis.mit.edu/confluence/display/UXWS/libraries.mit.edu+-+README">UX/WS wiki</a>.</p>
 </div>
 <div class="section" id="cloud-deployments">
-<h4>Cloud deployments<a class="headerlink" href="#cloud-deployments" title="Permalink to this headline">¶</a></h4>
+<h3>Cloud deployments<a class="headerlink" href="#cloud-deployments" title="Permalink to this headline">¶</a></h3>
 <p>The Libraries have been experimenting with the Pantheon cloud platform, and
 have set up <a class="reference external" href="https://dashboard.pantheon.io/organizations/35a57471-c78e-4ccf-a3f1-e8681d098e90#sites/sites">an agency account</a> to coordinate this work.
 In order to join the account, first sign up for a free Pantheon account and
@@ -60,7 +58,7 @@ then contact Matt Bernhardt to be added to the agency.</p>
 </div>
 </div>
 <div class="section" id="upgrading">
-<h3>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline">¶</a></h3>
+<h2>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline">¶</a></h2>
 <p>Updates to the WordPress core, and community-contributed themes and plugins,
 are largely performed using the standard process in the administrative UI.
 For security purposes, however, the WordPress application is kept in a
@@ -75,7 +73,7 @@ this process should be directed to the Enterprise Systems team.</p>
 </ol>
 </div>
 <div class="section" id="database-migrations">
-<h3>Database migrations<a class="headerlink" href="#database-migrations" title="Permalink to this headline">¶</a></h3>
+<h2>Database migrations<a class="headerlink" href="#database-migrations" title="Permalink to this headline">¶</a></h2>
 <p>At times it is necessary to move database content between tiers. For example,
 we copy production content down to the staging site in order to evaluate a
 significant site redesign. As part of this process, it is necessary to run a
@@ -88,12 +86,12 @@ The specific flags that we use include <code class="docutils literal notranslate
 </div>
 </div>
 <div class="section" id="locally-developed-code">
-<h3>Locally Developed Code<a class="headerlink" href="#locally-developed-code" title="Permalink to this headline">¶</a></h3>
+<h2>Locally Developed Code<a class="headerlink" href="#locally-developed-code" title="Permalink to this headline">¶</a></h2>
 <p>While much of what we do with WordPress involves working with code that is
 written elsewhere, there are times where we need to write a plugin or theme
 locally.</p>
 <div class="section" id="style-and-coding-conventions">
-<h4>Style and Coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h4>
+<h3>Style and Coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h3>
 <p>The WordPress community has adopted a set of <a class="reference external" href="https://codex.wordpress.org/WordPress_Coding_Standards">coding standards</a> to which all the
 projects we develop should adhere. This includes standards for PHP, HTML, CSS,
 and JavaScript.</p>
@@ -104,19 +102,19 @@ linter before pushing code to GitHub. The WordPress Coding Standards have been
 be used to run PHPCS and similar code analysis tools.</p>
 </div>
 <div class="section" id="test-frameworks">
-<h4>Test Frameworks<a class="headerlink" href="#test-frameworks" title="Permalink to this headline">¶</a></h4>
+<h3>Test Frameworks<a class="headerlink" href="#test-frameworks" title="Permalink to this headline">¶</a></h3>
 <p>Because most local development at the MIT Libraries focuses on the theme
 layer, testing is frequently not practical beyond linting and static code
 analysis (see above).</p>
 </div>
 <div class="section" id="project-documentation">
-<h4>Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this headline">¶</a></h4>
+<h3>Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this headline">¶</a></h3>
 <p>Documentation for a specific theme or plugin should be contained in markdown
 files, inside a <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory in each repository. Where documentation is
 simple enough, it can be contained only within the <code class="docutils literal notranslate"><span class="pre">readme.md</span></code> file.</p>
 </div>
 <div class="section" id="upgrading-local-projects">
-<h4>Upgrading Local Projects<a class="headerlink" href="#upgrading-local-projects" title="Permalink to this headline">¶</a></h4>
+<h3>Upgrading Local Projects<a class="headerlink" href="#upgrading-local-projects" title="Permalink to this headline">¶</a></h3>
 <p>You will need terminal access to the server, and your account should have git
 and node available. We recommend creating a <code class="docutils literal notranslate"><span class="pre">deploy/</span></code> directory under your
 account, and using <a class="reference external" href="https://github.mit.edu/mitlibraries/wordpress_deployment">the deploy scripts for plugins and themes</a> that we have
@@ -145,11 +143,10 @@ written.</p>
 </div>
 </div>
 <div class="section" id="template-projects">
-<h4>Template projects<a class="headerlink" href="#template-projects" title="Permalink to this headline">¶</a></h4>
+<h3>Template projects<a class="headerlink" href="#template-projects" title="Permalink to this headline">¶</a></h3>
 <p>We have created a reference project that includes the recommended tooling
 integrations and code standards:</p>
 <p><a class="reference external" href="https://github.com/MITLibraries/wp-plugin-template">Plugin Template</a></p>
-</div>
 </div>
 </div>
 </div>
@@ -171,11 +168,36 @@ integrations and code standards:</p>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Documentation Pages</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth.html">Authentication: OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssl.html">SSL Encryption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="touchstone_saml.html">Authentication: Touchstone / Shibboleth / SAML</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">WordPress at MIT Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#deployments">Deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrading">Upgrading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#database-migrations">Database migrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#locally-developed-code">Locally Developed Code</a></li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="touchstone_saml.html" title="previous chapter">Authentication: Touchstone / Shibboleth / SAML</a></li>
   </ul></li>
 </ul>
 </div>

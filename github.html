@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>order: 1000 &#8212; Guides  documentation</title>
+    <title>GitHub &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,6 +14,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Heroku" href="heroku.html" />
+    <link rel="prev" title="Exception Monitoring" href="exception_monitoring.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,13 +32,10 @@
 
           <div class="body" role="main">
             
-  <hr class="docutils" />
-<div class="section" id="order-1000">
-<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="github">
-<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="github">
+<h1>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="recommended-repo-settings">
-<h3>Recommended repo settings<a class="headerlink" href="#recommended-repo-settings" title="Permalink to this headline">¶</a></h3>
+<h2>Recommended repo settings<a class="headerlink" href="#recommended-repo-settings" title="Permalink to this headline">¶</a></h2>
 <p>In the admin settings for repos on GitHub, the recommended settings are:</p>
 <ul class="simple">
 <li><p>Default branch should be “master” (<code class="docutils literal notranslate"><span class="pre">Branches</span> <span class="pre">&gt;</span> <span class="pre">Default</span> <span class="pre">branch</span></code>)</p></li>
@@ -54,11 +53,12 @@
 </ul>
 </div>
 <div class="section" id="workflows">
-<h3>Workflows<a class="headerlink" href="#workflows" title="Permalink to this headline">¶</a></h3>
+<h2>Workflows<a class="headerlink" href="#workflows" title="Permalink to this headline">¶</a></h2>
 <p>In most cases, <a class="reference external" href="https://guides.github.com/introduction/flow/">GitHub flow</a> will be the best choice for projects. For small teams there is usually no need for anything more complicated than this. Thoughtbot has some <a class="reference external" href="https://github.com/thoughtbot/guides/tree/master/protocol/git">additional recommendations</a> which should be followed.</p>
 <p>Ideally, feature branches should encompass small, targeted changes. Keeping your work focused will mean fewer merge conflicts. When building a new code base this may not always be possible, but what you want to try and avoid are long running branches. By the time you want to merge, the distance between your feature branch and master will usually mean a lot of conflict resolution in your future.</p>
+</div>
 <div class="section" id="merging-and-rebasing">
-<h4>Merging and Rebasing<a class="headerlink" href="#merging-and-rebasing" title="Permalink to this headline">¶</a></h4>
+<h2>Merging and Rebasing<a class="headerlink" href="#merging-and-rebasing" title="Permalink to this headline">¶</a></h2>
 <p>The thoughtbot guide recommends pushing your feature branch to remote only when you are ready to issue a PR. This will make it easier to rebase and squash commits without making life difficult for other developers. Generally, this should be your workflow, but it’s still acceptable to rebase and squash commits on a remote branch. If no one else has based any work off your branch, this shouldn’t present any problems. If other developers have based work off your branch, you will need to coordinate any rebasing or squashing. In either case, you should clearly communicate to the team that you have done either of these actions.</p>
 <p>The one important difference to note from the thoughtbot guide is in the section on merging. Merging GitHub PRs through the Web interface will always use <code class="docutils literal notranslate"><span class="pre">--no-ff</span></code>. If merging from the command line, instead of doing:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git merge &lt;branch-name&gt; --ff-only
@@ -69,9 +69,8 @@
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="pull-request-reviews">
-<h3>Pull Request Reviews<a class="headerlink" href="#pull-request-reviews" title="Permalink to this headline">¶</a></h3>
+<h2>Pull Request Reviews<a class="headerlink" href="#pull-request-reviews" title="Permalink to this headline">¶</a></h2>
 <p>In most (all) cases, pull requests should be reviewed by at least one other developer, even if it is just for syntax or raise general questions in the case of unfamiliarity with a particular language.</p>
 <p>When creating a new pull request, you need to pick what branch you’re merging - usually your dev branch - and what you’re aiming to merge into - usually master - and then create a logical title and add a description that includes:</p>
 <ul class="simple">
@@ -86,13 +85,13 @@
 “WIP” indicates a PR that is a work-in-progress that is not ready for review, but can be useful for comparing diffs as you work, or sharing in-progress work with others to see or comment on. In general, WIP PRs can be ignored.</p>
 </div>
 <div class="section" id="github-and-jira">
-<h3>Github and JIRA<a class="headerlink" href="#github-and-jira" title="Permalink to this headline">¶</a></h3>
+<h2>Github and JIRA<a class="headerlink" href="#github-and-jira" title="Permalink to this headline">¶</a></h2>
 <p>In general, if you are creating code on GitHub, commenting and review should happen there, with the code. If you are also using JIRA, you should add a comment with a link to the PR to the story in JIRA and move the story to the Review column to indicate that the PR is under review.</p>
 <p>(If changes are not commited to GitHub - like with Wordpress configurations - the comments and review should happen in JIRA; Mention reviewers by name in a comment on the ticket, what they should be reviewing, where they can view the changes, and then move the story to the Review column.)</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="github-basics">
-<h3>GitHub basics<a class="headerlink" href="#github-basics" title="Permalink to this headline">¶</a></h3>
+<h2>GitHub basics<a class="headerlink" href="#github-basics" title="Permalink to this headline">¶</a></h2>
 <p>This process assumes you have: a terminal program (like the OS terminal or iTerm with oh-my-zsh), an editor program (like Sublime Text or Atom), a github account and access to the MIT Libraries repos, and have already cloned the repos to your local machine. (For help with those steps, contact one of the MITLib devs.)</p>
 <p><strong>Start fresh</strong>: Checkout master branch</p>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">master</span></code></p>
@@ -125,15 +124,14 @@
 <span class="n">git</span> <span class="n">merge</span>
 </pre></div>
 </div>
+</div>
 <div class="section" id="advanced-topics">
-<h4>Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h4>
+<h2>Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
 <p>The following topics are useful to get to know but often require someone knowledgable with git to teach or at least have nearby for questions/abort commands.</p>
 <ul class="simple">
 <li><p>Rebasing</p></li>
 <li><p>Merge conflicts</p></li>
 </ul>
-</div>
-</div>
 </div>
 </div>
 
@@ -154,11 +152,40 @@
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Documentation Pages</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GitHub</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#recommended-repo-settings">Recommended repo settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#workflows">Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#merging-and-rebasing">Merging and Rebasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pull-request-reviews">Pull Request Reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-and-jira">Github and JIRA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-basics">GitHub basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-topics">Advanced topics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth.html">Authentication: OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssl.html">SSL Encryption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="touchstone_saml.html">Authentication: Touchstone / Shibboleth / SAML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="exception_monitoring.html" title="previous chapter">Exception Monitoring</a></li>
+      <li>Next: <a href="heroku.html" title="next chapter">Heroku</a></li>
   </ul></li>
 </ul>
 </div>

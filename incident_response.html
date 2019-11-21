@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>order: 1000 &#8212; Guides  documentation</title>
+    <title>Incident Response Guidelines &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,6 +14,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Central Logging" href="logging.html" />
+    <link rel="prev" title="Heroku" href="heroku.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,13 +32,10 @@
 
           <div class="body" role="main">
             
-  <hr class="docutils" />
-<div class="section" id="order-1000">
-<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="incident-response-guidelines">
-<h2>Incident Response Guidelines<a class="headerlink" href="#incident-response-guidelines" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="incident-response-guidelines">
+<h1>Incident Response Guidelines<a class="headerlink" href="#incident-response-guidelines" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-is-an-incident-response">
-<h3>What is an incident response?<a class="headerlink" href="#what-is-an-incident-response" title="Permalink to this headline">¶</a></h3>
+<h2>What is an incident response?<a class="headerlink" href="#what-is-an-incident-response" title="Permalink to this headline">¶</a></h2>
 <p>For our purposes, we are describing an incident as any extended outage to a
 system or service under our control as well as any security breach that may
 involve MIT data on said systems.</p>
@@ -44,7 +43,7 @@ involve MIT data on said systems.</p>
 The intent is to make it clear what happened and how we responded.</p>
 </div>
 <div class="section" id="what-requires-an-incident-response">
-<h3>What requires an incident response?<a class="headerlink" href="#what-requires-an-incident-response" title="Permalink to this headline">¶</a></h3>
+<h2>What requires an incident response?<a class="headerlink" href="#what-requires-an-incident-response" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Any outage that lasts more than 45 minutes.</p></li>
 <li><p>Every suspected security breach, regardless of whether an outage was involved
@@ -52,7 +51,7 @@ or if it was determined after the fact that no security breach occurred.</p></li
 </ul>
 </div>
 <div class="section" id="who-should-write-them">
-<h3>Who should write them?<a class="headerlink" href="#who-should-write-them" title="Permalink to this headline">¶</a></h3>
+<h2>Who should write them?<a class="headerlink" href="#who-should-write-them" title="Permalink to this headline">¶</a></h2>
 <p>The report should be initially created and shared with other responders as soon
 as the triggering criteria is met by whoever is currently investigating.
 However, writing full details of the report should not take precedence over
@@ -67,7 +66,7 @@ expected to participate in the writing and reviewing of the report. <strong>The 
 becomes the shared responsibility of everyone who is named in the report.</strong></p>
 </div>
 <div class="section" id="what-goes-in-a-report">
-<h3>What goes in a report?<a class="headerlink" href="#what-goes-in-a-report" title="Permalink to this headline">¶</a></h3>
+<h2>What goes in a report?<a class="headerlink" href="#what-goes-in-a-report" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://docs.google.com/document/d/1yfL1XPPQrwhnMdIw7CLpBM56uY2b-SCZfNerkwCGDqU/edit?usp=sharing">report template</a>
 provides an overview of what should be included, but the general idea is:</p>
 <p><strong>Issue Summary</strong>: Provide an overview of the issue.</p>
@@ -86,11 +85,11 @@ projects to replace or improve problem components.</p>
 <a class="reference external" href="https://sysadmincasts.com/episodes/20-how-to-write-an-incident-report-postmortem">How to write an Incident Report / Postmortem</a></p>
 </div>
 <div class="section" id="where-do-i-get-a-template">
-<h3>Where do I get a template?<a class="headerlink" href="#where-do-i-get-a-template" title="Permalink to this headline">¶</a></h3>
+<h2>Where do I get a template?<a class="headerlink" href="#where-do-i-get-a-template" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://docs.google.com/document/d/1yfL1XPPQrwhnMdIw7CLpBM56uY2b-SCZfNerkwCGDqU/edit?usp=sharing">Incident Response Template</a></p>
 </div>
 <div class="section" id="how-do-i-submit-my-completed-report">
-<h3>How do I submit my completed report?<a class="headerlink" href="#how-do-i-submit-my-completed-report" title="Permalink to this headline">¶</a></h3>
+<h2>How do I submit my completed report?<a class="headerlink" href="#how-do-i-submit-my-completed-report" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Put it in the <a class="reference external" href="https://drive.google.com/open?id=1Gursqku_NsUyGTXyWa6LUESIFNTBcf3G">Google Drive folder</a></p></li>
 <li><p>Email it to TLT</p></li>
@@ -98,13 +97,12 @@ projects to replace or improve problem components.</p>
 </ol>
 </div>
 <div class="section" id="additional-reading">
-<h3>Additional reading:<a class="headerlink" href="#additional-reading" title="Permalink to this headline">¶</a></h3>
+<h2>Additional reading:<a class="headerlink" href="#additional-reading" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://sysadmincasts.com/episodes/20-how-to-write-an-incident-report-postmortem">How to write an Incident Report / Postmortem</a></p></li>
 <li><p><a class="reference external" href="https://landing.google.com/sre/book/chapters/managing-incidents.html">Managing Incidents</a></p></li>
 <li><p><a class="reference external" href="https://developers.googleblog.com/2013/05/google-api-infrastructure-outage_3.html">Google API infrastructure outage incident report</a></p></li>
 </ul>
-</div>
 </div>
 </div>
 
@@ -125,11 +123,40 @@ projects to replace or improve problem components.</p>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Documentation Pages</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Incident Response Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-an-incident-response">What is an incident response?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-requires-an-incident-response">What requires an incident response?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#who-should-write-them">Who should write them?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-goes-in-a-report">What goes in a report?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#where-do-i-get-a-template">Where do I get a template?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-submit-my-completed-report">How do I submit my completed report?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-reading">Additional reading:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth.html">Authentication: OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssl.html">SSL Encryption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="touchstone_saml.html">Authentication: Touchstone / Shibboleth / SAML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="heroku.html" title="previous chapter">Heroku</a></li>
+      <li>Next: <a href="logging.html" title="next chapter">Central Logging</a></li>
   </ul></li>
 </ul>
 </div>

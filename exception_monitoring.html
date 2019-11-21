@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>order: 1000 &#8212; Guides  documentation</title>
+    <title>Exception Monitoring &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,6 +14,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="GitHub" href="github.html" />
+    <link rel="prev" title="Containerizing Your App" href="docker.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,26 +32,23 @@
 
           <div class="body" role="main">
             
-  <hr class="docutils" />
-<div class="section" id="order-1000">
-<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="exception-monitoring">
-<h2>Exception Monitoring<a class="headerlink" href="#exception-monitoring" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="exception-monitoring">
+<h1>Exception Monitoring<a class="headerlink" href="#exception-monitoring" title="Permalink to this headline">¶</a></h1>
 <p>This will provide some guidelines for adding exception monitoring to your application using our Sentry subscription.</p>
 <div class="section" id="what-software-needs-exception-monitoring">
-<h3>What software needs Exception Monitoring<a class="headerlink" href="#what-software-needs-exception-monitoring" title="Permalink to this headline">¶</a></h3>
+<h2>What software needs Exception Monitoring<a class="headerlink" href="#what-software-needs-exception-monitoring" title="Permalink to this headline">¶</a></h2>
 <p>In general, all of the deployed custom software we write should have exception monitoring. If a product is no longer being maintained and we are actively moving to replace or retire it, exception monitoring should probably not be included.</p>
 </div>
 <div class="section" id="what-are-we-using-for-exception-monitoring">
-<h3>What are we using for Exception Monitoring<a class="headerlink" href="#what-are-we-using-for-exception-monitoring" title="Permalink to this headline">¶</a></h3>
+<h2>What are we using for Exception Monitoring<a class="headerlink" href="#what-are-we-using-for-exception-monitoring" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://sentry.io/mit-libraries/">Sentry</a></p>
 </div>
 <div class="section" id="how-do-i-get-an-account">
-<h3>How do I get an account?<a class="headerlink" href="#how-do-i-get-an-account" title="Permalink to this headline">¶</a></h3>
+<h2>How do I get an account?<a class="headerlink" href="#how-do-i-get-an-account" title="Permalink to this headline">¶</a></h2>
 <p>The accounts are maintained by DLE, so ask in our channel on Slack if don’t yet have a Sentry login to our account.</p>
 </div>
 <div class="section" id="how-can-i-add-sentry-to-my-application">
-<h3>How can I add Sentry to my application<a class="headerlink" href="#how-can-i-add-sentry-to-my-application" title="Permalink to this headline">¶</a></h3>
+<h2>How can I add Sentry to my application<a class="headerlink" href="#how-can-i-add-sentry-to-my-application" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>From the main MIT Libraries Sentry page, choose “Add New &gt; Project”</p></li>
 <li><p>Choose the language for some general instructions and useful provide a name for the project</p></li>
@@ -57,7 +56,7 @@
 </ol>
 </div>
 <div class="section" id="how-can-i-add-sentry-to-my-rails-application">
-<h3>How can I add Sentry to my Rails application<a class="headerlink" href="#how-can-i-add-sentry-to-my-rails-application" title="Permalink to this headline">¶</a></h3>
+<h2>How can I add Sentry to my Rails application<a class="headerlink" href="#how-can-i-add-sentry-to-my-rails-application" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>For most Rails application needs</p>
 <ul>
@@ -69,7 +68,7 @@
 </ul>
 </div>
 <div class="section" id="how-can-i-add-sentry-to-my-javascript-features-in-my-rails-application">
-<h3>How can I add Sentry to my JavaScript features in my Rails application<a class="headerlink" href="#how-can-i-add-sentry-to-my-javascript-features-in-my-rails-application" title="Permalink to this headline">¶</a></h3>
+<h2>How can I add Sentry to my JavaScript features in my Rails application<a class="headerlink" href="#how-can-i-add-sentry-to-my-javascript-features-in-my-rails-application" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Obtain a sentry js style DSN key by going to https://docs.sentry.io/clients/javascript/ and select your application from the configuration dropdown under “Configuring the Client”</p></li>
 <li><p>NOTE: do not use the DSN you used for your Rails application, it is important you use the specific JS key as it will be publicly shared unlike your Rails DSN.</p></li>
@@ -84,10 +83,10 @@
 </div>
 </div>
 <div class="section" id="how-can-i-add-sentry-to-my-python-application">
-<h3>How can I add Sentry to my Python application<a class="headerlink" href="#how-can-i-add-sentry-to-my-python-application" title="Permalink to this headline">¶</a></h3>
+<h2>How can I add Sentry to my Python application<a class="headerlink" href="#how-can-i-add-sentry-to-my-python-application" title="Permalink to this headline">¶</a></h2>
 <p>For both Django and Flask, add <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code> to your ENV and set this to whatever value the project you just created provides.</p>
 <div class="section" id="django">
-<h4>Django<a class="headerlink" href="#django" title="Permalink to this headline">¶</a></h4>
+<h3>Django<a class="headerlink" href="#django" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">sentry-sdk</span></code></p></li>
 <li><p>Add the following to your production settings file:</p></li>
@@ -105,14 +104,14 @@
 <p>For more info, check out the <a class="reference external" href="https://docs.sentry.io/platforms/python/django/">Sentry Django setup docs</a></p>
 </div>
 <div class="section" id="flask">
-<h4>Flask<a class="headerlink" href="#flask" title="Permalink to this headline">¶</a></h4>
+<h3>Flask<a class="headerlink" href="#flask" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">sentry-sdk[flask]</span></code></p></li>
 <li><p>Add the following to your production settings file:</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sentry_sdk</span>
-<span class="kn">from</span> <span class="nn">sentry_sdk.integrations.flask</span> <span class="k">import</span> <span class="n">FlaskIntegration</span>
+<span class="kn">from</span> <span class="nn">sentry_sdk.integrations.flask</span> <span class="kn">import</span> <span class="n">FlaskIntegration</span>
 
 <span class="n">sentry_sdk</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
     <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;os.getenv(SENTRY_DSN)&quot;</span><span class="p">,</span>
@@ -126,20 +125,19 @@
 </div>
 </div>
 <div class="section" id="how-can-i-add-sentry-to-my-php-application">
-<h3>How can I add Sentry to my PHP application<a class="headerlink" href="#how-can-i-add-sentry-to-my-php-application" title="Permalink to this headline">¶</a></h3>
+<h2>How can I add Sentry to my PHP application<a class="headerlink" href="#how-can-i-add-sentry-to-my-php-application" title="Permalink to this headline">¶</a></h2>
 <p>There is a <a class="reference external" href="https://github.com/getsentry/sentry-php">Sentry PHP library</a> that will do most of the work for you. Depending on what PHP framework you are using, the final integration will vary.</p>
 <div class="section" id="drupal">
-<h4>Drupal<a class="headerlink" href="#drupal" title="Permalink to this headline">¶</a></h4>
+<h3>Drupal<a class="headerlink" href="#drupal" title="Permalink to this headline">¶</a></h3>
 <p>Sentry integration within Drupal is provided via <a class="reference external" href="https://www.drupal.org/project/raven">Raven</a>.</p>
 <p>For Drupal 8, add Raven via <code class="docutils literal notranslate"><span class="pre">composer</span> <span class="pre">require</span> <span class="pre">drupal/raven</span></code>, which will install both Raven and the Sentry PHP library.</p>
 <p>For Drupal 7, you will need <a class="reference external" href="https://www.drupal.org/project/xautoload">X Autoload</a> and the <a class="reference external" href="https://www.drupal.org/project/libraries">Libraries API</a>. Additionally, you will need to place the Sentry PHP library at <code class="docutils literal notranslate"><span class="pre">/sites/all/libraries/sentry-php/</span></code> so that the path to the client is <code class="docutils literal notranslate"><span class="pre">/sites/all/libraries/sentry-php/lib/Raven/Client.php</span></code>.</p>
 <p>After installing, log into the Drupal application to configure the DSN and other settings at <code class="docutils literal notranslate"><span class="pre">/admin/config/development/raven</span></code>.</p>
 </div>
 <div class="section" id="wordpress">
-<h4>WordPress<a class="headerlink" href="#wordpress" title="Permalink to this headline">¶</a></h4>
+<h3>WordPress<a class="headerlink" href="#wordpress" title="Permalink to this headline">¶</a></h3>
 <p>Sentry integration within WordPress is provided via <a class="reference external" href="https://wordpress.org/plugins/wp-sentry-integration/">WP Sentry Integration</a>.</p>
 <p>Further WordPress instructions will be available soon.</p>
-</div>
 </div>
 </div>
 </div>
@@ -161,11 +159,41 @@
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Documentation Pages</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Exception Monitoring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-software-needs-exception-monitoring">What software needs Exception Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-we-using-for-exception-monitoring">What are we using for Exception Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-get-an-account">How do I get an account?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-can-i-add-sentry-to-my-application">How can I add Sentry to my application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-can-i-add-sentry-to-my-rails-application">How can I add Sentry to my Rails application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-can-i-add-sentry-to-my-javascript-features-in-my-rails-application">How can I add Sentry to my JavaScript features in my Rails application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-can-i-add-sentry-to-my-python-application">How can I add Sentry to my Python application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-can-i-add-sentry-to-my-php-application">How can I add Sentry to my PHP application</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth.html">Authentication: OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssl.html">SSL Encryption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="touchstone_saml.html">Authentication: Touchstone / Shibboleth / SAML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="docker.html" title="previous chapter">Containerizing Your App</a></li>
+      <li>Next: <a href="github.html" title="next chapter">GitHub</a></li>
   </ul></li>
 </ul>
 </div>

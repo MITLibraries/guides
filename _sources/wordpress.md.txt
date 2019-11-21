@@ -1,15 +1,11 @@
----
-order: 1000
----
-### WordPress at MIT Libraries
+# WordPress at MIT Libraries
 
 WordPress is one of several content management systems used at the MIT
 Libraries, and forms the majority of [libraries.mit.edu](https://libraries.mit.edu).
 
+## Deployments
 
-#### Deployments
-
-##### Local deployments
+### Local deployments
 
 WordPress is used on locally-managed VMs that are administered by the
 Enterprise Services team. The Wordpress installation can be found at the
@@ -23,15 +19,14 @@ Other applications can also be found under `htdocs/`, including a number of
 static HTML files. Full documentation of the structure of the site can be
 found on the [UX/WS wiki](https://wikis.mit.edu/confluence/display/UXWS/libraries.mit.edu+-+README).
 
-##### Cloud deployments
+### Cloud deployments
 
 The Libraries have been experimenting with the Pantheon cloud platform, and
 have set up [an agency account](https://dashboard.pantheon.io/organizations/35a57471-c78e-4ccf-a3f1-e8681d098e90#sites/sites) to coordinate this work.
 In order to join the account, first sign up for a free Pantheon account and
 then contact Matt Bernhardt to be added to the agency.
 
-
-#### Upgrading
+## Upgrading
 
 Updates to the WordPress core, and community-contributed themes and plugins,
 are largely performed using the standard process in the administrative UI.
@@ -48,7 +43,7 @@ this process should be directed to the Enterprise Systems team.
 
 3. Lock WordPress
 
-#### Database migrations
+## Database migrations
 
 At times it is necessary to move database content between tiers. For example,
 we copy production content down to the staging site in order to evaluate a
@@ -63,13 +58,13 @@ The specific flags that we use include `network`, `path`, and `url`:
 /usr/local/bin/wp --network --path=/var/www/html/htdocs --url=http://old.website.url search-replace old.website.url new.website.url
 ```
 
-#### Locally Developed Code
+## Locally Developed Code
 
 While much of what we do with WordPress involves working with code that is
 written elsewhere, there are times where we need to write a plugin or theme
 locally.
 
-##### Style and Coding Conventions
+### Style and Coding Conventions
 
 The WordPress community has adopted a set of [coding standards](https://codex.wordpress.org/WordPress_Coding_Standards) to which all the
 projects we develop should adhere. This includes standards for PHP, HTML, CSS,
@@ -82,19 +77,19 @@ linter before pushing code to GitHub. The WordPress Coding Standards have been
 GitHub offers integrations with Travis-CI and CodeClimate, both of which can
 be used to run PHPCS and similar code analysis tools.
 
-##### Test Frameworks
+### Test Frameworks
 
 Because most local development at the MIT Libraries focuses on the theme
 layer, testing is frequently not practical beyond linting and static code
 analysis (see above).
 
-##### Project Documentation
+### Project Documentation
 
 Documentation for a specific theme or plugin should be contained in markdown
 files, inside a `docs/` directory in each repository. Where documentation is
 simple enough, it can be contained only within the `readme.md` file.
 
-##### Upgrading Local Projects
+### Upgrading Local Projects
 
 You will need terminal access to the server, and your account should have git
 and node available. We recommend creating a `deploy/` directory under your
@@ -124,7 +119,7 @@ cd ~/deploy/
 ./deploy-plugin.sh wp-plugin-template wp-plugin-template
 ```
 
-##### Template projects
+### Template projects
 
 We have created a reference project that includes the recommended tooling
 integrations and code standards:

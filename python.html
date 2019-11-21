@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>order: 1000 &#8212; Guides  documentation</title>
+    <title>Python Guidelines &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,6 +14,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Rails at MIT Libraries" href="rails.html" />
+    <link rel="prev" title="Proxy URLs" href="proxy_urls.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,17 +32,14 @@
 
           <div class="body" role="main">
             
-  <hr class="docutils" />
-<div class="section" id="order-1000">
-<h1>order: 1000<a class="headerlink" href="#order-1000" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="python-guidelines">
-<h2>Python Guidelines<a class="headerlink" href="#python-guidelines" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="python-guidelines">
+<h1>Python Guidelines<a class="headerlink" href="#python-guidelines" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="python-versions">
-<h3>Python Versions<a class="headerlink" href="#python-versions" title="Permalink to this headline">¶</a></h3>
+<h2>Python Versions<a class="headerlink" href="#python-versions" title="Permalink to this headline">¶</a></h2>
 <p>You should be using the most recent stable version. Don’t use Python 2.</p>
 </div>
 <div class="section" id="style-and-coding-conventions">
-<h3>Style and Coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h3>
+<h2>Style and Coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h2>
 <p>In general, you should follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> and <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP 257</a>. Unless otherwise stated here, assume those two guidelines are in effect. It is recommended to use <a class="reference external" href="http://flake8.pycqa.org/en/latest/">flake8</a> during development and CI.</p>
 <p>If you are providing function docstrings, use <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reST</a>. In addition to a description of what a function does, you should document the parameters:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">widgetize</span><span class="p">(</span><span class="n">widget</span><span class="p">):</span>
@@ -57,20 +56,19 @@
 </div>
 </div>
 <div class="section" id="dependencies">
-<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
 <p>Use <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/">Pipenv</a> to manage dependencies. If there’s some reason you need to support pip, then you should still manage dependencies with pipenv, but generate your <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file as needed with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pipenv lock -r
 </pre></div>
 </div>
 </div>
 <div class="section" id="project-documentation">
-<h3>Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this headline">¶</a></h3>
+<h2>Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this headline">¶</a></h2>
 <p>Use <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> for generating project documentation.</p>
 </div>
 <div class="section" id="testing">
-<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
 <p>Since we no longer have to support both Python 2 and 3 there’s less need for <a class="reference external" href="https://tox.readthedocs.org/en/latest/">tox</a>, though it can still be useful. Unless you are using something like Django that comes with its own testing framework, use <a class="reference external" href="https://docs.pytest.org">pytest</a>.</p>
-</div>
 </div>
 </div>
 
@@ -91,11 +89,38 @@
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Documentation Pages</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth.html">Authentication: OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#python-versions">Python Versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#style-and-coding-conventions">Style and Coding Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-documentation">Project Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssl.html">SSL Encryption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="touchstone_saml.html">Authentication: Touchstone / Shibboleth / SAML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="proxy_urls.html" title="previous chapter">Proxy URLs</a></li>
+      <li>Next: <a href="rails.html" title="next chapter">Rails at MIT Libraries</a></li>
   </ul></li>
 </ul>
 </div>

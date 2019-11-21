@@ -1,10 +1,7 @@
----
-order: 1000
----
+# Proxy URLs
 
-### Proxy URLs
+## tl;dr #### 
 
-#### tl;dr #### 
 When constructing a url for IP-restricted content that needs
 to be accessible both on-campus and off-campus best practice
 is to use a proxy URL.
@@ -13,7 +10,8 @@ Proxy URLs should have the form:
 
 `https://libproxy.mit.edu/login?url=<target url>`
 
-#### What is a proxy URL?
+## What is a proxy URL?
+
 A proxy URL sends a request to our proxy server to create a
 proxied session to the target URL on behalf of a user.
 
@@ -23,7 +21,8 @@ our **proxy prefix**.
 like so
 `https://libproxy.mit.edu/login?url=https://www.nature.com`
 
-#### Why use a proxy URL?
+## Why use a proxy URL?
+
 Our proxy server's main purpose is to communicate with
 external service providers on behalf of MIT users in cases
 where the user’s browser is not on MIT’s network and where
@@ -54,17 +53,18 @@ before providing links to users, there are some possible
 ways to do that documented:
 [https://wikis.mit.edu/confluence/display/LIBPROXSERV/Proxy+lookup+scripts](https://wikis.mit.edu/confluence/display/LIBPROXSERV/Proxy+lookup+scripts)
 
-#### Configuration Reqirements
+## Configuration Reqirements
+
 The proxy server will only proxy connections to service
 providers listed in its configuration file. A proxy URL with
 a target domain or hostname that is not known to the proxy
 server will result in an error. Create a fix-lib ticket if
 you will be creating proxy URLs for a new service provider.
 
-#### How EZproxy works
+## How EZproxy works
+
 The proxy server runs commercial software called
 [Ezproxy](https://help.oclc.org/Library_Management/EZproxy)
 
 [Read more about how it
 works](https://help.oclc.org/Library_Management/EZproxy/Get_started/About_EZproxy)
-
