@@ -20,7 +20,7 @@
 
 ## Deployments
 
-- We often target [Heroku](/heroku) as a deployment platform and use Pipelines so custom
+- We often target [Heroku](/deploy/heroku) as a deployment platform and use Pipelines so custom
   deployment scripts are not necessary
 - If the project requires deploying to a vm, use
   [capistrano](https://github.com/capistrano/capistrano) or
@@ -61,7 +61,7 @@
 
 ## Authentication
 
-- See our general [Touchstone](/touchstone_saml) docs that include some
+- See our general [Touchstone](/authentication/touchstone_saml) docs that include some
   Rails specific information
 - Use [Devise](https://github.com/plataformatec/devise), probably with
   [OmniAuth](https://github.com/omniauth/omniauth)
