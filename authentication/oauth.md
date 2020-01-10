@@ -1,6 +1,6 @@
-# Authentication: OAuth at MIT (deprecated)
+# OAuth at MIT (deprecated)
 
-**IMPORTANT: The MIT OpenID Connect Pilot should not be used. See our [Touchstone / SAML](/touchstone_saml) docs instead. We have a few legacy applications still using this so the documentation will remain.**
+**IMPORTANT: The MIT OpenID Connect Pilot should not be used. See our [Touchstone / SAML](/authentication/touchstone_saml) docs instead. We have a few legacy applications still using this so the documentation will remain.**
 
 The [MIT OpenID Connect pilot](https://oidc.mit.edu/) includes an OAuth provider which you can use for authentication. [Documentation](http://kb.mit.edu/confluence/display/istcontrib/Logging+in+Users+to+your+application+using+OpenID+Connect) for MIT's OAuth implementation is available in the [Knowledge Base](http://kb.mit.edu/). (This is different from, and superior to, the documentation on the OIDC web site.)
 

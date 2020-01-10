@@ -1,4 +1,4 @@
-# Authentication: Touchstone / Shibboleth / SAML
+# Touchstone / Shibboleth / SAML
 
 ## What is Touchstone?
 
