@@ -5,19 +5,19 @@
   <head>
     <meta charset="utf-8" />
     <title>Heroku &#8212; Guides  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Incident Response Guidelines" href="incident_response.html" />
-    <link rel="prev" title="GitHub" href="github.html" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pantheon" href="pantheon.html" />
+    <link rel="prev" title="Amazon Web Servies (AWS)" href="aws.html" />
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -51,7 +51,7 @@ to be exceptionally popular, a CDN may be appropriate.</p>
 <div class="section" id="logging">
 <h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
 <p>Heroku expects you to ship logs elsewhere (because of the no
-persistent filesystem). See our <a class="reference internal" href="logging.html"><span class="doc">Logging</span></a> documentation for our centralized solution.</p>
+persistent filesystem). See our <a class="reference internal" href="../misc/logging.html"><span class="doc">Logging</span></a> documentation for our centralized solution.</p>
 <p>Use the Heroku CLI application to do the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heroku drains:add <span class="se">\</span>
 <span class="s1">&#39;https://listener.logz.io:8081?token=OUR_LOGZ_TOKEN&amp;app=YOUR_HEROKU_APP_NAME&#39;</span> <span class="se">\</span>
@@ -63,7 +63,7 @@ persistent filesystem). See our <a class="reference internal" href="logging.html
 </div>
 <div class="section" id="exception-logging">
 <h3>Exception Logging<a class="headerlink" href="#exception-logging" title="Permalink to this headline">¶</a></h3>
-<p>Use our <a class="reference internal" href="exception_monitoring.html"><span class="doc">Exception Monitoring</span></a> service.</p>
+<p>Use our <a class="reference internal" href="../misc/exception_monitoring.html"><span class="doc">Exception Monitoring</span></a> service.</p>
 </div>
 <div class="section" id="database-backups">
 <h3>Database Backups<a class="headerlink" href="#database-backups" title="Permalink to this headline">¶</a></h3>
@@ -247,8 +247,8 @@ Incommon cert for some reason, include this next bit too. Most applications are 
 </div>
 <div class="section" id="mit-authentication">
 <h2>MIT Authentication<a class="headerlink" href="#mit-authentication" title="Permalink to this headline">¶</a></h2>
-<p>See <a class="reference internal" href="touchstone_saml.html"><span class="doc">Touchstone via SAML</span></a> for our authentication best practice.</p>
-<p><a class="reference internal" href="oauth.html"><span class="doc">MIT Pilot OAuth</span></a> should not be used.</p>
+<p>See <a class="reference internal" href="../authentication/touchstone_saml.html"><span class="doc">Touchstone via SAML</span></a> for our authentication best practice.</p>
+<p><a class="reference internal" href="../authentication/oauth.html"><span class="doc">MIT Pilot OAuth</span></a> should not be used.</p>
 </div>
 </div>
 
@@ -259,7 +259,7 @@ Incommon cert for some reason, include this next bit too. Most applications are 
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Guides</a></h1>
+<h1 class="logo"><a href="../index.html">Guides</a></h1>
 
 
 
@@ -269,12 +269,26 @@ Incommon cert for some reason, include this next bit too. Most applications are 
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Documentation Pages</span></p>
+<p class="caption"><span class="caption-text">Start Here</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Authentication</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Deployment</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="a11y.html">Accessibility / a11y</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>
-<li class="toctree-l1"><a class="reference internal" href="github.html">GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="airflow.html">Airflow: workflow engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">Amazon Web Servies (AWS)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Heroku</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#whats-weird-about-heroku-at-first">What’s weird about Heroku at first?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#billing">Billing</a></li>
@@ -288,31 +302,31 @@ Incommon cert for some reason, include this next bit too. Most applications are 
 <li class="toctree-l2"><a class="reference internal" href="#mit-authentication">MIT Authentication</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="incident_response.html">Incident Response Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oauth.html">Authentication: OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
-<li class="toctree-l1"><a class="reference internal" href="proxy_urls.html">Proxy URLs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python.html">Python Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rails.html">Rails at MIT Libraries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ssl.html">SSL Encryption</a></li>
-<li class="toctree-l1"><a class="reference internal" href="touchstone_saml.html">Authentication: Touchstone / Shibboleth / SAML</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Everything else</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ssl.html">SSL Encryption</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="github.html" title="previous chapter">GitHub</a></li>
-      <li>Next: <a href="incident_response.html" title="next chapter">Incident Response Guidelines</a></li>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="aws.html" title="previous chapter">Amazon Web Servies (AWS)</a></li>
+      <li>Next: <a href="pantheon.html" title="next chapter">Pantheon</a></li>
   </ul></li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
+    <form class="search" action="../search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
@@ -339,7 +353,7 @@ Incommon cert for some reason, include this next bit too. Most applications are 
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="_sources/heroku.md.txt"
+      <a href="../_sources/deploy/heroku.md.txt"
           rel="nofollow">Page source</a>
     </div>
 

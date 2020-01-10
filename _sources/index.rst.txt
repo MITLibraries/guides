@@ -13,9 +13,37 @@ or feedback.
 * :ref:`search`
 
 .. toctree::
-   :caption: Documentation Pages 
+   :caption: Start Here 
    :maxdepth: 2
    :glob:
 
-   *
+   basics/*
 
+.. toctree::
+   :caption: Languages and Frameworks 
+   :maxdepth: 2
+   :glob:
+
+   languages/*
+
+.. toctree::
+   :caption: Authentication 
+   :maxdepth: 2
+   :glob:
+
+   authentication/*
+
+.. toctree::
+   :caption: Deployment 
+   :maxdepth: 2
+   :glob:
+
+   deploy/*
+
+
+.. toctree::
+   :caption: Everything else 
+   :maxdepth: 2
+   :glob:
+
+   misc/*

@@ -19,7 +19,7 @@ to be exceptionally popular, a CDN may be appropriate.
 ### Logging
 
 Heroku expects you to ship logs elsewhere (because of the no
-persistent filesystem). See our [Logging](/logging) documentation for our centralized solution.
+persistent filesystem). See our [Logging](/misc/logging) documentation for our centralized solution.
 
 Use the Heroku CLI application to do the following:
 
@@ -34,7 +34,7 @@ You should set up log drains for both staging and production.
 
 ### Exception Logging
 
-Use our [Exception Monitoring](/exception_monitoring) service.
+Use our [Exception Monitoring](/misc/exception_monitoring) service.
 
 ### Database Backups
 
@@ -241,6 +241,6 @@ Heroku.
 
 ## MIT Authentication
 
-See [Touchstone via SAML](/touchstone_saml.md) for our authentication best practice.
+See [Touchstone via SAML](/authentication/touchstone_saml) for our authentication best practice.
 
-[MIT Pilot OAuth](/oauth) should not be used.
+[MIT Pilot OAuth](/authentication/oauth) should not be used.
