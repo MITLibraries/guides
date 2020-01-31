@@ -1,0 +1,44 @@
+name: Deploy
+on:
+env:
+  IMAGE:
+  CLUSTER:
+  SERVICE:
+jobs:
+  deploy:
+    name: Deploy new release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set git ref
+        id: git_ref
+        run: echo ::set-output name=ref::${GITHUB_REF/refs\/tags\//}
+
+      - name: Set AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Login to ECR
+        id: ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build container
+        env:
+          REGISTRY: ${{ steps.ecr.outputs.registry }}
+        run: docker build -t $REGISTRY/$IMAGE:latest -t $REGISTRY/$IMAGE:${{ github.sha }} .
+
+      - name: Add release tag
+        env:
+          REGISTRY: ${{ steps.ecr.outputs.registry }}
+        if: github.event_name == 'release'
+        run: docker tag $REGISTRY/$IMAGE:latest $REGISTRY/$IMAGE:${{ steps.git_ref.outputs.ref }}
+
+      - name: Publish container
+        run: docker push ${{ steps.ecr.outputs.registry }}/$IMAGE
+
+      - name: Redeploy app
+        run: aws ecs update-service --force-new-deploy --cluster $CLUSTER --service $SERVICE
