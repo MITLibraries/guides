@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Continuous Integration/Deployment &#8212; Guides  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Heroku" href="heroku.html" />
+    <link rel="prev" title="Working with AWS" href="aws.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="continuous-integration-deployment">
+<h1>Continuous Integration/Deployment<a class="headerlink" href="#continuous-integration-deployment" title="Permalink to this headline">¶</a></h1>
+<p>Your first choice for CI/CD should be Github Actions. If you are having trouble getting this to work, please ask in the #engineering Slack channel.</p>
+<div class="sidebar">
+<p class="sidebar-title">Heroku Deploys</p>
+<p>If your application is being deployed to Heroku, you should just be using Heroku Pipelines, not Github Actions.</p>
+</div>
+<p>This guide will provide an overview of how the deployment process should generally work, with specific examples for the more common cases.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Most applications will have specific needs that may differ from other applications, but the general process for testing and deployment should follow the form:</p>
+<ol class="arabic simple">
+<li><p>Run tests when pushing commits.</p></li>
+<li><p>Deploy staging build when merging PR onto master branch.</p></li>
+<li><p>Deploy production build when a release is created.</p></li>
+</ol>
+<p>The act of creating a release in Github is how you decide when to deploy a new production instance. The most recent release should always be the code that’s running in production.</p>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>The testing action will likely vary from project to project, so your best bet will be to look at examples of what other projects have done and ask in #engineering if you are having trouble. As a general rule your testing action should run on every push. This can be accomplished by setting:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">on</span><span class="p">:</span> <span class="n">push</span>
+</pre></div>
+</div>
+<p>in your <code class="docutils literal notranslate"><span class="pre">.github/workflows/test.yml</span></code> file.</p>
+</div>
+<div class="section" id="fargate-deployment">
+<h2>Fargate Deployment<a class="headerlink" href="#fargate-deployment" title="Permalink to this headline">¶</a></h2>
+<p>Most of our AWS deployments target Fargate. The staging and production deploys should look more or less the same. There is a yaml template (<a class="reference download internal" download="" href="../_downloads/ba311a13e55163995ec339e8702b33fe/deploy.yml"><code class="xref download docutils literal notranslate"><span class="pre">deploy.yml</span></code></a>) that can be used for both, with only a few changes you will need to make. To use this template, do the following:</p>
+<ol class="arabic">
+<li><p>Make two copies of the template, one called <code class="docutils literal notranslate"><span class="pre">.github/workflows/stage.yml</span></code> and one called <code class="docutils literal notranslate"><span class="pre">.github/workflows/prod.yml</span></code>.</p></li>
+<li><p>Set the top level <code class="docutils literal notranslate"><span class="pre">name</span></code> key in each file to something more descriptive, like “Deploy staging build” and “Deploy production release”.</p></li>
+<li><p>For the <code class="docutils literal notranslate"><span class="pre">stage.yml</span></code> file change the <code class="docutils literal notranslate"><span class="pre">on</span></code> key to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">on</span><span class="p">:</span>
+  <span class="n">push</span><span class="p">:</span>
+    <span class="n">branches</span><span class="p">:</span> <span class="p">[</span><span class="n">master</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><p>And for the <code class="docutils literal notranslate"><span class="pre">prod.yml</span></code> file change the <code class="docutils literal notranslate"><span class="pre">on</span></code> key to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">on</span><span class="p">:</span>
+  <span class="n">release</span><span class="p">:</span>
+    <span class="n">types</span><span class="p">:</span> <span class="p">[</span><span class="n">published</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>In the template, under the <code class="docutils literal notranslate"><span class="pre">env</span></code> section, set the <code class="docutils literal notranslate"><span class="pre">IMAGE</span></code>, <code class="docutils literal notranslate"><span class="pre">CLUSTER</span></code> and <code class="docutils literal notranslate"><span class="pre">SERVICE</span></code> to the values given to you by the infrastructure team.</p></li>
+<li><p>You will need a set of keys for a deploy user that has permission to upload images to ECR and redeploy the ECS service (ask in #engineering if you have not been given these). These should be set as secrets through the Github UI for the repo.</p></li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Guides</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Start Here</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Authentication</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Deployment</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="airflow.html">Airflow: workflow engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws.html">Working with AWS</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Continuous Integration/Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fargate-deployment">Fargate Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Everything else</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ssl.html">SSL Encryption</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="aws.html" title="previous chapter">Working with AWS</a></li>
+      <li>Next: <a href="heroku.html" title="next chapter">Heroku</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/deploy/cicd.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
