@@ -1,7 +1,7 @@
 Continuous Integration/Deployment
 =================================
 
-Your first choice for CI/CD should be Github Actions. If you are having trouble getting this to work, please ask in #engineering.
+Your first choice for CI/CD should be Github Actions. If you are having trouble getting this to work, please ask in the #engineering Slack channel.
 
 .. sidebar:: Heroku Deploys
 
