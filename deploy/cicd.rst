@@ -23,6 +23,10 @@ The act of creating a release in Github is how you decide when to deploy a new p
 Testing
 -------
 
+.. sidebar:: Language specific examples
+
+   - `CI for Rails at MIT Libraries <../languages/rails.html#continuous-integration>`_
+
 The testing action will likely vary from project to project, so your best bet will be to look at examples of what other projects have done and ask in #engineering if you are having trouble. As a general rule your testing action should run on every push. This can be accomplished by setting::
 
   on: push
