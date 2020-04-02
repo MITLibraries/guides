@@ -49,6 +49,42 @@ code reviews</p></li>
 <a class="reference external" href="https://github.com/rspec/rspec-rails">rspec</a> is fine</p></li>
 </ul>
 </div>
+<div class="section" id="continuous-integration">
+<h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h2>
+<p>You should use GitHub Actions. If you feel you have reason to use another
+solution, ask in #engineering on Slack to get peer feedback as to confirm
+whether others agree your use case differs enough to not use our common
+solution.</p>
+<p>To use our standard setup, do the following:</p>
+<ul class="simple">
+<li><p>Make a copy of
+<a class="reference external" href="https://raw.githubusercontent.com/MITLibraries/bento/master/.github/workflows/ci.yml">our template</a>,
+to your repo in the path <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code></p></li>
+<li><p>Ensure you are using SimpleCov and have setup LCOV as a formatter.</p>
+<ul>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">gem</span> <span class="pre">simplecov</span></code> and <code class="docutils literal notranslate"><span class="pre">gem</span> <span class="pre">simplecov-lcov</span></code> to your test group in your
+<code class="docutils literal notranslate"><span class="pre">Gemfile</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bundle</span> <span class="pre">install</span></code></p></li>
+<li><p>Add the following to the very top of your <code class="docutils literal notranslate"><span class="pre">test/test_helper.rb</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">&#39;simplecov&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;simplecov-lcov&#39;</span>
+<span class="no">SimpleCov</span><span class="o">::</span><span class="no">Formatter</span><span class="o">::</span><span class="no">LcovFormatter</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">report_with_single_file</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="no">SimpleCov</span><span class="o">.</span><span class="n">formatters</span> <span class="o">=</span> <span class="o">[</span>
+  <span class="no">SimpleCov</span><span class="o">::</span><span class="no">Formatter</span><span class="o">::</span><span class="no">HTMLFormatter</span><span class="p">,</span>
+  <span class="no">SimpleCov</span><span class="o">.</span><span class="n">formatter</span> <span class="o">=</span> <span class="no">SimpleCov</span><span class="o">::</span><span class="no">Formatter</span><span class="o">::</span><span class="no">LcovFormatter</span>
+<span class="o">]</span>
+<span class="no">SimpleCov</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="s1">&#39;rails&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Commit on a new branch and push your changes</p></li>
+<li><p>Open a PR and your Action should run (and pass!). If not, debug or ask on our
+Slack for tips.</p></li>
+</ul>
+</div>
 <div class="section" id="rails-development-environment">
 <h2>Rails Development Environment<a class="headerlink" href="#rails-development-environment" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -157,6 +193,7 @@ Rails specific information</p></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Rails at MIT Libraries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#style-and-conventions">Style and Conventions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#test-frameworks">Test Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rails-development-environment">Rails Development Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deployments">Deployments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ruby-versions">Ruby Versions</a></li>

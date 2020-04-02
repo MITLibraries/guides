@@ -11,6 +11,42 @@
 - use of either [minitest](https://github.com/seattlerb/minitest) or
   [rspec](https://github.com/rspec/rspec-rails) is fine
 
+## Continuous Integration
+
+You should use GitHub Actions. If you feel you have reason to use another
+solution, ask in #engineering on Slack to get peer feedback as to confirm
+whether others agree your use case differs enough to not use our common
+solution.
+
+To use our standard setup, do the following:
+
+- Make a copy of
+[our template](https://raw.githubusercontent.com/MITLibraries/bento/master/.github/workflows/ci.yml), 
+to your repo in the path `.github/workflows/ci.yml`
+
+- Ensure you are using SimpleCov and have setup LCOV as a formatter.
+
+  - Add `gem simplecov` and `gem simplecov-lcov` to your test group in your
+`Gemfile`.
+  - `bundle install`
+  - Add the following to the very top of your `test/test_helper.rb`
+
+```ruby
+require 'simplecov'
+require 'simplecov-lcov'
+SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
+SimpleCov.formatters = [
+  SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+]
+SimpleCov.start('rails')
+```
+
+- Commit on a new branch and push your changes
+
+- Open a PR and your Action should run (and pass!). If not, debug or ask on our
+Slack for tips.
+
 ## Rails Development Environment
 
 - We maintain a [VagrantFile](https://github.com/MITLibraries/mit_vagrant_dev)
