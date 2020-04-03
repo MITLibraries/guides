@@ -7,12 +7,12 @@ Libraries, and forms the majority of [libraries.mit.edu](https://libraries.mit.e
 
 ### Local deployments
 
-WordPress is used on locally-managed VMs that are administered by the
+WordPress is used on EC2 instance VMs that are administered by the
 Enterprise Services team. The Wordpress installation can be found at the
-Apache site root, which is usually:
+Apache site root, which is:
 
-```
-/var/www/[hostname]/htdocs/
+```bash
+/var/www/html/htdocs/
 ```
 
 Other applications can also be found under `htdocs/`, including a number of
@@ -106,13 +106,16 @@ git clone git@github.com:MITLibraries/wp-plugin-template.git ~/deploy/wp-plugin-
 
 2. If needed, install/run grunt to build
 
-```
+```bash
 cd ~/deploy/wp-plugin-template
+scl enable rh-nodejs8 /bin/bash
 npm install
 grunt
 ```
 
-3. Run the relevant deploy script, passing the project name as arguments
+3. Run the relevant deploy script, passing the project name as arguments. If
+you have not placed the deploy script into your deploy directory already, you
+can symlink it from `/usr/local/scripts/`.
 
 ```
 cd ~/deploy/
