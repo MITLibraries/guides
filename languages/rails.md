@@ -22,13 +22,21 @@ To use our standard setup, do the following:
 
 - Make a copy of
 [our template](https://raw.githubusercontent.com/MITLibraries/bento/master/.github/workflows/ci.yml), 
-to your repo in the path `.github/workflows/ci.yml`
+to your repo in the path `.github/workflows/ci.yml`. Update the last line of
+this file to match your repo at `path-to-lcov`.
 
 - Ensure you are using SimpleCov and have setup LCOV as a formatter.
 
   - Add `gem simplecov` and `gem simplecov-lcov` to your test group in your
-`Gemfile`.
+`Gemfile`:
+
+```ruby
+gem 'simplecov', require: false
+gem 'simplecov-lcov', require: false
+```
+
   - `bundle install`
+
   - Add the following to the very top of your `test/test_helper.rb`
 
 ```ruby
