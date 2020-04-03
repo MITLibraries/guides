@@ -40,10 +40,10 @@ Libraries, and forms the majority of <a class="reference external" href="https:/
 <h2>Deployments<a class="headerlink" href="#deployments" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="local-deployments">
 <h3>Local deployments<a class="headerlink" href="#local-deployments" title="Permalink to this headline">¶</a></h3>
-<p>WordPress is used on locally-managed VMs that are administered by the
+<p>WordPress is used on EC2 instance VMs that are administered by the
 Enterprise Services team. The Wordpress installation can be found at the
-Apache site root, which is usually:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="p">[</span><span class="n">hostname</span><span class="p">]</span><span class="o">/</span><span class="n">htdocs</span><span class="o">/</span>
+Apache site root, which is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/var/www/html/htdocs/
 </pre></div>
 </div>
 <p>Other applications can also be found under <code class="docutils literal notranslate"><span class="pre">htdocs/</span></code>, including a number of
@@ -130,13 +130,16 @@ written.</p>
 <ol class="simple">
 <li><p>If needed, install/run grunt to build</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">deploy</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">template</span>
-<span class="n">npm</span> <span class="n">install</span>
-<span class="n">grunt</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/deploy/wp-plugin-template
+scl <span class="nb">enable</span> rh-nodejs8 /bin/bash
+npm install
+grunt
 </pre></div>
 </div>
 <ol class="simple">
-<li><p>Run the relevant deploy script, passing the project name as arguments</p></li>
+<li><p>Run the relevant deploy script, passing the project name as arguments. If
+you have not placed the deploy script into your deploy directory already, you
+can symlink it from <code class="docutils literal notranslate"><span class="pre">/usr/local/scripts/</span></code>.</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">deploy</span><span class="o">/</span>
 <span class="o">./</span><span class="n">deploy</span><span class="o">-</span><span class="n">plugin</span><span class="o">.</span><span class="n">sh</span> <span class="n">wp</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">template</span> <span class="n">wp</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">template</span>
