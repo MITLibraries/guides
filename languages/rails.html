@@ -59,15 +59,22 @@ solution.</p>
 <ul class="simple">
 <li><p>Make a copy of
 <a class="reference external" href="https://raw.githubusercontent.com/MITLibraries/bento/master/.github/workflows/ci.yml">our template</a>,
-to your repo in the path <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code></p></li>
+to your repo in the path <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code>. Update the last line of
+this file to match your repo at <code class="docutils literal notranslate"><span class="pre">path-to-lcov</span></code>.</p></li>
 <li><p>Ensure you are using SimpleCov and have setup LCOV as a formatter.</p>
 <ul>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">gem</span> <span class="pre">simplecov</span></code> and <code class="docutils literal notranslate"><span class="pre">gem</span> <span class="pre">simplecov-lcov</span></code> to your test group in your
-<code class="docutils literal notranslate"><span class="pre">Gemfile</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bundle</span> <span class="pre">install</span></code></p></li>
-<li><p>Add the following to the very top of your <code class="docutils literal notranslate"><span class="pre">test/test_helper.rb</span></code></p></li>
+<code class="docutils literal notranslate"><span class="pre">Gemfile</span></code>:</p></li>
 </ul>
 </li>
+</ul>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">gem</span> <span class="s1">&#39;simplecov&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+<span class="n">gem</span> <span class="s1">&#39;simplecov-lcov&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bundle</span> <span class="pre">install</span></code></p></li>
+<li><p>Add the following to the very top of your <code class="docutils literal notranslate"><span class="pre">test/test_helper.rb</span></code></p></li>
 </ul>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">&#39;simplecov&#39;</span>
 <span class="nb">require</span> <span class="s1">&#39;simplecov-lcov&#39;</span>
