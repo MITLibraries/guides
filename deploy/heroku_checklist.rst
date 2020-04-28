@@ -31,3 +31,10 @@ DNS and SSL
 -----------
 
 `Domain Names and SSL  <heroku.html#domain-names-and-ssl>`_
+
+Configuration
+-------------
+
+`Viewing / changing Environment Variables  <heroku.html#viewing-changing-environment-variables>`_
+
+.. note:: `keep a backup in LastPass that is shared with all engineers`
