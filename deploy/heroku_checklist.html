@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Pantheon &#8212; Guides  documentation</title>
+    <title>Heroku Launch Checklist &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Terraform" href="terraform.html" />
-    <link rel="prev" title="Heroku Launch Checklist" href="heroku_checklist.html" />
+    <link rel="next" title="Pantheon" href="pantheon.html" />
+    <link rel="prev" title="Heroku" href="heroku.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -32,19 +32,38 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="pantheon">
-<h1>Pantheon<a class="headerlink" href="#pantheon" title="Permalink to this headline">¶</a></h1>
-<p>The MIT Libraries have made the choice to migrate many PHP-based websites to the <a class="reference external" href="https://pantheon.io/">Pantheon</a> platform.</p>
-<div class="section" id="preferred-tooling-and-workflow">
-<h2>Preferred Tooling and Workflow<a class="headerlink" href="#preferred-tooling-and-workflow" title="Permalink to this headline">¶</a></h2>
-<p>There are a variety of processes and tools that can be used to build on Pantheon. In order to prevent confusion and conflicting processes, we recommend that sites be built along the lines of the <a class="reference external" href="https://pantheon.io/docs/guides/build-tools/">Build Tools documentation</a>, which includes the following tooling:</p>
-<ul class="simple">
-<li><p>GitHub</p></li>
-<li><p>CircleCI</p></li>
-<li><p>Composer</p></li>
-<li><p>Pantheon Multidev</p></li>
-</ul>
-<p>In cases where this workflow is not feasible - primarily when migrating an existing website for which redevelopment is not possible - an FTP-based workflow that emphasizes the Pantheon dashboard in a web browser is also acceptable.</p>
+  <div class="section" id="heroku-launch-checklist">
+<h1>Heroku Launch Checklist<a class="headerlink" href="#heroku-launch-checklist" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setup-pipelines">
+<h2>Setup Pipelines<a class="headerlink" href="#setup-pipelines" title="Permalink to this headline">¶</a></h2>
+<p>Our applications should have staging, production and PR build tiers.</p>
+<p><a class="reference external" href="heroku.html#pipelines">Pipelines</a></p>
+<p><a class="reference external" href="heroku.html#heroku.html#production-deploy-with-pipelines-cheatsheet">Production Deploy with Pipelines Cheatsheet</a></p>
+</div>
+<div class="section" id="configure-dynos">
+<h2>Configure Dynos<a class="headerlink" href="#configure-dynos" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="heroku.html#dynos">Dynos</a></p>
+<p><a class="reference external" href="heroku.html#billing">Billing</a></p>
+</div>
+<div class="section" id="configure-database-backups">
+<h2>Configure Database Backups<a class="headerlink" href="#configure-database-backups" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="heroku.html#database-backups">Database Backups</a></p>
+</div>
+<div class="section" id="ship-logs">
+<h2>Ship logs<a class="headerlink" href="#ship-logs" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="heroku.html#logging">Logging</a></p>
+</div>
+<div class="section" id="dns-and-ssl">
+<h2>DNS and SSL<a class="headerlink" href="#dns-and-ssl" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="heroku.html#domain-names-and-ssl">Domain Names and SSL</a></p>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="heroku.html#viewing-changing-environment-variables">Viewing / changing Environment Variables</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>keep a backup in LastPass that is shared with all engineers</cite></p>
+</div>
 </div>
 </div>
 
@@ -87,11 +106,16 @@
 <li class="toctree-l1"><a class="reference internal" href="aws.html">Working with AWS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cicd.html">Continuous Integration/Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
-<li class="toctree-l1"><a class="reference internal" href="heroku_checklist.html">Heroku Launch Checklist</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Pantheon</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#preferred-tooling-and-workflow">Preferred Tooling and Workflow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Heroku Launch Checklist</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setup-pipelines">Setup Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-dynos">Configure Dynos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-database-backups">Configure Database Backups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ship-logs">Ship logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dns-and-ssl">DNS and SSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Everything else</span></p>
@@ -108,8 +132,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="heroku_checklist.html" title="previous chapter">Heroku Launch Checklist</a></li>
-      <li>Next: <a href="terraform.html" title="next chapter">Terraform</a></li>
+      <li>Previous: <a href="heroku.html" title="previous chapter">Heroku</a></li>
+      <li>Next: <a href="pantheon.html" title="next chapter">Pantheon</a></li>
   </ul></li>
 </ul>
 </div>
@@ -143,7 +167,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/deploy/pantheon.md.txt"
+      <a href="../_sources/deploy/heroku_checklist.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

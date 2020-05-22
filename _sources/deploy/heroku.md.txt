@@ -28,6 +28,7 @@ heroku drains:add \
 'https://listener.logz.io:8081?token=OUR_LOGZ_TOKEN&app=YOUR_HEROKU_APP_NAME' \
 --app YOUR_HEROKU_APP_NAME
 ```
+
 _Note: Ask on the `#engineering` Slack channel for our shared Logz.io token._
 
 You should set up log drains for both staging and production.
@@ -60,7 +61,6 @@ to get a set of static IPs the vendor can approve for access.
 This will route outbound traffic over a static IP. Inbound traffic
 will continue to use the Heroku supplied dynamic IP.
 
-
 ## Billing
 
 We have a shared billing account. Password is in our LastPass. Ask in the `#engineering` Slack
@@ -85,7 +85,6 @@ Not sure if something is too expensive to use as an add-on? Ask.
 There is no fixed rule, so getting other thoughts on the cost /
 benefit is the best current option.
 
-
 ## Pipelines
 
 TL;DR: Use [pipelines](https://devcenter.heroku.com/articles/pipelines).
@@ -109,7 +108,6 @@ NOT change the other. This will make you confused one day.
 On deploy or ENV change, the application will restart. It is
 normally a quick blip and doesn’t require downtime announcements.
 
-
 ## Production Deploy with Pipelines Cheatsheet
 
 ### Tag a release in GitHub with release notes that are useful
@@ -124,7 +122,7 @@ to production using Pipelines. Pushing to prod moves whatever is on
 staging, which is quite likely `master` unless you are doing weird
 things (note: don't do weird things).
 
-### Confirm everything is all good on staging.
+### Confirm everything is all good on staging
 
 Staging probably has `master`. If it works, pushing to prod should
 be :rainbow: unless you forgot you'll need changes to ENV for any new
@@ -196,8 +194,7 @@ deployed to staging / production is best).
 
 We use paid [Dynos](https://devcenter.heroku.com/articles/dynos).
 So far the $7 plan works fine for us in production and free dynos on
-staging and pr builds. We can pay more if we need to, but this has
-been fine for most apps so far.
+staging and pr builds. For high use apps, or apps that need more detailed metrics, use a higher tier dyno.
 
 If an app needs background jobs (email send, sword deposit, etc),
 that’s the job of the worker dyno and the cost is the same as your
@@ -214,7 +211,7 @@ via the
 
 ### Example email to ITS help (not fix-lib) to start the process
 
-```
+```text
 The [YOUR PROJECT NAME] project requests the following domain name
 registration:
 
@@ -228,9 +225,9 @@ Please let me know if you need any additional information.
 
 If you are doing the Heroku default Automated Certificate Management (Let's Encrypt), that's enough.
 If you need an
-Incommon cert for some reason, include this next bit too. Most applications are fine with Let's Encrypt.
+Incommon cert for some reason (you don't!), include this next bit too. Most applications are fine with Let's Encrypt.
 
-```
+```text
 Additionally, we'll need an SSL cert for that domain. General information is
 available here on what we'll need:
 https://devcenter.heroku.com/articles/ssl

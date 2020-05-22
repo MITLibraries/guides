@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Pantheon" href="pantheon.html" />
+    <link rel="next" title="Heroku Launch Checklist" href="heroku_checklist.html" />
     <link rel="prev" title="Continuous Integration/Deployment" href="cicd.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -139,7 +139,7 @@ staging, which is quite likely <code class="docutils literal notranslate"><span 
 things (note: don’t do weird things).</p>
 </div>
 <div class="section" id="confirm-everything-is-all-good-on-staging">
-<h3>Confirm everything is all good on staging.<a class="headerlink" href="#confirm-everything-is-all-good-on-staging" title="Permalink to this headline">¶</a></h3>
+<h3>Confirm everything is all good on staging<a class="headerlink" href="#confirm-everything-is-all-good-on-staging" title="Permalink to this headline">¶</a></h3>
 <p>Staging probably has <code class="docutils literal notranslate"><span class="pre">master</span></code>. If it works, pushing to prod should
 be :rainbow: unless you forgot you’ll need changes to ENV for any new
 features you may be pushing if so, make said changes!</p>
@@ -205,8 +205,7 @@ deployed to staging / production is best).</p>
 <h2>Dynos<a class="headerlink" href="#dynos" title="Permalink to this headline">¶</a></h2>
 <p>We use paid <a class="reference external" href="https://devcenter.heroku.com/articles/dynos">Dynos</a>.
 So far the $7 plan works fine for us in production and free dynos on
-staging and pr builds. We can pay more if we need to, but this has
-been fine for most apps so far.</p>
+staging and pr builds. For high use apps, or apps that need more detailed metrics, use a higher tier dyno.</p>
 <p>If an app needs background jobs (email send, sword deposit, etc),
 that’s the job of the worker dyno and the cost is the same as your
 main dyno (or at least you can’t do one paid and one free… you may
@@ -221,26 +220,26 @@ via the
 <a class="reference external" href="https://devcenter.heroku.com/articles/automated-certificate-management">Automated Certificate Management</a>.</p>
 <div class="section" id="example-email-to-its-help-not-fix-lib-to-start-the-process">
 <h3>Example email to ITS help (not fix-lib) to start the process<a class="headerlink" href="#example-email-to-its-help-not-fix-lib-to-start-the-process" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="p">[</span><span class="n">YOUR</span> <span class="n">PROJECT</span> <span class="n">NAME</span><span class="p">]</span> <span class="n">project</span> <span class="n">requests</span> <span class="n">the</span> <span class="n">following</span> <span class="n">domain</span> <span class="n">name</span>
-<span class="n">registration</span><span class="p">:</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The [YOUR PROJECT NAME] project requests the following domain name
+registration:
 
-<span class="n">CNAME</span><span class="p">:</span> <span class="p">[</span><span class="n">YOUR_DESIRED_REGISTRATION</span><span class="p">]</span><span class="o">.</span><span class="n">mit</span><span class="o">.</span><span class="n">edu</span>
-<span class="n">Target</span><span class="p">:</span> <span class="p">[</span><span class="n">YOUR_DESIRED_REGISTRATION</span><span class="p">]</span><span class="o">.</span><span class="n">mit</span><span class="o">.</span><span class="n">edu</span><span class="o">.</span><span class="n">herokudns</span><span class="o">.</span><span class="n">com</span>
-<span class="n">Cost</span> <span class="n">Object</span><span class="p">:</span> <span class="p">[</span><span class="n">ITS</span> <span class="n">fill</span><span class="o">-</span><span class="ow">in</span><span class="p">]</span>
-<span class="n">Contact</span> <span class="n">E</span><span class="o">-</span><span class="n">mail</span><span class="p">:</span> <span class="p">[</span><span class="n">ITS</span> <span class="n">fill</span><span class="o">-</span><span class="ow">in</span><span class="p">]</span>
+CNAME: [YOUR_DESIRED_REGISTRATION].mit.edu
+Target: [YOUR_DESIRED_REGISTRATION].mit.edu.herokudns.com
+Cost Object: [ITS fill-in]
+Contact E-mail: [ITS fill-in]
 
-<span class="n">Please</span> <span class="n">let</span> <span class="n">me</span> <span class="n">know</span> <span class="k">if</span> <span class="n">you</span> <span class="n">need</span> <span class="nb">any</span> <span class="n">additional</span> <span class="n">information</span><span class="o">.</span>
+Please let me know if you need any additional information.
 </pre></div>
 </div>
 <p>If you are doing the Heroku default Automated Certificate Management (Let’s Encrypt), that’s enough.
 If you need an
-Incommon cert for some reason, include this next bit too. Most applications are fine with Let’s Encrypt.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Additionally</span><span class="p">,</span> <span class="n">we</span><span class="s1">&#39;ll need an SSL cert for that domain. General information is</span>
-<span class="n">available</span> <span class="n">here</span> <span class="n">on</span> <span class="n">what</span> <span class="n">we</span><span class="s1">&#39;ll need:</span>
-<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">devcenter</span><span class="o">.</span><span class="n">heroku</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">articles</span><span class="o">/</span><span class="n">ssl</span>
+Incommon cert for some reason (you don’t!), include this next bit too. Most applications are fine with Let’s Encrypt.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Additionally, we&#39;ll need an SSL cert for that domain. General information is
+available here on what we&#39;ll need:
+https://devcenter.heroku.com/articles/ssl
 
-<span class="n">Essentially</span><span class="p">,</span> <span class="n">once</span> <span class="n">we</span> <span class="n">have</span> <span class="n">the</span> <span class="n">cert</span> <span class="n">I</span> <span class="n">can</span> <span class="n">upload</span> <span class="n">it</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">private</span> <span class="n">key</span> <span class="n">to</span>
-<span class="n">Heroku</span><span class="o">.</span>
+Essentially, once we have the cert I can upload it and the private key to
+Heroku.
 </pre></div>
 </div>
 </div>
@@ -303,6 +302,7 @@ Incommon cert for some reason, include this next bit too. Most applications are 
 <li class="toctree-l2"><a class="reference internal" href="#mit-authentication">MIT Authentication</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="heroku_checklist.html">Heroku Launch Checklist</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform</a></li>
 </ul>
@@ -321,7 +321,7 @@ Incommon cert for some reason, include this next bit too. Most applications are 
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="cicd.html" title="previous chapter">Continuous Integration/Deployment</a></li>
-      <li>Next: <a href="pantheon.html" title="next chapter">Pantheon</a></li>
+      <li>Next: <a href="heroku_checklist.html" title="next chapter">Heroku Launch Checklist</a></li>
   </ul></li>
 </ul>
 </div>
