@@ -128,3 +128,31 @@ We have created a reference project that includes the recommended tooling
 integrations and code standards:
 
 [Plugin Template](https://github.com/MITLibraries/wp-plugin-template)
+
+## Integrations
+
+Integrations between Wordpress and external systems are needed for some
+functionality. Some of these integrations are covered elsewhere in this
+documentation ([exception monitoring](https://mitlibraries.github.io/guides/misc/exception_monitoring.html) and [centralized logging](https://mitlibraries.github.io/guides/misc/logging.html), for example).
+
+Other integrations that are more specific to WordPress are detailed below.
+
+### Zapier / Airtable and webforms
+
+Web forms on libraries.mit.edu should be built and maintained using the
+Contact Forms 7 (CF7) plugin. [Documentation for this can be found on the UX
+wiki.](https://wikis.mit.edu/confluence/display/UXWS/Step+1%3A+Create+the+form) By design, this system keeps no record of submissions within WordPress.
+The forms send emails, and the receiving system is responsible for tracking
+the submission.
+
+A small number of forms, however, do not work via email. Those forms instead
+send submissions via webhook to Zapier, which in turn sends them to Airtable
+for processing.
+
+The Zapier account which stores this workflow is controlled by UX, with some
+assistance from EngX. Some details are stored within the WordPress form UI,
+while the Zapier UI controls the crosswalk between the form and Airtable.
+
+The Airtable bases are constructed and maintained by each form owner. As of
+this writing, Distinctive Collections is the only area of the Libraries which
+uses this setup.
