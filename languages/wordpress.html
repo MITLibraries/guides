@@ -153,6 +153,30 @@ integrations and code standards:</p>
 <p><a class="reference external" href="https://github.com/MITLibraries/wp-plugin-template">Plugin Template</a></p>
 </div>
 </div>
+<div class="section" id="integrations">
+<h2>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">¶</a></h2>
+<p>Integrations between Wordpress and external systems are needed for some
+functionality. Some of these integrations are covered elsewhere in this
+documentation (<a class="reference external" href="https://mitlibraries.github.io/guides/misc/exception_monitoring.html">exception monitoring</a> and <a class="reference external" href="https://mitlibraries.github.io/guides/misc/logging.html">centralized logging</a>, for example).</p>
+<p>Other integrations that are more specific to WordPress are detailed below.</p>
+<div class="section" id="zapier-airtable-and-webforms">
+<h3>Zapier / Airtable and webforms<a class="headerlink" href="#zapier-airtable-and-webforms" title="Permalink to this headline">¶</a></h3>
+<p>Web forms on libraries.mit.edu should be built and maintained using the
+Contact Forms 7 (CF7) plugin. <a class="reference external" href="https://wikis.mit.edu/confluence/display/UXWS/Step+1%3A+Create+the+form">Documentation for this can be found on the UX
+wiki.</a> By design, this system keeps no record of submissions within WordPress.
+The forms send emails, and the receiving system is responsible for tracking
+the submission.</p>
+<p>A small number of forms, however, do not work via email. Those forms instead
+send submissions via webhook to Zapier, which in turn sends them to Airtable
+for processing.</p>
+<p>The Zapier account which stores this workflow is controlled by UX, with some
+assistance from EngX. Some details are stored within the WordPress form UI,
+while the Zapier UI controls the crosswalk between the form and Airtable.</p>
+<p>The Airtable bases are constructed and maintained by each form owner. As of
+this writing, Distinctive Collections is the only area of the Libraries which
+uses this setup.</p>
+</div>
+</div>
 </div>
 
 
@@ -186,6 +210,7 @@ integrations and code standards:</p>
 <li class="toctree-l2"><a class="reference internal" href="#upgrading">Upgrading</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#database-migrations">Database migrations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#locally-developed-code">Locally Developed Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integrations">Integrations</a></li>
 </ul>
 </li>
 </ul>
