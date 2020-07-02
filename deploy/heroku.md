@@ -113,9 +113,13 @@ normally a quick blip and doesn’t require downtime announcements.
 ### Tag a release in GitHub with release notes that are useful
 
 From the repo code page on GitHub, go to Releases, and then click the
-"Draft a new release" button. Number the release appropriately, and
-use the number for the title if you don't have a title. Put notes on
-what's changed in the release in the description.
+"Draft a new release" button. Number the release appropriately, using [semantic
+versioniong](https://semver.org/), and title it with the release number and a
+brief overview of the changes, e.g.:
+
+`v1.5.12 Add advanced search to homepage and update dependencies`
+
+In the description, add specifics on what's changed in the release.
 
 FYI: The tag is purely informational. It is not currently used to push
 to production using Pipelines. Pushing to prod moves whatever is on
@@ -124,9 +128,9 @@ things (note: don't do weird things).
 
 ### Confirm everything is all good on staging
 
-Staging probably has `master`. If it works, pushing to prod should
-be :rainbow: unless you forgot you'll need changes to ENV for any new
-features you may be pushing if so, make said changes!
+Staging probably has the `master` branch from GitHub. If the staging app works,
+pushing to prod should be :rainbow: unless you forgot you'll need changes to
+ENV for any new features you may be pushing if so, make said changes!
 
 Get stakeholder sign off on the Pipeline staging app if it seems
 appropriate (i.e. only push stuff that has been approved to go live
@@ -155,6 +159,9 @@ to roll that back separately.
 ### Inform stakeholders if appropriate
 
 You just made a change to production. Tell people that care.
+
+NOTE: all Bento deploys trigger a notification in the #disco_ui_project Slack
+channel, so it's a good idea to provide context there whenever you deploy Bento.
 
 ## Manual Deploys
 
@@ -193,7 +200,7 @@ deployed to staging / production is best).
 ## Dynos
 
 We use paid [Dynos](https://devcenter.heroku.com/articles/dynos).
-So far the $7 plan works fine for us in production and free dynos on
+So far the \$7 plan works fine for us in production and free dynos on
 staging and pr builds. For high use apps, or apps that need more detailed metrics, use a higher tier dyno.
 
 If an app needs background jobs (email send, sword deposit, etc),

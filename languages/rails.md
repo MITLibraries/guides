@@ -8,8 +8,8 @@
 
 ## Test Frameworks
 
-- use of either [minitest](https://github.com/seattlerb/minitest) or
-  [rspec](https://github.com/rspec/rspec-rails) is fine
+- We recommend [minitest](https://github.com/seattlerb/minitest), as it
+  generally runs faster than rspec
 
 ## Continuous Integration
 
@@ -21,23 +21,23 @@ solution.
 To use our standard setup, do the following:
 
 - Make a copy of
-[our template](https://raw.githubusercontent.com/MITLibraries/bento/master/.github/workflows/ci.yml), 
-to your repo in the path `.github/workflows/ci.yml`. Update the last line of
-this file to match your repo at `path-to-lcov`.
+  [our template](https://raw.githubusercontent.com/MITLibraries/bento/master/.github/workflows/ci.yml),
+  to your repo in the path `.github/workflows/ci.yml`. Update the last line of
+  this file to match your repo at `path-to-lcov`.
 
 - Ensure you are using SimpleCov and have setup LCOV as a formatter.
 
   - Add `gem simplecov` and `gem simplecov-lcov` to your test group in your
-`Gemfile`:
+    `Gemfile`:
 
 ```ruby
 gem 'simplecov', require: false
 gem 'simplecov-lcov', require: false
 ```
 
-  - `bundle install`
+- `bundle install`
 
-  - Add the following to the very top of your `test/test_helper.rb`
+- Add the following to the very top of your `test/test_helper.rb`
 
 ```ruby
 require 'simplecov'
@@ -53,25 +53,22 @@ SimpleCov.start('rails')
 - Commit on a new branch and push your changes
 
 - Open a PR and your Action should run (and pass!). If not, debug or ask on our
-Slack for tips.
+  Slack for tips.
 
 ## Rails Development Environment
 
-- We maintain a [VagrantFile](https://github.com/MITLibraries/mit_vagrant_dev)
-  to help developers join our Rails projects with minimal effort
-- It is not a requirement to use it, but if you are having (or causing)
-  problems and aren't using it, please use it and see if it helps
+- For local development, you will need the ENV for the app you're working with.
+  Contact an engineer who's worked on the app, and they will provide you with
+  the requisite .env file
 
 ## Deployments
 
-- We often target [Heroku](/deploy/heroku) as a deployment platform and use Pipelines so custom
+- We target [Heroku](/deploy/heroku) as a deployment platform and use Pipelines so custom
   deployment scripts are not necessary
-- If the project requires deploying to a vm, use
-  [capistrano](https://github.com/capistrano/capistrano) or
-  [ansible](https://www.ansible.com) deployment scripts.
 
 ## Ruby Versions
 
+- We use [rbenv](https://github.com/rbenv/rbenv) to manage Ruby versions
 - Use the latest stable release unless you have a documented reason not to
   (an [ADR](https://github.com/npryce/adr-tools) would be a great place to
   document this if the project is using them)
