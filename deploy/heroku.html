@@ -130,9 +130,11 @@ normally a quick blip and doesn’t require downtime announcements.</p>
 <div class="section" id="tag-a-release-in-github-with-release-notes-that-are-useful">
 <h3>Tag a release in GitHub with release notes that are useful<a class="headerlink" href="#tag-a-release-in-github-with-release-notes-that-are-useful" title="Permalink to this headline">¶</a></h3>
 <p>From the repo code page on GitHub, go to Releases, and then click the
-“Draft a new release” button. Number the release appropriately, and
-use the number for the title if you don’t have a title. Put notes on
-what’s changed in the release in the description.</p>
+“Draft a new release” button. Number the release appropriately, using <a class="reference external" href="https://semver.org/">semantic
+versioniong</a>, and title it with the release number and a
+brief overview of the changes, e.g.:</p>
+<p><code class="docutils literal notranslate"><span class="pre">v1.5.12</span> <span class="pre">Add</span> <span class="pre">advanced</span> <span class="pre">search</span> <span class="pre">to</span> <span class="pre">homepage</span> <span class="pre">and</span> <span class="pre">update</span> <span class="pre">dependencies</span></code></p>
+<p>In the description, add specifics on what’s changed in the release.</p>
 <p>FYI: The tag is purely informational. It is not currently used to push
 to production using Pipelines. Pushing to prod moves whatever is on
 staging, which is quite likely <code class="docutils literal notranslate"><span class="pre">master</span></code> unless you are doing weird
@@ -140,9 +142,9 @@ things (note: don’t do weird things).</p>
 </div>
 <div class="section" id="confirm-everything-is-all-good-on-staging">
 <h3>Confirm everything is all good on staging<a class="headerlink" href="#confirm-everything-is-all-good-on-staging" title="Permalink to this headline">¶</a></h3>
-<p>Staging probably has <code class="docutils literal notranslate"><span class="pre">master</span></code>. If it works, pushing to prod should
-be :rainbow: unless you forgot you’ll need changes to ENV for any new
-features you may be pushing if so, make said changes!</p>
+<p>Staging probably has the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch from GitHub. If the staging app works,
+pushing to prod should be :rainbow: unless you forgot you’ll need changes to
+ENV for any new features you may be pushing if so, make said changes!</p>
 <p>Get stakeholder sign off on the Pipeline staging app if it seems
 appropriate (i.e. only push stuff that has been approved to go live
 and / or is a bug / security fix)… but ideally that has been done
@@ -168,6 +170,8 @@ to roll that back separately.
 <div class="section" id="inform-stakeholders-if-appropriate">
 <h3>Inform stakeholders if appropriate<a class="headerlink" href="#inform-stakeholders-if-appropriate" title="Permalink to this headline">¶</a></h3>
 <p>You just made a change to production. Tell people that care.</p>
+<p>NOTE: all Bento deploys trigger a notification in the #disco_ui_project Slack
+channel, so it’s a good idea to provide context there whenever you deploy Bento.</p>
 </div>
 </div>
 <div class="section" id="manual-deploys">

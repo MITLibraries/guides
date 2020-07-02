@@ -45,8 +45,8 @@ code reviews</p></li>
 <div class="section" id="test-frameworks">
 <h2>Test Frameworks<a class="headerlink" href="#test-frameworks" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>use of either <a class="reference external" href="https://github.com/seattlerb/minitest">minitest</a> or
-<a class="reference external" href="https://github.com/rspec/rspec-rails">rspec</a> is fine</p></li>
+<li><p>We recommend <a class="reference external" href="https://github.com/seattlerb/minitest">minitest</a>, as it
+generally runs faster than rspec</p></li>
 </ul>
 </div>
 <div class="section" id="continuous-integration">
@@ -95,25 +95,22 @@ Slack for tips.</p></li>
 <div class="section" id="rails-development-environment">
 <h2>Rails Development Environment<a class="headerlink" href="#rails-development-environment" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>We maintain a <a class="reference external" href="https://github.com/MITLibraries/mit_vagrant_dev">VagrantFile</a>
-to help developers join our Rails projects with minimal effort</p></li>
-<li><p>It is not a requirement to use it, but if you are having (or causing)
-problems and aren’t using it, please use it and see if it helps</p></li>
+<li><p>For local development, you will need the ENV for the app you’re working with.
+Contact an engineer who’s worked on the app, and they will provide you with
+the requisite .env file</p></li>
 </ul>
 </div>
 <div class="section" id="deployments">
 <h2>Deployments<a class="headerlink" href="#deployments" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>We often target <a class="reference internal" href="../deploy/heroku.html"><span class="doc">Heroku</span></a> as a deployment platform and use Pipelines so custom
+<li><p>We target <a class="reference internal" href="../deploy/heroku.html"><span class="doc">Heroku</span></a> as a deployment platform and use Pipelines so custom
 deployment scripts are not necessary</p></li>
-<li><p>If the project requires deploying to a vm, use
-<a class="reference external" href="https://github.com/capistrano/capistrano">capistrano</a> or
-<a class="reference external" href="https://www.ansible.com">ansible</a> deployment scripts.</p></li>
 </ul>
 </div>
 <div class="section" id="ruby-versions">
 <h2>Ruby Versions<a class="headerlink" href="#ruby-versions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li><p>We use <a class="reference external" href="https://github.com/rbenv/rbenv">rbenv</a> to manage Ruby versions</p></li>
 <li><p>Use the latest stable release unless you have a documented reason not to
 (an <a class="reference external" href="https://github.com/npryce/adr-tools">ADR</a> would be a great place to
 document this if the project is using them)</p></li>
