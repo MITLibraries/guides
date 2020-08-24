@@ -12,7 +12,7 @@ In general, all of the deployed custom software we write should have exception m
 
 ## How do I get an account?
 
-The accounts are maintained by DLE, so ask in our channel on Slack if don't yet have a Sentry login to our account.
+The accounts are maintained by EngX, so ask in our channel on the #engineering Slack channel if don't yet have a Sentry login to our account.
 
 ## How can I add Sentry to my application
 
