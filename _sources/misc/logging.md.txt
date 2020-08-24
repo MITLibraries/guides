@@ -1,6 +1,6 @@
 # Central Logging
 
-We use Logz.io for central logging. All apps should be sending logs here. Note that this is different than [exception monitoring](https://mitlibraries.github.io/exception_monitoring.html).
+We use Logz.io for central logging. All apps should be sending logs here. Note that this is different than [exception monitoring](https://mitlibraries.github.io/guides/misc/exception_monitoring.html).
 
 ## Logging Standards
 
