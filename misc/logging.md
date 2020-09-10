@@ -12,6 +12,7 @@ Everything effectively goes into a big bucket in Logz, so we need to make sure t
 2. Use JSON as your log format. If this is not possible use syslog format.
 
 ## Access
+
 Access to our [Logz.io for MIT Libraries](https://logzio-libraries.mit.edu) is managed through Moira groups and Touchstone (which provides SSO and MFA). If you do not have an account in [Logz.io for MIT Libraries](https://logzio-libraries.mit.edu) and need one, please reach out to the EngX or InfraEng leads and one of them will update the Moira group to provide access.
 
 _Note: Ask on the `#engineering` Slack channel for our shared Logz.io token._
