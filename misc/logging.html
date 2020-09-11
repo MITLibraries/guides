@@ -34,7 +34,7 @@
             
   <div class="section" id="central-logging">
 <h1>Central Logging<a class="headerlink" href="#central-logging" title="Permalink to this headline">¶</a></h1>
-<p>We use Logz.io for central logging. All apps should be sending logs here. Note that this is different than <a class="reference external" href="https://mitlibraries.github.io/guides/misc/exception_monitoring.html">exception monitoring</a>.</p>
+<p>We use Logz.io for central logging. All apps should be sending logs here. Note that this is different than <a class="reference external" href="https://mitlibraries.github.io/guides/misc/exception_monitoring.html">exception monitoring</a>. Access to our Logz.io account is managed through Touchstone and must be accessed with the following URL: <a class="reference external" href="https://logzio-libraries.mit.edu">Logz.io for MIT Libraries</a>.</p>
 <div class="section" id="logging-standards">
 <h2>Logging Standards<a class="headerlink" href="#logging-standards" title="Permalink to this headline">¶</a></h2>
 <p>Everything effectively goes into a big bucket in Logz, so we need to make sure that we are all following some baseline standards.</p>
@@ -45,6 +45,10 @@
 <li><p>Every app must use an <code class="docutils literal notranslate"><span class="pre">app</span></code> field whose value follows the pattern: <code class="docutils literal notranslate"><span class="pre">&lt;app</span> <span class="pre">name&gt;-&lt;server</span> <span class="pre">type&gt;</span></code>. For example: <code class="docutils literal notranslate"><span class="pre">bento-prod</span></code>.</p></li>
 <li><p>Use JSON as your log format. If this is not possible use syslog format.</p></li>
 </ol>
+</div>
+<div class="section" id="access">
+<h2>Access<a class="headerlink" href="#access" title="Permalink to this headline">¶</a></h2>
+<p>Access to our <a class="reference external" href="https://logzio-libraries.mit.edu">Logz.io for MIT Libraries</a> is managed through Moira groups and Touchstone (which provides SSO and MFA). If you do not have an account in <a class="reference external" href="https://logzio-libraries.mit.edu">Logz.io for MIT Libraries</a> and need one, please reach out to the EngX or InfraEng leads and one of them will update the Moira group to provide access.</p>
 <p><em>Note: Ask on the <code class="docutils literal notranslate"><span class="pre">#engineering</span></code> Slack channel for our shared Logz.io token.</em></p>
 </div>
 </div>
@@ -100,6 +104,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Central Logging</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#logging-standards">Logging Standards</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access">Access</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="proxy_urls.html">Proxy URLs</a></li>
