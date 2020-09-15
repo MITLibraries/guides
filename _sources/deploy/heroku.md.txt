@@ -29,7 +29,9 @@ heroku drains:add \
 --app YOUR_HEROKU_APP_NAME
 ```
 
-_Note: Ask on the `#engineering` Slack channel for our shared Logz.io token._
+_Note: Ask on the `#engineering` Slack channel for our shared Logz.io token. You 
+can also check the token by running `heroku drains --app my-app`, where `my-app` 
+is a Heroku app you have access to with Logz.io configured_
 
 You should set up log drains for both staging and production.
 
@@ -107,6 +109,37 @@ NOT change the other. This will make you confused one day.
 
 On deploy or ENV change, the application will restart. It is
 normally a quick blip and doesn’t require downtime announcements.
+
+## Setting up a new pipeline
+
+* Log in with our shared billing account (ask in #engineering if you don't have 
+the credentials)
+* Click ‘New’, then ‘Create new pipeline’
+* Give the pipeline a reasonable name (like _your-app-name_-pipeline), set the 
+pipeline owner to our shared billing account, and connect it to your repo
+* Once you’ve created the pipeline, you can enable review apps and configure 
+staging and prod apps
+
+### Configuring review apps
+
+* Check ‘Create new review apps for new pull requests automatically’
+* Uncheck ‘Wait for CI to pass’
+* Check ‘Destroy stale review apps automatically’ (and choose ‘After 5 days’ 
+from the drop-down)
+
+### Configuring staging and prod apps
+
+* If you’ve already created a Heroku app linked to your repo’s main branch, you 
+can search for it and add it here. Otherwise, create a new app and give it a 
+reasonable name
+    * If you’re starting with a new app, make sure you add collaborators 
+    in its ‘Access’ tab as needed
+* Click ‘Configure automatic deploys’ (in the drop-down menu next to ‘Open app’) 
+and make sure it is set to your repo’s main branch
+    * To make sure it works, you can deploy a branch manually from the same drop-down
+* Add collaborators as needed by clicking the ‘Access’ tab (and do the same in 
+linked Heroku app if you haven't already)
+* Follow this procedure to configure the prod app
 
 ## Production Deploy with Pipelines Cheatsheet
 

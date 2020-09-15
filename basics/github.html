@@ -45,6 +45,7 @@
 <li><p>protect this branch</p></li>
 <li><p>require pull request reviews before merging</p></li>
 <li><p>dismiss stale pull request approvals when new commits are pushed</p></li>
+<li><p>require status checks to pass before merging</p></li>
 <li><p>require that branches are up to date</p></li>
 <li><p>include administrators</p></li>
 </ul>
@@ -88,6 +89,32 @@
 <h2>Github and JIRA<a class="headerlink" href="#github-and-jira" title="Permalink to this headline">¶</a></h2>
 <p>In general, if you are creating code on GitHub, commenting and review should happen there, with the code. If you are also using JIRA, you should add a comment with a link to the PR to the story in JIRA and move the story to the Review column to indicate that the PR is under review.</p>
 <p>(If changes are not commited to GitHub - like with Wordpress configurations - the comments and review should happen in JIRA; Mention reviewers by name in a comment on the ticket, what they should be reviewing, where they can view the changes, and then move the story to the Review column.)</p>
+</div>
+<div class="section" id="github-and-code-climate">
+<h2>GitHub and Code Climate<a class="headerlink" href="#github-and-code-climate" title="Permalink to this headline">¶</a></h2>
+<p>We use <a class="reference external" href="https://codeclimate.com/">Code Climate</a>’s GitHub integration to monitor
+for code smells. Code Climate is free for open source repositories.</p>
+<p>To connect Code Climate to your repo:</p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://codeclimate.com/login">Log in to Code Climate</a> with your GitHub
+account</p></li>
+<li><p>If it’s your first time logging in, grant Code Climate OAuth permissions as
+prompted</p></li>
+<li><p>Follow the prompts to add your repo:</p>
+<ul class="simple">
+<li><p>On the dashboard, click the ‘Open source’ link, then click ‘Add a repository’</p></li>
+<li><p>Find your repo on the ensuing list, then click ‘Add repository’ <em>(note: you
+may need to click the ‘Sync now’ link for all repos to appear)</em></p></li>
+</ul>
+</li>
+<li><p>Continue to your repo dashboard in Code Climate, then click the ‘Repo settings’
+tab. Click ‘GitHub’ on the menu, then install ‘Pull request status updates’ and
+‘Webhook on GitHub’</p></li>
+<li><p>Code Climate should now run in GitHub every time you open a PR. In your
+GitHub repo, you can confirm this by going to Settings -&gt; Webhooks and make
+sure the Code Climate webhook is listed <em>(note: if Code Climate is stuck pending
+in your PR, it might be because you opened the PR prior to configuring Code Climate)</em></p></li>
+</ol>
 </div>
 <hr class="docutils" />
 <div class="section" id="github-basics">
@@ -161,6 +188,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#merging-and-rebasing">Merging and Rebasing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pull-request-reviews">Pull Request Reviews</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#github-and-jira">Github and JIRA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-and-code-climate">GitHub and Code Climate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#github-basics">GitHub basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#advanced-topics">Advanced topics</a></li>
 </ul>

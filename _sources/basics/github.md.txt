@@ -9,6 +9,7 @@ In the admin settings for repos on GitHub, the recommended settings are:
     - protect this branch
     - require pull request reviews before merging
     - dismiss stale pull request approvals when new commits are pushed
+    - require status checks to pass before merging
     - require that branches are up to date
     - include administrators
 * Allow merge commits (`Options > Merge button`)
@@ -57,6 +58,28 @@ Other notes:
 In general, if you are creating code on GitHub, commenting and review should happen there, with the code. If you are also using JIRA, you should add a comment with a link to the PR to the story in JIRA and move the story to the Review column to indicate that the PR is under review.
 
 (If changes are not commited to GitHub - like with Wordpress configurations - the comments and review should happen in JIRA; Mention reviewers by name in a comment on the ticket, what they should be reviewing, where they can view the changes, and then move the story to the Review column.)
+
+## GitHub and Code Climate
+
+We use [Code Climate](https://codeclimate.com/)'s GitHub integration to monitor 
+for code smells. Code Climate is free for open source repositories.
+
+To connect Code Climate to your repo:
+1. [Log in to Code Climate](https://codeclimate.com/login) with your GitHub 
+account
+2. If it's your first time logging in, grant Code Climate OAuth permissions as 
+prompted
+3. Follow the prompts to add your repo:
+    * On the dashboard, click the 'Open source' link, then click 'Add a repository'
+    * Find your repo on the ensuing list, then click 'Add repository' _(note: you 
+may need to click the 'Sync now' link for all repos to appear)_
+4. Continue to your repo dashboard in Code Climate, then click the 'Repo settings' 
+tab. Click 'GitHub' on the menu, then install 'Pull request status updates' and 
+'Webhook on GitHub'
+5. Code Climate should now run in GitHub every time you open a PR. In your 
+GitHub repo, you can confirm this by going to Settings -> Webhooks and make 
+sure the Code Climate webhook is listed _(note: if Code Climate is stuck pending 
+in your PR, it might be because you opened the PR prior to configuring Code Climate)_
 
 - - -
 

@@ -58,7 +58,9 @@ persistent filesystem). See our <a class="reference internal" href="../misc/logg
 --app YOUR_HEROKU_APP_NAME
 </pre></div>
 </div>
-<p><em>Note: Ask on the <code class="docutils literal notranslate"><span class="pre">#engineering</span></code> Slack channel for our shared Logz.io token.</em></p>
+<p><em>Note: Ask on the <code class="docutils literal notranslate"><span class="pre">#engineering</span></code> Slack channel for our shared Logz.io token. You
+can also check the token by running <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">drains</span> <span class="pre">--app</span> <span class="pre">my-app</span></code>, where <code class="docutils literal notranslate"><span class="pre">my-app</span></code>
+is a Heroku app you have access to with Logz.io configured</em></p>
 <p>You should set up log drains for both staging and production.</p>
 </div>
 <div class="section" id="exception-logging">
@@ -124,6 +126,49 @@ on this in project root).</p>
 NOT change the other. This will make you confused one day.</p>
 <p>On deploy or ENV change, the application will restart. It is
 normally a quick blip and doesn’t require downtime announcements.</p>
+</div>
+<div class="section" id="setting-up-a-new-pipeline">
+<h2>Setting up a new pipeline<a class="headerlink" href="#setting-up-a-new-pipeline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Log in with our shared billing account (ask in #engineering if you don’t have
+the credentials)</p></li>
+<li><p>Click ‘New’, then ‘Create new pipeline’</p></li>
+<li><p>Give the pipeline a reasonable name (like <em>your-app-name</em>-pipeline), set the
+pipeline owner to our shared billing account, and connect it to your repo</p></li>
+<li><p>Once you’ve created the pipeline, you can enable review apps and configure
+staging and prod apps</p></li>
+</ul>
+<div class="section" id="configuring-review-apps">
+<h3>Configuring review apps<a class="headerlink" href="#configuring-review-apps" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Check ‘Create new review apps for new pull requests automatically’</p></li>
+<li><p>Uncheck ‘Wait for CI to pass’</p></li>
+<li><p>Check ‘Destroy stale review apps automatically’ (and choose ‘After 5 days’
+from the drop-down)</p></li>
+</ul>
+</div>
+<div class="section" id="configuring-staging-and-prod-apps">
+<h3>Configuring staging and prod apps<a class="headerlink" href="#configuring-staging-and-prod-apps" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>If you’ve already created a Heroku app linked to your repo’s main branch, you
+can search for it and add it here. Otherwise, create a new app and give it a
+reasonable name</p>
+<ul>
+<li><p>If you’re starting with a new app, make sure you add collaborators
+in its ‘Access’ tab as needed</p></li>
+</ul>
+</li>
+<li><p>Click ‘Configure automatic deploys’ (in the drop-down menu next to ‘Open app’)
+and make sure it is set to your repo’s main branch</p>
+<ul>
+<li><p>To make sure it works, you can deploy a branch manually from the same drop-down</p></li>
+</ul>
+</li>
+<li><p>Add collaborators as needed by clicking the ‘Access’ tab (and do the same in
+linked Heroku app if you haven’t already)</p></li>
+<li><p>Follow this procedure to configure the prod app</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="production-deploy-with-pipelines-cheatsheet">
 <h2>Production Deploy with Pipelines Cheatsheet<a class="headerlink" href="#production-deploy-with-pipelines-cheatsheet" title="Permalink to this headline">¶</a></h2>
@@ -297,6 +342,7 @@ Heroku.
 <li class="toctree-l2"><a class="reference internal" href="#whats-weird-about-heroku-at-first">What’s weird about Heroku at first?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#billing">Billing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pipelines">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-a-new-pipeline">Setting up a new pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#production-deploy-with-pipelines-cheatsheet">Production Deploy with Pipelines Cheatsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#manual-deploys">Manual Deploys</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#viewing-changing-environment-variables">Viewing / changing Environment Variables</a></li>
