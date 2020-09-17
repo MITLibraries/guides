@@ -8,10 +8,8 @@ In the admin settings for repos on GitHub, the recommended settings are:
 * Edit the protected branch and check these option settings: 
     - protect this branch
     - require pull request reviews before merging
-    - dismiss stale pull request approvals when new commits are pushed
     - require status checks to pass before merging
     - require that branches are up to date
-    - include administrators
 * Allow merge commits (`Options > Merge button`)
 
 ## Workflows
