@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vue.js at MIT Libraries &#8212; Guides  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="WordPress at MIT Libraries" href="wordpress.html" />
+    <link rel="prev" title="Rails at MIT Libraries" href="rails.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="vue-js-at-mit-libraries">
+<h1>Vue.js at MIT Libraries<a class="headerlink" href="#vue-js-at-mit-libraries" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="style-and-conventions">
+<h2>Style and Conventions<a class="headerlink" href="#style-and-conventions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>use <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">lint</span></code> to lint before requesting code reviews</p></li>
+</ul>
+</div>
+<div class="section" id="test-frameworks">
+<h2>Test Frameworks<a class="headerlink" href="#test-frameworks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>use <a class="reference external" href="https://jestjs.io">jest</a></p></li>
+</ul>
+</div>
+<div class="section" id="continuous-integration">
+<h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h2>
+<p>You should use GitHub Actions. If you feel you have reason to use another
+solution, ask in #engineering on Slack to get peer feedback as to confirm
+whether others agree your use case differs enough to not use our common
+solution.</p>
+<p>To use our standard setup, do the following:</p>
+<ul class="simple">
+<li><p>Make a copy of
+<a class="reference external" href="https://github.com/MITLibraries/disco-poc-vue/blob/master/.github/workflows/ci.yml">our template</a>,
+to your repo in the path <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code>.</p></li>
+<li><p>Commit on a new branch and push your changes</p></li>
+<li><p>Open a PR and your Action should run (and pass!). If not, debug or ask on our
+Slack for tips.</p></li>
+</ul>
+<p>👉 Code Coverage coming soon 👈</p>
+</div>
+<div class="section" id="package-manager">
+<h2>Package manager<a class="headerlink" href="#package-manager" title="Permalink to this headline">¶</a></h2>
+<p>You should use <a class="reference external" href="https://yarnpkg.com">yarn</a> unless you have a really good reason
+not to for projects developed by our team. For external projects you are working
+with, use whatever they use.</p>
+<p>On macOS, we recommend <code class="docutils literal notranslate"><span class="pre">brew</span></code> to install and manage <code class="docutils literal notranslate"><span class="pre">yarn</span></code>.</p>
+</div>
+<div class="section" id="development-environment">
+<h2>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>For local development, you will need the ENV for the app you’re working with.
+Contact an engineer who’s worked on the app, and they will provide you with
+the requisite .env file</p></li>
+<li><p>Application specific details should be included in the application README
+<code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">run</span></code> will likely give you useful project specific commands</p></li>
+</ul>
+</div>
+<div class="section" id="deployments">
+<h2>Deployments<a class="headerlink" href="#deployments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>We target <a class="reference internal" href="../deploy/heroku.html"><span class="doc">Heroku</span></a> as a deployment platform and use Pipelines
+so custom deployment scripts are not necessary</p></li>
+<li><p>For static apps, we are using
+<a class="reference external" href="https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-static">heroku-buildpack-static</a>
+Please also note that the application will need to be re-deployed using the
+Heroku tooling when making adjustments to environment variables when using
+this build pack.</p></li>
+</ul>
+<p>❗ If you use another solution or are not building a static app, please document that here.</p>
+</div>
+<div class="section" id="vue-versions">
+<h2>Vue Versions<a class="headerlink" href="#vue-versions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Use the latest stable release unless you have a documented reason not to
+(an <a class="reference external" href="https://github.com/npryce/adr-tools">ADR</a> would be a great place to
+document this if the project is using them)</p></li>
+</ul>
+</div>
+<div class="section" id="dependency-updates">
+<h2>Dependency Updates<a class="headerlink" href="#dependency-updates" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>subscribe to security alerts for all dependencies used by your project.
+<a class="reference external" href="https://dependabot.com">Dependabot</a> is an
+efficient ways to do this.</p></li>
+<li><p>Keep everything up to date even after the project
+is in production to avoid accumulating unnecessary technical debt.</p></li>
+<li><p>If we have reasons we cannot update to a new version of a dependency, open a
+ticket and describe the problem so it is clear what the problem is that needs
+to be addressed</p></li>
+</ul>
+</div>
+<div class="section" id="layout-and-styles">
+<h2>Layout and Styles<a class="headerlink" href="#layout-and-styles" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Use our <a class="reference external" href="https://github.com/MITLibraries/mitlib-style">mitlib-style</a> as a
+guide.</p></li>
+</ul>
+</div>
+<div class="section" id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+</div>
+<div class="section" id="authorization">
+<h2>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Guides</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Start Here</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Vue.js at MIT Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#style-and-conventions">Style and Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-frameworks">Test Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#package-manager">Package manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-environment">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployments">Deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vue-versions">Vue Versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependency-updates">Dependency Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#layout-and-styles">Layout and Styles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authorization">Authorization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Authentication</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Deployment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/aws.html">Working with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/cicd.html">Continuous Integration/Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/heroku_checklist.html">Heroku Launch Checklist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/terraform.html">Terraform</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Everything else</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ssl.html">SSL Encryption</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="rails.html" title="previous chapter">Rails at MIT Libraries</a></li>
+      <li>Next: <a href="wordpress.html" title="next chapter">WordPress at MIT Libraries</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/languages/vuejs.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
