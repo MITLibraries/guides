@@ -3,8 +3,8 @@
 ## Recommended repo settings
 
 In the admin settings for repos on GitHub, the recommended settings are: 
-* Default branch should be "master" (`Branches > Default branch`)
-* Disable force push to  the master branch. For everyone. Even admins. (`Branches > Protected branches`)
+* Default branch should be "main" (`Branches > Default branch`)
+* Disable force push to the main branch. For everyone. Even admins. (`Branches > Protected branches`)
 * Edit the protected branch and check these option settings: 
     - protect this branch
     - require pull request reviews before merging
@@ -14,9 +14,9 @@ In the admin settings for repos on GitHub, the recommended settings are:
 
 ## Workflows
 
-In most cases, [GitHub flow](https://guides.github.com/introduction/flow/) will be the best choice for projects. For small teams there is usually no need for anything more complicated than this. Thoughtbot has some [additional recommendations](https://github.com/thoughtbot/guides/tree/master/protocol/git) which should be followed.
+In most cases, [GitHub flow](https://guides.github.com/introduction/flow/) will be the best choice for projects. For small teams there is usually no need for anything more complicated than this. Thoughtbot has some [additional recommendations](https://github.com/thoughtbot/guides/tree/main/git) which should be followed.
 
-Ideally, feature branches should encompass small, targeted changes. Keeping your work focused will mean fewer merge conflicts. When building a new code base this may not always be possible, but what you want to try and avoid are long running branches. By the time you want to merge, the distance between your feature branch and master will usually mean a lot of conflict resolution in your future.
+Ideally, feature branches should encompass small, targeted changes. Keeping your work focused will mean fewer merge conflicts. When building a new code base this may not always be possible, but what you want to try and avoid are long running branches. By the time you want to merge, the distance between your feature branch and main will usually mean a lot of conflict resolution in your future.
 
 ## Merging and Rebasing
 
@@ -38,7 +38,7 @@ $ git merge <branch-name> --no-ff
 
 In most (all) cases, pull requests should be reviewed by at least one other developer, even if it is just for syntax or raise general questions in the case of unfamiliarity with a particular language. 
 
-When creating a new pull request, you need to pick what branch you're merging - usually your dev branch - and what you're aiming to merge into - usually master - and then create a logical title and add a description that includes: 
+When creating a new pull request, you need to pick what branch you're merging - usually your dev branch - and what you're aiming to merge into - usually main - and then create a logical title and add a description that includes: 
 * required: an explanation of what the reason/function of the code in the PR (the "why")
 * required: an explanation of what code changed in the PR (the "what")
 * optional: Link(s) to view changes, associated JIRA tickets, or other links that may be useful for understanding the changes in the PR.
@@ -85,9 +85,9 @@ in your PR, it might be because you opened the PR prior to configuring Code Clim
 
 This process assumes you have: a terminal program (like the OS terminal or iTerm with oh-my-zsh), an editor program (like Sublime Text or Atom), a github account and access to the MIT Libraries repos, and have already cloned the repos to your local machine. (For help with those steps, contact one of the MITLib devs.)
 
-**Start fresh**: Checkout master branch
+**Start fresh**: Checkout main branch
 
-```git checkout master```
+```git checkout main```
 
 **Get latest**: Get the latest changes that have been merged 
 ```
@@ -95,7 +95,7 @@ git fetch
 git merge
 ```
 
-**Create a branch**: Create a new branch starting with master (or the branch you want to base your work on): This is the clean separate space where you will put your work.
+**Create a branch**: Create a new branch starting with main (or the branch you want to base your work on): This is the clean separate space where you will put your work.
 
 ```git checkout -b [branchname]```
 
@@ -114,7 +114,7 @@ git push
 
 **Do more stuff**: keep working and committing (repeat steps 4 and 5) until your work for that fix/feature/experiment is as complete as you can make it.
 
-**Make a PR**: go to github and create a new PR for your branch against master/prod branch (see Pull Request Reviews above). 
+**Make a PR**: go to github and create a new PR for your branch against main/prod branch (see Pull Request Reviews above). 
 
 **Respond to PR feedback**: as feedback comes in, create additional commits to address and push them up. Do NOT squash/rebase during review as that makes headaches for reviewers.
 
@@ -124,12 +124,40 @@ git push
 
 **Merge the PR**: merge the PR on github and delete the branch.
 
-**Fetch latest master**: Return to your terminal, checkout the master branch and fetch and merge the latest changes.
+**Fetch latest main**: Return to your terminal, checkout the main branch and fetch and merge the latest changes.
 ```
-git checkout master
+git checkout main
 git fetch
 git merge
 ```
+
+## Updating the default branch in GitHub
+
+While all new repos will be created with `main` as the default branch, older 
+repos may still use `master` and should be migrated. Here's a quick overview of 
+how to do that:
+
+1. Check out the current default branch and ensure it’s up to date: 
+    * `git pull`
+    * `git checkout master`
+2. Rename the branch locally: `git branch -m master main`
+3. Update the default branch in the remote GitHub repo from `master` to `main` 
+(Settings > Branches)
+4. Edit the protection rules for the default branch to point to `main` instead 
+of `master` (Settings > Branches)
+5. Delete `master` from the remote repo: `git push origin --delete master`
+6. Update hosting platform as needed. If you’re using Heroku and have automatic 
+deploys configured, it should update automatically
+7. Open a PR to update GitHub Actions CI to watch `main` instead of `master` 
+(typically this file is located in .github/workflows/ci.yml)
+8. Ask your collaborators to update their cloned repos:
+    * `git pull`
+    * `git checkout main`
+    * `git branch -d master`
+
+_Note: normally GitHub releases show the number of commits since the last release, 
+but changing the default branch will lose this info. A possible solution to migrate 
+the default branch right after a release, but we have not tested this yet._
 
 ## Advanced topics 
 
