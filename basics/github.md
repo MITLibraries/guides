@@ -141,16 +141,17 @@ how to do that:
     * `git pull`
     * `git checkout master`
 2. Rename the branch locally: `git branch -m master main`
-3. Update the default branch in the remote GitHub repo from `master` to `main` 
+3. Push your branch: `git push -u origin main`
+4. Update the default branch in the remote GitHub repo from `master` to `main` 
 (Settings > Branches)
-4. Edit the protection rules for the default branch to point to `main` instead 
+5. Edit the protection rules for the default branch to point to `main` instead 
 of `master` (Settings > Branches)
-5. Delete `master` from the remote repo: `git push origin --delete master`
-6. Update hosting platform as needed. If you’re using Heroku and have automatic 
+6. Delete `master` from the remote repo: `git push origin --delete master`
+7. Update hosting platform as needed. If you’re using Heroku and have automatic 
 deploys configured, it should update automatically
-7. Open a PR to update GitHub Actions CI to watch `main` instead of `master` 
+8. Open a PR to update GitHub Actions CI to watch `main` instead of `master` 
 (typically this file is located in .github/workflows/ci.yml)
-8. Ask your collaborators to update their cloned repos:
+9. Ask your collaborators to update their cloned repos:
     * `git pull`
     * `git checkout main`
     * `git branch -d master`
