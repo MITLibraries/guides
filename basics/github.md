@@ -79,6 +79,43 @@ GitHub repo, you can confirm this by going to Settings -> Webhooks and make
 sure the Code Climate webhook is listed _(note: if Code Climate is stuck pending 
 in your PR, it might be because you opened the PR prior to configuring Code Climate)_
 
+## Updating the default branch in GitHub
+
+While all new repos will be created with `main` as the default branch, older 
+repos may still use `master` and should be migrated. Here's a quick overview of 
+how to do that:
+
+1. Check out the current default branch and ensure it’s up to date: 
+    * `git pull`
+    * `git checkout master`
+2. Rename the branch locally: `git branch -m master main`
+3. Push your branch: `git push -u origin main`
+4. Update the default branch in the remote GitHub repo from `master` to `main` 
+(Settings > Branches)
+5. Edit the protection rules for the default branch to point to `main` instead 
+of `master` (Settings > Branches)
+6. Delete `master` from the remote repo: `git push origin --delete master`
+7. Update hosting platform as needed. If you’re using Heroku and have automatic 
+deploys configured, it should update automatically
+8. Update the default branch in Code Climate (`https://codeclimate.com/github/MITLibraries/repo-name` -> Repo Settings -> General)
+9. Open a PR to update GitHub Actions CI to watch `main` instead of `master` 
+(typically this file is located in .github/workflows/ci.yml)
+10. Ask your collaborators to update their cloned repos:
+    * `git pull`
+    * `git checkout main`
+    * `git branch -d master`
+
+_Notes:
+* Normally, GitHub releases show the number of commits since the last release, 
+but changing the default branch will lose this info. A possible solution is to 
+migrate the default branch right after a release, but we have not tested this 
+yet.
+* Coveralls won't run on the initial PR to change GitHub Actions, but it should 
+switch over once that PR lands. You can verify this by looking at the repo in 
+Coveralls (`https://coveralls.io/github/MITLibraries/repo-name`) and checking 
+that it's monitoring `main` and not `master`.
+_
+
 - - -
 
 ## GitHub basics
@@ -130,35 +167,6 @@ git checkout main
 git fetch
 git merge
 ```
-
-## Updating the default branch in GitHub
-
-While all new repos will be created with `main` as the default branch, older 
-repos may still use `master` and should be migrated. Here's a quick overview of 
-how to do that:
-
-1. Check out the current default branch and ensure it’s up to date: 
-    * `git pull`
-    * `git checkout master`
-2. Rename the branch locally: `git branch -m master main`
-3. Push your branch: `git push -u origin main`
-4. Update the default branch in the remote GitHub repo from `master` to `main` 
-(Settings > Branches)
-5. Edit the protection rules for the default branch to point to `main` instead 
-of `master` (Settings > Branches)
-6. Delete `master` from the remote repo: `git push origin --delete master`
-7. Update hosting platform as needed. If you’re using Heroku and have automatic 
-deploys configured, it should update automatically
-8. Open a PR to update GitHub Actions CI to watch `main` instead of `master` 
-(typically this file is located in .github/workflows/ci.yml)
-9. Ask your collaborators to update their cloned repos:
-    * `git pull`
-    * `git checkout main`
-    * `git branch -d master`
-
-_Note: normally GitHub releases show the number of commits since the last release, 
-but changing the default branch will lose this info. A possible solution to migrate 
-the default branch right after a release, but we have not tested this yet._
 
 ## Advanced topics 
 
