@@ -114,6 +114,51 @@ sure the Code Climate webhook is listed <em>(note: if Code Climate is stuck pend
 in your PR, it might be because you opened the PR prior to configuring Code Climate)</em></p></li>
 </ol>
 </div>
+<div class="section" id="updating-the-default-branch-in-github">
+<h2>Updating the default branch in GitHub<a class="headerlink" href="#updating-the-default-branch-in-github" title="Permalink to this headline">¶</a></h2>
+<p>While all new repos will be created with <code class="docutils literal notranslate"><span class="pre">main</span></code> as the default branch, older
+repos may still use <code class="docutils literal notranslate"><span class="pre">master</span></code> and should be migrated. Here’s a quick overview of
+how to do that:</p>
+<ol class="simple">
+<li><p>Check out the current default branch and ensure it’s up to date:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">master</span></code></p></li>
+</ul>
+</li>
+<li><p>Rename the branch locally: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-m</span> <span class="pre">master</span> <span class="pre">main</span></code></p></li>
+<li><p>Push your branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">-u</span> <span class="pre">origin</span> <span class="pre">main</span></code></p></li>
+<li><p>Update the default branch in the remote GitHub repo from <code class="docutils literal notranslate"><span class="pre">master</span></code> to <code class="docutils literal notranslate"><span class="pre">main</span></code>
+(Settings &gt; Branches)</p></li>
+<li><p>Edit the protection rules for the default branch to point to <code class="docutils literal notranslate"><span class="pre">main</span></code> instead
+of <code class="docutils literal notranslate"><span class="pre">master</span></code> (Settings &gt; Branches)</p></li>
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">master</span></code> from the remote repo: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">--delete</span> <span class="pre">master</span></code></p></li>
+<li><p>Update hosting platform as needed. If you’re using Heroku and have automatic
+deploys configured, it should update automatically</p></li>
+<li><p>Update the default branch in Code Climate (<code class="docutils literal notranslate"><span class="pre">https://codeclimate.com/github/MITLibraries/repo-name</span></code> -&gt; Repo Settings -&gt; General)</p></li>
+<li><p>Open a PR to update GitHub Actions CI to watch <code class="docutils literal notranslate"><span class="pre">main</span></code> instead of <code class="docutils literal notranslate"><span class="pre">master</span></code>
+(typically this file is located in .github/workflows/ci.yml)</p></li>
+<li><p>Ask your collaborators to update their cloned repos:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">master</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p>_Notes:</p>
+<ul class="simple">
+<li><p>Normally, GitHub releases show the number of commits since the last release,
+but changing the default branch will lose this info. A possible solution is to
+migrate the default branch right after a release, but we have not tested this
+yet.</p></li>
+<li><p>Coveralls won’t run on the initial PR to change GitHub Actions, but it should
+switch over once that PR lands. You can verify this by looking at the repo in
+Coveralls (<code class="docutils literal notranslate"><span class="pre">https://coveralls.io/github/MITLibraries/repo-name</span></code>) and checking
+that it’s monitoring <code class="docutils literal notranslate"><span class="pre">main</span></code> and not <code class="docutils literal notranslate"><span class="pre">master</span></code>.
+_</p></li>
+</ul>
+</div>
 <hr class="docutils" />
 <div class="section" id="github-basics">
 <h2>GitHub basics<a class="headerlink" href="#github-basics" title="Permalink to this headline">¶</a></h2>
@@ -149,41 +194,6 @@ in your PR, it might be because you opened the PR prior to configuring Code Clim
 <span class="n">git</span> <span class="n">merge</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="updating-the-default-branch-in-github">
-<h2>Updating the default branch in GitHub<a class="headerlink" href="#updating-the-default-branch-in-github" title="Permalink to this headline">¶</a></h2>
-<p>While all new repos will be created with <code class="docutils literal notranslate"><span class="pre">main</span></code> as the default branch, older
-repos may still use <code class="docutils literal notranslate"><span class="pre">master</span></code> and should be migrated. Here’s a quick overview of
-how to do that:</p>
-<ol class="simple">
-<li><p>Check out the current default branch and ensure it’s up to date:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">master</span></code></p></li>
-</ul>
-</li>
-<li><p>Rename the branch locally: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-m</span> <span class="pre">master</span> <span class="pre">main</span></code></p></li>
-<li><p>Push your branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">-u</span> <span class="pre">origin</span> <span class="pre">main</span></code></p></li>
-<li><p>Update the default branch in the remote GitHub repo from <code class="docutils literal notranslate"><span class="pre">master</span></code> to <code class="docutils literal notranslate"><span class="pre">main</span></code>
-(Settings &gt; Branches)</p></li>
-<li><p>Edit the protection rules for the default branch to point to <code class="docutils literal notranslate"><span class="pre">main</span></code> instead
-of <code class="docutils literal notranslate"><span class="pre">master</span></code> (Settings &gt; Branches)</p></li>
-<li><p>Delete <code class="docutils literal notranslate"><span class="pre">master</span></code> from the remote repo: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">--delete</span> <span class="pre">master</span></code></p></li>
-<li><p>Update hosting platform as needed. If you’re using Heroku and have automatic
-deploys configured, it should update automatically</p></li>
-<li><p>Open a PR to update GitHub Actions CI to watch <code class="docutils literal notranslate"><span class="pre">main</span></code> instead of <code class="docutils literal notranslate"><span class="pre">master</span></code>
-(typically this file is located in .github/workflows/ci.yml)</p></li>
-<li><p>Ask your collaborators to update their cloned repos:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">master</span></code></p></li>
-</ul>
-</li>
-</ol>
-<p><em>Note: normally GitHub releases show the number of commits since the last release,
-but changing the default branch will lose this info. A possible solution to migrate
-the default branch right after a release, but we have not tested this yet.</em></p>
 </div>
 <div class="section" id="advanced-topics">
 <h2>Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
@@ -222,8 +232,8 @@ the default branch right after a release, but we have not tested this yet.</em><
 <li class="toctree-l2"><a class="reference internal" href="#pull-request-reviews">Pull Request Reviews</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#github-and-jira">Github and JIRA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#github-and-code-climate">GitHub and Code Climate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#github-basics">GitHub basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#updating-the-default-branch-in-github">Updating the default branch in GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-basics">GitHub basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#advanced-topics">Advanced topics</a></li>
 </ul>
 </li>
