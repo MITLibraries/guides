@@ -9,7 +9,7 @@ authentication.
 
 ## What is Shibboleth?
 
-[Shibboleth wikipedia entry](https://en.wikipedia.org/wiki/Shibboleth_(Shibboleth_Consortium))
+[Shibboleth wikipedia entry](<https://en.wikipedia.org/wiki/Shibboleth_(Shibboleth_Consortium)>)
 
 ## What is SAML?
 
@@ -70,6 +70,7 @@ openssl req -new -x509 -nodes -newkey rsa:2048 -keyout APP_KEY.pem -days 3650 -o
 ```
 
 Suggestions for the prompts:
+
 - US
 - Massachusetts
 - Cambridge
@@ -82,11 +83,25 @@ Suggestions for the prompts:
 
 Regardless which language or library you are using, there are a few pieces of
 information you will need that should be the same for all apps:
+
 - The IdP metadata URL is https://touchstone.mit.edu/metadata/MIT-metadata.xml
 - The IdP entity ID is https://idp.mit.edu/shibboleth
 - The IdP SSO URL is https://idp.mit.edu/idp/profile/SAML2/Redirect/SSO
 
+**NOTE:** IST has moved to providing multiple IdP signing certs via `idp_cert_multi`
+rather than just one via `idp_cert`. It is recommended that if you dynamically
+pull this metadata (which is in general a good idea) rather than pulling it once
+manually and configuring your SP directly, that you ensure you check for certs
+in both locations in case IST is inconsistent with which they use in the future.
+[While adjusting thing to support multiple certs](https://github.com/MITLibraries/thing/pull/570),
+we temporarily pulled dyamically from the alternate metadata URL of
+https://touchstone.mit.edu/metadata/idp.mit.edu-metadata.xml which at this time
+only provides a single cert via `idp_cert`. IST stated that method of obtaining
+the metadata would not move to using multiple certs, but it feels safest to just
+assume they might toggle between either method with no notice.
+
 #### Rails
+
 - follow omniauth-saml instructions (which follow Facebook instructions)
   - add gem and bundle
   - run migrations
@@ -95,10 +110,11 @@ information you will need that should be the same for all apps:
 [sample app config](https://github.com/MITLibraries/rails_saml_example/blob/master/config/initializers/devise.rb#L278-L302)
 
 #### Python/Flask
+
 - Follow instructions to use [OneLogin's SAML Python3 Toolkit](https://github.com/onelogin/python3-saml)
 - The ebooks example sets SAML configuration using env variables to populate
-the python3-saml settings.json file. See [here](https://github.com/MITLibraries/ebooks/blob/4c671f6aeae8a3b6fec74ba7b8942eb0fb35d2b9/ebooks/auth.py#L11) for example. Note that the
-settings used here are the minimum required ones for MIT Touchstone auth to work.
+  the python3-saml settings.json file. See [here](https://github.com/MITLibraries/ebooks/blob/4c671f6aeae8a3b6fec74ba7b8942eb0fb35d2b9/ebooks/auth.py#L11) for example. Note that the
+  settings used here are the minimum required ones for MIT Touchstone auth to work.
 
 ### Generating application metadata
 
@@ -179,13 +195,14 @@ Organization URL: https://libraries.mit.edu
 ```
 
 IS&T's Touchstone documentation generally assumes you're running a Shibboleth server, and is confusing for SP applications. Here is some additional information learned in previous back-and-forths with them that may be helpful:
+
 - They will want to know which SAML attributes your application requires. This is not documented anywhere I could find, but the attributes they typically release are:
   - eduPersonPrincipalName (ePPN): used as the unique user ID. Its value is the
- user's Kerberos name, "scoped" to the mit.edu domain, e.g. "username@mit.edu".
+    user's Kerberos name, "scoped" to the mit.edu domain, e.g. "username@mit.edu".
   - displayName
   - affiliation attributes
 - Despite the fact that their documentation says the SP entity ID should be
-`/shibboleth`, they do not like that, and would prefer that it be `/saml`, must not have a trailing slash.
+  `/shibboleth`, they do not like that, and would prefer that it be `/saml`, must not have a trailing slash.
 - Their IDP does not support Single Logout, so don't try to configure that.
 - They require both a signing and an encryption cert defined in the metadata, but they can be the same.
 - The IDP SSO binding must be `HTTP-Redirect`.
