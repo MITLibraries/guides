@@ -113,6 +113,17 @@ information you will need that should be the same for all apps:</p>
 <li><p>The IdP entity ID is https://idp.mit.edu/shibboleth</p></li>
 <li><p>The IdP SSO URL is https://idp.mit.edu/idp/profile/SAML2/Redirect/SSO</p></li>
 </ul>
+<p><strong>NOTE:</strong> IST has moved to providing multiple IdP signing certs via <code class="docutils literal notranslate"><span class="pre">idp_cert_multi</span></code>
+rather than just one via <code class="docutils literal notranslate"><span class="pre">idp_cert</span></code>. It is recommended that if you dynamically
+pull this metadata (which is in general a good idea) rather than pulling it once
+manually and configuring your SP directly, that you ensure you check for certs
+in both locations in case IST is inconsistent with which they use in the future.
+<a class="reference external" href="https://github.com/MITLibraries/thing/pull/570">While adjusting thing to support multiple certs</a>,
+we temporarily pulled dyamically from the alternate metadata URL of
+https://touchstone.mit.edu/metadata/idp.mit.edu-metadata.xml which at this time
+only provides a single cert via <code class="docutils literal notranslate"><span class="pre">idp_cert</span></code>. IST stated that method of obtaining
+the metadata would not move to using multiple certs, but it feels safest to just
+assume they might toggle between either method with no notice.</p>
 <div class="section" id="rails">
 <h4>Rails<a class="headerlink" href="#rails" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
