@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Configuring Matomo for analytics &#8212; Guides  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Proxy URLs" href="proxy_urls.html" />
+    <link rel="prev" title="Central Logging" href="logging.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="configuring-matomo-for-analytics">
+<h1>Configuring Matomo for analytics<a class="headerlink" href="#configuring-matomo-for-analytics" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://matomo.org">Matomo</a> (formerly piwik) is an open-source analytics
+software. We prefer it to Googe Analytics due to its emphasis on user
+privacy. Whenever possible, Matomo should be used for analytics instead
+of GA in MIT Libraries applications.</p>
+<p>Our Matomo instance runs as a Docker container in Fargate. A repo with
+the dockerfile and config is located on <a class="reference external" href="https://github.com/MITLibraries/docker-matomo">GitHub</a>.</p>
+<p>This guide will walk through the basic steps to add a website to Matomo.
+For more in-depth information on using and developing Matomo, see the
+<a class="reference external" href="https://matomo.org/help/">offical Matomo docs</a>.</p>
+<div class="section" id="universal-settings">
+<h2>Universal settings<a class="headerlink" href="#universal-settings" title="Permalink to this headline">¶</a></h2>
+<p>All websites tracked by Matomo anonymize visitor IPs to two bytes (e.g.,
+192.168.x.x).</p>
+</div>
+<div class="section" id="setting-up-a-new-website-in-matomo">
+<h2>Setting up a new website in Matomo<a class="headerlink" href="#setting-up-a-new-website-in-matomo" title="Permalink to this headline">¶</a></h2>
+<p>Each app is tracked as a website in Matomo. Please create a different
+website for each environment of your application (e.g., staging and prod
+will be separate websites in Matomo).</p>
+<p><em>Note: Accounts with superuser permissions add new websites to Matomo.
+If you don’t have superuser access, ask EngX.</em></p>
+<ol class="simple">
+<li><p>Log into Matomo at https://analytics-prod.mitlib.net. (There is also
+a staging instance behind the Cisco VPN at https://analytics-stage.mitlib.net.)
+If you don’t have an account, EngX can create one for you.</p></li>
+<li><p>Click the Settings link (gearbox in navbar) &gt; Websites &gt; Manage &gt;
+Add a new measurable,</p></li>
+<li><p>Give the measurable a useful name. We generally use the name the app is
+known by internally, plus a note if it’s the staging app. E.g.: “Bento”
+or “Bento (staging)”.</p></li>
+<li><p>Add the root URL for the application, as well as any aliases. It is
+not necessary to add specific routes in the application.</p></li>
+<li><p>Leave the remaining settings as their defaults, then click ‘Save’.</p></li>
+</ol>
+<p>The website will now be listed under Websites &gt; Manage.</p>
+</div>
+<div class="section" id="setting-up-matomo-tracking-in-your-app">
+<h2>Setting up Matomo tracking in your app<a class="headerlink" href="#setting-up-matomo-tracking-in-your-app" title="Permalink to this headline">¶</a></h2>
+<p>Now that you’ve added your app to Matomo, you can set up tracking by
+adding Matomo’s tracking code to your app.</p>
+<div class="section" id="for-rails-applications-hosted-on-heroku">
+<h3>For Rails applications hosted on Heroku<a class="headerlink" href="#for-rails-applications-hosted-on-heroku" title="Permalink to this headline">¶</a></h3>
+<p>The tracking code is already included in the <a class="reference external" href="https://github.com/mitlibraries/mitlibraries-theme">mitlibraries-theme gem</a>. Assuming your app uses mitlibraries-theme, you can
+activate tracking by adding the following environment variables to your
+Heroku app:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MATOMO_URL</span></code> - the URL of the Matomo app you are connecting to (probably
+this one: https://analytics-prod.mitlib.net/). Make sure to include the
+trailing forward slash!</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MATOMO_SITE_ID</span></code> - the ID of the measurable you are tracking. You can
+find this in Matomo by going to Settings (gearbox icon in navbar) &gt; Websites</p></li>
+</ul>
+<blockquote>
+<div><p>Manage. The ID for each website will appear underneath the website name.</p>
+</div></blockquote>
+</div>
+<div class="section" id="for-other-applications">
+<h3>For other applications<a class="headerlink" href="#for-other-applications" title="Permalink to this headline">¶</a></h3>
+<p>We don’t yet have a procedure for non-Rails apps. You will need to add
+the Matomo tracking JS (found in Settings &gt; Websites &gt; Tracking Code) to
+your app directly.</p>
+<p>Confirm that tracking is working by visiting your site, clicking a few
+links, and making sure this activity was recorded in the Matomo dashboard.
+Also make sure that IPs are anonymized (they should be, but make sure anyway).</p>
+</div>
+</div>
+<div class="section" id="other-things-to-note">
+<h2>Other things to note<a class="headerlink" href="#other-things-to-note" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Matomo prod is at https://analytics-prod.mitlib.net. Staging is at
+https://analytics-stage.mitlib.net.</p></li>
+<li><p>Matomo staging is behind the Cisco VPN. You will not be able to access
+it using the GlobalProtect VPN.</p></li>
+<li><p>We run a cron job as a scheduled ECS task to compile the raw data (more
+info on this is available in the <a class="reference external" href="(https://github.com/MITLibraries/docker-matomo)">GitHub repo</a>.
+If you are not seeing any data in the dashboard, something is probably
+wrong with the cron job.</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Guides</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Start Here</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Authentication</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Deployment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/aws.html">Working with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/cicd.html">Continuous Integration/Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/heroku_checklist.html">Heroku Launch Checklist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/terraform.html">Terraform</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Everything else</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuring Matomo for analytics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#universal-settings">Universal settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-a-new-website-in-matomo">Setting up a new website in Matomo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-matomo-tracking-in-your-app">Setting up Matomo tracking in your app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-things-to-note">Other things to note</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssl.html">SSL Encryption</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="logging.html" title="previous chapter">Central Logging</a></li>
+      <li>Next: <a href="proxy_urls.html" title="next chapter">Proxy URLs</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/misc/matomo.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
