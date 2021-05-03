@@ -92,8 +92,8 @@ benefit is the best current option.
 TL;DR: Use [pipelines](https://devcenter.heroku.com/articles/pipelines).
 They are :mega: :rainbow: :beers: :fireworks:
 
-We have staging sites tied to our Master branches. Merge code into
-master and staging builds will update automatically (after tests
+We have staging sites tied to our `main` branches. Merge code into
+`main` and staging builds will update automatically (after tests
 pass).
 
 Before merging, we have PR builds spin up with staging settings into
@@ -101,8 +101,11 @@ new apps. You can access the link to the apps in the PR itself.
 These are helpful when asking non-developers to sign off on a
 feature before it is merged.
 
-PR builds copy ENV from Staging (dev note: `app.json` does the magic
-on this in project root).
+PR builds all use the same ENV, which is configured at the pipeline level. 
+To set up ENV for PR builds, go to your app's pipeline dashboard, click 
+the 'Configure' button next to the 'Review Apps' header, then click 
+'More settings'. Scroll down to 'Review app config vars', and you'll see 
+a button to reveal the ENV for your PR builds.
 
 Staging and Production ENV are entirely separate. Changing one does
 NOT change the other. This will make you confused one day.
@@ -156,12 +159,12 @@ In the description, add specifics on what's changed in the release.
 
 FYI: The tag is purely informational. It is not currently used to push
 to production using Pipelines. Pushing to prod moves whatever is on
-staging, which is quite likely `master` unless you are doing weird
+staging, which is quite likely `main` unless you are doing weird
 things (note: don't do weird things).
 
 ### Confirm everything is all good on staging
 
-Staging probably has the `master` branch from GitHub. If the staging app works,
+Staging probably has the `main` branch from GitHub. If the staging app works,
 pushing to prod should be :rainbow: unless you forgot you'll need changes to
 ENV for any new features you may be pushing if so, make said changes!
 

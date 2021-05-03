@@ -113,15 +113,18 @@ benefit is the best current option.</p>
 <h2>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">¶</a></h2>
 <p>TL;DR: Use <a class="reference external" href="https://devcenter.heroku.com/articles/pipelines">pipelines</a>.
 They are :mega: :rainbow: :beers: :fireworks:</p>
-<p>We have staging sites tied to our Master branches. Merge code into
-master and staging builds will update automatically (after tests
+<p>We have staging sites tied to our <code class="docutils literal notranslate"><span class="pre">main</span></code> branches. Merge code into
+<code class="docutils literal notranslate"><span class="pre">main</span></code> and staging builds will update automatically (after tests
 pass).</p>
 <p>Before merging, we have PR builds spin up with staging settings into
 new apps. You can access the link to the apps in the PR itself.
 These are helpful when asking non-developers to sign off on a
 feature before it is merged.</p>
-<p>PR builds copy ENV from Staging (dev note: <code class="docutils literal notranslate"><span class="pre">app.json</span></code> does the magic
-on this in project root).</p>
+<p>PR builds all use the same ENV, which is configured at the pipeline level.
+To set up ENV for PR builds, go to your app’s pipeline dashboard, click
+the ‘Configure’ button next to the ‘Review Apps’ header, then click
+‘More settings’. Scroll down to ‘Review app config vars’, and you’ll see
+a button to reveal the ENV for your PR builds.</p>
 <p>Staging and Production ENV are entirely separate. Changing one does
 NOT change the other. This will make you confused one day.</p>
 <p>On deploy or ENV change, the application will restart. It is
@@ -182,12 +185,12 @@ brief overview of the changes, e.g.:</p>
 <p>In the description, add specifics on what’s changed in the release.</p>
 <p>FYI: The tag is purely informational. It is not currently used to push
 to production using Pipelines. Pushing to prod moves whatever is on
-staging, which is quite likely <code class="docutils literal notranslate"><span class="pre">master</span></code> unless you are doing weird
+staging, which is quite likely <code class="docutils literal notranslate"><span class="pre">main</span></code> unless you are doing weird
 things (note: don’t do weird things).</p>
 </div>
 <div class="section" id="confirm-everything-is-all-good-on-staging">
 <h3>Confirm everything is all good on staging<a class="headerlink" href="#confirm-everything-is-all-good-on-staging" title="Permalink to this headline">¶</a></h3>
-<p>Staging probably has the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch from GitHub. If the staging app works,
+<p>Staging probably has the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch from GitHub. If the staging app works,
 pushing to prod should be :rainbow: unless you forgot you’ll need changes to
 ENV for any new features you may be pushing if so, make said changes!</p>
 <p>Get stakeholder sign off on the Pipeline staging app if it seems
