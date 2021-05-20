@@ -6,10 +6,6 @@ This contains most of the documentation for how we use Terraform here. The prima
 Getting Started
 ---------------
 
-.. sidebar:: TF 0.11
-
-  You may need to also maintain a version of 0.11 until we finish upgrading all our config to 0.12. There are only a few configs left, so there's a good chance you won't need it.
-
 For all new TF work you should be using version 0.12. We make heavy use of workspaces to manage deploying to different environments. The first thing you should do is set the ``TF_WORKSPACE`` environment variable to ``stage``. You should make this change persistent in whatever way you manage environment variables on your system. The easiest way to do this is to add the following to your ``~/.bashrc`` file (if you use bash)::
 
   export TF_WORKSPACE=stage
