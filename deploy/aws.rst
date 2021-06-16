@@ -10,15 +10,16 @@ Getting Started
 
 You will effectively have two different AWS accounts. The first is the account you will use to log into the web console. This account is integrated with Touchstone. To get access, ask in the #engineering channel. Someone with the correct permissions will need to log into https://groups.mit.edu/webmoira and add the user to ``the aws-672626379771-dev`` list. This will give you access to the AWS console which can be accessed from https://aws.mit.edu.
 
-The next thing you need to do is set up an account you can use to authenticate locally, either from the AWS CLI or through an AWS library like boto3. Log into the AWS console and follow these steps:
+The next thing you need to do is complete the account setup that you can use 
+to authenticate locally, either from the AWS CLI or through an AWS library like boto3. First, 
+confirm with InfraEng (or ask on the #engineering Slack channel) that your CLI account has been
+added to our AWS organization (InfraEng handles this via Terraform). Then, log into the AWS console and follow these steps.
 
 1. Under ``Services`` in the top bar search for "IAM" and click on that.
-2. Click on ``Users`` and ``Add user``.
-3. User your kerb ID as your username (technically, you can use anything you want here, but sticking with kerb is easier).
-4. For ``Access type`` select *only* ``Programmatic Access`` and click ``Next``.
-5. On the permissions page check the box next to ``Administrators`` and click ``Next``.
-6. You can click through the rest until it lets you create the user.
-7. Make sure you copy the keys that it generates for you as this will be your only chance to do so.
+2. Click on ``Users``, search for your kerb, and then click on it.
+3. Click on the ``Security Credentials`` tab.
+4. Click on the ``Create access key`` button.  
+5. Make sure you copy the keys that it generates for you as this will be your only chance to do so.
 
 Creating a new Moira-based Role
 -------------------------------
