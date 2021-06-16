@@ -37,10 +37,6 @@
 <p>This contains most of the documentation for how we use Terraform here. The primary repository is located at <a class="reference external" href="https://github.com/MITLibraries/mitlib-terraform">https://github.com/MITLibraries/mitlib-terraform</a> but there are other repos in the org that provide modules.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<div class="sidebar">
-<p class="sidebar-title">TF 0.11</p>
-<p>You may need to also maintain a version of 0.11 until we finish upgrading all our config to 0.12. There are only a few configs left, so there’s a good chance you won’t need it.</p>
-</div>
 <p>For all new TF work you should be using version 0.12. We make heavy use of workspaces to manage deploying to different environments. The first thing you should do is set the <code class="docutils literal notranslate"><span class="pre">TF_WORKSPACE</span></code> environment variable to <code class="docutils literal notranslate"><span class="pre">stage</span></code>. You should make this change persistent in whatever way you manage environment variables on your system. The easiest way to do this is to add the following to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> file (if you use bash):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">TF_WORKSPACE</span><span class="o">=</span><span class="n">stage</span>
 </pre></div>

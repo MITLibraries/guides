@@ -42,14 +42,15 @@
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>You will effectively have two different AWS accounts. The first is the account you will use to log into the web console. This account is integrated with Touchstone. To get access, ask in the #engineering channel. Someone with the correct permissions will need to log into <a class="reference external" href="https://groups.mit.edu/webmoira">https://groups.mit.edu/webmoira</a> and add the user to <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">aws-672626379771-dev</span></code> list. This will give you access to the AWS console which can be accessed from <a class="reference external" href="https://aws.mit.edu">https://aws.mit.edu</a>.</p>
-<p>The next thing you need to do is set up an account you can use to authenticate locally, either from the AWS CLI or through an AWS library like boto3. Log into the AWS console and follow these steps:</p>
+<p>The next thing you need to do is complete the account setup that you can use
+to authenticate locally, either from the AWS CLI or through an AWS library like boto3. First,
+confirm with InfraEng (or ask on the #engineering Slack channel) that your CLI account has been
+added to our AWS organization (InfraEng handles this via Terraform). Then, log into the AWS console and follow these steps.</p>
 <ol class="arabic simple">
 <li><p>Under <code class="docutils literal notranslate"><span class="pre">Services</span></code> in the top bar search for “IAM” and click on that.</p></li>
-<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Users</span></code> and <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">user</span></code>.</p></li>
-<li><p>User your kerb ID as your username (technically, you can use anything you want here, but sticking with kerb is easier).</p></li>
-<li><p>For <code class="docutils literal notranslate"><span class="pre">Access</span> <span class="pre">type</span></code> select <em>only</em> <code class="docutils literal notranslate"><span class="pre">Programmatic</span> <span class="pre">Access</span></code> and click <code class="docutils literal notranslate"><span class="pre">Next</span></code>.</p></li>
-<li><p>On the permissions page check the box next to <code class="docutils literal notranslate"><span class="pre">Administrators</span></code> and click <code class="docutils literal notranslate"><span class="pre">Next</span></code>.</p></li>
-<li><p>You can click through the rest until it lets you create the user.</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Users</span></code>, search for your kerb, and then click on it.</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Security</span> <span class="pre">Credentials</span></code> tab.</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">access</span> <span class="pre">key</span></code> button.</p></li>
 <li><p>Make sure you copy the keys that it generates for you as this will be your only chance to do so.</p></li>
 </ol>
 </div>
