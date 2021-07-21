@@ -99,4 +99,4 @@ result of the session should involve valuable contributions from each person.
 
 - ["Pairing: when, why, how" presentation by Anna Headley](https://docs.google.com/presentation/d/1-PhkB_uSPHrz4-eWI6R9AzLo1fGVWqcxMMdUlAWOvng/edit#slide=id.p)
 - ["You must try, and then you must ask" article by Matt Ringel](https://blogs.akamai.com/2013/10/you-must-try-and-then-you-must-ask.html)
-- [A twitter thread on power differentials in pair programming but Sarah Mei](https://twitter.com/sarahmei/status/991001357455835136)
+- [A twitter thread on power differentials in pair programming by Sarah Mei](https://twitter.com/sarahmei/status/991001357455835136)
