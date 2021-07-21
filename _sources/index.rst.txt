@@ -20,6 +20,13 @@ or feedback.
    basics/*
 
 .. toctree::
+   :caption: How We Work Together
+   :maxdepth: 2
+   :glob:
+
+   collaboration/*
+
+.. toctree::
    :caption: Languages and Frameworks 
    :maxdepth: 2
    :glob:
