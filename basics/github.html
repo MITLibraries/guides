@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>GitHub &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,9 +33,9 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="github">
+  <section id="github">
 <h1>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="recommended-repo-settings">
+<section id="recommended-repo-settings">
 <h2>Recommended repo settings<a class="headerlink" href="#recommended-repo-settings" title="Permalink to this headline">¶</a></h2>
 <p>In the admin settings for repos on GitHub, the recommended settings are:</p>
 <ul class="simple">
@@ -50,13 +51,13 @@
 </li>
 <li><p>Allow merge commits (<code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">&gt;</span> <span class="pre">Merge</span> <span class="pre">button</span></code>)</p></li>
 </ul>
-</div>
-<div class="section" id="workflows">
+</section>
+<section id="workflows">
 <h2>Workflows<a class="headerlink" href="#workflows" title="Permalink to this headline">¶</a></h2>
 <p>In most cases, <a class="reference external" href="https://guides.github.com/introduction/flow/">GitHub flow</a> will be the best choice for projects. For small teams there is usually no need for anything more complicated than this. Thoughtbot has some <a class="reference external" href="https://github.com/thoughtbot/guides/tree/main/git">additional recommendations</a> which should be followed.</p>
 <p>Ideally, feature branches should encompass small, targeted changes. Keeping your work focused will mean fewer merge conflicts. When building a new code base this may not always be possible, but what you want to try and avoid are long running branches. By the time you want to merge, the distance between your feature branch and main will usually mean a lot of conflict resolution in your future.</p>
-</div>
-<div class="section" id="merging-and-rebasing">
+</section>
+<section id="merging-and-rebasing">
 <h2>Merging and Rebasing<a class="headerlink" href="#merging-and-rebasing" title="Permalink to this headline">¶</a></h2>
 <p>The thoughtbot guide recommends pushing your feature branch to remote only when you are ready to issue a PR. This will make it easier to rebase and squash commits without making life difficult for other developers. Generally, this should be your workflow, but it’s still acceptable to rebase and squash commits on a remote branch. If no one else has based any work off your branch, this shouldn’t present any problems. If other developers have based work off your branch, you will need to coordinate any rebasing or squashing. In either case, you should clearly communicate to the team that you have done either of these actions.</p>
 <p>The one important difference to note from the thoughtbot guide is in the section on merging. Merging GitHub PRs through the Web interface will always use <code class="docutils literal notranslate"><span class="pre">--no-ff</span></code>. If merging from the command line, instead of doing:</p>
@@ -67,8 +68,8 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git merge &lt;branch-name&gt; --no-ff
 </pre></div>
 </div>
-</div>
-<div class="section" id="pull-request-reviews">
+</section>
+<section id="pull-request-reviews">
 <h2>Pull Request Reviews<a class="headerlink" href="#pull-request-reviews" title="Permalink to this headline">¶</a></h2>
 <p>In most (all) cases, pull requests should be reviewed by at least one other developer, even if it is just for syntax or raise general questions in the case of unfamiliarity with a particular language.</p>
 <p>When creating a new pull request, you need to pick what branch you’re merging - usually your dev branch - and what you’re aiming to merge into - usually main - and then create a logical title and add a description that includes:</p>
@@ -82,13 +83,13 @@
 <p>You should then assign one or more reviewers. (If you have more than one, you may want to mention in the description what each should be reviewing).</p>
 <p>Other notes:
 “WIP” indicates a PR that is a work-in-progress that is not ready for review, but can be useful for comparing diffs as you work, or sharing in-progress work with others to see or comment on. In general, WIP PRs can be ignored.</p>
-</div>
-<div class="section" id="github-and-jira">
+</section>
+<section id="github-and-jira">
 <h2>Github and JIRA<a class="headerlink" href="#github-and-jira" title="Permalink to this headline">¶</a></h2>
 <p>In general, if you are creating code on GitHub, commenting and review should happen there, with the code. If you are also using JIRA, you should add a comment with a link to the PR to the story in JIRA and move the story to the Review column to indicate that the PR is under review.</p>
 <p>(If changes are not commited to GitHub - like with Wordpress configurations - the comments and review should happen in JIRA; Mention reviewers by name in a comment on the ticket, what they should be reviewing, where they can view the changes, and then move the story to the Review column.)</p>
-</div>
-<div class="section" id="github-and-code-climate">
+</section>
+<section id="github-and-code-climate">
 <h2>GitHub and Code Climate<a class="headerlink" href="#github-and-code-climate" title="Permalink to this headline">¶</a></h2>
 <p>We use <a class="reference external" href="https://codeclimate.com/">Code Climate</a>’s GitHub integration to monitor
 for code smells. Code Climate is free for open source repositories.</p>
@@ -113,8 +114,8 @@ GitHub repo, you can confirm this by going to Settings -&gt; Webhooks and make
 sure the Code Climate webhook is listed <em>(note: if Code Climate is stuck pending
 in your PR, it might be because you opened the PR prior to configuring Code Climate)</em></p></li>
 </ol>
-</div>
-<div class="section" id="updating-the-default-branch-in-github">
+</section>
+<section id="updating-the-default-branch-in-github">
 <h2>Updating the default branch in GitHub<a class="headerlink" href="#updating-the-default-branch-in-github" title="Permalink to this headline">¶</a></h2>
 <p>While all new repos will be created with <code class="docutils literal notranslate"><span class="pre">main</span></code> as the default branch, older
 repos may still use <code class="docutils literal notranslate"><span class="pre">master</span></code> and should be migrated. Here’s a quick overview of
@@ -158,9 +159,9 @@ Coveralls (<code class="docutils literal notranslate"><span class="pre">https://
 that it’s monitoring <code class="docutils literal notranslate"><span class="pre">main</span></code> and not <code class="docutils literal notranslate"><span class="pre">master</span></code>.
 _</p></li>
 </ul>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="github-basics">
+<section id="github-basics">
 <h2>GitHub basics<a class="headerlink" href="#github-basics" title="Permalink to this headline">¶</a></h2>
 <p>This process assumes you have: a terminal program (like the OS terminal or iTerm with oh-my-zsh), an editor program (like Sublime Text or Atom), a github account and access to the MIT Libraries repos, and have already cloned the repos to your local machine. (For help with those steps, contact one of the MITLib devs.)</p>
 <p><strong>Start fresh</strong>: Checkout main branch</p>
@@ -194,16 +195,16 @@ _</p></li>
 <span class="n">git</span> <span class="n">merge</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="advanced-topics">
+</section>
+<section id="advanced-topics">
 <h2>Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
 <p>The following topics are useful to get to know but often require someone knowledgable with git to teach or at least have nearby for questions/abort commands.</p>
 <ul class="simple">
 <li><p>Rebasing</p></li>
 <li><p>Merge conflicts</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -222,7 +223,7 @@ _</p></li>
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">GitHub</a><ul>
@@ -238,23 +239,23 @@ _</p></li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/aws.html">Working with AWS</a></li>
@@ -264,7 +265,7 @@ _</p></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/terraform.html">Terraform</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>

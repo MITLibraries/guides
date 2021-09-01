@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Touchstone / Shibboleth / SAML &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,23 +33,23 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="touchstone-shibboleth-saml">
+  <section id="touchstone-shibboleth-saml">
 <h1>Touchstone / Shibboleth / SAML<a class="headerlink" href="#touchstone-shibboleth-saml" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="what-is-touchstone">
+<section id="what-is-touchstone">
 <h2>What is Touchstone?<a class="headerlink" href="#what-is-touchstone" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://ist.mit.edu/touchstone-detail">Touchstone at MIT</a></p>
 <p>Touchstone is MIT’s Shibboleth implementation that includes DUO for two factor
 authentication.</p>
-</div>
-<div class="section" id="what-is-shibboleth">
+</section>
+<section id="what-is-shibboleth">
 <h2>What is Shibboleth?<a class="headerlink" href="#what-is-shibboleth" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Shibboleth_(Shibboleth_Consortium)">Shibboleth wikipedia entry</a></p>
-</div>
-<div class="section" id="what-is-saml">
+</section>
+<section id="what-is-saml">
 <h2>What is SAML?<a class="headerlink" href="#what-is-saml" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language">Security Assertion Markup Language</a></p>
-</div>
-<div class="section" id="what-are-we-doing-here">
+</section>
+<section id="what-are-we-doing-here">
 <h2>What are we doing here?<a class="headerlink" href="#what-are-we-doing-here" title="Permalink to this headline">¶</a></h2>
 <p>We want to use Touchstone, and thus Shibboleth, but without the <code class="docutils literal notranslate"><span class="pre">mod_shib</span></code>
 Apache HTTPd plugin. We can do this by utilizing the SAML protocol that
@@ -67,15 +68,15 @@ application the principles should hold with other languages.</p>
 <p>We also have at least one <a class="reference external" href="https://github.com/MITLibraries/ebooks">Python/Flask app using Touchstone</a>
 running in production, in case that’s helpful for setting up future
 Python projects.</p>
-</div>
-<div class="section" id="registering-a-saml-sp-in-mit-touchstone">
+</section>
+<section id="registering-a-saml-sp-in-mit-touchstone">
 <h2>Registering a SAML SP in MIT Touchstone<a class="headerlink" href="#registering-a-saml-sp-in-mit-touchstone" title="Permalink to this headline">¶</a></h2>
 <p>The request itself is simple, but preparing your application for <em>successful</em>
 submission takes some understanding of what is happening and providing what IST
 needs in a way they can easily consume it. This is not hard, but it is
 confusing and opaque. Please ask for help in Slack if you find yourself thinking it
 would be easier to just <code class="docutils literal notranslate"><span class="pre">mod_shib</span></code> on a VM and make this someone else’s problem.</p>
-<div class="section" id="request-dns-registration">
+<section id="request-dns-registration">
 <h3>Request DNS registration<a class="headerlink" href="#request-dns-registration" title="Permalink to this headline">¶</a></h3>
 <p>IS&amp;T TouchStone support prefers a <code class="docutils literal notranslate"><span class="pre">*.mit.edu</span></code> domain for each Touchstone
 protected application. The easiest path to that is to just request DNS
@@ -83,8 +84,8 @@ registration for both staging and production environments.</p>
 <p>note: Local development, automated tests, and PR builds should use
 non-Touchstone authentication and thus don’t require <code class="docutils literal notranslate"><span class="pre">*.mit.edu</span></code> or Touchstone
 registrations.</p>
-</div>
-<div class="section" id="generating-a-self-signed-certificate-for-touchstone">
+</section>
+<section id="generating-a-self-signed-certificate-for-touchstone">
 <h3>Generating a self-signed certificate for Touchstone<a class="headerlink" href="#generating-a-self-signed-certificate-for-touchstone" title="Permalink to this headline">¶</a></h3>
 <p>Touchstone support requests a long lived self signed certificate. The following
 command will give you a 10 year cert with no password which is useful for
@@ -103,8 +104,8 @@ key is compromised in any way, generate a new one and inform Touchstone support.
 <li><p>APP_NAME.mit.edu</p></li>
 <li><p>lib-touchstone&#64;mit.edu [if you use this, make sure you are on the moira list]</p></li>
 </ul>
-</div>
-<div class="section" id="configuring-the-application">
+</section>
+<section id="configuring-the-application">
 <h3>Configuring the application<a class="headerlink" href="#configuring-the-application" title="Permalink to this headline">¶</a></h3>
 <p>Regardless which language or library you are using, there are a few pieces of
 information you will need that should be the same for all apps:</p>
@@ -124,7 +125,7 @@ https://touchstone.mit.edu/metadata/idp.mit.edu-metadata.xml which at this time
 only provides a single cert via <code class="docutils literal notranslate"><span class="pre">idp_cert</span></code>. IST stated that method of obtaining
 the metadata would not move to using multiple certs, but it feels safest to just
 assume they might toggle between either method with no notice.</p>
-<div class="section" id="rails">
+<section id="rails">
 <h4>Rails<a class="headerlink" href="#rails" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>follow omniauth-saml instructions (which follow Facebook instructions)</p>
@@ -136,8 +137,8 @@ assume they might toggle between either method with no notice.</p>
 <li><p>in devise.rb do something like:</p></li>
 </ul>
 <p><a class="reference external" href="https://github.com/MITLibraries/rails_saml_example/blob/master/config/initializers/devise.rb#L278-L302">sample app config</a></p>
-</div>
-<div class="section" id="python-flask">
+</section>
+<section id="python-flask">
 <h4>Python/Flask<a class="headerlink" href="#python-flask" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Follow instructions to use <a class="reference external" href="https://github.com/onelogin/python3-saml">OneLogin’s SAML Python3 Toolkit</a></p></li>
@@ -145,9 +146,9 @@ assume they might toggle between either method with no notice.</p>
 the python3-saml settings.json file. See <a class="reference external" href="https://github.com/MITLibraries/ebooks/blob/4c671f6aeae8a3b6fec74ba7b8942eb0fb35d2b9/ebooks/auth.py#L11">here</a> for example. Note that the
 settings used here are the minimum required ones for MIT Touchstone auth to work.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="generating-application-metadata">
+</section>
+</section>
+<section id="generating-application-metadata">
 <h3>Generating application metadata<a class="headerlink" href="#generating-application-metadata" title="Permalink to this headline">¶</a></h3>
 <p>Touchstone registers the application by consuming metadata that the SP
 generates.</p>
@@ -161,7 +162,7 @@ URL to IST and they will have everything they need in one place to register the
 application. NOTE: they do not regularly poll the SP metadata so if you make
 configuration or code changes that change the SP metadata, you need to ask
 touchstone support to re-ingest the metadata.</p>
-<div class="section" id="testshib">
+<section id="testshib">
 <h4>testshib<a class="headerlink" href="#testshib" title="Permalink to this headline">¶</a></h4>
 <p>I found it frustrating to configure a SAML application against MIT Touchstone with the information they provide which is all Shibboleth specific. However,
 <a class="reference external" href="http://www.testshib.org">testshib.org</a> allows you to register your SP against
@@ -175,8 +176,8 @@ IdP to the MIT Touchstone IdP later will be simple.</p>
 <p>However, you need to be able to redirect back to your application from testshib
 or OneLogin’s test IDP for authentication to succeed. I found <code class="docutils literal notranslate"><span class="pre">ngrok</span></code> to be
 super helpful for that.</p>
-</div>
-<div class="section" id="ngrok">
+</section>
+<section id="ngrok">
 <h4>ngrok<a class="headerlink" href="#ngrok" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://ngrok.com">ngrok</a></p>
 <p>This allows you to spin up a publicly accessible endpoint with a secure tunnel
@@ -186,15 +187,15 @@ local server on port 5000.</p>
 <p>Note: every time you start ngrok you get a new endpoint. This means you will
 need to re-upload your SP metadata to testshib. This is only a minor
 inconvenience as the change takes place instantly.</p>
-</div>
-<div class="section" id="sp-metadata">
+</section>
+<section id="sp-metadata">
 <h4>SP Metadata<a class="headerlink" href="#sp-metadata" title="Permalink to this headline">¶</a></h4>
 <p>Once you have ngrok running you can export your SP metadata and upload it to
 testshib.</p>
 <p>You can then test authentication and debug any issues.</p>
-</div>
-</div>
-<div class="section" id="email-touchstone-help">
+</section>
+</section>
+<section id="email-touchstone-help">
 <h3>Email Touchstone help<a class="headerlink" href="#email-touchstone-help" title="Permalink to this headline">¶</a></h3>
 <p>Once you’ve confirmed you have your SP working with the testshib IdP, you can
 push your code to wherever it will run (Heroku, a container somewhere, etc).
@@ -229,15 +230,15 @@ user’s Kerberos name, “scoped” to the mit.edu domain, e.g. “username&#64
 <li><p>The IDP SSO binding must be <code class="docutils literal notranslate"><span class="pre">HTTP-Redirect</span></code>.</p></li>
 <li><p>For python3-saml, be sure to set <code class="docutils literal notranslate"><span class="pre">requestedAuthnContext</span></code> to false in settings.json if you want users to be able to choose between password and certificate login methods (otherwise it will default to password-only).</p></li>
 </ul>
-</div>
-<div class="section" id="non-touchstone-auth-for-pr-builds-and-local-development">
+</section>
+<section id="non-touchstone-auth-for-pr-builds-and-local-development">
 <h3>Non-touchstone auth for PR builds and local development<a class="headerlink" href="#non-touchstone-auth-for-pr-builds-and-local-development" title="Permalink to this headline">¶</a></h3>
 <p>Registering a local SP for Touchstone is probably more trouble than it’s worth.
 Using an alternative authentication strategy for local, test and PR builds is
 recommended. For Rails apps, we use the <code class="docutils literal notranslate"><span class="pre">developer</span></code> authentication that is include with <code class="docutils literal notranslate"><span class="pre">Devise</span></code>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
           </div>
@@ -256,23 +257,23 @@ recommended. For Rails apps, we use the <code class="docutils literal notranslat
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Touchstone / Shibboleth / SAML</a><ul>
@@ -284,7 +285,7 @@ recommended. For Rails apps, we use the <code class="docutils literal notranslat
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/aws.html">Working with AWS</a></li>
@@ -294,7 +295,7 @@ recommended. For Rails apps, we use the <code class="docutils literal notranslat
 <li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/terraform.html">Terraform</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>

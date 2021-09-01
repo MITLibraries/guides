@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Continuous Integration/Deployment &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,15 +33,15 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="continuous-integration-deployment">
+  <section id="continuous-integration-deployment">
 <h1>Continuous Integration/Deployment<a class="headerlink" href="#continuous-integration-deployment" title="Permalink to this headline">¶</a></h1>
 <p>Your first choice for CI/CD should be Github Actions. If you are having trouble getting this to work, please ask in the #engineering Slack channel.</p>
-<div class="sidebar">
+<aside class="sidebar">
 <p class="sidebar-title">Heroku Deploys</p>
 <p>If your application is being deployed to Heroku, you should just be using Heroku Pipelines, not Github Actions.</p>
-</div>
+</aside>
 <p>This guide will provide an overview of how the deployment process should generally work, with specific examples for the more common cases.</p>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>Most applications will have specific needs that may differ from other applications, but the general process for testing and deployment should follow the form:</p>
 <ol class="arabic simple">
@@ -49,22 +50,22 @@
 <li><p>Deploy production build when a release is created.</p></li>
 </ol>
 <p>The act of creating a release in Github is how you decide when to deploy a new production instance. The most recent release should always be the code that’s running in production.</p>
-</div>
-<div class="section" id="testing">
+</section>
+<section id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
-<div class="sidebar">
+<aside class="sidebar">
 <p class="sidebar-title">Language specific examples</p>
 <ul class="simple">
 <li><p><a class="reference external" href="../languages/rails.html#continuous-integration">CI for Rails at MIT Libraries</a></p></li>
 </ul>
-</div>
+</aside>
 <p>The testing action will likely vary from project to project, so your best bet will be to look at examples of what other projects have done and ask in #engineering if you are having trouble. As a general rule your testing action should run on every push. This can be accomplished by setting:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">on</span><span class="p">:</span> <span class="n">push</span>
 </pre></div>
 </div>
 <p>in your <code class="docutils literal notranslate"><span class="pre">.github/workflows/test.yml</span></code> file.</p>
-</div>
-<div class="section" id="fargate-deployment">
+</section>
+<section id="fargate-deployment">
 <h2>Fargate Deployment<a class="headerlink" href="#fargate-deployment" title="Permalink to this headline">¶</a></h2>
 <p>Most of our AWS deployments target Fargate. The staging and production deploys should look more or less the same. There is a yaml template (<a class="reference download internal" download="" href="../_downloads/ba311a13e55163995ec339e8702b33fe/deploy.yml"><code class="xref download docutils literal notranslate"><span class="pre">deploy.yml</span></code></a>) that can be used for both, with only a few changes you will need to make. To use this template, do the following:</p>
 <ol class="arabic">
@@ -90,8 +91,8 @@
 <li><p>In the template, under the <code class="docutils literal notranslate"><span class="pre">env</span></code> section, set the <code class="docutils literal notranslate"><span class="pre">IMAGE</span></code>, <code class="docutils literal notranslate"><span class="pre">CLUSTER</span></code> and <code class="docutils literal notranslate"><span class="pre">SERVICE</span></code> to the values given to you by the infrastructure team.</p></li>
 <li><p>You will need a set of keys for a deploy user that has permission to upload images to ECR and redeploy the ECS service (ask in #engineering if you have not been given these). These should be set as secrets through the Github UI for the repo.</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -110,28 +111,28 @@
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aws.html">Working with AWS</a></li>
@@ -146,7 +147,7 @@
 <li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>

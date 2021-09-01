@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Working with AWS &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,14 +33,14 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="working-with-aws">
+  <section id="working-with-aws">
 <h1>Working with AWS<a class="headerlink" href="#working-with-aws" title="Permalink to this headline">¶</a></h1>
 <p>This covers basic documentation for working with our AWS account.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>You will have access to create AWS resources, but you should not do this unless you have been instructed to do so. Most of our infrastructure provisioning is automated through Terraform.</p>
 </div>
-<div class="section" id="getting-started">
+<section id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>You will effectively have two different AWS accounts. The first is the account you will use to log into the web console. This account is integrated with Touchstone. To get access, ask in the #engineering channel. Someone with the correct permissions will need to log into <a class="reference external" href="https://groups.mit.edu/webmoira">https://groups.mit.edu/webmoira</a> and add the user to <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">aws-672626379771-dev</span></code> list. This will give you access to the AWS console which can be accessed from <a class="reference external" href="https://aws.mit.edu">https://aws.mit.edu</a>.</p>
 <p>The next thing you need to do is complete the account setup that you can use
@@ -53,11 +54,11 @@ added to our AWS organization (InfraEng handles this via Terraform). Then, log i
 <li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">access</span> <span class="pre">key</span></code> button.</p></li>
 <li><p>Make sure you copy the keys that it generates for you as this will be your only chance to do so.</p></li>
 </ol>
-</div>
-<div class="section" id="creating-a-new-moira-based-role">
+</section>
+<section id="creating-a-new-moira-based-role">
 <h2>Creating a new Moira-based Role<a class="headerlink" href="#creating-a-new-moira-based-role" title="Permalink to this headline">¶</a></h2>
 <p>In some cases we need to give non-developer library staff access to AWS resources directly. This is most commonly done when a user needs to be able to manage files in an S3 bucket. While we should strive to mediate access to AWS resources through applications, when the need arises, the way to do this is through a special moira list that’s integrated with Touchstone.</p>
-<div class="section" id="setting-up-the-moira-list">
+<section id="setting-up-the-moira-list">
 <h3>Setting up the Moira List<a class="headerlink" href="#setting-up-the-moira-list" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -80,8 +81,8 @@ added to our AWS organization (InfraEng handles this via Terraform). Then, log i
 <ol class="arabic simple" start="4">
 <li><p>Create the list.</p></li>
 </ol>
-</div>
-<div class="section" id="creating-the-iam-role">
+</section>
+<section id="creating-the-iam-role">
 <h3>Creating the IAM Role<a class="headerlink" href="#creating-the-iam-role" title="Permalink to this headline">¶</a></h3>
 <p>In order to use this new list in AWS you will need to create a special IAM Role for it. <em>This should be done through Terraform, not pointing and clicking in the web console.</em> The following shows the necessary Terraform:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="s2">&quot;aws_iam_policy_document&quot;</span> <span class="s2">&quot;saml_policy&quot;</span> <span class="p">{</span>
@@ -109,12 +110,12 @@ added to our AWS organization (InfraEng handles this via Terraform). Then, log i
 </div>
 <p>The name of the role needs to be the name of the moira list prefixed by <code class="docutils literal notranslate"><span class="pre">IdP-</span></code>. For example, if the moira list you created was called <code class="docutils literal notranslate"><span class="pre">aws-672626379771-foobar</span></code>, then the AWS role name should be <code class="docutils literal notranslate"><span class="pre">IdP-foobar</span></code>.</p>
 <p>This new role can now be used as you would any other IAM role. Users on the moira list who need to access AWS should log in the same way everyone does, through <a class="reference external" href="https://aws.mit.edu">https://aws.mit.edu</a>. If they are on more than one of these special moria lists, they will be presented with the option to choose which role they want to log in as. You can only be logged in under one of these roles at a time.</p>
-</div>
-</div>
-<div class="section" id="weird-things">
+</section>
+</section>
+<section id="weird-things">
 <h2>Weird Things<a class="headerlink" href="#weird-things" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes AWS is weird and frustrating. These things go here.</p>
-<div class="section" id="rsa-4096-certs">
+<section id="rsa-4096-certs">
 <h3>RSA 4096 Certs<a class="headerlink" href="#rsa-4096-certs" title="Permalink to this headline">¶</a></h3>
 <p>Amazon’s Certificate Manager does not handle RSA 4096 certificates yet. If you have one of these it will need to be added to IAM. There is no way that I can find to do this through either Terraform or the web console. You’ll have to use the AWS CLI:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ aws iam upload-server-certificate \
@@ -124,22 +125,22 @@ added to our AWS organization (InfraEng handles this via Terraform). Then, log i
   --private-key file://&lt;your cert&gt;.key
 </pre></div>
 </div>
-</div>
-<div class="section" id="efs-mount-race-conditions">
+</section>
+<section id="efs-mount-race-conditions">
 <h3>EFS Mount Race Conditions<a class="headerlink" href="#efs-mount-race-conditions" title="Permalink to this headline">¶</a></h3>
 <p>I have observed on multiple occasions problems with mounting newly created EFS mounts in EC2 instances. This seems more likely to happen with Terraform due to resources being provisioned all at once. My guess is the DNS for the new EFS mount has not propagated by the time the cloud-init script is run, where you would usually do the NFS mount.</p>
 <p>There’s no obvious (easy) mitigation for this. The good news is since it appears to simply be a DNS propagation issue, this should only be a problem for a short period after the initial provisioning of the EFS mount. My suggestion is to check the logs for your cloud-init script if you are spinning up an EC2 instance at the same time you are creating the EFS mount. There should be an error in there if it can’t resolve the hostname for the mount.</p>
-</div>
-<div class="section" id="fargate-log-flushing">
+</section>
+<section id="fargate-log-flushing">
 <h3>Fargate Log Flushing<a class="headerlink" href="#fargate-log-flushing" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes logs in Fargate don’t get written, or are only partially written, to Cloudwatch. My own experience suggests the problem is that the logs are being discarded before being fully flushed to Cloudwatch. The fix, which I have found to be reliable, is to add a few seconds of sleep to your container after you have stopped the main process. You can see an example here: <a class="reference external" href="https://github.com/MITLibraries/workflow/blob/master/entrypoint.sh">https://github.com/MITLibraries/workflow/blob/master/entrypoint.sh</a>.</p>
-</div>
-<div class="section" id="s3-bucket-limit">
+</section>
+<section id="s3-bucket-limit">
 <h3>S3 Bucket Limit<a class="headerlink" href="#s3-bucket-limit" title="Permalink to this headline">¶</a></h3>
 <p>There’s a limit to the number of buckets an account can have in S3. Rather than creating a bunch of buckets, partition a few buckets with predictable prefixes. We do not currently do this, but it’s a practice we should consider switching to, soon.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
           </div>
@@ -158,28 +159,28 @@ added to our AWS organization (InfraEng handles this via Terraform). Then, log i
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Working with AWS</a><ul>
@@ -194,7 +195,7 @@ added to our AWS organization (InfraEng handles this via Terraform). Then, log i
 <li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>

@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Heroku &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,14 +33,14 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="heroku">
+  <section id="heroku">
 <h1>Heroku<a class="headerlink" href="#heroku" title="Permalink to this headline">¶</a></h1>
 <p>This is not intended to replace the Heroku documentation. Some common
 practices are documented here for convenience.
 However, <a class="reference external" href="https://devcenter.heroku.com">read the docs</a>.</p>
-<div class="section" id="whats-weird-about-heroku-at-first">
+<section id="whats-weird-about-heroku-at-first">
 <h2>What’s weird about Heroku at first?<a class="headerlink" href="#whats-weird-about-heroku-at-first" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="file-system">
+<section id="file-system">
 <h3>File system<a class="headerlink" href="#file-system" title="Permalink to this headline">¶</a></h3>
 <p>Heroku has no persistent file system. Don’t write anything and
 expect it to be there even on the next request (it often is, but
@@ -47,8 +48,8 @@ isn’t reliable… use S3).</p>
 <p>NOTE: files stored in your code repository or generated at deploy time, such as
 css/js/images, are okay to use the Heroku file system for. If your app expects
 to be exceptionally popular, a CDN may be appropriate.</p>
-</div>
-<div class="section" id="logging">
+</section>
+<section id="logging">
 <h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
 <p>Heroku expects you to ship logs elsewhere (because of the no
 persistent filesystem). See our <a class="reference internal" href="../misc/logging.html"><span class="doc">Logging</span></a> documentation for our centralized solution.</p>
@@ -62,19 +63,19 @@ persistent filesystem). See our <a class="reference internal" href="../misc/logg
 can also check the token by running <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">drains</span> <span class="pre">--app</span> <span class="pre">my-app</span></code>, where <code class="docutils literal notranslate"><span class="pre">my-app</span></code>
 is a Heroku app you have access to with Logz.io configured</em></p>
 <p>You should set up log drains for both staging and production.</p>
-</div>
-<div class="section" id="exception-logging">
+</section>
+<section id="exception-logging">
 <h3>Exception Logging<a class="headerlink" href="#exception-logging" title="Permalink to this headline">¶</a></h3>
 <p>Use our <a class="reference internal" href="../misc/exception_monitoring.html"><span class="doc">Exception Monitoring</span></a> service.</p>
-</div>
-<div class="section" id="database-backups">
+</section>
+<section id="database-backups">
 <h3>Database Backups<a class="headerlink" href="#database-backups" title="Permalink to this headline">¶</a></h3>
 <p>Make sure to configure backups. This is not automatic (it
 is free for daily with a one week retention even on the free pg plan
 that comes with every app). You do need to
 <a class="reference external" href="https://devcenter.heroku.com/articles/heroku-postgres-backups">Schedule your DB backups</a>!</p>
-</div>
-<div class="section" id="static-vs-dynamic-ips">
+</section>
+<section id="static-vs-dynamic-ips">
 <h3>Static vs Dynamic IPs<a class="headerlink" href="#static-vs-dynamic-ips" title="Permalink to this headline">¶</a></h3>
 <p><em>NOTE: if you need a static IP, please considering using an AWS solution. Ask in the <code class="docutils literal notranslate"><span class="pre">#engineering</span></code>
 channel to discuss options. The following is probably not what you need.</em></p>
@@ -87,9 +88,9 @@ via a static IP, you can activate and configure an add-on such as
 to get a set of static IPs the vendor can approve for access.</p>
 <p>This will route outbound traffic over a static IP. Inbound traffic
 will continue to use the Heroku supplied dynamic IP.</p>
-</div>
-</div>
-<div class="section" id="billing">
+</section>
+</section>
+<section id="billing">
 <h2>Billing<a class="headerlink" href="#billing" title="Permalink to this headline">¶</a></h2>
 <p>We have a shared billing account. Password is in our LastPass. Ask in the <code class="docutils literal notranslate"><span class="pre">#engineering</span></code> Slack
 channel if you need access.
@@ -108,8 +109,8 @@ ready for billing.</p>
 <p>Not sure if something is too expensive to use as an add-on? Ask.
 There is no fixed rule, so getting other thoughts on the cost /
 benefit is the best current option.</p>
-</div>
-<div class="section" id="pipelines">
+</section>
+<section id="pipelines">
 <h2>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">¶</a></h2>
 <p>TL;DR: Use <a class="reference external" href="https://devcenter.heroku.com/articles/pipelines">pipelines</a>.
 They are :mega: :rainbow: :beers: :fireworks:</p>
@@ -129,8 +130,8 @@ a button to reveal the ENV for your PR builds.</p>
 NOT change the other. This will make you confused one day.</p>
 <p>On deploy or ENV change, the application will restart. It is
 normally a quick blip and doesn’t require downtime announcements.</p>
-</div>
-<div class="section" id="setting-up-a-new-pipeline">
+</section>
+<section id="setting-up-a-new-pipeline">
 <h2>Setting up a new pipeline<a class="headerlink" href="#setting-up-a-new-pipeline" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Log in with our shared billing account (ask in #engineering if you don’t have
@@ -141,7 +142,7 @@ pipeline owner to our shared billing account, and connect it to your repo</p></l
 <li><p>Once you’ve created the pipeline, you can enable review apps and configure
 staging and prod apps</p></li>
 </ul>
-<div class="section" id="configuring-review-apps">
+<section id="configuring-review-apps">
 <h3>Configuring review apps<a class="headerlink" href="#configuring-review-apps" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Check ‘Create new review apps for new pull requests automatically’</p></li>
@@ -149,8 +150,8 @@ staging and prod apps</p></li>
 <li><p>Check ‘Destroy stale review apps automatically’ (and choose ‘After 5 days’
 from the drop-down)</p></li>
 </ul>
-</div>
-<div class="section" id="configuring-staging-and-prod-apps">
+</section>
+<section id="configuring-staging-and-prod-apps">
 <h3>Configuring staging and prod apps<a class="headerlink" href="#configuring-staging-and-prod-apps" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>If you’ve already created a Heroku app linked to your repo’s main branch, you
@@ -171,11 +172,11 @@ and make sure it is set to your repo’s main branch</p>
 linked Heroku app if you haven’t already)</p></li>
 <li><p>Follow this procedure to configure the prod app</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="production-deploy-with-pipelines-cheatsheet">
+</section>
+</section>
+<section id="production-deploy-with-pipelines-cheatsheet">
 <h2>Production Deploy with Pipelines Cheatsheet<a class="headerlink" href="#production-deploy-with-pipelines-cheatsheet" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="tag-a-release-in-github-with-release-notes-that-are-useful">
+<section id="tag-a-release-in-github-with-release-notes-that-are-useful">
 <h3>Tag a release in GitHub with release notes that are useful<a class="headerlink" href="#tag-a-release-in-github-with-release-notes-that-are-useful" title="Permalink to this headline">¶</a></h3>
 <p>From the repo code page on GitHub, go to Releases, and then click the
 “Draft a new release” button. Number the release appropriately, using <a class="reference external" href="https://semver.org/">semantic
@@ -187,8 +188,8 @@ brief overview of the changes, e.g.:</p>
 to production using Pipelines. Pushing to prod moves whatever is on
 staging, which is quite likely <code class="docutils literal notranslate"><span class="pre">main</span></code> unless you are doing weird
 things (note: don’t do weird things).</p>
-</div>
-<div class="section" id="confirm-everything-is-all-good-on-staging">
+</section>
+<section id="confirm-everything-is-all-good-on-staging">
 <h3>Confirm everything is all good on staging<a class="headerlink" href="#confirm-everything-is-all-good-on-staging" title="Permalink to this headline">¶</a></h3>
 <p>Staging probably has the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch from GitHub. If the staging app works,
 pushing to prod should be :rainbow: unless you forgot you’ll need changes to
@@ -197,16 +198,16 @@ ENV for any new features you may be pushing if so, make said changes!</p>
 appropriate (i.e. only push stuff that has been approved to go live
 and / or is a bug / security fix)… but ideally that has been done
 before merge with PR builds… right? right‽</p>
-</div>
-<div class="section" id="login-to-heroku-dashboard">
+</section>
+<section id="login-to-heroku-dashboard">
 <h3>Login to Heroku Dashboard<a class="headerlink" href="#login-to-heroku-dashboard" title="Permalink to this headline">¶</a></h3>
 <p>On the app Pipeline page, click “Promote to Production”</p>
 <p>Choose the “compare on GitHub option” to confirm the change set is
 indeed what you expect it to be. If it is, go back and click
 “Promote”. If it is not, determine why it is not what you expect then
 make decide what to do about that.</p>
-</div>
-<div class="section" id="confirm-the-app-restarts-and-seems-good">
+</section>
+<section id="confirm-the-app-restarts-and-seems-good">
 <h3>Confirm the app restarts and seems good<a class="headerlink" href="#confirm-the-app-restarts-and-seems-good" title="Permalink to this headline">¶</a></h3>
 <p>It takes a few seconds to restart. If things are <em>not</em> good, rollback
 in the Dashboard.</p>
@@ -214,22 +215,22 @@ in the Dashboard.</p>
 modified your db schema or migrated data in any way, you <em>will</em> need
 to roll that back separately.
 <a class="reference external" href="https://devcenter.heroku.com/articles/releases#rollback">Rollback Docs</a></p>
-</div>
-<div class="section" id="inform-stakeholders-if-appropriate">
+</section>
+<section id="inform-stakeholders-if-appropriate">
 <h3>Inform stakeholders if appropriate<a class="headerlink" href="#inform-stakeholders-if-appropriate" title="Permalink to this headline">¶</a></h3>
 <p>You just made a change to production. Tell people that care.</p>
 <p>NOTE: all Bento deploys trigger a notification in the #disco_ui_project Slack
 channel, so it’s a good idea to provide context there whenever you deploy Bento.</p>
-</div>
-</div>
-<div class="section" id="manual-deploys">
+</section>
+</section>
+<section id="manual-deploys">
 <h2>Manual Deploys<a class="headerlink" href="#manual-deploys" title="Permalink to this headline">¶</a></h2>
 <p>You can still of course manually deploy when using Pipelines,
 but it is best to do this to staging and then promote from there
 rather than just hoping everything is going to be great in
 production.</p>
-</div>
-<div class="section" id="viewing-changing-environment-variables">
+</section>
+<section id="viewing-changing-environment-variables">
 <h2>Viewing / changing Environment Variables<a class="headerlink" href="#viewing-changing-environment-variables" title="Permalink to this headline">¶</a></h2>
 <p>Using ENV for config is common for Heroku deploys. You can view and
 change settings via either the Heroku CLI or the Web UI.
@@ -239,8 +240,8 @@ with the <a class="reference external" href="https://devcenter.heroku.com/articl
 command.</p>
 <p>You should store a copy of your staging and production ENV in our
 shared LastPass folder.</p>
-</div>
-<div class="section" id="deploy-hooks">
+</section>
+<section id="deploy-hooks">
 <h2>Deploy Hooks<a class="headerlink" href="#deploy-hooks" title="Permalink to this headline">¶</a></h2>
 <p>It is often useful to get notifications when staging or production apps are deployed and
 <a class="reference external" href="https://devcenter.heroku.com/articles/deploy-hooks">Deploy Hooks</a>
@@ -252,8 +253,8 @@ deploy hooks don’t always have a ton of context as to what has
 changed, so only alerting stakeholders that are comfortable with
 receiving emails with cryptic notes about a specific SHA being
 deployed to staging / production is best).</p>
-</div>
-<div class="section" id="dynos">
+</section>
+<section id="dynos">
 <h2>Dynos<a class="headerlink" href="#dynos" title="Permalink to this headline">¶</a></h2>
 <p>We use paid <a class="reference external" href="https://devcenter.heroku.com/articles/dynos">Dynos</a>.
 So far the $7 plan works fine for us in production and free dynos on
@@ -262,15 +263,15 @@ staging and pr builds. For high use apps, or apps that need more detailed metric
 that’s the job of the worker dyno and the cost is the same as your
 main dyno (or at least you can’t do one paid and one free… you may
 be able to do one higher and one cheap?).</p>
-</div>
-<div class="section" id="domain-names-and-ssl">
+</section>
+<section id="domain-names-and-ssl">
 <h2>Domain Names and SSL<a class="headerlink" href="#domain-names-and-ssl" title="Permalink to this headline">¶</a></h2>
 <p>It’s not significantly different than getting a DNS entry for a vm.
 ts3help is the best path and provide details on what is necessary
 via the
 <a class="reference external" href="https://devcenter.heroku.com/articles/custom-domains">Custom Domain</a> and
 <a class="reference external" href="https://devcenter.heroku.com/articles/automated-certificate-management">Automated Certificate Management</a>.</p>
-<div class="section" id="example-email-to-its-help-not-fix-lib-to-start-the-process">
+<section id="example-email-to-its-help-not-fix-lib-to-start-the-process">
 <h3>Example email to ITS help (not fix-lib) to start the process<a class="headerlink" href="#example-email-to-its-help-not-fix-lib-to-start-the-process" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The [YOUR PROJECT NAME] project requests the following domain name
 registration:
@@ -294,14 +295,14 @@ Essentially, once we have the cert I can upload it and the private key to
 Heroku.
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="mit-authentication">
+</section>
+</section>
+<section id="mit-authentication">
 <h2>MIT Authentication<a class="headerlink" href="#mit-authentication" title="Permalink to this headline">¶</a></h2>
 <p>See <a class="reference internal" href="../authentication/touchstone_saml.html"><span class="doc">Touchstone via SAML</span></a> for our authentication best practice.</p>
 <p><a class="reference internal" href="../authentication/oauth.html"><span class="doc">MIT Pilot OAuth</span></a> should not be used.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -320,28 +321,28 @@ Heroku.
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aws.html">Working with AWS</a></li>
@@ -364,7 +365,7 @@ Heroku.
 <li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>

@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Configuring Matomo for analytics &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,7 +33,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="configuring-matomo-for-analytics">
+  <section id="configuring-matomo-for-analytics">
 <h1>Configuring Matomo for analytics<a class="headerlink" href="#configuring-matomo-for-analytics" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://matomo.org">Matomo</a> (formerly piwik) is an open-source analytics
 software. We prefer it to Googe Analytics due to its emphasis on user
@@ -43,12 +44,12 @@ the dockerfile and config is located on <a class="reference external" href="http
 <p>This guide will walk through the basic steps to add a website to Matomo.
 For more in-depth information on using and developing Matomo, see the
 <a class="reference external" href="https://matomo.org/help/">offical Matomo docs</a>.</p>
-<div class="section" id="universal-settings">
+<section id="universal-settings">
 <h2>Universal settings<a class="headerlink" href="#universal-settings" title="Permalink to this headline">¶</a></h2>
 <p>All websites tracked by Matomo anonymize visitor IPs to two bytes (e.g.,
 192.168.x.x).</p>
-</div>
-<div class="section" id="setting-up-a-new-website-in-matomo">
+</section>
+<section id="setting-up-a-new-website-in-matomo">
 <h2>Setting up a new website in Matomo<a class="headerlink" href="#setting-up-a-new-website-in-matomo" title="Permalink to this headline">¶</a></h2>
 <p>Each app is tracked as a website in Matomo. Please create a different
 website for each environment of your application (e.g., staging and prod
@@ -69,12 +70,12 @@ not necessary to add specific routes in the application.</p></li>
 <li><p>Leave the remaining settings as their defaults, then click ‘Save’.</p></li>
 </ol>
 <p>The website will now be listed under Websites &gt; Manage.</p>
-</div>
-<div class="section" id="setting-up-matomo-tracking-in-your-app">
+</section>
+<section id="setting-up-matomo-tracking-in-your-app">
 <h2>Setting up Matomo tracking in your app<a class="headerlink" href="#setting-up-matomo-tracking-in-your-app" title="Permalink to this headline">¶</a></h2>
 <p>Now that you’ve added your app to Matomo, you can set up tracking by
 adding Matomo’s tracking code to your app.</p>
-<div class="section" id="for-rails-applications-hosted-on-heroku">
+<section id="for-rails-applications-hosted-on-heroku">
 <h3>For Rails applications hosted on Heroku<a class="headerlink" href="#for-rails-applications-hosted-on-heroku" title="Permalink to this headline">¶</a></h3>
 <p>The tracking code is already included in the <a class="reference external" href="https://github.com/mitlibraries/mitlibraries-theme">mitlibraries-theme gem</a>. Assuming your app uses mitlibraries-theme, you can
 activate tracking by adding the following environment variables to your
@@ -89,8 +90,8 @@ find this in Matomo by going to Settings (gearbox icon in navbar) &gt; Websites<
 <blockquote>
 <div><p>Manage. The ID for each website will appear underneath the website name.</p>
 </div></blockquote>
-</div>
-<div class="section" id="for-other-applications">
+</section>
+<section id="for-other-applications">
 <h3>For other applications<a class="headerlink" href="#for-other-applications" title="Permalink to this headline">¶</a></h3>
 <p>We don’t yet have a procedure for non-Rails apps. You will need to add
 the Matomo tracking JS (found in Settings &gt; Websites &gt; Tracking Code) to
@@ -98,9 +99,9 @@ your app directly.</p>
 <p>Confirm that tracking is working by visiting your site, clicking a few
 links, and making sure this activity was recorded in the Matomo dashboard.
 Also make sure that IPs are anonymized (they should be, but make sure anyway).</p>
-</div>
-</div>
-<div class="section" id="other-things-to-note">
+</section>
+</section>
+<section id="other-things-to-note">
 <h2>Other things to note<a class="headerlink" href="#other-things-to-note" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Matomo prod is at https://analytics-prod.mitlib.net. Staging is at
@@ -112,8 +113,8 @@ info on this is available in the <a class="reference external" href="(https://gi
 If you are not seeing any data in the dashboard, something is probably
 wrong with the cron job.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -132,28 +133,28 @@ wrong with the cron job.</p></li>
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/aws.html">Working with AWS</a></li>
@@ -163,7 +164,7 @@ wrong with the cron job.</p></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/terraform.html">Terraform</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>

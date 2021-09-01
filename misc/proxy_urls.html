@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Proxy URLs &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,17 +33,17 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="proxy-urls">
+  <section id="proxy-urls">
 <h1>Proxy URLs<a class="headerlink" href="#proxy-urls" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="tl-dr">
+<section id="tl-dr">
 <h2>tl;dr<a class="headerlink" href="#tl-dr" title="Permalink to this headline">¶</a></h2>
 <p>When constructing a url for IP-restricted content that needs
 to be accessible both on-campus and off-campus best practice
 is to use a proxy URL.</p>
 <p>Proxy URLs should have the form:</p>
 <p><code class="docutils literal notranslate"><span class="pre">https://libproxy.mit.edu/login?url=&lt;target</span> <span class="pre">url&gt;</span></code></p>
-</div>
-<div class="section" id="what-is-a-proxy-url">
+</section>
+<section id="what-is-a-proxy-url">
 <h2>What is a proxy URL?<a class="headerlink" href="#what-is-a-proxy-url" title="Permalink to this headline">¶</a></h2>
 <p>A proxy URL sends a request to our proxy server to create a
 proxied session to the target URL on behalf of a user.</p>
@@ -50,8 +51,8 @@ proxied session to the target URL on behalf of a user.</p>
 our <strong>proxy prefix</strong>.</p>
 <p>like so
 <code class="docutils literal notranslate"><span class="pre">https://libproxy.mit.edu/login?url=https://www.nature.com</span></code></p>
-</div>
-<div class="section" id="why-use-a-proxy-url">
+</section>
+<section id="why-use-a-proxy-url">
 <h2>Why use a proxy URL?<a class="headerlink" href="#why-use-a-proxy-url" title="Permalink to this headline">¶</a></h2>
 <p>Our proxy server’s main purpose is to communicate with
 external service providers on behalf of MIT users in cases
@@ -77,23 +78,23 @@ is to use a proxy URL.</p>
 before providing links to users, there are some possible
 ways to do that documented:
 <a class="reference external" href="https://wikis.mit.edu/confluence/display/LIBPROXSERV/Proxy+lookup+scripts">https://wikis.mit.edu/confluence/display/LIBPROXSERV/Proxy+lookup+scripts</a></p>
-</div>
-<div class="section" id="configuration-reqirements">
+</section>
+<section id="configuration-reqirements">
 <h2>Configuration Reqirements<a class="headerlink" href="#configuration-reqirements" title="Permalink to this headline">¶</a></h2>
 <p>The proxy server will only proxy connections to service
 providers listed in its configuration file. A proxy URL with
 a target domain or hostname that is not known to the proxy
 server will result in an error. Create a fix-lib ticket if
 you will be creating proxy URLs for a new service provider.</p>
-</div>
-<div class="section" id="how-ezproxy-works">
+</section>
+<section id="how-ezproxy-works">
 <h2>How EZproxy works<a class="headerlink" href="#how-ezproxy-works" title="Permalink to this headline">¶</a></h2>
 <p>The proxy server runs commercial software called
 <a class="reference external" href="https://help.oclc.org/Library_Management/EZproxy">Ezproxy</a></p>
 <p><a class="reference external" href="https://help.oclc.org/Library_Management/EZproxy/Get_started/About_EZproxy">Read more about how it
 works</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -112,28 +113,28 @@ works</a></p>
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/aws.html">Working with AWS</a></li>
@@ -143,7 +144,7 @@ works</a></p>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/terraform.html">Terraform</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>

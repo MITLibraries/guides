@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Python Guidelines &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,13 +33,13 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="python-guidelines">
+  <section id="python-guidelines">
 <h1>Python Guidelines<a class="headerlink" href="#python-guidelines" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="python-versions">
+<section id="python-versions">
 <h2>Python Versions<a class="headerlink" href="#python-versions" title="Permalink to this headline">¶</a></h2>
 <p>You should be using the most recent stable version. Don’t use Python 2.</p>
-</div>
-<div class="section" id="style-and-coding-conventions">
+</section>
+<section id="style-and-coding-conventions">
 <h2>Style and Coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h2>
 <p>In general, you should follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> and <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP 257</a>. Unless otherwise stated here, assume those two guidelines are in effect. It is recommended to use <a class="reference external" href="http://flake8.pycqa.org/en/latest/">flake8</a> during development and CI.</p>
 <p>If you are providing function docstrings, use <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reST</a>. In addition to a description of what a function does, you should document the parameters:</p>
@@ -54,23 +55,23 @@
   <span class="n">standardize</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="dependencies">
+</section>
+<section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
 <p>Use <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/">Pipenv</a> to manage dependencies. If there’s some reason you need to support pip, then you should still manage dependencies with pipenv, but generate your <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file as needed with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pipenv lock -r
 </pre></div>
 </div>
-</div>
-<div class="section" id="project-documentation">
+</section>
+<section id="project-documentation">
 <h2>Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this headline">¶</a></h2>
 <p>Use <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> for generating project documentation.</p>
-</div>
-<div class="section" id="testing">
+</section>
+<section id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
 <p>Since we no longer have to support both Python 2 and 3 there’s less need for <a class="reference external" href="https://tox.readthedocs.org/en/latest/">tox</a>, though it can still be useful. Unless you are using something like Django that comes with its own testing framework, use <a class="reference external" href="https://docs.pytest.org">pytest</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -89,16 +90,16 @@
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python Guidelines</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#python-versions">Python Versions</a></li>
@@ -112,12 +113,12 @@
 <li class="toctree-l1"><a class="reference internal" href="vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/aws.html">Working with AWS</a></li>
@@ -127,7 +128,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/terraform.html">Terraform</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>

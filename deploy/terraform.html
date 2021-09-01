@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Terraform &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,18 +33,18 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="terraform">
+  <section id="terraform">
 <h1>Terraform<a class="headerlink" href="#terraform" title="Permalink to this headline">¶</a></h1>
 <p>This contains most of the documentation for how we use Terraform here. The primary repository is located at <a class="reference external" href="https://github.com/MITLibraries/mitlib-terraform">https://github.com/MITLibraries/mitlib-terraform</a> but there are other repos in the org that provide modules.</p>
-<div class="section" id="getting-started">
+<section id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>For all new TF work you should be using version 0.12. We make heavy use of workspaces to manage deploying to different environments. The first thing you should do is set the <code class="docutils literal notranslate"><span class="pre">TF_WORKSPACE</span></code> environment variable to <code class="docutils literal notranslate"><span class="pre">stage</span></code>. You should make this change persistent in whatever way you manage environment variables on your system. The easiest way to do this is to add the following to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> file (if you use bash):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">TF_WORKSPACE</span><span class="o">=</span><span class="n">stage</span>
 </pre></div>
 </div>
 <p>However you choose to do this, <em>it should be the first thing you do.</em> Making this change will ensure you aren’t accidentally deploying to production.</p>
-</div>
-<div class="section" id="workspaces">
+</section>
+<section id="workspaces">
 <h2>Workspaces<a class="headerlink" href="#workspaces" title="Permalink to this headline">¶</a></h2>
 <p>We use <code class="docutils literal notranslate"><span class="pre">stage</span></code> and <code class="docutils literal notranslate"><span class="pre">prod</span></code> workspaces. If you have followed the instructions you should be deploying to the staging workspace by default. You can simply run <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code> and <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span></code> and it will deploy to staging.</p>
 <p>When you are ready to deploy to production you will need to explicitly specify the <code class="docutils literal notranslate"><span class="pre">prod</span></code> workspace. Rather than changing the <code class="docutils literal notranslate"><span class="pre">TF_WORKSPACE</span></code> envvar for your entire session, the recommended practice is to change it only for the command you are running. This may vary depending on which shell you are using. For bash, you would do the following:</p>
@@ -51,17 +52,17 @@
 </pre></div>
 </div>
 <p>Doing things this way keeps it explicit about deploying to production.</p>
-</div>
-<div class="section" id="modules">
+</section>
+<section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
 <p>Our current TF config uses quite a few external modules. This is a decision that has not aged well. TF modules are an acceptable solution, but the advice given in <a class="reference external" href="https://www.terraform.io/docs/modules/index.html#when-to-write-a-module">the Terraform documentation</a> should be followed. In general, if you are just wrapping a handful of AWS resources, don’t use a module; it’s better to just copy and paste. If you are using an external module make sure you are linking to a specific release and not just the master branch.</p>
-</div>
-<div class="section" id="variables">
+</section>
+<section id="variables">
 <h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
 <p>If there are differences between staging and production, or you have secrets that need to be included, you should use TF variables. Include <code class="docutils literal notranslate"><span class="pre">prod.tfvars</span></code> and <code class="docutils literal notranslate"><span class="pre">stage.tfvars</span></code> files in your config. These should not be checked into version control. The main repo is currently set to ignore all <code class="docutils literal notranslate"><span class="pre">.tfvars</span></code> files.</p>
 <p>We don’t have a great solution for sharing these variables yet. Until a better solution can be set up, you will need to manually sync these variables to the <code class="docutils literal notranslate"><span class="pre">mit-tfvars</span></code> S3 bucket. The structure of this bucket should mimic the structure of the main repo.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -80,28 +81,28 @@
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aws.html">Working with AWS</a></li>
@@ -117,7 +118,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>

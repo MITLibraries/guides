@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>WordPress at MIT Libraries &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,13 +33,13 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="wordpress-at-mit-libraries">
+  <section id="wordpress-at-mit-libraries">
 <h1>WordPress at MIT Libraries<a class="headerlink" href="#wordpress-at-mit-libraries" title="Permalink to this headline">¶</a></h1>
 <p>WordPress is one of several content management systems used at the MIT
 Libraries, and forms the majority of <a class="reference external" href="https://libraries.mit.edu">libraries.mit.edu</a>.</p>
-<div class="section" id="deployments">
+<section id="deployments">
 <h2>Deployments<a class="headerlink" href="#deployments" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="local-deployments">
+<section id="local-deployments">
 <h3>Local deployments<a class="headerlink" href="#local-deployments" title="Permalink to this headline">¶</a></h3>
 <p>WordPress is used on EC2 instance VMs that are administered by the
 Enterprise Services team. The Wordpress installation can be found at the
@@ -49,16 +50,16 @@ Apache site root, which is:</p>
 <p>Other applications can also be found under <code class="docutils literal notranslate"><span class="pre">htdocs/</span></code>, including a number of
 static HTML files. Full documentation of the structure of the site can be
 found on the <a class="reference external" href="https://wikis.mit.edu/confluence/display/UXWS/libraries.mit.edu+-+README">UX/WS wiki</a>.</p>
-</div>
-<div class="section" id="cloud-deployments">
+</section>
+<section id="cloud-deployments">
 <h3>Cloud deployments<a class="headerlink" href="#cloud-deployments" title="Permalink to this headline">¶</a></h3>
 <p>The Libraries have been experimenting with the Pantheon cloud platform, and
 have set up <a class="reference external" href="https://dashboard.pantheon.io/organizations/35a57471-c78e-4ccf-a3f1-e8681d098e90#sites/sites">an agency account</a> to coordinate this work.
 In order to join the account, first sign up for a free Pantheon account and
 then contact Matt Bernhardt to be added to the agency.</p>
-</div>
-</div>
-<div class="section" id="upgrading">
+</section>
+</section>
+<section id="upgrading">
 <h2>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline">¶</a></h2>
 <p>Updates to the WordPress core, and community-contributed themes and plugins,
 are largely performed using the standard process in the administrative UI.
@@ -72,8 +73,8 @@ this process should be directed to the Enterprise Systems team.</p>
 <li><p>Apply updates via administrative UI</p></li>
 <li><p>Lock WordPress</p></li>
 </ol>
-</div>
-<div class="section" id="database-migrations">
+</section>
+<section id="database-migrations">
 <h2>Database migrations<a class="headerlink" href="#database-migrations" title="Permalink to this headline">¶</a></h2>
 <p>At times it is necessary to move database content between tiers. For example,
 we copy production content down to the staging site in order to evaluate a
@@ -85,13 +86,13 @@ The specific flags that we use include <code class="docutils literal notranslate
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">wp</span> <span class="o">--</span><span class="n">network</span> <span class="o">--</span><span class="n">path</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">htdocs</span> <span class="o">--</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">old</span><span class="o">.</span><span class="n">website</span><span class="o">.</span><span class="n">url</span> <span class="n">search</span><span class="o">-</span><span class="n">replace</span> <span class="n">old</span><span class="o">.</span><span class="n">website</span><span class="o">.</span><span class="n">url</span> <span class="n">new</span><span class="o">.</span><span class="n">website</span><span class="o">.</span><span class="n">url</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="locally-developed-code">
+</section>
+<section id="locally-developed-code">
 <h2>Locally Developed Code<a class="headerlink" href="#locally-developed-code" title="Permalink to this headline">¶</a></h2>
 <p>While much of what we do with WordPress involves working with code that is
 written elsewhere, there are times where we need to write a plugin or theme
 locally.</p>
-<div class="section" id="style-and-coding-conventions">
+<section id="style-and-coding-conventions">
 <h3>Style and Coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h3>
 <p>The WordPress community has adopted a set of <a class="reference external" href="https://codex.wordpress.org/WordPress_Coding_Standards">coding standards</a> to which all the
 projects we develop should adhere. This includes standards for PHP, HTML, CSS,
@@ -101,20 +102,20 @@ linter before pushing code to GitHub. The WordPress Coding Standards have been
 <a class="reference external" href="https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards">implemented for PHPCS on GitHub</a>.</p>
 <p>GitHub offers integrations with Travis-CI and CodeClimate, both of which can
 be used to run PHPCS and similar code analysis tools.</p>
-</div>
-<div class="section" id="test-frameworks">
+</section>
+<section id="test-frameworks">
 <h3>Test Frameworks<a class="headerlink" href="#test-frameworks" title="Permalink to this headline">¶</a></h3>
 <p>Because most local development at the MIT Libraries focuses on the theme
 layer, testing is frequently not practical beyond linting and static code
 analysis (see above).</p>
-</div>
-<div class="section" id="project-documentation">
+</section>
+<section id="project-documentation">
 <h3>Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this headline">¶</a></h3>
 <p>Documentation for a specific theme or plugin should be contained in markdown
 files, inside a <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory in each repository. Where documentation is
 simple enough, it can be contained only within the <code class="docutils literal notranslate"><span class="pre">readme.md</span></code> file.</p>
-</div>
-<div class="section" id="upgrading-local-projects">
+</section>
+<section id="upgrading-local-projects">
 <h3>Upgrading Local Projects<a class="headerlink" href="#upgrading-local-projects" title="Permalink to this headline">¶</a></h3>
 <p>You will need terminal access to the server, and your account should have git
 and node available. We recommend creating a <code class="docutils literal notranslate"><span class="pre">deploy/</span></code> directory under your
@@ -145,21 +146,21 @@ can symlink it from <code class="docutils literal notranslate"><span class="pre"
 <span class="o">./</span><span class="n">deploy</span><span class="o">-</span><span class="n">plugin</span><span class="o">.</span><span class="n">sh</span> <span class="n">wp</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">template</span> <span class="n">wp</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">template</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="template-projects">
+</section>
+<section id="template-projects">
 <h3>Template projects<a class="headerlink" href="#template-projects" title="Permalink to this headline">¶</a></h3>
 <p>We have created a reference project that includes the recommended tooling
 integrations and code standards:</p>
 <p><a class="reference external" href="https://github.com/MITLibraries/wp-plugin-template">Plugin Template</a></p>
-</div>
-</div>
-<div class="section" id="integrations">
+</section>
+</section>
+<section id="integrations">
 <h2>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">¶</a></h2>
 <p>Integrations between Wordpress and external systems are needed for some
 functionality. Some of these integrations are covered elsewhere in this
 documentation (<a class="reference external" href="https://mitlibraries.github.io/guides/misc/exception_monitoring.html">exception monitoring</a> and <a class="reference external" href="https://mitlibraries.github.io/guides/misc/logging.html">centralized logging</a>, for example).</p>
 <p>Other integrations that are more specific to WordPress are detailed below.</p>
-<div class="section" id="zapier-airtable-and-webforms">
+<section id="zapier-airtable-and-webforms">
 <h3>Zapier / Airtable and webforms<a class="headerlink" href="#zapier-airtable-and-webforms" title="Permalink to this headline">¶</a></h3>
 <p>Web forms on libraries.mit.edu should be built and maintained using the
 Contact Forms 7 (CF7) plugin. <a class="reference external" href="https://wikis.mit.edu/confluence/display/UXWS/Step+1%3A+Create+the+form">Documentation for this can be found on the UX
@@ -175,9 +176,9 @@ while the Zapier UI controls the crosswalk between the form and Airtable.</p>
 <p>The Airtable bases are constructed and maintained by each form owner. As of
 this writing, Distinctive Collections is the only area of the Libraries which
 uses this setup.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
           </div>
@@ -196,16 +197,16 @@ uses this setup.</p>
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rails.html">Rails at MIT Libraries</a></li>
@@ -219,12 +220,12 @@ uses this setup.</p>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/aws.html">Working with AWS</a></li>
@@ -234,7 +235,7 @@ uses this setup.</p>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/terraform.html">Terraform</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>

@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Pantheon &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -32,26 +33,26 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="pantheon">
+  <section id="pantheon">
 <h1>Pantheon<a class="headerlink" href="#pantheon" title="Permalink to this headline">¶</a></h1>
 <p>The MIT Libraries have made the choice to migrate many PHP-based websites to the <a class="reference external" href="https://pantheon.io/">Pantheon</a> platform.</p>
-<div class="section" id="multidev-workflow">
+<section id="multidev-workflow">
 <h2>Multidev workflow<a class="headerlink" href="#multidev-workflow" title="Permalink to this headline">¶</a></h2>
 <p>For newer websites built with WordPress or Drupal 8 / 9, the preferred workflow is to use <a class="reference external" href="https://pantheon.io/docs/guides/build-tools/">Build Tools</a>. This process is meant to closely resemble the experience of working with Heroku. Using local tooling such as <a class="reference external" href="https://getcomposer.org/">Composer</a>, the <a class="reference external" href="https://developer.wordpress.org/cli/commands/">WordPress CLI</a>, or <a class="reference external" href="https://www.drush.org/latest/">Drush</a>, the developer makes changes and commits them to a new branch. These changes are then pushed to a repository on the MIT Libraries’ GitHub, which is deployed via CircleCI to a review application. The Pantheon term for this workflow is <a class="reference external" href="https://pantheon.io/docs/multidev">Multidev</a>.</p>
 <p>While it is possible to run a local version of the application under this workflow, this is currently more complex than it should be. The TL;DR is to set up the review app by pushing a branch to GitHub first, then clone the resulting Multidev environment using Localenv. <strong>Care should be taken when attempting to push local changes back to GitHub. The git branch and git remotes should be monitored closely.</strong></p>
 <p>Once these changes have been reviewed and approved, and the Dev environment is redeployed, the <a class="reference external" href="#webops-workflow">WebOps workflow</a> below is followed to move the new code into production.</p>
-</div>
-<div class="section" id="legacy-workflow">
+</section>
+<section id="legacy-workflow">
 <h2>Legacy workflow<a class="headerlink" href="#legacy-workflow" title="Permalink to this headline">¶</a></h2>
 <p>For older sites based on Drupal 7 - which need ongoing updates but don’t undergo active development - the preferred workflow is one using <a class="reference external" href="https://pantheon.io/docs/guides/localdev">Localdev</a> and Composer but does not use multidev environments.</p>
 <p>These sites use Pantheon’s own git infrastructure as their code repository, and developers push changes directly to the Dev environment. Local copies of the site can be created by Localdev.</p>
 <p>Once changes have been approved in Dev, the <a class="reference external" href="#webops-workflow">WebOps workflow</a> is used for promoting updates from Dev, through Test, and into the Live environments.</p>
-</div>
-<div class="section" id="webops-workflow">
+</section>
+<section id="webops-workflow">
 <h2>WebOps workflow<a class="headerlink" href="#webops-workflow" title="Permalink to this headline">¶</a></h2>
 <p>Once updates are approved and present in a site’s Dev environment, the pipeline for moving these changes into production is covered by Pantheon’s <a class="reference external" href="https://pantheon.io/docs/pantheon-workflow">WebOps workflow</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -70,28 +71,28 @@
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Start Here</span></p>
+<p><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How We Work Together</span></p>
+<p><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Languages and Frameworks</span></p>
+<p><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Authentication</span></p>
+<p><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Deployment</span></p>
+<p><span class="caption-text">Deployment</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aws.html">Working with AWS</a></li>
@@ -106,7 +107,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="terraform.html">Terraform</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Everything else</span></p>
+<p><span class="caption-text">Everything else</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>
