@@ -1,6 +1,6 @@
 # Terraform
 
-This contains most of the general documenation for how we use Terraform at MIT Libraries. For information regarding the legacy Terraform use, see [legacy-terraform](./legacy-terraform.rst).
+This contains most of the general documenation for how we use Terraform at MIT Libraries. For information regarding the legacy Terraform use, see [legacy-terraform](/deploy/legacy-terraform).
 
 ## Getting Started
 
@@ -44,4 +44,4 @@ The Terraform 1.0 repositories are targeted: one repo per application infrastruc
 
 The Terraform 1.0 repositories serve multiple deployment environments: one repo builds both stage and prod infrastructure. See this [Decision document](https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2901278721) as well as [this one](https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2900656132/Decision+010%3A+Core+Infrastructure+repos+will+have+three+long-running+branches%3A+dev%2C+stage%2C+and+main).
 
-The Terraform 1.0 repositories are managed with a simplified version of Git Flow (instead of GitHub Flow). Details of how this will work is documented in [Simplified Git Flow for InfraEng](https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2920480769/Simplified+Git+Flow+For+InfraEng). The source of this model can be found in the [Simplified Git Flow](https://medium.com/goodtogoat/simplified-git-flow-5dc37ba76ea8) post on [medium.com](medium.com).
+The Terraform 1.0 repositories are managed with a simplified version of Git Flow (instead of GitHub Flow). Details of how this will work is documented in [Simplified Git Flow for InfraEng](https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2920480769/Simplified+Git+Flow+For+InfraEng). The source of this model can be found in the [Simplified Git Flow](https://medium.com/goodtogoat/simplified-git-flow-5dc37ba76ea8) post on [medium.com](https://medium.com).
