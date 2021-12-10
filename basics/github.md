@@ -11,12 +11,15 @@ In the admin settings for repos on GitHub, the recommended settings are:
     - require status checks to pass before merging
     - require that branches are up to date
 * Allow merge commits (`Options > Merge button`)
+* **Optional** Disable squash commits (`Options > Merge button`)
 
 ## Workflows
 
 In most cases, [GitHub flow](https://guides.github.com/introduction/flow/) will be the best choice for projects. For small teams there is usually no need for anything more complicated than this. Thoughtbot has some [additional recommendations](https://github.com/thoughtbot/guides/tree/main/git) which should be followed.
 
 Ideally, feature branches should encompass small, targeted changes. Keeping your work focused will mean fewer merge conflicts. When building a new code base this may not always be possible, but what you want to try and avoid are long running branches. By the time you want to merge, the distance between your feature branch and main will usually mean a lot of conflict resolution in your future.
+
+There is an exception to this for Infrastructure code. For the Terraform code, InfraEng uses a Simplified Git Flow model (which could also be seen as GitHub Flow on steroids). In this case, each deployment environment (prod & stage) is linked to a long-running branch in the repository. As in GitHub Flow, feature branches should encompass small, targeted changes. Then are always branched from and merged to the `stage` branch. And the only merges to the `main` branch come from approved merges on the `stage` branch. More details on this model can be found at [Simplified Git Flow](https://medium.com/goodtogoat/simplified-git-flow-5dc37ba76ea8) and at [Simplified Git Flow for InfraEng](https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2920480769/Simplified+Git+Flow+For+InfraEng).
 
 ## Merging and Rebasing
 
@@ -157,7 +160,7 @@ git push
 
 **Get thumbs**: once each reviewer is done with their review and happy with the code that will be merged, they should approve the PR and give a thumbs up  :+1:
 
-**Squash commits (optional)**: before merging, squash all your work into logical commits - or one single commit - that summarizes the changes.
+**Squash commits (optional)**: before merging, squash all your work into logical commits - or one single commit - that summarizes the changes. **Note**: try to avoid using squash commits to do the squashing!
 
 **Merge the PR**: merge the PR on github and delete the branch.
 
