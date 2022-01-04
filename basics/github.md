@@ -11,7 +11,7 @@ In the admin settings for repos on GitHub, the recommended settings are:
     - require status checks to pass before merging
     - require that branches are up to date
 * Allow merge commits (`Options > Merge button`)
-* **Optional** Disable squash commits (`Options > Merge button`)
+* **Required for Terraform repos** Disable squash commits (`Options > Merge button`)
 
 ## Workflows
 
@@ -160,7 +160,7 @@ git push
 
 **Get thumbs**: once each reviewer is done with their review and happy with the code that will be merged, they should approve the PR and give a thumbs up  :+1:
 
-**Squash commits (optional)**: before merging, squash all your work into logical commits - or one single commit - that summarizes the changes. **Note**: try to avoid using squash commits to do the squashing!
+**Squash commits (optional)**: before merging, squash all your work into logical commits - or one single commit - that summarizes the changes. **Note**: do not use GitHub's *Squash and Merge* option to do the squashing!
 
 **Merge the PR**: merge the PR on github and delete the branch.
 
