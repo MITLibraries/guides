@@ -50,12 +50,14 @@
 </ul>
 </li>
 <li><p>Allow merge commits (<code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">&gt;</span> <span class="pre">Merge</span> <span class="pre">button</span></code>)</p></li>
+<li><p><strong>Required for Terraform repos</strong> Disable squash commits (<code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">&gt;</span> <span class="pre">Merge</span> <span class="pre">button</span></code>)</p></li>
 </ul>
 </section>
 <section id="workflows">
 <h2>Workflows<a class="headerlink" href="#workflows" title="Permalink to this headline">¶</a></h2>
 <p>In most cases, <a class="reference external" href="https://guides.github.com/introduction/flow/">GitHub flow</a> will be the best choice for projects. For small teams there is usually no need for anything more complicated than this. Thoughtbot has some <a class="reference external" href="https://github.com/thoughtbot/guides/tree/main/git">additional recommendations</a> which should be followed.</p>
 <p>Ideally, feature branches should encompass small, targeted changes. Keeping your work focused will mean fewer merge conflicts. When building a new code base this may not always be possible, but what you want to try and avoid are long running branches. By the time you want to merge, the distance between your feature branch and main will usually mean a lot of conflict resolution in your future.</p>
+<p>There is an exception to this for Infrastructure code. For the Terraform code, InfraEng uses a Simplified Git Flow model (which could also be seen as GitHub Flow on steroids). In this case, each deployment environment (prod &amp; stage) is linked to a long-running branch in the repository. As in GitHub Flow, feature branches should encompass small, targeted changes. They are always branched from and merged to the <code class="docutils literal notranslate"><span class="pre">stage</span></code> branch. And the only merges to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch come from approved merges on the <code class="docutils literal notranslate"><span class="pre">stage</span></code> branch. More details on this model can be found at <a class="reference external" href="https://medium.com/goodtogoat/simplified-git-flow-5dc37ba76ea8">Simplified Git Flow</a> and at <a class="reference external" href="https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2920480769/Simplified+Git+Flow+For+InfraEng">Simplified Git Flow for InfraEng</a>.</p>
 </section>
 <section id="merging-and-rebasing">
 <h2>Merging and Rebasing<a class="headerlink" href="#merging-and-rebasing" title="Permalink to this headline">¶</a></h2>
@@ -187,7 +189,7 @@ _</p></li>
 <p><strong>Make a PR</strong>: go to github and create a new PR for your branch against main/prod branch (see Pull Request Reviews above).</p>
 <p><strong>Respond to PR feedback</strong>: as feedback comes in, create additional commits to address and push them up. Do NOT squash/rebase during review as that makes headaches for reviewers.</p>
 <p><strong>Get thumbs</strong>: once each reviewer is done with their review and happy with the code that will be merged, they should approve the PR and give a thumbs up  :+1:</p>
-<p><strong>Squash commits (optional)</strong>: before merging, squash all your work into logical commits - or one single commit - that summarizes the changes.</p>
+<p><strong>Squash commits (optional)</strong>: before merging, squash all your work into logical commits - or one single commit - that summarizes the changes. <strong>Note</strong>: do not use GitHub’s <em>Squash and Merge</em> option to do the squashing!</p>
 <p><strong>Merge the PR</strong>: merge the PR on github and delete the branch.</p>
 <p><strong>Fetch latest main</strong>: Return to your terminal, checkout the main branch and fetch and merge the latest changes.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">main</span>
@@ -258,12 +260,14 @@ _</p></li>
 <p><span class="caption-text">Deployment</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../deploy/aws.html">Working with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/aws-2.0.html">AWS Organization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/cicd.html">Continuous Integration/Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/heroku.html">Heroku</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/heroku_checklist.html">Heroku Launch Checklist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/legacy-aws.html">Working with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/legacy-terraform.html">Terraform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../deploy/terraform.html">Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/terraform-1.0.html">Terraform</a></li>
 </ul>
 <p><span class="caption-text">Everything else</span></p>
 <ul>

@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Terraform &#8212; Guides  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Containerizing Your App" href="../misc/docker.html" />
+    <link rel="prev" title="Pantheon" href="pantheon.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="terraform">
+<h1>Terraform<a class="headerlink" href="#terraform" title="Permalink to this headline">¶</a></h1>
+<p>This contains most of the general documenation for how we use Terraform at MIT Libraries. For information regarding the legacy Terraform use, see <a class="reference internal" href="legacy-terraform.html"><span class="doc">legacy-terraform</span></a>.</p>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>All new Terraform work should be using version 1.0.x. We use Terraform Cloud for both remote state and remote execution. This means that for all future Terraform work, you’ll need to configure your GitHub access, your AWS Access (see <a class="reference internal" href="aws-2.0.html"><span class="doc">AWS 2.0</span></a>), your Terraform Cloud access (see <strong>Terraform Cloud</strong> section below), and install the latest version of the Terraform 1.0 CLI (see <strong>Terraform CLI (local)</strong> section below).</p>
+</section>
+<section id="github">
+<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h2>
+<p>As part of your onboarding, you created a GitHub account and were invited to join the MIT Libraries GitHub Organization. Your initial privileges in GitHub are limited until you have completed the onboarding process.</p>
+<p>Our Terraform code is spread across multiple, targeted repositories, generally one Terraform repository per application with a few Terraform repositories that manage the core infrastructure in our AWS Accounts. The [mitlib-tfc-mgmt][https://github.com/MITLibraries/mitlib-tfc-mgmt] Terraform repository  manages all the other Terraform repositories (<em>one ring to rule them all?</em>). If you need an additional Terraform repository for new application-specific infrastructure, there is a process to add the necessary information to the management repository to create the necessary bits in GitHub (and Terraform Cloud).</p>
+</section>
+<section id="terraform-cloud">
+<h2>Terraform Cloud<a class="headerlink" href="#terraform-cloud" title="Permalink to this headline">¶</a></h2>
+<p>There is a single <a class="reference external" href="https://app.terraform.io/app/MITLibraries">Terraform Cloud Organization for MIT Libraries</a>. As part of your onboarding, your kerb was linked to this organization. You will need to configure access to that organization for your workstation so that you can run speculative plans for your Terraform code. See the <a class="reference external" href="https://learn.hashicorp.com/tutorials/terraform/cloud-login?in=terraform/0-13">Terraform Cloud CLI Login</a> Getting Started article from HashiCorp for a walkthrough and see the <a class="reference external" href="https://www.terraform.io/docs/cli/config/config-file.html">CLI Configuration</a> page in the full Terraform Cloud documentation site for details.</p>
+<p>All of our Terraform repositories are linked to Terraform Cloud workspaces (this is all managed by the repository referenced in the preceding section). Generally, once the Terraform repository is created and the Terraform Cloud workspace is created and linked, there are no other changes needed to the Terraform Cloud workspace save one: it is required that you manually trigger the first <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code> through the Terraform Cloud workspace console. For more details on how we are using Terraform Cloud, see the <a class="reference external" href="https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2893381658/USE%3A+Terraform+Cloud+and+GitHub">Terraform Cloud and GitHub</a> article in the InfraEng secure KB.</p>
+</section>
+<section id="terraform-cli-local">
+<h2>Terraform CLI (local)<a class="headerlink" href="#terraform-cli-local" title="Permalink to this headline">¶</a></h2>
+<p>Even though we are using Terraform Cloud, you will still need a local copy of the Terraform CLI. We are currently building Terraform code compatible with Terraform 1.0. You will likely need older versions of the Terraform CLI to manage some of our legacy Terraform code. There are multiple tools for managing your Terraform CLI, and no one really cares which one you use. As long as you can fully control your version of Terraform and easily switch between versions.</p>
+<section id="version-managers-for-terraform">
+<h3>Version Managers for Terraform<a class="headerlink" href="#version-managers-for-terraform" title="Permalink to this headline">¶</a></h3>
+<p><strong>asdf</strong>: <a class="reference external" href="https://github.com/asdf-vm/asdf">asdf</a> This is a version manager for many cli tools, not just Terraform.</p>
+<p><strong>tfenv</strong>: <a class="reference external" href="https://github.com/tfutils/tfenv">tfenv</a> This is a version manager specific to Terraform, modeled after <code class="docutils literal notranslate"><span class="pre">rbenv</span></code>.</p>
+</section>
+</section>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<p>The InfraEng team no longer supports any internally managed modules. Instead, if we are building infrastructure that needs the simplification a module provides, we will rely on 3rd party, open-source modules. The default is to build our infrastructure without modules and only shift to a module if it is too difficult to do it otherwise.</p>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<p>The managed Terraform repositories and Terraform Cloud workspaces have a pre-configured short list of variables. Those variables point to a hierarchy of values that can be stored in AWS SSM Parameter Store, and that is where we will manage all Terraform inputs and outputs (both for other Terraform code and for dependent applications). In very rare cases, the engineer can include an additional variable that will be stored in the workspace variable store in Terraform cloud. As a result, we no longer use local <code class="docutils literal notranslate"><span class="pre">.tfvars</span></code> files.</p>
+</section>
+<section id="repositories-in-detail">
+<h2>Repositories in detail<a class="headerlink" href="#repositories-in-detail" title="Permalink to this headline">¶</a></h2>
+<p>The Terraform 1.0 repositories are private by default. Any Terraform repository can be made public by request, but this will trigger a detailed security review before the visibility settings can be changed. Please see <a class="reference external" href="https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2907865138">this InfraEng Decision document</a>.</p>
+<p>The Terraform 1.0 repositories are targeted: one repo per application infrastructure. This is documented in <a class="reference external" href="https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2899935256/Decision+004%3A+Use+small+repos+for+Terraform+code+instead+of+a+mono-repo">this Decision document</a>.</p>
+<p>The Terraform 1.0 repositories serve multiple deployment environments: one repo builds both stage and prod infrastructure. See this <a class="reference external" href="https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2901278721">Decision document</a> as well as <a class="reference external" href="https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2900656132/Decision+010%3A+Core+Infrastructure+repos+will+have+three+long-running+branches%3A+dev%2C+stage%2C+and+main">this one</a>.</p>
+<p>The Terraform 1.0 repositories are managed with a simplified version of Git Flow (instead of GitHub Flow). Details of how this will work is documented in <a class="reference external" href="https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2920480769/Simplified+Git+Flow+For+InfraEng">Simplified Git Flow for InfraEng</a>. The source of this model can be found in the <a class="reference external" href="https://medium.com/goodtogoat/simplified-git-flow-5dc37ba76ea8">Simplified Git Flow</a> post on <a class="reference external" href="https://medium.com">medium.com</a>.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Guides</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p><span class="caption-text">Start Here</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
+</ul>
+<p><span class="caption-text">How We Work Together</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
+</ul>
+<p><span class="caption-text">Languages and Frameworks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
+<p><span class="caption-text">Authentication</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
+</ul>
+<p><span class="caption-text">Deployment</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="airflow.html">Airflow: workflow engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws-2.0.html">AWS Organization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cicd.html">Continuous Integration/Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heroku_checklist.html">Heroku Launch Checklist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legacy-aws.html">Working with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legacy-terraform.html">Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Terraform</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github">GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-cloud">Terraform Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-cli-local">Terraform CLI (local)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#repositories-in-detail">Repositories in detail</a></li>
+</ul>
+</li>
+</ul>
+<p><span class="caption-text">Everything else</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/matomo.html">Configuring Matomo for analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ssl.html">SSL Encryption</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="pantheon.html" title="previous chapter">Pantheon</a></li>
+      <li>Next: <a href="../misc/docker.html" title="next chapter">Containerizing Your App</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/deploy/terraform-1.0.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
