@@ -2,7 +2,7 @@
 
 Architecture Decision Records (ADRs) should be used to capture architecture decisions made when implementing a software artifact or making a major technology decision.
 
-ADRs have been used by MIT DLS engineers since 2017 to capture architecture decisions in a lightweight manner. This brief document is an initial attempt to standardize how we are using ADRs.
+ADRs have been used by MIT DLS engineers since 2017 to capture architecture decisions in a lightweight manner. We have been using [adr-tools] (https://github.com/npryce/adr-tools) to create standardized ADRs across our repos.
 
 ## Format
 
@@ -42,5 +42,7 @@ This should summarize the change being made (for example, "Decided against using
 
 The [resource] (https://github.com/joelparkerhenderson/architecture-decision-record) contains additional information on ADRs and related tools. Example 
 ADRs can be found in various local repositories in our GitHub (see, for example, [this ADR](https://raw.githubusercontent.com/MITLibraries/dspace-submission-service/main/docs/architecture-decisions/0004-metadata-json-spec.md)).
+
+It is recommended to use [adr-tools] (https://github.com/npryce/adr-tools) to follow the exisisting ADRs in our repos.
 
 In future, we hope to add specific guidelines that an ADR reviewer should consider when accepting an ADR pull request.
