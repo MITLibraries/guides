@@ -6,7 +6,7 @@ You should be using the most recent stable version. Don't use Python 2.
 
 ## Style and Coding Conventions
 
-In general, you should follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) and [PEP 257](https://www.python.org/dev/peps/pep-0257/). Unless otherwise stated here, assume those two guidelines are in effect. It is recommended to use [flake8](http://flake8.pycqa.org/en/latest/) during development and CI.
+In general, you should follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) and [PEP 257](https://www.python.org/dev/peps/pep-0257/). Unless otherwise stated here, assume those two guidelines are in effect.
 
 If you are providing function docstrings, use [reST](http://docutils.sourceforge.net/rst.html). In addition to a description of what a function does, you should document the parameters:
 
@@ -22,6 +22,37 @@ def widgetize(widget):
 
   standardize(widget)
 ```
+
+## Linting
+It is recommended to use [black](https://black.readthedocs.io/en/stable/) (formatting), [flake8](https://flake8.pycqa.org/en/latest/index.html#quickstart) (formatting), [bandit](https://bandit.readthedocs.io/en/latest/) (security), and [isort](https://pycqa.github.io/isort/) (import order) during development and CI. Black is preferred as the primary formatting style due to its easy methods for auto-formatting the code. 
+
+To install these linters when starting a new project, run `pipenv install black flake8 bandit isort`. The linters can be run together with `make lint` after adding the following commands to a project's Makefile:
+
+```
+lint: bandit black flake8 isort
+
+bandit:
+	pipenv run bandit -r llama
+
+black:
+	pipenv run black --check --diff llama tests
+
+coveralls: test
+	pipenv run coveralls
+
+flake8:
+	pipenv run flake8 llama tests
+
+isort:
+	pipenv run isort llama tests --diff
+```
+
+
+[mypy](https://mypy.readthedocs.io/en/stable/) should be used whenever type hinting is desired.
+
+
+## Command line interfaces
+Typically, [click](https://click.palletsprojects.com/en/8.0.x/) is used for creating command line interfaces (CLI) in Python projects.
 
 ## Dependencies
 
