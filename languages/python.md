@@ -24,31 +24,11 @@ def widgetize(widget):
 ```
 
 ## Linting
-It is recommended to use [black](https://black.readthedocs.io/en/stable/) (formatting), [flake8](https://flake8.pycqa.org/en/latest/index.html#quickstart) (formatting), [bandit](https://bandit.readthedocs.io/en/latest/) (security), and [isort](https://pycqa.github.io/isort/) (import order) during development and CI. Black is preferred as the primary formatting style due to its easy methods for auto-formatting the code. 
+It is recommended to use [black](https://black.readthedocs.io/en/stable/) (formatting), [flake8](https://flake8.pycqa.org/en/latest/index.html#quickstart) (formatting), [bandit](https://bandit.readthedocs.io/en/latest/) (security),[mypy](https://mypy.readthedocs.io/en/stable/) (type hinting), and [isort](https://pycqa.github.io/isort/) (import order) during development and CI. Black is preferred as the primary formatting style due to its easy methods for auto-formatting the code. 
 
-To install these linters when starting a new project, run `pipenv install black flake8 bandit isort`. The linters can be run together with `make lint` after adding the following commands to a project's Makefile:
-
-```
-lint: bandit black flake8 isort
-
-bandit:
-	pipenv run bandit -r llama
-
-black:
-	pipenv run black --check --diff llama tests
-
-coveralls: test
-	pipenv run coveralls
-
-flake8:
-	pipenv run flake8 llama tests
-
-isort:
-	pipenv run isort llama tests --diff
-```
+To install these linters when starting a new project, run `pipenv install --dev black flake8 bandit mypy isort`. The linters can be run together with `make lint` after adding the following commands to a project's Makefile. See the [Makefile](https://github.com/MITLibraries/alma-scripts/blob/main/Makefile) for the `llama` application for an example.
 
 
-[mypy](https://mypy.readthedocs.io/en/stable/) should be used whenever type hinting is desired.
 
 
 ## Command line interfaces
