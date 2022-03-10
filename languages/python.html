@@ -41,7 +41,7 @@
 </section>
 <section id="style-and-coding-conventions">
 <h2>Style and Coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h2>
-<p>In general, you should follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> and <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP 257</a>. Unless otherwise stated here, assume those two guidelines are in effect. It is recommended to use <a class="reference external" href="http://flake8.pycqa.org/en/latest/">flake8</a> during development and CI.</p>
+<p>In general, you should follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> and <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP 257</a>. Unless otherwise stated here, assume those two guidelines are in effect.</p>
 <p>If you are providing function docstrings, use <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reST</a>. In addition to a description of what a function does, you should document the parameters:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">widgetize</span><span class="p">(</span><span class="n">widget</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;Properly widgetize the widget.</span>
@@ -55,6 +55,15 @@
   <span class="n">standardize</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="linting">
+<h2>Linting<a class="headerlink" href="#linting" title="Permalink to this headline">¶</a></h2>
+<p>It is recommended to use <a class="reference external" href="https://black.readthedocs.io/en/stable/">black</a> (formatting), <a class="reference external" href="https://flake8.pycqa.org/en/latest/index.html#quickstart">flake8</a> (formatting), <a class="reference external" href="https://bandit.readthedocs.io/en/latest/">bandit</a> (security),<a class="reference external" href="https://mypy.readthedocs.io/en/stable/">mypy</a> (type hinting), and <a class="reference external" href="https://pycqa.github.io/isort/">isort</a> (import order) during development and CI. Black is preferred as the primary formatting style due to its easy methods for auto-formatting the code.</p>
+<p>To install these linters when starting a new project, run <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">--dev</span> <span class="pre">black</span> <span class="pre">flake8</span> <span class="pre">bandit</span> <span class="pre">mypy</span> <span class="pre">isort</span></code>. The linters can be run together by adding a <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> command to the project’s Makefile. See the <a class="reference external" href="https://github.com/MITLibraries/alma-scripts/blob/main/Makefile">Makefile</a> for the <code class="docutils literal notranslate"><span class="pre">llama</span></code> application for an example.</p>
+</section>
+<section id="command-line-interfaces">
+<h2>Command line interfaces<a class="headerlink" href="#command-line-interfaces" title="Permalink to this headline">¶</a></h2>
+<p>Typically, <a class="reference external" href="https://click.palletsprojects.com/en/8.0.x/">click</a> is used for creating command line interfaces (CLI) in Python projects.</p>
 </section>
 <section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
@@ -104,6 +113,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python Guidelines</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#python-versions">Python Versions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#style-and-coding-conventions">Style and Coding Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linting">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-interfaces">Command line interfaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#project-documentation">Project Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
