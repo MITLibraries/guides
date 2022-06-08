@@ -37,22 +37,11 @@ you should do:
 $ git merge <branch-name> --no-ff
 ```
 
-## Pull Request Reviews
+## Pull Requests
 
-In most (all) cases, pull requests should be reviewed by at least one other developer, even if it is just for syntax or raise general questions in the case of unfamiliarity with a particular language. 
-
-When creating a new pull request, you need to pick what branch you're merging - usually your dev branch - and what you're aiming to merge into - usually main - and then create a logical title and add a description that includes: 
-* required: an explanation of what the reason/function of the code in the PR (the "why")
-* required: an explanation of what code changed in the PR (the "what")
-* optional: Link(s) to view changes, associated JIRA tickets, or other links that may be useful for understanding the changes in the PR.
-* optional: mention any person who may need to be aware of the changes in the PR (PM, UX, BO, or other devs)
-
-The above can be included in a nice commit message (add template example).
-
-You should then assign one or more reviewers. (If you have more than one, you may want to mention in the description what each should be reviewing).
-
-Other notes: 
-"WIP" indicates a PR that is a work-in-progress that is not ready for review, but can be useful for comparing diffs as you work, or sharing in-progress work with others to see or comment on. In general, WIP PRs can be ignored.
+We use pull requests to merge changes to a codebase. In nearly all instances, pull requests should be reviewed by
+another person before merging. Check out our [code review guide](/collaboration/code_review.html) for more information
+on how this works.
 
 ## Github and JIRA
 
