@@ -18,7 +18,7 @@ solution.
 To use our standard setup, do the following:
 
 - Make a copy of
-  [our template](https://github.com/MITLibraries/disco-poc-vue/blob/master/.github/workflows/ci.yml),
+  [our template](https://github.com/MITLibraries/disco-poc-vue/blob/main/.github/workflows/ci.yml),
   to your repo in the path `.github/workflows/ci.yml`.
 
 - Commit on a new branch and push your changes

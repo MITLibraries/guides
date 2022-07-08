@@ -21,7 +21,7 @@ solution.
 To use our standard setup, do the following:
 
 - Make a copy of
-  [our template](https://raw.githubusercontent.com/MITLibraries/bento/master/.github/workflows/ci.yml),
+  [our template](https://raw.githubusercontent.com/MITLibraries/bento/main/.github/workflows/ci.yml),
   to your repo in the path `.github/workflows/ci.yml`. Update the last line of
   this file to match your repo at `path-to-lcov`.
 
