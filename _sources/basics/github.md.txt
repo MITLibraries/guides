@@ -37,22 +37,11 @@ you should do:
 $ git merge <branch-name> --no-ff
 ```
 
-## Pull Request Reviews
+## Pull Requests
 
-In most (all) cases, pull requests should be reviewed by at least one other developer, even if it is just for syntax or raise general questions in the case of unfamiliarity with a particular language. 
-
-When creating a new pull request, you need to pick what branch you're merging - usually your dev branch - and what you're aiming to merge into - usually main - and then create a logical title and add a description that includes: 
-* required: an explanation of what the reason/function of the code in the PR (the "why")
-* required: an explanation of what code changed in the PR (the "what")
-* optional: Link(s) to view changes, associated JIRA tickets, or other links that may be useful for understanding the changes in the PR.
-* optional: mention any person who may need to be aware of the changes in the PR (PM, UX, BO, or other devs)
-
-The above can be included in a nice commit message (add template example).
-
-You should then assign one or more reviewers. (If you have more than one, you may want to mention in the description what each should be reviewing).
-
-Other notes: 
-"WIP" indicates a PR that is a work-in-progress that is not ready for review, but can be useful for comparing diffs as you work, or sharing in-progress work with others to see or comment on. In general, WIP PRs can be ignored.
+We use pull requests to merge changes to a codebase. In nearly all instances, pull requests should be reviewed by
+another person before merging. Check out our [code review guide](/collaboration/code_review.html) for more information
+on how this works.
 
 ## Github and JIRA
 
@@ -85,39 +74,15 @@ in your PR, it might be because you opened the PR prior to configuring Code Clim
 ## Updating the default branch in GitHub
 
 While all new repos will be created with `main` as the default branch, older 
-repos may still use `master` and should be migrated. Here's a quick overview of 
-how to do that:
+repos may still use `master` and should be migrated. GitHub now provides an
+easy way to do this in the web UI. In the repo's settings, you can
+change the name of the default branch.
 
-1. Check out the current default branch and ensure it’s up to date: 
-    * `git pull`
-    * `git checkout master`
-2. Rename the branch locally: `git branch -m master main`
-3. Push your branch: `git push -u origin main`
-4. Update the default branch in the remote GitHub repo from `master` to `main` 
-(Settings > Branches)
-5. Edit the protection rules for the default branch to point to `main` instead 
-of `master` (Settings > Branches)
-6. Delete `master` from the remote repo: `git push origin --delete master`
-7. Update hosting platform as needed. If you’re using Heroku and have automatic 
-deploys configured, it should update automatically
-8. Update the default branch in Code Climate (`https://codeclimate.com/github/MITLibraries/repo-name` -> Repo Settings -> General)
-9. Open a PR to update GitHub Actions CI to watch `main` instead of `master` 
-(typically this file is located in .github/workflows/ci.yml)
-10. Ask your collaborators to update their cloned repos:
-    * `git pull`
-    * `git checkout main`
-    * `git branch -d master`
+Once you change the branch name, you and your collaborators will need to pull
+the changes to your cloned repos.
 
-_Notes:
-* Normally, GitHub releases show the number of commits since the last release, 
-but changing the default branch will lose this info. A possible solution is to 
-migrate the default branch right after a release, but we have not tested this 
-yet.
-* Coveralls won't run on the initial PR to change GitHub Actions, but it should 
-switch over once that PR lands. You can verify this by looking at the repo in 
-Coveralls (`https://coveralls.io/github/MITLibraries/repo-name`) and checking 
-that it's monitoring `main` and not `master`.
-_
+Additionally, you should check any automations you have configured to ensure
+they are watching the new branch (e.g., CodeClimate, CI/CD).
 
 - - -
 

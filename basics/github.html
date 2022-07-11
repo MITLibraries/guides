@@ -71,20 +71,11 @@
 </pre></div>
 </div>
 </section>
-<section id="pull-request-reviews">
-<h2>Pull Request Reviews<a class="headerlink" href="#pull-request-reviews" title="Permalink to this headline">¶</a></h2>
-<p>In most (all) cases, pull requests should be reviewed by at least one other developer, even if it is just for syntax or raise general questions in the case of unfamiliarity with a particular language.</p>
-<p>When creating a new pull request, you need to pick what branch you’re merging - usually your dev branch - and what you’re aiming to merge into - usually main - and then create a logical title and add a description that includes:</p>
-<ul class="simple">
-<li><p>required: an explanation of what the reason/function of the code in the PR (the “why”)</p></li>
-<li><p>required: an explanation of what code changed in the PR (the “what”)</p></li>
-<li><p>optional: Link(s) to view changes, associated JIRA tickets, or other links that may be useful for understanding the changes in the PR.</p></li>
-<li><p>optional: mention any person who may need to be aware of the changes in the PR (PM, UX, BO, or other devs)</p></li>
-</ul>
-<p>The above can be included in a nice commit message (add template example).</p>
-<p>You should then assign one or more reviewers. (If you have more than one, you may want to mention in the description what each should be reviewing).</p>
-<p>Other notes:
-“WIP” indicates a PR that is a work-in-progress that is not ready for review, but can be useful for comparing diffs as you work, or sharing in-progress work with others to see or comment on. In general, WIP PRs can be ignored.</p>
+<section id="pull-requests">
+<h2>Pull Requests<a class="headerlink" href="#pull-requests" title="Permalink to this headline">¶</a></h2>
+<p>We use pull requests to merge changes to a codebase. In nearly all instances, pull requests should be reviewed by
+another person before merging. Check out our <a class="reference external" href="/collaboration/code_review.html">code review guide</a> for more information
+on how this works.</p>
 </section>
 <section id="github-and-jira">
 <h2>Github and JIRA<a class="headerlink" href="#github-and-jira" title="Permalink to this headline">¶</a></h2>
@@ -120,47 +111,13 @@ in your PR, it might be because you opened the PR prior to configuring Code Clim
 <section id="updating-the-default-branch-in-github">
 <h2>Updating the default branch in GitHub<a class="headerlink" href="#updating-the-default-branch-in-github" title="Permalink to this headline">¶</a></h2>
 <p>While all new repos will be created with <code class="docutils literal notranslate"><span class="pre">main</span></code> as the default branch, older
-repos may still use <code class="docutils literal notranslate"><span class="pre">master</span></code> and should be migrated. Here’s a quick overview of
-how to do that:</p>
-<ol class="simple">
-<li><p>Check out the current default branch and ensure it’s up to date:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">master</span></code></p></li>
-</ul>
-</li>
-<li><p>Rename the branch locally: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-m</span> <span class="pre">master</span> <span class="pre">main</span></code></p></li>
-<li><p>Push your branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">-u</span> <span class="pre">origin</span> <span class="pre">main</span></code></p></li>
-<li><p>Update the default branch in the remote GitHub repo from <code class="docutils literal notranslate"><span class="pre">master</span></code> to <code class="docutils literal notranslate"><span class="pre">main</span></code>
-(Settings &gt; Branches)</p></li>
-<li><p>Edit the protection rules for the default branch to point to <code class="docutils literal notranslate"><span class="pre">main</span></code> instead
-of <code class="docutils literal notranslate"><span class="pre">master</span></code> (Settings &gt; Branches)</p></li>
-<li><p>Delete <code class="docutils literal notranslate"><span class="pre">master</span></code> from the remote repo: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">--delete</span> <span class="pre">master</span></code></p></li>
-<li><p>Update hosting platform as needed. If you’re using Heroku and have automatic
-deploys configured, it should update automatically</p></li>
-<li><p>Update the default branch in Code Climate (<code class="docutils literal notranslate"><span class="pre">https://codeclimate.com/github/MITLibraries/repo-name</span></code> -&gt; Repo Settings -&gt; General)</p></li>
-<li><p>Open a PR to update GitHub Actions CI to watch <code class="docutils literal notranslate"><span class="pre">main</span></code> instead of <code class="docutils literal notranslate"><span class="pre">master</span></code>
-(typically this file is located in .github/workflows/ci.yml)</p></li>
-<li><p>Ask your collaborators to update their cloned repos:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">master</span></code></p></li>
-</ul>
-</li>
-</ol>
-<p>_Notes:</p>
-<ul class="simple">
-<li><p>Normally, GitHub releases show the number of commits since the last release,
-but changing the default branch will lose this info. A possible solution is to
-migrate the default branch right after a release, but we have not tested this
-yet.</p></li>
-<li><p>Coveralls won’t run on the initial PR to change GitHub Actions, but it should
-switch over once that PR lands. You can verify this by looking at the repo in
-Coveralls (<code class="docutils literal notranslate"><span class="pre">https://coveralls.io/github/MITLibraries/repo-name</span></code>) and checking
-that it’s monitoring <code class="docutils literal notranslate"><span class="pre">main</span></code> and not <code class="docutils literal notranslate"><span class="pre">master</span></code>.
-_</p></li>
-</ul>
+repos may still use <code class="docutils literal notranslate"><span class="pre">master</span></code> and should be migrated. GitHub now provides an
+easy way to do this in the web UI. In the repo’s settings, you can
+change the name of the default branch.</p>
+<p>Once you change the branch name, you and your collaborators will need to pull
+the changes to your cloned repos.</p>
+<p>Additionally, you should check any automations you have configured to ensure
+they are watching the new branch (e.g., CodeClimate, CI/CD).</p>
 </section>
 <hr class="docutils" />
 <section id="github-basics">
@@ -232,7 +189,7 @@ _</p></li>
 <li class="toctree-l2"><a class="reference internal" href="#recommended-repo-settings">Recommended repo settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#workflows">Workflows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#merging-and-rebasing">Merging and Rebasing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pull-request-reviews">Pull Request Reviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pull-requests">Pull Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#github-and-jira">Github and JIRA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#github-and-code-climate">GitHub and Code Climate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#updating-the-default-branch-in-github">Updating the default branch in GitHub</a></li>
@@ -244,6 +201,7 @@ _</p></li>
 </ul>
 <p><span class="caption-text">How We Work Together</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../collaboration/code_review.html">Code review</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
 <p><span class="caption-text">Languages and Frameworks</span></p>

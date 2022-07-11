@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Code review &#8212; Guides  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pair programming" href="pairing.html" />
+    <link rel="prev" title="GitHub Desktop" href="../basics/github_desktop.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="code-review">
+<h1>Code review<a class="headerlink" href="#code-review" title="Permalink to this headline">¶</a></h1>
+<p>Effective code begins with effective code review. We are continually seeking to improve our efforts in this area, but
+this is a guide to our current practices.</p>
+<section id="before-opening-a-pull-request">
+<h2>Before opening a pull request<a class="headerlink" href="#before-opening-a-pull-request" title="Permalink to this headline">¶</a></h2>
+<p>There are a few things you can do to make code review go as smoothly as possible. One is to run a linter on your branch
+to identify and resolve any style issues. Another is to clean up your commit history.</p>
+<p>We generally prefer pull requests to include as few commits as possible. If you have multiple commits, you may want to
+<a class="reference external" href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing">rebase them</a> into a single commit. Ideally, a PR should have one
+detailed commit message that includes a title that summarizes the change, as well as four sections:</p>
+<ul class="simple">
+<li><p>Why these changes are being introduced</p></li>
+<li><p>Relevant ticket(s)</p></li>
+<li><p>How this addresses the need</p></li>
+<li><p>Side effects of this change</p></li>
+</ul>
+<p>We recommend creating a <code class="docutils literal notranslate"><span class="pre">.gitmessage</span></code> template file that includes the section headers above. Including these details in
+the commit message will make it easier for the reviewer to grasp the changes you intend to make. It will also make life
+easier for our future selves, when we’re looking back on a change and trying to remember why it was implemented.</p>
+<p>A PR should correspond with a JIRA ticket, such that when you close a PR, you also close related JIRA ticket. To help
+track this work more clearly, a project’s Agile board may have columns for ‘In Review’ and possibly ‘In QA’, in addition
+to the standard columns of ‘To Do’, ‘In Progress’, and ‘Done’. It’s good practice to link to the JIRA ticket in your
+your commit message. If you do, JIRA will automatically show the progress of the PR in the ticket.</p>
+<p>In some cases, it may make sense to include multiple commits for clarity, such as when a PR requires multiple
+significant changes to the codebase. The author can use their discretion as to whether this is appropriate. If a PR
+requires multiple commits, this may also be an indication that the corresponding ticket is not appropriately sized, in
+which case we recommend discussing this with your team during your next sprint retrospective.</p>
+</section>
+<section id="opening-a-pull-request">
+<h2>Opening a pull request<a class="headerlink" href="#opening-a-pull-request" title="Permalink to this headline">¶</a></h2>
+<p>When creating a new PR, you’ll need to pick what branch you’re merging from (usually a feature branch) and what branch
+you intend to merge into (usually <code class="docutils literal notranslate"><span class="pre">main</span></code>).</p>
+<p>Repos should include a PR template that includes a checklist for the author and reviewer. Our template for Rails projects
+looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#### Developer</span>
+
+<span class="o">-</span> <span class="p">[</span> <span class="p">]</span> <span class="n">All</span> <span class="n">new</span> <span class="n">ENV</span> <span class="ow">is</span> <span class="n">documented</span> <span class="ow">in</span> <span class="n">README</span>
+<span class="o">-</span> <span class="p">[</span> <span class="p">]</span> <span class="n">All</span> <span class="n">new</span> <span class="n">ENV</span> <span class="n">has</span> <span class="n">been</span> <span class="n">added</span> <span class="n">to</span> <span class="n">Heroku</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">Staging</span> <span class="ow">and</span> <span class="n">Prod</span>
+<span class="o">-</span> <span class="p">[</span> <span class="p">]</span> <span class="n">ANDI</span> <span class="ow">or</span> <span class="n">Wave</span> <span class="n">has</span> <span class="n">been</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">accordance</span> <span class="n">to</span>
+      <span class="p">[</span><span class="n">our</span> <span class="n">guide</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">mitlibraries</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">guides</span><span class="o">/</span><span class="n">basics</span><span class="o">/</span><span class="n">a11y</span><span class="o">.</span><span class="n">html</span><span class="p">)</span> <span class="ow">and</span>
+      <span class="nb">all</span> <span class="n">issues</span> <span class="n">introduced</span> <span class="n">by</span> <span class="n">these</span> <span class="n">changes</span> <span class="n">have</span> <span class="n">been</span> <span class="n">resolved</span> <span class="ow">or</span> <span class="n">opened</span> <span class="k">as</span> <span class="n">new</span>
+      <span class="n">issues</span> <span class="p">(</span><span class="n">link</span> <span class="n">to</span> <span class="n">those</span> <span class="n">issues</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Pull</span> <span class="n">Request</span> <span class="n">details</span> <span class="n">above</span><span class="p">)</span>
+<span class="o">-</span> <span class="p">[</span> <span class="p">]</span> <span class="n">Stakeholder</span> <span class="n">approval</span> <span class="n">has</span> <span class="n">been</span> <span class="n">confirmed</span> <span class="p">(</span><span class="ow">or</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">needed</span><span class="p">)</span>
+
+<span class="c1">#### Code Reviewer</span>
+
+<span class="o">-</span> <span class="p">[</span> <span class="p">]</span> <span class="n">The</span> <span class="n">commit</span> <span class="n">message</span> <span class="ow">is</span> <span class="n">clear</span> <span class="ow">and</span> <span class="n">follows</span> <span class="n">our</span> <span class="n">guidelines</span>
+      <span class="p">(</span><span class="ow">not</span> <span class="n">just</span> <span class="n">this</span> <span class="n">pull</span> <span class="n">request</span> <span class="n">message</span><span class="p">)</span>
+<span class="o">-</span> <span class="p">[</span> <span class="p">]</span> <span class="n">There</span> <span class="n">are</span> <span class="n">appropriate</span> <span class="n">tests</span> <span class="n">covering</span> <span class="nb">any</span> <span class="n">new</span> <span class="n">functionality</span>
+<span class="o">-</span> <span class="p">[</span> <span class="p">]</span> <span class="n">The</span> <span class="n">documentation</span> <span class="n">has</span> <span class="n">been</span> <span class="n">updated</span> <span class="ow">or</span> <span class="ow">is</span> <span class="n">unnecessary</span>
+<span class="o">-</span> <span class="p">[</span> <span class="p">]</span> <span class="n">The</span> <span class="n">changes</span> <span class="n">have</span> <span class="n">been</span> <span class="n">verified</span>
+<span class="o">-</span> <span class="p">[</span> <span class="p">]</span> <span class="n">New</span> <span class="n">dependencies</span> <span class="n">are</span> <span class="n">appropriate</span> <span class="ow">or</span> <span class="n">there</span> <span class="n">were</span> <span class="n">no</span> <span class="n">changes</span>
+
+<span class="c1">#### Requires database migrations?</span>
+
+<span class="n">YES</span> <span class="o">|</span> <span class="n">NO</span>
+
+<span class="c1">#### Includes new or updated dependencies?</span>
+
+<span class="n">YES</span> <span class="o">|</span> <span class="n">NO</span>
+</pre></div>
+</div>
+<p>The PR will autopopulate with the contents of your commit message, using the first line as the title, followed by the PR
+template. If you’ve written a detailed commit message, you won’t need to do much more than check whichever boxes apply
+in the author checklist.</p>
+<p>You should then request one or more reviewers, unless the code is not yet ready for review. In that case, mark it as a
+draft PR and add <code class="docutils literal notranslate"><span class="pre">[WIP]</span></code> to the title so your colleagues know it’s a work in progress.</p>
+</section>
+<section id="the-review-process">
+<h2>The review process<a class="headerlink" href="#the-review-process" title="Permalink to this headline">¶</a></h2>
+<p>Code review is a conversation between the author of a PR and reviewer(s). Sometimes this conversation is short and
+simple; other times it is long and detailed. At the end of a successful code review, everyone involved will be
+comfortable merging the code in the PR to the main branch.</p>
+<section id="automated-reviewers">
+<h3>Automated reviewers<a class="headerlink" href="#automated-reviewers" title="Permalink to this headline">¶</a></h3>
+<p>Many repos have automations configured that check certain aspects of the code that are easily machine-readable.
+For example, Coveralls cnecks the percentage of the codebase that is covered by tests, and CodeClimate checks for style
+issues and cognitive complexity. At minimum, we recommend configuring a linter, so both author and reviewer are clear
+on what style conventions are expected.</p>
+<p>Both the author and the reviewer of the PR are responsible for considering these automated reviews. A drop in test
+coverage should prompt a conversation about whether additional tests are needed. Similarly, if CodeClimate flags a highly
+complex or repeated piece of code, the author and reviewer may want to discuss whether a refactor would be useful. On a
+more basic level, the author should fix any straightforward style issues raised by the linter (incorrect indentation,
+exceeding line width, etc.)</p>
+</section>
+<section id="role-of-the-reviewer">
+<h3>Role of the reviewer<a class="headerlink" href="#role-of-the-reviewer" title="Permalink to this headline">¶</a></h3>
+<p>Fundamentally, the reviewer’s job is to confirm that the code does what it is supposed to do. The reviewer also provides
+another perspective on how the feature is implemented. For example, they might suggest an approach that introduces
+less complexity, or identify where additional test coverage may be needed.</p>
+<p>A successful review requires care and mindfulness. Not only will you need to read the code closely, you will also need
+to be empathethic to the author. Here are a few things to consider as you review:</p>
+<ul class="simple">
+<li><p><strong>Be compassionate.</strong> If something is wrong with the code, or it doesn’t work as expected, consider how to phrase this
+kindly. Remember that a lot of context is lost in the written word.</p></li>
+<li><p><strong>Avoid nitpicking.</strong> Suggestions to improve the code are welcome during the review process, but recommending minor
+changes that don’t make a significant impact can unnecessarily extend the review. At worst, these nitpicks can strain
+the dynamic between the reviewer and author.</p></li>
+<li><p><strong>Be specific.</strong> When requesting a change, make sure to clarify what exactly needs to change and why. This can help divert
+any misunderstandings.</p></li>
+<li><p><strong>Remember positional power.</strong> If you are the author’s supervisor, how does this affect the dynamic of the review?</p></li>
+</ul>
+<p>With these in mind, you can read through the code, making comments where appropriate. When you’re finished, either
+approve the PR or request changes. In either case, you should include a comment describing what went well in the PR
+and any concerns you have. (Some very simple PRs may not require a comment.)</p>
+</section>
+<section id="role-of-the-author">
+<h3>Role of the author<a class="headerlink" href="#role-of-the-author" title="Permalink to this headline">¶</a></h3>
+<p>As the author of the PR, you should first set up the reviewer for success by following the steps we described in ‘Before
+opening a pull request’ and ‘Opening a pull request’. Once the PR is open, be patient while you wait for someone to
+assign themselves as a reviewer and review the code. If a tight deadline is involved, it may be appropriate to announce
+on the project team’s Slack channel that you’ve opened the PR, so prospective reviewers are aware of it.</p>
+<p>Once the reviewer has completed their review, you can respond to any comments that they have. In some cases, a simple
+thumbs-up may be sufficient (for example, if they suggest a change that you agree with and plan to implement). In other
+cases, a conversation may be needed. Here are a few things to keep in mind as you respond to the reviewer:</p>
+<ul class="simple">
+<li><p><strong>Be compassionate.</strong> As with reviewers, it’s important for authors to be conscientious during the review process.</p></li>
+<li><p><strong>Assume good faith.</strong> If a comment comes across as rude, it’s probably not intentional. Remember that a lot of context
+can be lost in the written word, and you and the reviewer share the goal of improving the codebase. (However, if you
+see a pattern of rude behavior from a reviewer, it warrants a conversation with your team lead.)</p></li>
+<li><p><strong>Remain open to feedback.</strong> By putting code into review, you are explicitly requesting feedback from your colleagues.
+Make sure you embrace this process by not shutting down suggestions.</p></li>
+<li><p><strong>Ask for clarification.</strong> If you’re not sure what a reviewer is asking for or why, ask them for more information. In
+some cases, it may be useful to shift the conversation to another medium (for example, Slack or Zoom).</p></li>
+</ul>
+<p>You can then make the changes that you and the reviewer have agreed upon in one or more subsequent commits, re-request
+a review, and continue until all comments have been resolved. <strong>Wait until final approval before you rebase,</strong> as
+rebasing mid-review can make it difficult for the reviewer to know what changes they’ve already seen.</p>
+</section>
+</section>
+<section id="merging-code">
+<h2>Merging code<a class="headerlink" href="#merging-code" title="Permalink to this headline">¶</a></h2>
+<p>Once the PR has been approved, the code can be merged into the main branch. <strong>To avoid confusion, the author of the PR
+should always be the one to merge.</strong> If the author is not available, the reviewer can merge with the author’s permission.</p>
+<p>Do one final check of the commit history before you merge. You may need to rebase again if you’ve added additional
+commits to address code review feedback. If another person made significant contributions to the PR (e.g., if you paired
+with someone on it), you should make sure they are listed as a co-author by adding the following to your commit message:
+<code class="docutils literal notranslate"><span class="pre">co-authored-by:</span> <span class="pre">Contributor</span> <span class="pre">Name</span> <span class="pre">&lt;contributor-email&#64;example.com&gt;</span></code>.</p>
+<p>When the code lands in main, you can begin the process of deploying to production, if applicable. More information is
+available in the ‘Deployment’ section of these guides (<a class="reference external" href="https://mitlibraries.github.io/guides/deploy/heroku.html#production-deploy-with-pipelines-cheatsheet">here’s how to do it in Heroku</a>).</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Guides</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p><span class="caption-text">Start Here</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility / a11y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/github_desktop.html">GitHub Desktop</a></li>
+</ul>
+<p><span class="caption-text">How We Work Together</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code review</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#before-opening-a-pull-request">Before opening a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opening-a-pull-request">Opening a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-review-process">The review process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#merging-code">Merging code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pairing.html">Pair programming</a></li>
+</ul>
+<p><span class="caption-text">Languages and Frameworks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
+</ul>
+<p><span class="caption-text">Authentication</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
+</ul>
+<p><span class="caption-text">Deployment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/aws-2.0.html">AWS Organization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/cicd.html">Continuous Integration/Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/heroku_checklist.html">Heroku Launch Checklist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/legacy-aws.html">Working with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/legacy-terraform.html">Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/terraform-1.0.html">Terraform</a></li>
+</ul>
+<p><span class="caption-text">Everything else</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/adr.html">Architecture Decision Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/docker.html">Containerizing Your App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/exception_monitoring.html">Exception Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/incident_response.html">Incident Response Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/logging.html">Central Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/matomo.html">Configuring Matomo for analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/proxy_urls.html">Proxy URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/ssl.html">SSL Encryption</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../basics/github_desktop.html" title="previous chapter">GitHub Desktop</a></li>
+      <li>Next: <a href="pairing.html" title="next chapter">Pair programming</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, MIT Libraries.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/collaboration/code_review.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
