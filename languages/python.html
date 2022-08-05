@@ -36,11 +36,22 @@
   <section id="python-guidelines">
 <h1>Python Guidelines<a class="headerlink" href="#python-guidelines" title="Permalink to this headline">¶</a></h1>
 <section id="python-versions">
-<h2>Python Versions<a class="headerlink" href="#python-versions" title="Permalink to this headline">¶</a></h2>
-<p>You should be using the most recent stable version. Don’t use Python 2.</p>
+<h2>Python versions<a class="headerlink" href="#python-versions" title="Permalink to this headline">¶</a></h2>
+<p>You should be using the most recent stable version. Don’t use Python 2. If creating AWS lambda functions, refer to <a class="reference external" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">their docs</a> for information on the latest supported Python version (seems to lag behind the official Python releases).</p>
+</section>
+<section id="creating-a-project-from-templates">
+<h2>Creating a project from templates<a class="headerlink" href="#creating-a-project-from-templates" title="Permalink to this headline">¶</a></h2>
+<p>We have Github template repositories for two types of Python projects:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/MITLibraries/python-cli-template">CLI applications</a>, generally created with <a class="reference external" href="https://click.palletsprojects.com/">Click</a> and run as containers in Fargate.</p></li>
+<li><p><a class="reference external" href="https://github.com/MITLibraries/python-lambda-template">AWS lambda functions</a>, published and run as containerized functions.</p></li>
+</ul>
+<p>If you are creating either of those types of applications, please start from a template. See <a class="reference external" href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template">Github guidelines for creating a repository from a template</a>.</p>
+<p>Note: it’s important that you follow all of the setup instructions in the template’s README, particulary those regarding Github settings for the repository.</p>
+<p>If you notice anything that needs to be updated in either of the templates, please submit a PR!</p>
 </section>
 <section id="style-and-coding-conventions">
-<h2>Style and Coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h2>
+<h2>Style and coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Permalink to this headline">¶</a></h2>
 <p>In general, you should follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> and <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP 257</a>. Unless otherwise stated here, assume those two guidelines are in effect.</p>
 <p>If you are providing function docstrings, use <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reST</a>. In addition to a description of what a function does, you should document the parameters:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">widgetize</span><span class="p">(</span><span class="n">widget</span><span class="p">):</span>
@@ -55,22 +66,27 @@
   <span class="n">standardize</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </pre></div>
 </div>
+<section id="linting-code-quality-and-code-safety">
+<h3>Linting, code quality, and code safety<a class="headerlink" href="#linting-code-quality-and-code-safety" title="Permalink to this headline">¶</a></h3>
+<p>Our standard Python code checkers in all repositories include:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://bandit.readthedocs.io/en/latest/">bandit</a> - security</p></li>
+<li><p><a class="reference external" href="https://black.readthedocs.io/en/stable/">black</a> - formatting</p></li>
+<li><p><a class="reference external" href="https://pycqa.github.io/isort/">isort</a> - import order</p></li>
+<li><p><a class="reference external" href="https://mypy.readthedocs.io/en/stable/">mypy</a> - type hinting</p></li>
+<li><p><a class="reference external" href="https://github.com/klen/pylama">pylama</a> - formatting and code quality (wrapper around several other tools)</p></li>
+</ul>
+<p>These tools should be used during development and are run automatically in Github Actions during CI. They are all included in the template repositories listed above, and have integrations for common code editors to allow automatic checking and reformatting during development.</p>
+<p>The linters are usually run together with the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> command in a project’s Makefile. See the template repositories for examples.</p>
 </section>
-<section id="linting">
-<h2>Linting<a class="headerlink" href="#linting" title="Permalink to this headline">¶</a></h2>
-<p>It is recommended to use <a class="reference external" href="https://black.readthedocs.io/en/stable/">black</a> (formatting), <a class="reference external" href="https://flake8.pycqa.org/en/latest/index.html#quickstart">flake8</a> (formatting), <a class="reference external" href="https://bandit.readthedocs.io/en/latest/">bandit</a> (security),<a class="reference external" href="https://mypy.readthedocs.io/en/stable/">mypy</a> (type hinting), and <a class="reference external" href="https://pycqa.github.io/isort/">isort</a> (import order) during development and CI. Black is preferred as the primary formatting style due to its easy methods for auto-formatting the code.</p>
-<p>To install these linters when starting a new project, run <code class="docutils literal notranslate"><span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">--dev</span> <span class="pre">black</span> <span class="pre">flake8</span> <span class="pre">bandit</span> <span class="pre">mypy</span> <span class="pre">isort</span></code>. The linters can be run together by adding a <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> command to the project’s Makefile. See the <a class="reference external" href="https://github.com/MITLibraries/alma-scripts/blob/main/Makefile">Makefile</a> for the <code class="docutils literal notranslate"><span class="pre">llama</span></code> application for an example.</p>
-</section>
-<section id="command-line-interfaces">
-<h2>Command line interfaces<a class="headerlink" href="#command-line-interfaces" title="Permalink to this headline">¶</a></h2>
-<p>Typically, <a class="reference external" href="https://click.palletsprojects.com/en/8.0.x/">click</a> is used for creating command line interfaces (CLI) in Python projects.</p>
 </section>
 <section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>Use <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/">Pipenv</a> to manage dependencies. If there’s some reason you need to support pip, then you should still manage dependencies with pipenv, but generate your <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file as needed with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pipenv lock -r
+<p>Use <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/">Pipenv</a> to manage dependencies for Python applications. If there’s some reason you need to support pip, then you should still manage dependencies with pipenv, but generate your <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file as needed with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">requirements</span> <span class="o">&gt;</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
+<p>If you are creating a Python library, <a class="reference external" href="https://python-poetry.org/">Poetry</a> is the preferred package and distribution manager.</p>
 </section>
 <section id="project-documentation">
 <h2>Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this headline">¶</a></h2>
@@ -78,7 +94,13 @@
 </section>
 <section id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
-<p>Since we no longer have to support both Python 2 and 3 there’s less need for <a class="reference external" href="https://tox.readthedocs.org/en/latest/">tox</a>, though it can still be useful. Unless you are using something like Django that comes with its own testing framework, use <a class="reference external" href="https://docs.pytest.org">pytest</a>.</p>
+<p>All Python code should be thoroughly tested for expected cases, not just best-case scenarios. We generally use <a class="reference external" href="https://docs.pytest.org">Pytest</a> as the test framework for our repos, along with <a class="reference external" href="https://coverage.readthedocs.io/">Coverage</a> for test coverage reporting. These are included in the template repository dev dependencies.</p>
+<p>Other useful tools for testing in Python:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://docs.getmoto.org/en/latest/">moto</a> - for mocking AWS services in tests</p></li>
+<li><p><a class="reference external" href="https://requests-mock.readthedocs.io/en/latest/">requests-mock</a> - for mocking HTTP requests</p></li>
+<li><p><a class="reference external" href="https://vcrpy.readthedocs.io/en/latest/">vcrpy</a> - for automatically capturing calls to external APIs for reuse in tests</p></li>
+</ul>
 </section>
 </section>
 
@@ -113,10 +135,9 @@
 <p><span class="caption-text">Languages and Frameworks</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python Guidelines</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#python-versions">Python Versions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#style-and-coding-conventions">Style and Coding Conventions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#linting">Linting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#command-line-interfaces">Command line interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-versions">Python versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-project-from-templates">Creating a project from templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#style-and-coding-conventions">Style and coding Conventions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#project-documentation">Project Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
