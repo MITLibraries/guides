@@ -22,10 +22,27 @@ The accounts are maintained by EngX, so ask in our channel on the #engineering S
 
 ## How can I add Sentry to my Rails application
 
-- For most Rails application needs
-  - just add `gem 'sentry-raven'` to your Gemfile
-  - add `SENTRY_DSN` to your ENV. Set the value to whatever the project you just created provides.
-  - run the app and exceptions will be shipped to Sentry automatically with no additional initialization required
+For most Rails application needs:
+- Create a project for your application in [Sentry](https://sentry.io/organizations/mit-libraries/projects/new/).
+- Add `SENTRY_DSN` to your ENV. Set the value to whatever the project you just created provides.
+- Add `SENTRY_ENV` to your ENV. The value for this variable depends on which instance of your application you're
+configuring. For example, `pr` (for pipelines), `staging`, `dev`, and `prod` are all acceptable values.
+- Add the Sentry gems to your Gemfile:
+```Ruby
+gem 'sentry-rails'
+gem 'sentry-ruby'
+```
+- Create a a Sentry initializer in `config/initializers/sentry.rb`:
+```Ruby
+Sentry.init do |config|
+  return unless ENV.has_key?('SENTRY_DSN')
+  config.dsn = ENV.fetch('SENTRY_DSN')
+  config.breadcrumbs_logger = [:active_support_logger, :http_logger]
+  config.environment = ENV.fetch('SENTRY_ENV', 'unknown')
+end
+```
+- Run the app and exceptions will be shipped to Sentry automatically with no additional initialization required. You
+can test that it's working by sending a message from the console like this: `Sentry.capture_message('test')`.
 
 ## How can I add Sentry to my JavaScript features in my Rails application
 

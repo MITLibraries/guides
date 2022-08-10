@@ -58,14 +58,32 @@
 </section>
 <section id="how-can-i-add-sentry-to-my-rails-application">
 <h2>How can I add Sentry to my Rails application<a class="headerlink" href="#how-can-i-add-sentry-to-my-rails-application" title="Permalink to this headline">¶</a></h2>
+<p>For most Rails application needs:</p>
 <ul class="simple">
-<li><p>For most Rails application needs</p>
-<ul>
-<li><p>just add <code class="docutils literal notranslate"><span class="pre">gem</span> <span class="pre">'sentry-raven'</span></code> to your Gemfile</p></li>
-<li><p>add <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code> to your ENV. Set the value to whatever the project you just created provides.</p></li>
-<li><p>run the app and exceptions will be shipped to Sentry automatically with no additional initialization required</p></li>
+<li><p>Create a project for your application in <a class="reference external" href="https://sentry.io/organizations/mit-libraries/projects/new/">Sentry</a>.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code> to your ENV. Set the value to whatever the project you just created provides.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">SENTRY_ENV</span></code> to your ENV. The value for this variable depends on which instance of your application you’re
+configuring. For example, <code class="docutils literal notranslate"><span class="pre">pr</span></code> (for pipelines), <code class="docutils literal notranslate"><span class="pre">staging</span></code>, <code class="docutils literal notranslate"><span class="pre">dev</span></code>, and <code class="docutils literal notranslate"><span class="pre">prod</span></code> are all acceptable values.</p></li>
+<li><p>Add the Sentry gems to your Gemfile:</p></li>
 </ul>
-</li>
+<div class="highlight-Ruby notranslate"><div class="highlight"><pre><span></span><span class="n">gem</span> <span class="s1">&#39;sentry-rails&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;sentry-ruby&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create a a Sentry initializer in <code class="docutils literal notranslate"><span class="pre">config/initializers/sentry.rb</span></code>:</p></li>
+</ul>
+<div class="highlight-Ruby notranslate"><div class="highlight"><pre><span></span><span class="no">Sentry</span><span class="o">.</span><span class="n">init</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="k">return</span> <span class="k">unless</span> <span class="no">ENV</span><span class="o">.</span><span class="n">has_key?</span><span class="p">(</span><span class="s1">&#39;SENTRY_DSN&#39;</span><span class="p">)</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">dsn</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;SENTRY_DSN&#39;</span><span class="p">)</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">breadcrumbs_logger</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:active_support_logger</span><span class="p">,</span> <span class="ss">:http_logger</span><span class="o">]</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">environment</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;SENTRY_ENV&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the app and exceptions will be shipped to Sentry automatically with no additional initialization required. You
+can test that it’s working by sending a message from the console like this: <code class="docutils literal notranslate"><span class="pre">Sentry.capture_message('test')</span></code>.</p></li>
 </ul>
 </section>
 <section id="how-can-i-add-sentry-to-my-javascript-features-in-my-rails-application">
