@@ -1,7 +1,7 @@
-Working with AWS
-================
+Legacy AWS
+==========
 
-This covers basic documentation for working with our AWS account.
+This covers basic documentation for working with our legacy AWS account.
 
 .. warning:: You will have access to create AWS resources, but you should not do this unless you have been instructed to do so. Most of our infrastructure provisioning is automated through Terraform.
 

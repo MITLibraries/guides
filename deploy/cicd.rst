@@ -33,8 +33,19 @@ The testing action will likely vary from project to project, so your best bet wi
 
 in your ``.github/workflows/test.yml`` file.
 
-Fargate Deployment
-------------------
+AWS 2.0 Fargate/Lambda Deployment
+---------------------------------
+
+With the migration to our AWS Organization (see `AWS 2.0 <./aws-2.0>`), we have simplified and automated the container deployment process.
+
+1. For both Lambda functions and ECS tasks/services, we make use of the AWS ECR container repositories. These are fully managed by the `mitlib-tf-workloads-ecr <https://github.com/mitlibraries/mitlib-tf-workloads-ecr>`` repository. The repo not only creates the ECR repository, it also generates the Makefile for the associated repo that builds the container as well as the GitHub Actions workflows for pushing containers to dev, stage, and prod AWS Accounts.
+2. Once an Infra engineer has deployed the ECR repository, some copy/paste from the Terraform outputs will setup the Makefile and GitHub Actions workflows for the container repo.
+3. The automation follows our standard practice that (a) PRs to the `main` branch will push an updated container to the dev AWS Account, (b) merges to `main` will push an updated container to the stage AWS Account, and (c) a tagged release on `main` will copy the container from the stage to the prod AWS Account.
+
+The section below is only necessary for applications that are not yet migrated to the new AWS Organization.
+
+Legacy AWS Fargate Deployment
+-----------------------------
 
 Most of our AWS deployments target Fargate. The staging and production deploys should look more or less the same. There is a yaml template (:download:`deploy.yml`) that can be used for both, with only a few changes you will need to make. To use this template, do the following:
 
