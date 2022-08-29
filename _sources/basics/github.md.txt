@@ -1,17 +1,28 @@
-# GitHub 
+# GitHub
+
+## Repo naming
+
+Naming is important (see [There's Power in Naming ...](https://www.taketheleadwomen.com/blog/theres-power-in-naming-and-power-in-knowing-your-name)). More specific to our work, there are a few guidelines for naming new repos
+
+* All Terraform repo names start with **mitlib-tf** (to emphasize that these are MIT Libraries Terraform repositories)
+* All repos that are local tweaks to generally available, pre-built Docker images should start with **docker-** (to indicate that this is a Docker image, not a MIT Libraries built/managed application)
+
+There are probably more guidelines (e.g., some repo names should be recursive acronyms), but two is a good number to begin with.
 
 ## Recommended repo settings
 
-In the admin settings for repos on GitHub, the recommended settings are: 
+**Note**: Terraform repos should only be created via the [mitlib-tfc-mgmt](https://github.com/mitlibraries/mitlib-tfc-mgmt) repository (and this will take care of all of the appropriate admin settings as well as the integration with Terraform Cloud).
+
+In the admin settings for repos on GitHub, the recommended settings are:
+
 * Default branch should be "main" (`Branches > Default branch`)
 * Disable force push to the main branch. For everyone. Even admins. (`Branches > Protected branches`)
 * Edit the protected branch and check these option settings: 
-    - protect this branch
-    - require pull request reviews before merging
-    - require status checks to pass before merging
-    - require that branches are up to date
+  * protect this branch
+  * require pull request reviews before merging
+  * require status checks to pass before merging
+  * require that branches are up to date
 * Allow merge commits (`Options > Merge button`)
-* **Required for Terraform repos** Disable squash commits (`Options > Merge button`)
 
 ## Workflows
 

@@ -65,8 +65,18 @@
 </div>
 <p>in your <code class="docutils literal notranslate"><span class="pre">.github/workflows/test.yml</span></code> file.</p>
 </section>
-<section id="fargate-deployment">
-<h2>Fargate Deployment<a class="headerlink" href="#fargate-deployment" title="Permalink to this headline">¶</a></h2>
+<section id="aws-2-0-fargate-lambda-deployment">
+<h2>AWS 2.0 Fargate/Lambda Deployment<a class="headerlink" href="#aws-2-0-fargate-lambda-deployment" title="Permalink to this headline">¶</a></h2>
+<p>With the migration to our AWS Organization (see <cite>AWS 2.0 &lt;./aws-2.0&gt;</cite>), we have simplified and automated the container deployment process.</p>
+<ol class="arabic simple">
+<li><p>For both Lambda functions and ECS tasks/services, we make use of the AWS ECR container repositories. These are fully managed by the <cite>mitlib-tf-workloads-ecr &lt;https://github.com/mitlibraries/mitlib-tf-workloads-ecr&gt;`</cite> repository. The repo not only creates the ECR repository, it also generates the Makefile for the associated repo that builds the container as well as the GitHub Actions workflows for pushing containers to dev, stage, and prod AWS Accounts.</p></li>
+<li><p>Once an Infra engineer has deployed the ECR repository, some copy/paste from the Terraform outputs will setup the Makefile and GitHub Actions workflows for the container repo.</p></li>
+<li><p>The automation follows our standard practice that (a) PRs to the <cite>main</cite> branch will push an updated container to the dev AWS Account, (b) merges to <cite>main</cite> will push an updated container to the stage AWS Account, and (c) a tagged release on <cite>main</cite> will copy the container from the stage to the prod AWS Account.</p></li>
+</ol>
+<p>The section below is only necessary for applications that are not yet migrated to the new AWS Organization.</p>
+</section>
+<section id="legacy-aws-fargate-deployment">
+<h2>Legacy AWS Fargate Deployment<a class="headerlink" href="#legacy-aws-fargate-deployment" title="Permalink to this headline">¶</a></h2>
 <p>Most of our AWS deployments target Fargate. The staging and production deploys should look more or less the same. There is a yaml template (<a class="reference download internal" download="" href="../_downloads/ba311a13e55163995ec339e8702b33fe/deploy.yml"><code class="xref download docutils literal notranslate"><span class="pre">deploy.yml</span></code></a>) that can be used for both, with only a few changes you will need to make. To use this template, do the following:</p>
 <ol class="arabic">
 <li><p>Make two copies of the template, one called <code class="docutils literal notranslate"><span class="pre">.github/workflows/stage.yml</span></code> and one called <code class="docutils literal notranslate"><span class="pre">.github/workflows/prod.yml</span></code>.</p></li>
@@ -141,13 +151,14 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Continuous Integration/Deployment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fargate-deployment">Fargate Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aws-2-0-fargate-lambda-deployment">AWS 2.0 Fargate/Lambda Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#legacy-aws-fargate-deployment">Legacy AWS Fargate Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="heroku.html">Heroku</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heroku_checklist.html">Heroku Launch Checklist</a></li>
-<li class="toctree-l1"><a class="reference internal" href="legacy-aws.html">Working with AWS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="legacy-terraform.html">Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legacy-aws.html">Legacy AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legacy-terraform.html">Legacy Terraform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terraform-1.0.html">Terraform</a></li>
 </ul>

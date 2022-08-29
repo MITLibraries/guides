@@ -35,8 +35,18 @@
             
   <section id="github">
 <h1>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h1>
+<section id="repo-naming">
+<h2>Repo naming<a class="headerlink" href="#repo-naming" title="Permalink to this headline">¶</a></h2>
+<p>Naming is important (see <a class="reference external" href="https://www.taketheleadwomen.com/blog/theres-power-in-naming-and-power-in-knowing-your-name">There’s Power in Naming …</a>). More specific to our work, there are a few guidelines for naming new repos</p>
+<ul class="simple">
+<li><p>All Terraform repo names start with <strong>mitlib-tf</strong> (to emphasize that these are MIT Libraries Terraform repositories)</p></li>
+<li><p>All repos that are local tweaks to generally available, pre-built Docker images should start with <strong>docker-</strong> (to indicate that this is a Docker image, not a MIT Libraries built/managed application)</p></li>
+</ul>
+<p>There are probably more guidelines (e.g., some repo names should be recursive acronyms), but two is a good number to begin with.</p>
+</section>
 <section id="recommended-repo-settings">
 <h2>Recommended repo settings<a class="headerlink" href="#recommended-repo-settings" title="Permalink to this headline">¶</a></h2>
+<p><strong>Note</strong>: Terraform repos should only be created via the <a class="reference external" href="https://github.com/mitlibraries/mitlib-tfc-mgmt">mitlib-tfc-mgmt</a> repository (and this will take care of all of the appropriate admin settings as well as the integration with Terraform Cloud).</p>
 <p>In the admin settings for repos on GitHub, the recommended settings are:</p>
 <ul class="simple">
 <li><p>Default branch should be “main” (<code class="docutils literal notranslate"><span class="pre">Branches</span> <span class="pre">&gt;</span> <span class="pre">Default</span> <span class="pre">branch</span></code>)</p></li>
@@ -50,7 +60,6 @@
 </ul>
 </li>
 <li><p>Allow merge commits (<code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">&gt;</span> <span class="pre">Merge</span> <span class="pre">button</span></code>)</p></li>
-<li><p><strong>Required for Terraform repos</strong> Disable squash commits (<code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">&gt;</span> <span class="pre">Merge</span> <span class="pre">button</span></code>)</p></li>
 </ul>
 </section>
 <section id="workflows">
@@ -186,6 +195,7 @@ they are watching the new branch (e.g., CodeClimate, CI/CD).</p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="a11y.html">Accessibility / a11y</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">GitHub</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#repo-naming">Repo naming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#recommended-repo-settings">Recommended repo settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#workflows">Workflows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#merging-and-rebasing">Merging and Rebasing</a></li>
@@ -223,8 +233,8 @@ they are watching the new branch (e.g., CodeClimate, CI/CD).</p>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/cicd.html">Continuous Integration/Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/heroku.html">Heroku</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/heroku_checklist.html">Heroku Launch Checklist</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../deploy/legacy-aws.html">Working with AWS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../deploy/legacy-terraform.html">Terraform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/legacy-aws.html">Legacy AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deploy/legacy-terraform.html">Legacy Terraform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/terraform-1.0.html">Terraform</a></li>
 </ul>

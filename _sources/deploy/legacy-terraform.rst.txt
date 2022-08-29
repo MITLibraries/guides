@@ -1,4 +1,4 @@
-Terraform
+Legacy Terraform
 =========
 
 This contains most of the documentation for how we use Terraform here. The primary repository is located at https://github.com/MITLibraries/mitlib-terraform but there are other repos in the org that provide modules.
