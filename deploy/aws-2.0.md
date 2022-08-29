@@ -6,7 +6,7 @@ As of December 2021, MIT Libraries has shifted to an AWS Organization containing
 
 Verify that you can access our AWS Organization by visiting [MIT Libraries AWS Landing Page](https://mitlib.awsapps.com/start#/). Log in with your MIT kerb and be prepared for Touchstone MFA via the Duo app. This is the only way to access any resources in our AWS Accounts as a human. If you have any access issues, contact the InfraEng team via Slack or JSM.
 
-## AWS Organization
+## AWS Org Accounts
 
 There are multiple AWS Accounts in our single AWS Organization. A few of these accounts have very limited access for a subset of InfraEng for the purpose of audit logging and security reviews. The remainder of the accounts serve one of three purposes.
 
