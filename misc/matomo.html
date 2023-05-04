@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Configuring Matomo for analytics &#8212; Guides  documentation</title>
+    <title>Configuring apps to use Matomo for analytics &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -33,66 +33,32 @@
 
           <div class="body" role="main">
             
-  <section id="configuring-matomo-for-analytics">
-<h1>Configuring Matomo for analytics<a class="headerlink" href="#configuring-matomo-for-analytics" title="Permalink to this headline">¶</a></h1>
+  <section id="configuring-apps-to-use-matomo-for-analytics">
+<h1>Configuring apps to use Matomo for analytics<a class="headerlink" href="#configuring-apps-to-use-matomo-for-analytics" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://matomo.org">Matomo</a> (formerly piwik) is an open-source analytics
 software. We prefer it to Googe Analytics due to its emphasis on user
-privacy. Whenever possible, Matomo should be used for analytics instead
-of GA in MIT Libraries applications.</p>
+privacy.</p>
 <p>Our Matomo instance runs as a Docker container in Fargate. A repo with
 the dockerfile and config is located on <a class="reference external" href="https://github.com/MITLibraries/docker-matomo">GitHub</a>.</p>
-<p>This guide will walk through the basic steps to add a website to Matomo.
+<p>This guide covers how to add Matomo tracking code to a web application.
 For more in-depth information on using and developing Matomo, see the
-<a class="reference external" href="https://matomo.org/help/">offical Matomo docs</a>.</p>
-<section id="universal-settings">
-<h2>Universal settings<a class="headerlink" href="#universal-settings" title="Permalink to this headline">¶</a></h2>
-<p>All websites tracked by Matomo anonymize visitor IPs to two bytes (e.g.,
-192.168.x.x).</p>
-</section>
-<section id="setting-up-a-new-website-in-matomo">
-<h2>Setting up a new website in Matomo<a class="headerlink" href="#setting-up-a-new-website-in-matomo" title="Permalink to this headline">¶</a></h2>
-<p>Each app is tracked as a website in Matomo. Please create a different
-website for each environment of your application (e.g., staging and prod
-will be separate websites in Matomo).</p>
-<p><em>Note: Accounts with superuser permissions add new websites to Matomo.
-If you don’t have superuser access, ask EngX.</em></p>
-<ol class="simple">
-<li><p>Log into Matomo at https://analytics-prod.mitlib.net. (There is also
-a staging instance behind the Cisco VPN at https://analytics-stage.mitlib.net.)
-If you don’t have an account, EngX can create one for you.</p></li>
-<li><p>Click the Settings link (gearbox in navbar) &gt; Websites &gt; Manage &gt;
-Add a new measurable,</p></li>
-<li><p>Give the measurable a useful name. We generally use the name the app is
-known by internally, plus a note if it’s the staging app. E.g.: “Bento”
-or “Bento (staging)”.</p></li>
-<li><p>Add the root URL for the application, as well as any aliases. It is
-not necessary to add specific routes in the application.</p></li>
-<li><p>Leave the remaining settings as their defaults, then click ‘Save’.</p></li>
-</ol>
-<p>The website will now be listed under Websites &gt; Manage.</p>
-</section>
-<section id="setting-up-matomo-tracking-in-your-app">
-<h2>Setting up Matomo tracking in your app<a class="headerlink" href="#setting-up-matomo-tracking-in-your-app" title="Permalink to this headline">¶</a></h2>
-<p>Now that you’ve added your app to Matomo, you can set up tracking by
-adding Matomo’s tracking code to your app.</p>
+<a class="reference external" href="https://matomo.org/help/">offical Matomo docs</a>. For information specific
+to our implementation, such as config and how to access staging and prod, visit
+the <a class="reference external" href="https://wikis.mit.edu/confluence/display/UXWS/Matomo+analytics">Matomo analytics</a> page in the UXWS Confluence.</p>
 <section id="for-rails-applications-hosted-on-heroku">
-<h3>For Rails applications hosted on Heroku<a class="headerlink" href="#for-rails-applications-hosted-on-heroku" title="Permalink to this headline">¶</a></h3>
+<h2>For Rails applications hosted on Heroku<a class="headerlink" href="#for-rails-applications-hosted-on-heroku" title="Permalink to this headline">¶</a></h2>
 <p>The tracking code is already included in the <a class="reference external" href="https://github.com/mitlibraries/mitlibraries-theme">mitlibraries-theme gem</a>. Assuming your app uses mitlibraries-theme, you can
 activate tracking by adding the following environment variables to your
 Heroku app:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">MATOMO_URL</span></code> - the URL of the Matomo app you are connecting to (probably
-this one: https://analytics-prod.mitlib.net/). Make sure to include the
-trailing forward slash!</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MATOMO_URL</span></code> - the URL of the Matomo app you are connecting to. Make sure to include the trailing forward slash!</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">MATOMO_SITE_ID</span></code> - the ID of the measurable you are tracking. You can
-find this in Matomo by going to Settings (gearbox icon in navbar) &gt; Websites</p></li>
+find this in Matomo by going to Settings (gearbox icon in navbar) &gt; Websites &gt; Manage. The ID for each website will
+appear underneath the website name.</p></li>
 </ul>
-<blockquote>
-<div><p>Manage. The ID for each website will appear underneath the website name.</p>
-</div></blockquote>
 </section>
 <section id="for-other-applications">
-<h3>For other applications<a class="headerlink" href="#for-other-applications" title="Permalink to this headline">¶</a></h3>
+<h2>For other applications<a class="headerlink" href="#for-other-applications" title="Permalink to this headline">¶</a></h2>
 <p>We don’t yet have a procedure for non-Rails apps. You will need to add
 the Matomo tracking JS (found in Settings &gt; Websites &gt; Tracking Code) to
 your app directly.</p>
@@ -100,19 +66,12 @@ your app directly.</p>
 links, and making sure this activity was recorded in the Matomo dashboard.
 Also make sure that IPs are anonymized (they should be, but make sure anyway).</p>
 </section>
-</section>
 <section id="other-things-to-note">
 <h2>Other things to note<a class="headerlink" href="#other-things-to-note" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Matomo prod is at https://analytics-prod.mitlib.net. Staging is at
-https://analytics-stage.mitlib.net.</p></li>
-<li><p>Matomo staging is behind the Cisco VPN. You will not be able to access
-it using the GlobalProtect VPN.</p></li>
-<li><p>We run a cron job as a scheduled ECS task to compile the raw data (more
+<p>We run a cron job as a scheduled ECS task to compile the raw data (more
 info on this is available in the <a class="reference external" href="(https://github.com/MITLibraries/docker-matomo)">GitHub repo</a>.
 If you are not seeing any data in the dashboard, something is probably
-wrong with the cron job.</p></li>
-</ul>
+wrong with the cron job.</p>
 </section>
 </section>
 
@@ -175,10 +134,9 @@ wrong with the cron job.</p></li>
 <li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="incident_response.html">Incident Response Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuring Matomo for analytics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#universal-settings">Universal settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setting-up-a-new-website-in-matomo">Setting up a new website in Matomo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setting-up-matomo-tracking-in-your-app">Setting up Matomo tracking in your app</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuring apps to use Matomo for analytics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#for-rails-applications-hosted-on-heroku">For Rails applications hosted on Heroku</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#for-other-applications">For other applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-things-to-note">Other things to note</a></li>
 </ul>
 </li>
