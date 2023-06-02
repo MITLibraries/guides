@@ -57,14 +57,45 @@ find this in Matomo by going to Settings (gearbox icon in navbar) &gt; Websites 
 appear underneath the website name.</p></li>
 </ul>
 </section>
-<section id="for-other-applications">
-<h2>For other applications<a class="headerlink" href="#for-other-applications" title="Permalink to this headline">¶</a></h2>
-<p>We don’t yet have a procedure for non-Rails apps. You will need to add
-the Matomo tracking JS (found in Settings &gt; Websites &gt; Tracking Code) to
-your app directly.</p>
-<p>Confirm that tracking is working by visiting your site, clicking a few
-links, and making sure this activity was recorded in the Matomo dashboard.
-Also make sure that IPs are anonymized (they should be, but make sure anyway).</p>
+<section id="for-the-wordpress-network-hosted-on-pantheon">
+<h2>For the WordPress network hosted on Pantheon<a class="headerlink" href="#for-the-wordpress-network-hosted-on-pantheon" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/MITLibraries/mitlib-wp-network/tree/master/web/app/plugins/mitlib-analytics">mitlib-analytics plugin</a>
+inserts Matomo tracking code into the network. The plugin has two config values – Matomo URL and Matomo property ID –
+both of which can be set in the network admin console.</p>
+<p>Note that we collect data for libraries.mit.edu and LibGuides in the same Matomo property, so these will use the same
+property ID.</p>
+</section>
+<section id="for-libguides-and-another-libapps-products">
+<h2>For LibGuides and another LibApps products<a class="headerlink" href="#for-libguides-and-another-libapps-products" title="Permalink to this headline">¶</a></h2>
+<p>We track LibGuides on the same Matomo property as the WordPress network. Since there is no staging or dev environment in LibApps, we need to make the changes live in prod by adding/editing tracking code in the header.</p>
+<p>The
+<a class="reference external" href="https://github.com/MITLibraries/hosted-branding">hosted-branding repo</a> details how to modify LibApps headers. Once you
+have made changes, make sure to check the updated header markup into the hosted-branding repo.</p>
+<p>If you’d like to test changes before they go live, we have a
+<a class="reference external" href="https://libguides.mit.edu/test-group">test group in LibGuides</a> that has its own header/footer and JS/CSS. The test
+group has minimal content, but you should be able to discern whether tracking data is being sent to Matomo.</p>
+</section>
+<section id="for-static-sites">
+<h2>For static sites<a class="headerlink" href="#for-static-sites" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/mitlibraries/mitlib-tf-workloads-libraries-website">mitlib-tf-workloads-libraries-website</a> repo
+builds a CDN for static content. Typically, this is infrastructure is used for legacy sites like
+<a class="reference external" href="https://github.com/MITLibraries/future-of-libraries-static">Future of Libraries</a>.</p>
+<p>Matomo needs to be set up differently for these sites in order to accommodate the CSP directives for the CDN. As
+described in <a class="reference external" href="https://matomo.org/faq/general/faq_20904/">this FAQ</a>, the tracking code should be loaded from the site’s
+assets directory (rather than inline), and the client script should be loaded explicitly (rather than from the tracking
+code).</p>
+<p>For Future of Libraries, and likely for other static sites, these <code class="docutils literal notranslate"><span class="pre">script</span></code> tags will have to be added to the <code class="docutils literal notranslate"><span class="pre">head</span></code> of
+each HTML file in the site. The best way we’ve found to do this is find/replace in your IDE, which feels adequate for a one-time process. If we find that we need to edit the script tags often, then a find/replace script may be useful.</p>
+</section>
+<section id="for-dspace-mit">
+<h2>For DSpace&#64;MIT<a class="headerlink" href="#for-dspace-mit" title="Permalink to this headline">¶</a></h2>
+<p>The DSpace&#64;MIT codebase is hosted on Atmire’s GitLab organization. In order to add or modify tracking code, you will
+need a GitLab account. As of June 2023, the Digital Library Systems Manager is our point of contact with Atmire.</p>
+<p><em>More details to be added once we’ve configured Matomo in DSpace&#64;MIT.</em></p>
+</section>
+<section id="for-dome">
+<h2>For Dome<a class="headerlink" href="#for-dome" title="Permalink to this headline">¶</a></h2>
+<p>TBD, pending migration of Dome to our AWS org.</p>
 </section>
 <section id="other-things-to-note">
 <h2>Other things to note<a class="headerlink" href="#other-things-to-note" title="Permalink to this headline">¶</a></h2>
@@ -136,7 +167,11 @@ wrong with the cron job.</p>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuring apps to use Matomo for analytics</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#for-rails-applications-hosted-on-heroku">For Rails applications hosted on Heroku</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#for-other-applications">For other applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#for-the-wordpress-network-hosted-on-pantheon">For the WordPress network hosted on Pantheon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#for-libguides-and-another-libapps-products">For LibGuides and another LibApps products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#for-static-sites">For static sites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#for-dspace-mit">For DSpace&#64;MIT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#for-dome">For Dome</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-things-to-note">Other things to note</a></li>
 </ul>
 </li>
