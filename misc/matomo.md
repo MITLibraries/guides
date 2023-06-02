@@ -24,15 +24,51 @@ Heroku app:
 find this in Matomo by going to Settings (gearbox icon in navbar) > Websites > Manage. The ID for each website will
 appear underneath the website name.
 
-## For other applications
+## For the WordPress network hosted on Pantheon
 
-We don’t yet have a procedure for non-Rails apps. You will need to add 
-the Matomo tracking JS (found in Settings > Websites > Tracking Code) to 
-your app directly.
+The [mitlib-analytics plugin](https://github.com/MITLibraries/mitlib-wp-network/tree/master/web/app/plugins/mitlib-analytics)
+inserts Matomo tracking code into the network. The plugin has two config values -- Matomo URL and Matomo property ID --
+both of which can be set in the network admin console.
 
-Confirm that tracking is working by visiting your site, clicking a few 
-links, and making sure this activity was recorded in the Matomo dashboard. 
-Also make sure that IPs are anonymized (they should be, but make sure anyway).
+Note that we collect data for libraries.mit.edu and LibGuides in the same Matomo property, so these will use the same
+property ID.
+
+## For LibGuides and another LibApps products
+
+We track LibGuides on the same Matomo property as the WordPress network. Since there is no staging or dev environment in LibApps, we need to make the changes live in prod by adding/editing tracking code in the header.
+
+The
+[hosted-branding repo](https://github.com/MITLibraries/hosted-branding) details how to modify LibApps headers. Once you
+have made changes, make sure to check the updated header markup into the hosted-branding repo.
+
+If you'd like to test changes before they go live, we have a
+[test group in LibGuides](https://libguides.mit.edu/test-group) that has its own header/footer and JS/CSS. The test
+group has minimal content, but you should be able to discern whether tracking data is being sent to Matomo.
+
+## For static sites
+
+The [mitlib-tf-workloads-libraries-website](https://github.com/mitlibraries/mitlib-tf-workloads-libraries-website) repo
+builds a CDN for static content. Typically, this is infrastructure is used for legacy sites like
+[Future of Libraries](https://github.com/MITLibraries/future-of-libraries-static).
+
+Matomo needs to be set up differently for these sites in order to accommodate the CSP directives for the CDN. As
+described in [this FAQ](https://matomo.org/faq/general/faq_20904/), the tracking code should be loaded from the site's
+assets directory (rather than inline), and the client script should be loaded explicitly (rather than from the tracking
+code).
+
+For Future of Libraries, and likely for other static sites, these `script` tags will have to be added to the `head` of
+each HTML file in the site. The best way we've found to do this is find/replace in your IDE, which feels adequate for a one-time process. If we find that we need to edit the script tags often, then a find/replace script may be useful.
+
+## For DSpace@MIT
+
+The DSpace@MIT codebase is hosted on Atmire's GitLab organization. In order to add or modify tracking code, you will
+need a GitLab account. As of June 2023, the Digital Library Systems Manager is our point of contact with Atmire.
+
+_More details to be added once we've configured Matomo in DSpace@MIT._
+
+## For Dome
+
+TBD, pending migration of Dome to our AWS org.
 
 ## Other things to note
 
