@@ -42,6 +42,21 @@ The accounts are maintained by EngX, so ask in our channel on the #engineering S
 
 ## How can I add Sentry to my Python application
 
+For an application that you are developing locally:
+
+1. Using the DSN from the Sentry project's SDK Setup > Client Keys (DSN), set `SENTRY_DSN="<Sentry DSN for the project>"` in the repo's `.env` file. 
+2. Ideally, Sentry is configured before any functional application code is added. If Sentry is added after there is functional code, comment out any code after Sentry is configured in the application, typically with `configure_sentry()` from the Python template repos.
+3. Add `1/0` in the code which will trigger a `ZeroDivisionError` that will be reported to Sentry.
+4. In the project's `.env` file, set `WORKSPACE="dev"`.
+5. Run the application to trigger the error and establish the `dev` environment in the Sentry project. 
+6. Confirm that a `ZeroDivisionError` was reported to the correct environment in the Sentry project.
+7. Repeat steps 4-6 for `stage` and `prod`.
+8. Restore the application code to its original state.
+  a. Set `SENTRY_DSN="None"`. 
+  b. Remove `1/0` from application.
+  c. Restore any commented out application code.
+  d. Set `WORKSPACE="dev"`.
+
 For both Django and Flask, add `SENTRY_DSN` to your ENV and set this to whatever value the project you just created provides.
 
 ### Django
