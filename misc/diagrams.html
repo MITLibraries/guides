@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Central Logging &#8212; Guides  documentation</title>
+    <title>Diagramming Guidelines &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Configuring apps to use Matomo for analytics" href="matomo.html" />
-    <link rel="prev" title="Incident Response Guidelines" href="incident_response.html" />
+    <link rel="next" title="Containerizing Your App" href="docker.html" />
+    <link rel="prev" title="Architecture Decision Records" href="adr.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,24 +33,33 @@
 
           <div class="body" role="main">
             
-  <section id="central-logging">
-<h1>Central Logging<a class="headerlink" href="#central-logging" title="Permalink to this headline">¶</a></h1>
-<p>We use Logz.io for central logging. All apps should be sending logs here. Note that this is different than <a class="reference external" href="https://mitlibraries.github.io/guides/misc/exception_monitoring.html">exception monitoring</a>. Access to our Logz.io account is managed through Touchstone and must be accessed with the following URL: <a class="reference external" href="https://logzio-libraries.mit.edu">Logz.io for MIT Libraries</a>.</p>
-<section id="logging-standards">
-<h2>Logging Standards<a class="headerlink" href="#logging-standards" title="Permalink to this headline">¶</a></h2>
-<p>Everything effectively goes into a big bucket in Logz, so we need to make sure that we are all following some baseline standards.</p>
+  <section id="diagramming-guidelines">
+<h1>Diagramming Guidelines<a class="headerlink" href="#diagramming-guidelines" title="Permalink to this headline">¶</a></h1>
+<p>We use <a class="reference external" href="https://mermaid.js.org/intro/">Mermaid</a> as our primary diagramming tool. Mermaid is <a class="reference external" href="https://mermaid.js.org/intro/#about-mermaid">“a JavaScript based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically”</a>. Mermaid enables us to:</p>
+<ul class="simple">
+<li><p>take a “diagram-as-code” approach for creating diagrams;</p></li>
+<li><p>include diagrams as part of code review;</p></li>
+<li><p>easily modify diagrams to reflect updated functionality;</p></li>
+<li><p>maintain change history of our diagrams (i.e., changes tracked via git commits);</p></li>
+<li><p>collaborate with one another more effectively when creating diagrams;</p></li>
+<li><p>establish consistency in our documentation by using a shared language.</p></li>
+</ul>
+<p>This guideline provides some tips and questions to consider when creating diagrams with accessibility and interpretability in mind.</p>
+<section id="who-is-the-intended-audience">
+<h2>Who is the intended audience<a class="headerlink" href="#who-is-the-intended-audience" title="Permalink to this headline">¶</a></h2>
+<p>Before starting your diagram, it’s important to think about your intended audience. Who are you creating the diagram for and who is it meant to help? Your audience will inform the level of detail your diagram requires. For instance, a low-level, “nuts-and-bolts” diagram may be more useful for an engineering team, while higher-level diagrams may be better suited for other stakeholders.</p>
 </section>
-<section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p>Every app must use an <code class="docutils literal notranslate"><span class="pre">app</span></code> field whose value follows the pattern: <code class="docutils literal notranslate"><span class="pre">&lt;app</span> <span class="pre">name&gt;-&lt;server</span> <span class="pre">type&gt;</span></code>. For example: <code class="docutils literal notranslate"><span class="pre">bento-prod</span></code>.</p></li>
-<li><p>Use JSON as your log format. If this is not possible use syslog format.</p></li>
-</ol>
+<section id="when-do-we-create-diagrams">
+<h2>When do we create diagrams<a class="headerlink" href="#when-do-we-create-diagrams" title="Permalink to this headline">¶</a></h2>
+<p>Diagrams should be incorporated in the early stages of application development and incorporated into the engineering plan. Ask yourself, “how many words does it take to describe the flow?” and determine if a diagram will ease explanation. Before writing any code for the application or a new feature, try to write a description of the purpose of the application (or feature update) and create diagrams that explain the architecture or code workflow. For example, create a <a class="reference external" href="https://mermaid.js.org/syntax/classDiagram.html">class diagram</a> describing a proposed Python module, or create a <a class="reference external" href="https://mermaid.js.org/syntax/sequenceDiagram.html">sequence diagram</a> describing the interactions (i.e., data flow) between software utilities that the application will rely on.</p>
 </section>
-<section id="access">
-<h2>Access<a class="headerlink" href="#access" title="Permalink to this headline">¶</a></h2>
-<p>Access to our <a class="reference external" href="https://logzio-libraries.mit.edu">Logz.io for MIT Libraries</a> is managed through Moira groups and Touchstone (which provides SSO and MFA). If you do not have an account in <a class="reference external" href="https://logzio-libraries.mit.edu">Logz.io for MIT Libraries</a> and need one, please reach out to the EngX or InfraEng leads and one of them will update the Moira group to provide access.</p>
-<p><em>Note: Ask on the <code class="docutils literal notranslate"><span class="pre">#engineering</span></code> Slack channel for our shared Logz.io token.</em></p>
+<section id="where-do-we-use-diagrams">
+<h2>Where do we use diagrams<a class="headerlink" href="#where-do-we-use-diagrams" title="Permalink to this headline">¶</a></h2>
+<p>Diagrams are included in our GitHub repositories and Confluence documents. Both applications support Mermaid. Github allows you to <a class="reference external" href="https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/">include diagrams in your Markdown files with Mermaid</a>. Code blocks marked as <code class="docutils literal notranslate"><span class="pre">mermaid</span></code> will render raw Mermaid syntax into diagrams in your local browser. Atlassian provides a variety of apps (e.g., <a class="reference external" href="https://marketplace.atlassian.com/apps/1226567/mermaid-diagrams-for-confluence?hosting=cloud&amp;tab=overview">Mermaid Diagrams for Confluence</a>) that allow you to embed Mermaid diagrams directly in your Confluence documents.</p>
+</section>
+<section id="why-do-we-need-diagrams">
+<h2>Why do we need diagrams<a class="headerlink" href="#why-do-we-need-diagrams" title="Permalink to this headline">¶</a></h2>
+<p>Diagrams are useful for communicating the data flow within an application. Diagrams can be particularly helpful for complex data-intensive applications. That being said, there are some applications where the flow is simple and straightforward enough to not require a diagram. In these applications, thoughtfully written code can serve as documentation. Diagrams also increase accessibility of our data applications, by serving as another medium through which developers and stakeholders alike can understand the tools we create to support the work of MIT Libraries.</p>
 </section>
 </section>
 
@@ -109,16 +118,17 @@
 <p><span class="caption-text">Everything else</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="adr.html">Architecture Decision Records</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagramming Guidelines</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Diagramming Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#who-is-the-intended-audience">Who is the intended audience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#when-do-we-create-diagrams">When do we create diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#where-do-we-use-diagrams">Where do we use diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-do-we-need-diagrams">Why do we need diagrams</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Containerizing Your App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exception_monitoring.html">Exception Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="incident_response.html">Incident Response Guidelines</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Central Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#logging-standards">Logging Standards</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#access">Access</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Central Logging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="matomo.html">Configuring apps to use Matomo for analytics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="proxy_urls.html">Proxy URLs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ssl.html">SSL Encryption</a></li>
@@ -128,8 +138,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="incident_response.html" title="previous chapter">Incident Response Guidelines</a></li>
-      <li>Next: <a href="matomo.html" title="next chapter">Configuring apps to use Matomo for analytics</a></li>
+      <li>Previous: <a href="adr.html" title="previous chapter">Architecture Decision Records</a></li>
+      <li>Next: <a href="docker.html" title="next chapter">Containerizing Your App</a></li>
   </ul></li>
 </ul>
 </div>
@@ -163,7 +173,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/misc/logging.md.txt"
+      <a href="../_sources/misc/diagrams.md.txt"
           rel="nofollow">Page source</a>
     </div>
 
