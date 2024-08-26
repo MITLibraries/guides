@@ -1,68 +1,100 @@
-# Accessibility / a11y
+# Accessibility
 
 ## Background info
 
-[The A11y Project](https://a11yproject.com/about)
+Accessibility (shortened as a11y) is a primary consideration in our design and engineering processes. By foregrounding
+accessibility, we intend to make our web properties more equitable and usable for everyone.
+
+The Libraries' Accessibility Team (LAT), established in 2023, has adopted [Inclusive Design](https://www.nngroup.com/articles/inclusive-design)
+as one of its guiding principles. Inclusive Design is similar to [Universal Design](https://universaldesign.ie/about-universal-design),
+in that both explore the idea of meeting as many people’s needs as possible. Inclusive Design focuses more on individual
+needs, and acknowledges that multiple design approaches may be required to meet this goal.
+
+We consider Inclusive Design to be an inherently aspirational goal, as more can always be done. This is also what makes
+it a useful framing device for accessibility work. The human experience is incredibly diverse, and a single design is
+not likely to meet every person's needs. We can always strive to do better.
 
 ## Goals
 
 - The site is usable by everyone.
-- Intentional access restrictions like MIT only are okay.
+- The site meets as many people's accessibility needs as possible.
 - Anyone that is authorized to use a site can actually use it.
+  - Intentional access restrictions (like 'MIT users only') are okay.
+- The site is compliant with [WCAG 2.1 AA](https://www.w3.org/TR/2023/REC-WCAG21-20230921/) guidelines.
 
-## Local Coding Projects
+## Local software projects
 
-- Local coding projects should schedule an accessibility plan review with UX
-  early in the project.
-- Part of that plan will likely be to schedule an internal review with UX
-  towards the end of the project.
-- Most projects should, coordinated through UX, schedule a formal review by [MIT
-  Assistive Technology Information Center
-  (ATIC)](http://studentlife.mit.edu/atic/) towards the end of the project. The
-  process and expectations for this should be discussed during the initial
-  accessibility plan review.
-- Use valid html 5 and our [style guide](/mitlib-style) to start out with a
-  great baseline for accessible websites.
-- Run some local checks throughout your development process to fix any issues
-  you can as they come up, but don't stress about trying to pass every test on
-  your own.
-- Ask UX if something concerns you that you can't fix on your own so
-  they can determine if they want to help now, or wait for the accessibility
-  review at the end of the project.
-- Accessibility reviews from UX and ATIC will provide guidance on resolving any
-  issues before or shortly after a project goes into production.
+Local projects should include an accessibility review. This should be added to the project timeline as early as possible
+in the scheduling process. The review plan should include a formal review by [Disability and Access Services](https://studentlife.mit.edu/das)
+towards the end of the project. The process and expectations for this should be discussed during the initial
+accessibility planning, but it has typically gone as follows:
 
-## Implementing Open Source or Vended Solutions
+- We develop an accessibility testing script (usually completed by someone in UXWS) and reach out to our contacts at DAS;
+- We meet with DAS to discuss what the app does and any specifics we'd like them to test;
+- We share the staging app with DAS, who complete their review and leave notes as issues a private GitHub repo;
+- We fix any open issues and confirm with DAS that they have been resolved.
 
-- Discuss with UX whether an accessibility review is appropriate and who will
-  lead the review.
+While writing frontend code, keep the following tips in mind:
 
-## Automated Checking
+- Use valid HTML5 and our [style guide](/mitlib-style) to start with a good baseline for usable and accessible websites.
+  - All Rails apps should include our [theme gem](https://github.com/MITLibraries/mitlibraries-theme/), which provides
+  styles from the guide and various partials to improve accessibility.
+- Use semantic HTML elements and ARIA attributes where appropriate to help screen reader users navigate the page.
+- Ensure that every page has a logical tab structure.
+- Ensure that every page includes a skip link, so people using keyboard navigation can jump to the page's main content.
+(A customizable skip link partial is included in the theme gem.)
+- Run local checks throughout your development process (see [Accessibility testing](#accessibility-testing).
+- Consult with colleagues in EngX and UXWS if you find an issue that you either can't fix or your own, or aren't sure
+  how to fix. Open discussions about accessibility issues often lead to the best-designed solutions.
 
-- All of our public GitHub repos are set to automatically check via
-  [AccessLint](https://www.accesslint.com), which is great for what it is
-  but is _not_ a comprehensive Accessibility Plan.
+### Accessibility testing
 
-## Manual testing
+#### Automated testing
 
-- The [Web Accessibility Evaluation Tool (WAVE)](https://wave.webaim.org/) is
-  useful for checking single web pages. It can be installed as a browser
-  extension for either Chrome or Firefox.
-- The [Accessible Name & Description Inspector (ANDI)
-  tool](https://www.ssa.gov/accessibility/andi/help/install.html) is a
-  Javascript tool to evaluate a loaded webpage.
-- A screenreader like [VoiceOver](https://www.apple.com/voiceover/info/guide/_1121.html)
+All of our public GitHub repos are set to automatically check via [AccessLint](https://www.accesslint.com). This is a
+useful tool, but is _not_ a comprehensive accessibility plan.
+
+#### Manual testing
+
+- For every pull request that touches a UI element, the author should run an accessibility checker tool to confirm that the
+change does not introduce an access barrier. In EngX, we use the following:
+  - The [Web Accessibility Evaluation Tool (WAVE)](https://wave.webaim.org/) is
+    useful for checking single web pages. It can be installed as a browser
+    extension for either Chrome or Firefox.
+  - The [Accessible Name & Description Inspector (ANDI)
+    tool](https://www.ssa.gov/accessibility/andi/help/install.html) is a
+    Javascript tool to evaluate a loaded webpage.
+- Some people navigate webpages by keyboard. To ensure accessibility for these users, it's a good idea to attempt to navigate
+  the site periodically using your keyboard (e.g., when a new feature is added to the UI). This can help confirm that
+  UI elements flow in a logical order.
+- A screen reader like [VoiceOver](https://www.apple.com/voiceover/info/guide/_1121.html)
   for the Mac or [NVDA](https://www.nvaccess.org/download/) for Windows can be
   useful for user testing to confirm that elements are reachable, or that
   interactions will play out as expected. Articles like ["Testing with Screen
   Readers" at WebAIM](https://webaim.org/articles/screenreader_testing/) are
   also useful.
+  - While periodic screen reader testing can be helpful to identify issues, it has limited utility unless done by an
+  expert user. (This will occur as part of the formal DAS review.)
+
+## Implementing open source or vended solutions
+
+As with locally developed software, any open source or vended software that includes a UI should be evaluated for
+accessibility. Any vendor claims related to accessibility should be confirmed, to the extent we are able to do so. UXWS
+should be consulted for accessibility reviews of vended products.
+
+Ideally, accessibility should be discussed early in vendor negotations, and any potential issues should be addressed
+with the vendor. 
 
 ## Resources
 
-- [A11y Project Web Accessibility Checklist](https://a11yproject.com/checklist)
-- [HTML_CodeSniffer](https://squizlabs.github.io/HTML_CodeSniffer/)
-- [AccessLint](https://www.accesslint.com)
-- Chrome Dev Tools Accessibility Audit
-- [Google Developers Web Fundamentals: Accessibility](https://developers.google.com/web/fundamentals/accessibility/)
-- [Web Accessibility in Mind (WebAIM)](https://webaim.org/)
+- [Web Content Accessibility Guides (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/): a set of guidelines
+that is considered the benchmark for web accessibility.
+- [Section508.gov](https://www.section508.gov/): information related to Section 508 of the Rehabilitation Act, which is
+U.S. federal legislation related to IT accessibility.
+- [A11y Project Web Accessibility Checklist](https://a11yproject.com/checklist): a WCAG checklist that simplifies the
+guidelines for easier review.
+- [HTML_CodeSniffer](https://squizlabs.github.io/HTML_CodeSniffer/): evaluates HTML against WCAG or Section 508
+requirements.
+- [AccessLint](https://www.accesslint.com): a GitHub app that includes accessibility checks in CI. As previously noted,
+this should not be considered a comprehensive evaluation, bur rather one of many tools to evaluate accessibility.
+- [Web Accessibility in Mind (WebAIM)](https://webaim.org/): provides training and articles in accessibility.

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Accessibility / a11y &#8212; Guides  documentation</title>
+    <title>Accessibility &#8212; Guides  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -33,85 +33,122 @@
 
           <div class="body" role="main">
             
-  <section id="accessibility-a11y">
-<h1>Accessibility / a11y<a class="headerlink" href="#accessibility-a11y" title="Permalink to this headline">¶</a></h1>
+  <section id="accessibility">
+<h1>Accessibility<a class="headerlink" href="#accessibility" title="Permalink to this headline">¶</a></h1>
 <section id="background-info">
 <h2>Background info<a class="headerlink" href="#background-info" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://a11yproject.com/about">The A11y Project</a></p>
+<p>Accessibility (shortened as a11y) is a primary consideration in our design and engineering processes. By foregrounding
+accessibility, we intend to make our web properties more equitable and usable for everyone.</p>
+<p>The Libraries’ Accessibility Team (LAT), established in 2023, has adopted <a class="reference external" href="https://www.nngroup.com/articles/inclusive-design">Inclusive Design</a>
+as one of its guiding principles. Inclusive Design is similar to <a class="reference external" href="https://universaldesign.ie/about-universal-design">Universal Design</a>,
+in that both explore the idea of meeting as many people’s needs as possible. Inclusive Design focuses more on individual
+needs, and acknowledges that multiple design approaches may be required to meet this goal.</p>
+<p>We consider Inclusive Design to be an inherently aspirational goal, as more can always be done. This is also what makes
+it a useful framing device for accessibility work. The human experience is incredibly diverse, and a single design is
+not likely to meet every person’s needs. We can always strive to do better.</p>
 </section>
 <section id="goals">
 <h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The site is usable by everyone.</p></li>
-<li><p>Intentional access restrictions like MIT only are okay.</p></li>
-<li><p>Anyone that is authorized to use a site can actually use it.</p></li>
+<li><p>The site meets as many people’s accessibility needs as possible.</p></li>
+<li><p>Anyone that is authorized to use a site can actually use it.</p>
+<ul>
+<li><p>Intentional access restrictions (like ‘MIT users only’) are okay.</p></li>
+</ul>
+</li>
+<li><p>The site is compliant with <a class="reference external" href="https://www.w3.org/TR/2023/REC-WCAG21-20230921/">WCAG 2.1 AA</a> guidelines.</p></li>
 </ul>
 </section>
-<section id="local-coding-projects">
-<h2>Local Coding Projects<a class="headerlink" href="#local-coding-projects" title="Permalink to this headline">¶</a></h2>
+<section id="local-software-projects">
+<h2>Local software projects<a class="headerlink" href="#local-software-projects" title="Permalink to this headline">¶</a></h2>
+<p>Local projects should include an accessibility review. This should be added to the project timeline as early as possible
+in the scheduling process. The review plan should include a formal review by <a class="reference external" href="https://studentlife.mit.edu/das">Disability and Access Services</a>
+towards the end of the project. The process and expectations for this should be discussed during the initial
+accessibility planning, but it has typically gone as follows:</p>
 <ul class="simple">
-<li><p>Local coding projects should schedule an accessibility plan review with UX
-early in the project.</p></li>
-<li><p>Part of that plan will likely be to schedule an internal review with UX
-towards the end of the project.</p></li>
-<li><p>Most projects should, coordinated through UX, schedule a formal review by <a class="reference external" href="http://studentlife.mit.edu/atic/">MIT
-Assistive Technology Information Center
-(ATIC)</a> towards the end of the project. The
-process and expectations for this should be discussed during the initial
-accessibility plan review.</p></li>
-<li><p>Use valid html 5 and our <a class="reference external" href="/mitlib-style">style guide</a> to start out with a
-great baseline for accessible websites.</p></li>
-<li><p>Run some local checks throughout your development process to fix any issues
-you can as they come up, but don’t stress about trying to pass every test on
-your own.</p></li>
-<li><p>Ask UX if something concerns you that you can’t fix on your own so
-they can determine if they want to help now, or wait for the accessibility
-review at the end of the project.</p></li>
-<li><p>Accessibility reviews from UX and ATIC will provide guidance on resolving any
-issues before or shortly after a project goes into production.</p></li>
+<li><p>We develop an accessibility testing script (usually completed by someone in UXWS) and reach out to our contacts at DAS;</p></li>
+<li><p>We meet with DAS to discuss what the app does and any specifics we’d like them to test;</p></li>
+<li><p>We share the staging app with DAS, who complete their review and leave notes as issues a private GitHub repo;</p></li>
+<li><p>We fix any open issues and confirm with DAS that they have been resolved.</p></li>
 </ul>
-</section>
-<section id="implementing-open-source-or-vended-solutions">
-<h2>Implementing Open Source or Vended Solutions<a class="headerlink" href="#implementing-open-source-or-vended-solutions" title="Permalink to this headline">¶</a></h2>
+<p>While writing frontend code, keep the following tips in mind:</p>
 <ul class="simple">
-<li><p>Discuss with UX whether an accessibility review is appropriate and who will
-lead the review.</p></li>
+<li><p>Use valid HTML5 and our <a class="reference external" href="/mitlib-style">style guide</a> to start with a good baseline for usable and accessible websites.</p>
+<ul>
+<li><p>All Rails apps should include our <a class="reference external" href="https://github.com/MITLibraries/mitlibraries-theme/">theme gem</a>, which provides
+styles from the guide and various partials to improve accessibility.</p></li>
 </ul>
-</section>
-<section id="automated-checking">
-<h2>Automated Checking<a class="headerlink" href="#automated-checking" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>All of our public GitHub repos are set to automatically check via
-<a class="reference external" href="https://www.accesslint.com">AccessLint</a>, which is great for what it is
-but is <em>not</em> a comprehensive Accessibility Plan.</p></li>
+</li>
+<li><p>Use semantic HTML elements and ARIA attributes where appropriate to help screen reader users navigate the page.</p></li>
+<li><p>Ensure that every page has a logical tab structure.</p></li>
+<li><p>Ensure that every page includes a skip link, so people using keyboard navigation can jump to the page’s main content.
+(A customizable skip link partial is included in the theme gem.)</p></li>
+<li><p>Run local checks throughout your development process (see <a class="reference external" href="#accessibility-testing">Accessibility testing</a>.</p></li>
+<li><p>Consult with colleagues in EngX and UXWS if you find an issue that you either can’t fix or your own, or aren’t sure
+how to fix. Open discussions about accessibility issues often lead to the best-designed solutions.</p></li>
 </ul>
+<section id="accessibility-testing">
+<h3>Accessibility testing<a class="headerlink" href="#accessibility-testing" title="Permalink to this headline">¶</a></h3>
+<section id="automated-testing">
+<h4>Automated testing<a class="headerlink" href="#automated-testing" title="Permalink to this headline">¶</a></h4>
+<p>All of our public GitHub repos are set to automatically check via <a class="reference external" href="https://www.accesslint.com">AccessLint</a>. This is a
+useful tool, but is <em>not</em> a comprehensive accessibility plan.</p>
 </section>
 <section id="manual-testing">
-<h2>Manual testing<a class="headerlink" href="#manual-testing" title="Permalink to this headline">¶</a></h2>
+<h4>Manual testing<a class="headerlink" href="#manual-testing" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
+<li><p>For every pull request that touches a UI element, the author should run an accessibility checker tool to confirm that the
+change does not introduce an access barrier. In EngX, we use the following:</p>
+<ul>
 <li><p>The <a class="reference external" href="https://wave.webaim.org/">Web Accessibility Evaluation Tool (WAVE)</a> is
 useful for checking single web pages. It can be installed as a browser
 extension for either Chrome or Firefox.</p></li>
 <li><p>The <a class="reference external" href="https://www.ssa.gov/accessibility/andi/help/install.html">Accessible Name &amp; Description Inspector (ANDI)
 tool</a> is a
 Javascript tool to evaluate a loaded webpage.</p></li>
-<li><p>A screenreader like <a class="reference external" href="https://www.apple.com/voiceover/info/guide/_1121.html">VoiceOver</a>
+</ul>
+</li>
+<li><p>Some people navigate webpages by keyboard. To ensure accessibility for these users, it’s a good idea to attempt to navigate
+the site periodically using your keyboard (e.g., when a new feature is added to the UI). This can help confirm that
+UI elements flow in a logical order.</p></li>
+<li><p>A screen reader like <a class="reference external" href="https://www.apple.com/voiceover/info/guide/_1121.html">VoiceOver</a>
 for the Mac or <a class="reference external" href="https://www.nvaccess.org/download/">NVDA</a> for Windows can be
 useful for user testing to confirm that elements are reachable, or that
 interactions will play out as expected. Articles like <a class="reference external" href="https://webaim.org/articles/screenreader_testing/">“Testing with Screen
 Readers” at WebAIM</a> are
-also useful.</p></li>
+also useful.</p>
+<ul>
+<li><p>While periodic screen reader testing can be helpful to identify issues, it has limited utility unless done by an
+expert user. (This will occur as part of the formal DAS review.)</p></li>
 </ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="implementing-open-source-or-vended-solutions">
+<h2>Implementing open source or vended solutions<a class="headerlink" href="#implementing-open-source-or-vended-solutions" title="Permalink to this headline">¶</a></h2>
+<p>As with locally developed software, any open source or vended software that includes a UI should be evaluated for
+accessibility. Any vendor claims related to accessibility should be confirmed, to the extent we are able to do so. UXWS
+should be consulted for accessibility reviews of vended products.</p>
+<p>Ideally, accessibility should be discussed early in vendor negotations, and any potential issues should be addressed
+with the vendor.</p>
 </section>
 <section id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://a11yproject.com/checklist">A11y Project Web Accessibility Checklist</a></p></li>
-<li><p><a class="reference external" href="https://squizlabs.github.io/HTML_CodeSniffer/">HTML_CodeSniffer</a></p></li>
-<li><p><a class="reference external" href="https://www.accesslint.com">AccessLint</a></p></li>
-<li><p>Chrome Dev Tools Accessibility Audit</p></li>
-<li><p><a class="reference external" href="https://developers.google.com/web/fundamentals/accessibility/">Google Developers Web Fundamentals: Accessibility</a></p></li>
-<li><p><a class="reference external" href="https://webaim.org/">Web Accessibility in Mind (WebAIM)</a></p></li>
+<li><p><a class="reference external" href="https://www.w3.org/WAI/standards-guidelines/wcag/">Web Content Accessibility Guides (WCAG)</a>: a set of guidelines
+that is considered the benchmark for web accessibility.</p></li>
+<li><p><a class="reference external" href="https://www.section508.gov/">Section508.gov</a>: information related to Section 508 of the Rehabilitation Act, which is
+U.S. federal legislation related to IT accessibility.</p></li>
+<li><p><a class="reference external" href="https://a11yproject.com/checklist">A11y Project Web Accessibility Checklist</a>: a WCAG checklist that simplifies the
+guidelines for easier review.</p></li>
+<li><p><a class="reference external" href="https://squizlabs.github.io/HTML_CodeSniffer/">HTML_CodeSniffer</a>: evaluates HTML against WCAG or Section 508
+requirements.</p></li>
+<li><p><a class="reference external" href="https://www.accesslint.com">AccessLint</a>: a GitHub app that includes accessibility checks in CI. As previously noted,
+this should not be considered a comprehensive evaluation, bur rather one of many tools to evaluate accessibility.</p></li>
+<li><p><a class="reference external" href="https://webaim.org/">Web Accessibility in Mind (WebAIM)</a>: provides training and articles in accessibility.</p></li>
 </ul>
 </section>
 </section>
@@ -135,13 +172,11 @@ also useful.</p></li>
 <h3>Navigation</h3>
 <p><span class="caption-text">Start Here</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Accessibility / a11y</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Accessibility</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#background-info">Background info</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#goals">Goals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#local-coding-projects">Local Coding Projects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#implementing-open-source-or-vended-solutions">Implementing Open Source or Vended Solutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#automated-checking">Automated Checking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#manual-testing">Manual testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-software-projects">Local software projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementing-open-source-or-vended-solutions">Implementing open source or vended solutions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
 </ul>
 </li>
