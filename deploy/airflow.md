@@ -1,3 +1,3 @@
 # Airflow: workflow engine
 
-See [Project documentation](https://github.com/MITLibraries/workflow/blob/master/README.rst)
+Airflow was retired in 2023.

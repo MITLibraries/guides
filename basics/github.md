@@ -1,5 +1,15 @@
 # GitHub
 
+## GitHub Organization Security
+
+As of 2025, the GitHub Organization [MITLibraries](https://github.com/MITLibraries) has updated security settings in place.
+
+There are only two "owners" of the GitHub Organization: the team lead for EngX and the team lead for InfraEng. All other user accounts in the GitHub Organization are "members."
+
+Additionally, all of the repositories have been updated to ensure that the right times have the right access to the right repositories. In general, this means that infrastructure repositories have the [InfraEng](https://github.com/orgs/MITLibraries/teams/infraeng) team with the built-in **maintain** Role, the data engineering repositories have the [DataEng](https://github.com/orgs/MITLibraries/teams/dataeng) team with the built-in **maintain** Role, and the discovery/ui/web repositories have the [EngX](https://github.com/orgs/MITLibraries/teams/engx) team with the built-in **maintain** Role.
+
+Member accounts **do** have the right to create new repositories. Once they create a repository and configure it with the [Recommended repo settings](#recommended-repo-settings), they should notify at least one of the Organization owners who will then set up the rest of the collaboration permissions.
+
 ## Repo naming
 
 Naming is important (see [There's Power in Naming ...](https://www.taketheleadwomen.com/blog/theres-power-in-naming-and-power-in-knowing-your-name)). More specific to our work, there are a few guidelines for naming new repos
@@ -30,7 +40,7 @@ In most cases, [GitHub flow](https://guides.github.com/introduction/flow/) will 
 
 Ideally, feature branches should encompass small, targeted changes. Keeping your work focused will mean fewer merge conflicts. When building a new code base this may not always be possible, but what you want to try and avoid are long running branches. By the time you want to merge, the distance between your feature branch and main will usually mean a lot of conflict resolution in your future.
 
-There is an exception to this for Infrastructure code. For the Terraform code, InfraEng uses a Simplified Git Flow model (which could also be seen as GitHub Flow on steroids). In this case, each deployment environment (prod & stage) is linked to a long-running branch in the repository. As in GitHub Flow, feature branches should encompass small, targeted changes. They are always branched from and merged to the `stage` branch. And the only merges to the `main` branch come from approved merges on the `stage` branch. More details on this model can be found at [Simplified Git Flow](https://medium.com/goodtogoat/simplified-git-flow-5dc37ba76ea8) and at [Simplified Git Flow for InfraEng](https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2920480769/Simplified+Git+Flow+For+InfraEng).
+There is an exception to this for Infrastructure code. For the Terraform code, InfraEng uses a Simplified Git Flow model (which could also be seen as GitHub Flow on steroids). In this case, each deployment environment (dev, stage, & prod) is linked to a long-running branch in the repository. The `dev` branch is the working branch for all changes/features. PRs and code reviews are required for any merges to `stage` and the only merges to the `main` branch come from approved merges on the `stage` branch. More details on this model can be found at [Simplified Git Flow](https://medium.com/goodtogoat/simplified-git-flow-5dc37ba76ea8) and at [Simplified Git Flow for InfraEng](https://mitlibraries.atlassian.net/wiki/spaces/IN/pages/2920480769).
 
 ## Merging and Rebasing
 
@@ -50,9 +60,7 @@ $ git merge <branch-name> --no-ff
 
 ## Pull Requests
 
-We use pull requests to merge changes to a codebase. In nearly all instances, pull requests should be reviewed by
-another person before merging. Check out our [code review guide](/collaboration/code_review.html) for more information
-on how this works.
+We use pull requests to merge changes to a codebase. In nearly all instances, pull requests should be reviewed by another person before merging. Check out our [code review guide](/collaboration/code_review.html) for more information on how this works.
 
 ## Github and JIRA
 
@@ -62,38 +70,25 @@ In general, if you are creating code on GitHub, commenting and review should hap
 
 ## GitHub and Code Climate
 
-We use [Code Climate](https://codeclimate.com/)'s GitHub integration to monitor 
-for code smells. Code Climate is free for open source repositories.
+We use [Code Climate](https://codeclimate.com/)'s GitHub integration to monitor for code smells. Code Climate is free for open source repositories.
 
 To connect Code Climate to your repo:
-1. [Log in to Code Climate](https://codeclimate.com/login) with your GitHub 
-account
-2. If it's your first time logging in, grant Code Climate OAuth permissions as 
-prompted
+
+1. [Log in to Code Climate](https://codeclimate.com/login) with your GitHub account
+2. If it's your first time logging in, grant Code Climate OAuth permissions as prompted
 3. Follow the prompts to add your repo:
     * On the dashboard, click the 'Open source' link, then click 'Add a repository'
-    * Find your repo on the ensuing list, then click 'Add repository' _(note: you 
-may need to click the 'Sync now' link for all repos to appear)_
-4. Continue to your repo dashboard in Code Climate, then click the 'Repo settings' 
-tab. Click 'GitHub' on the menu, then install 'Pull request status updates' and 
-'Webhook on GitHub'
-5. Code Climate should now run in GitHub every time you open a PR. In your 
-GitHub repo, you can confirm this by going to Settings -> Webhooks and make 
-sure the Code Climate webhook is listed _(note: if Code Climate is stuck pending 
-in your PR, it might be because you opened the PR prior to configuring Code Climate)_
+    * Find your repo on the ensuing list, then click 'Add repository' _(note: you may need to click the 'Sync now' link for all repos to appear)_
+4. Continue to your repo dashboard in Code Climate, then click the 'Repo settings' tab. Click 'GitHub' on the menu, then install 'Pull request status updates' and 'Webhook on GitHub'
+5. Code Climate should now run in GitHub every time you open a PR. In your GitHub repo, you can confirm this by going to Settings -> Webhooks and make sure the Code Climate webhook is listed _(note: if Code Climate is stuck pending in your PR, it might be because you opened the PR prior to configuring Code Climate)_
 
 ## Updating the default branch in GitHub
 
-While all new repos will be created with `main` as the default branch, older 
-repos may still use `master` and should be migrated. GitHub now provides an
-easy way to do this in the web UI. In the repo's settings, you can
-change the name of the default branch.
+While all new repos will be created with `main` as the default branch, older repos may still use `master` and should be migrated. GitHub now provides an easy way to do this in the web UI. In the repo's settings, you can change the name of the default branch.
 
-Once you change the branch name, you and your collaborators will need to pull
-the changes to your cloned repos.
+Once you change the branch name, you and your collaborators will need to pull the changes to your cloned repos.
 
-Additionally, you should check any automations you have configured to ensure
-they are watching the new branch (e.g., CodeClimate, CI/CD).
+Additionally, you should check any automations you have configured to ensure they are watching the new branch (e.g., CodeClimate, CI/CD).
 
 - - -
 
