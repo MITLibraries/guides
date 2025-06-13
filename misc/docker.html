@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Containerizing Your App &#8212; Guides  documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Exception Monitoring" href="exception_monitoring.html" />
@@ -20,8 +19,9 @@
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -34,10 +34,10 @@
           <div class="body" role="main">
             
   <section id="containerizing-your-app">
-<h1>Containerizing Your App<a class="headerlink" href="#containerizing-your-app" title="Permalink to this headline">¶</a></h1>
+<h1>Containerizing Your App<a class="headerlink" href="#containerizing-your-app" title="Link to this heading">¶</a></h1>
 <p>This will provide some guidelines for getting your application ready for containers. This is mostly relevant for custom software, as existing solutions will (hopefully) already have a Dockerfile.</p>
 <section id="dockerfile-guidelines">
-<h2>Dockerfile Guidelines<a class="headerlink" href="#dockerfile-guidelines" title="Permalink to this headline">¶</a></h2>
+<h2>Dockerfile Guidelines<a class="headerlink" href="#dockerfile-guidelines" title="Link to this heading">¶</a></h2>
 <ol class="simple">
 <li><p>Keep your Dockerfile simple. If you have complicated logic that needs to be done, put it in a shell script and call it from your Dockerfile.</p></li>
 <li><p>Specify the minor language version in your base image, e.g. <code class="docutils literal notranslate"><span class="pre">FROM</span> <span class="pre">python:3.6</span></code>.</p></li>
@@ -48,7 +48,7 @@
 </ol>
 </section>
 <section id="entrypoint-cmd">
-<h2>ENTRYPOINT/CMD<a class="headerlink" href="#entrypoint-cmd" title="Permalink to this headline">¶</a></h2>
+<h2>ENTRYPOINT/CMD<a class="headerlink" href="#entrypoint-cmd" title="Link to this heading">¶</a></h2>
 <p>Deciding how and when to use ENTRYPOINT and CMD can be confusing. The suggested usage made here is done for clarity of intent and most predictable behavior. Each Dockerfile should have both an ENTRYPOINT and CMD. Think of your ENTRYPOINT as your application’s main command and the CMD as the most common arguments. A few examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;bundle&quot;</span><span class="p">,</span> <span class="s2">&quot;exec&quot;</span><span class="p">]</span>
 <span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;rails&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="s2">&quot;3000&quot;</span><span class="p">,</span> <span class="s2">&quot;-b&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">]</span>
@@ -66,11 +66,11 @@
 <p>Note how <code class="docutils literal notranslate"><span class="pre">bundle</span> <span class="pre">exec</span></code> is not specified as an array. The simplest suggestion is don’t do this. Using an array, as shown in the earlier examples, will almost always lead to fewer unexpected issues.</p>
 </section>
 <section id="dockerignore">
-<h2>.dockerignore<a class="headerlink" href="#dockerignore" title="Permalink to this headline">¶</a></h2>
+<h2>.dockerignore<a class="headerlink" href="#dockerignore" title="Link to this heading">¶</a></h2>
 <p>In most cases, your Dockerfile will be copying much of your project’s source directory into the container. Copying a few extraneous files isn’t usually a problem, but try to avoid copying local directories full of dependencies like <code class="docutils literal notranslate"><span class="pre">vendor/bundle</span></code> or a virtualenv. The easiest way to do this is to make sure you use a <code class="docutils literal notranslate"><span class="pre">.dockerignore</span></code> file. It works like <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.</p>
 </section>
 <section id="example-dockerfiles">
-<h2>Example Dockerfiles<a class="headerlink" href="#example-dockerfiles" title="Permalink to this headline">¶</a></h2>
+<h2>Example Dockerfiles<a class="headerlink" href="#example-dockerfiles" title="Link to this heading">¶</a></h2>
 <p>For a Python WSGI app:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">python</span><span class="p">:</span><span class="mf">3.6</span>
 
@@ -104,7 +104,7 @@
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">Guides</a></h1>
 
@@ -115,33 +115,41 @@
 
 
 
-<h3>Navigation</h3>
-<p><span class="caption-text">Start Here</span></p>
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github_desktop.html">GitHub Desktop</a></li>
 </ul>
-<p><span class="caption-text">How We Work Together</span></p>
+<p class="caption" role="heading"><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/code_review.html">Code review</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p><span class="caption-text">Languages and Frameworks</span></p>
+<p class="caption" role="heading"><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p><span class="caption-text">Authentication</span></p>
+<p class="caption" role="heading"><span class="caption-text">Authentication</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authentication/touchstone_saml.html">Touchstone / Shibboleth / SAML</a></li>
 </ul>
-<p><span class="caption-text">Deployment</span></p>
+<p class="caption" role="heading"><span class="caption-text">Deployment</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/aws-2.0.html">AWS Organization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/cicd.html">Continuous Integration/Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/heroku.html">Heroku</a></li>
@@ -151,7 +159,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/terraform-1.0.html">Terraform</a></li>
 </ul>
-<p><span class="caption-text">Everything else</span></p>
+<p class="caption" role="heading"><span class="caption-text">Everything else</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="adr.html">Architecture Decision Records</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagramming Guidelines</a></li>
@@ -179,16 +187,6 @@
   </ul></li>
 </ul>
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
 
 
 
@@ -202,11 +200,11 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2019, MIT Libraries.
+      &#169;2019, MIT Libraries.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../_sources/misc/docker.md.txt"

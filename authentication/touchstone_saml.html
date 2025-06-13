@@ -1,27 +1,27 @@
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../">
   <head>
-    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Touchstone / Shibboleth / SAML &#8212; Guides  documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Airflow: workflow engine" href="../deploy/airflow.html" />
+    <link rel="next" title="AWS Organization" href="../deploy/aws-2.0.html" />
     <link rel="prev" title="OAuth at MIT (deprecated)" href="oauth.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -34,23 +34,23 @@
           <div class="body" role="main">
             
   <section id="touchstone-shibboleth-saml">
-<h1>Touchstone / Shibboleth / SAML<a class="headerlink" href="#touchstone-shibboleth-saml" title="Permalink to this headline">¶</a></h1>
+<h1>Touchstone / Shibboleth / SAML<a class="headerlink" href="#touchstone-shibboleth-saml" title="Link to this heading">¶</a></h1>
 <section id="what-is-touchstone">
-<h2>What is Touchstone?<a class="headerlink" href="#what-is-touchstone" title="Permalink to this headline">¶</a></h2>
+<h2>What is Touchstone?<a class="headerlink" href="#what-is-touchstone" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="http://ist.mit.edu/touchstone-detail">Touchstone at MIT</a></p>
 <p>Touchstone is MIT’s Shibboleth implementation that includes DUO for two factor
 authentication.</p>
 </section>
 <section id="what-is-shibboleth">
-<h2>What is Shibboleth?<a class="headerlink" href="#what-is-shibboleth" title="Permalink to this headline">¶</a></h2>
+<h2>What is Shibboleth?<a class="headerlink" href="#what-is-shibboleth" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Shibboleth_(Shibboleth_Consortium)">Shibboleth wikipedia entry</a></p>
 </section>
 <section id="what-is-saml">
-<h2>What is SAML?<a class="headerlink" href="#what-is-saml" title="Permalink to this headline">¶</a></h2>
+<h2>What is SAML?<a class="headerlink" href="#what-is-saml" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language">Security Assertion Markup Language</a></p>
 </section>
 <section id="what-are-we-doing-here">
-<h2>What are we doing here?<a class="headerlink" href="#what-are-we-doing-here" title="Permalink to this headline">¶</a></h2>
+<h2>What are we doing here?<a class="headerlink" href="#what-are-we-doing-here" title="Link to this heading">¶</a></h2>
 <p>We want to use Touchstone, and thus Shibboleth, but without the <code class="docutils literal notranslate"><span class="pre">mod_shib</span></code>
 Apache HTTPd plugin. We can do this by utilizing the SAML protocol that
 the Touchstone server supports.</p>
@@ -70,14 +70,14 @@ running in production, in case that’s helpful for setting up future
 Python projects.</p>
 </section>
 <section id="registering-a-saml-sp-in-mit-touchstone">
-<h2>Registering a SAML SP in MIT Touchstone<a class="headerlink" href="#registering-a-saml-sp-in-mit-touchstone" title="Permalink to this headline">¶</a></h2>
+<h2>Registering a SAML SP in MIT Touchstone<a class="headerlink" href="#registering-a-saml-sp-in-mit-touchstone" title="Link to this heading">¶</a></h2>
 <p>The request itself is simple, but preparing your application for <em>successful</em>
 submission takes some understanding of what is happening and providing what IST
 needs in a way they can easily consume it. This is not hard, but it is
 confusing and opaque. Please ask for help in Slack if you find yourself thinking it
 would be easier to just <code class="docutils literal notranslate"><span class="pre">mod_shib</span></code> on a VM and make this someone else’s problem.</p>
 <section id="request-dns-registration">
-<h3>Request DNS registration<a class="headerlink" href="#request-dns-registration" title="Permalink to this headline">¶</a></h3>
+<h3>Request DNS registration<a class="headerlink" href="#request-dns-registration" title="Link to this heading">¶</a></h3>
 <p>IS&amp;T TouchStone support prefers a <code class="docutils literal notranslate"><span class="pre">*.mit.edu</span></code> domain for each Touchstone
 protected application. The easiest path to that is to just request DNS
 registration for both staging and production environments.</p>
@@ -86,7 +86,7 @@ non-Touchstone authentication and thus don’t require <code class="docutils lit
 registrations.</p>
 </section>
 <section id="generating-a-self-signed-certificate-for-touchstone">
-<h3>Generating a self-signed certificate for Touchstone<a class="headerlink" href="#generating-a-self-signed-certificate-for-touchstone" title="Permalink to this headline">¶</a></h3>
+<h3>Generating a self-signed certificate for Touchstone<a class="headerlink" href="#generating-a-self-signed-certificate-for-touchstone" title="Link to this heading">¶</a></h3>
 <p>Touchstone support requests a long lived self signed certificate. The following
 command will give you a 10 year cert with no password which is useful for
 production environments where entering a password is non-ideal. If the private
@@ -106,7 +106,7 @@ key is compromised in any way, generate a new one and inform Touchstone support.
 </ul>
 </section>
 <section id="configuring-the-application">
-<h3>Configuring the application<a class="headerlink" href="#configuring-the-application" title="Permalink to this headline">¶</a></h3>
+<h3>Configuring the application<a class="headerlink" href="#configuring-the-application" title="Link to this heading">¶</a></h3>
 <p>Regardless which language or library you are using, there are a few pieces of
 information you will need that should be the same for all apps:</p>
 <ul class="simple">
@@ -126,7 +126,7 @@ only provides a single cert via <code class="docutils literal notranslate"><span
 the metadata would not move to using multiple certs, but it feels safest to just
 assume they might toggle between either method with no notice.</p>
 <section id="rails">
-<h4>Rails<a class="headerlink" href="#rails" title="Permalink to this headline">¶</a></h4>
+<h4>Rails<a class="headerlink" href="#rails" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>follow omniauth-saml instructions (which follow Facebook instructions)</p>
 <ul>
@@ -139,7 +139,7 @@ assume they might toggle between either method with no notice.</p>
 <p><a class="reference external" href="https://github.com/MITLibraries/rails_saml_example/blob/master/config/initializers/devise.rb#L278-L302">sample app config</a></p>
 </section>
 <section id="python-flask">
-<h4>Python/Flask<a class="headerlink" href="#python-flask" title="Permalink to this headline">¶</a></h4>
+<h4>Python/Flask<a class="headerlink" href="#python-flask" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Follow instructions to use <a class="reference external" href="https://github.com/onelogin/python3-saml">OneLogin’s SAML Python3 Toolkit</a></p></li>
 <li><p>The ebooks example sets SAML configuration using env variables to populate
@@ -149,7 +149,7 @@ settings used here are the minimum required ones for MIT Touchstone auth to work
 </section>
 </section>
 <section id="generating-application-metadata">
-<h3>Generating application metadata<a class="headerlink" href="#generating-application-metadata" title="Permalink to this headline">¶</a></h3>
+<h3>Generating application metadata<a class="headerlink" href="#generating-application-metadata" title="Link to this heading">¶</a></h3>
 <p>Touchstone registers the application by consuming metadata that the SP
 generates.</p>
 <p><code class="docutils literal notranslate"><span class="pre">ruby-saml</span></code> can provide this metadata on a devise configured application at <code class="docutils literal notranslate"><span class="pre">/users/auth/saml/metadata</span></code>.</p>
@@ -163,7 +163,7 @@ application. NOTE: they do not regularly poll the SP metadata so if you make
 configuration or code changes that change the SP metadata, you need to ask
 touchstone support to re-ingest the metadata.</p>
 <section id="testshib">
-<h4>testshib<a class="headerlink" href="#testshib" title="Permalink to this headline">¶</a></h4>
+<h4>testshib<a class="headerlink" href="#testshib" title="Link to this heading">¶</a></h4>
 <p>I found it frustrating to configure a SAML application against MIT Touchstone with the information they provide which is all Shibboleth specific. However,
 <a class="reference external" href="http://www.testshib.org">testshib.org</a> allows you to register your SP against
 a test IdP and instantly see the results and error logs (you will have error
@@ -178,7 +178,7 @@ or OneLogin’s test IDP for authentication to succeed. I found <code class="doc
 super helpful for that.</p>
 </section>
 <section id="ngrok">
-<h4>ngrok<a class="headerlink" href="#ngrok" title="Permalink to this headline">¶</a></h4>
+<h4>ngrok<a class="headerlink" href="#ngrok" title="Link to this heading">¶</a></h4>
 <p><a class="reference external" href="https://ngrok.com">ngrok</a></p>
 <p>This allows you to spin up a publicly accessible endpoint with a secure tunnel
 back to your localhost. So if I run my rails app on port 5000, I’d run
@@ -189,14 +189,14 @@ need to re-upload your SP metadata to testshib. This is only a minor
 inconvenience as the change takes place instantly.</p>
 </section>
 <section id="sp-metadata">
-<h4>SP Metadata<a class="headerlink" href="#sp-metadata" title="Permalink to this headline">¶</a></h4>
+<h4>SP Metadata<a class="headerlink" href="#sp-metadata" title="Link to this heading">¶</a></h4>
 <p>Once you have ngrok running you can export your SP metadata and upload it to
 testshib.</p>
 <p>You can then test authentication and debug any issues.</p>
 </section>
 </section>
 <section id="email-touchstone-help">
-<h3>Email Touchstone help<a class="headerlink" href="#email-touchstone-help" title="Permalink to this headline">¶</a></h3>
+<h3>Email Touchstone help<a class="headerlink" href="#email-touchstone-help" title="Link to this heading">¶</a></h3>
 <p>Once you’ve confirmed you have your SP working with the testshib IdP, you can
 push your code to wherever it will run (Heroku, a container somewhere, etc).
 It should be using the DNS entry you will be registering with Touchstone at this
@@ -232,7 +232,7 @@ user’s Kerberos name, “scoped” to the mit.edu domain, e.g. “username&#64
 </ul>
 </section>
 <section id="non-touchstone-auth-for-pr-builds-and-local-development">
-<h3>Non-touchstone auth for PR builds and local development<a class="headerlink" href="#non-touchstone-auth-for-pr-builds-and-local-development" title="Permalink to this headline">¶</a></h3>
+<h3>Non-touchstone auth for PR builds and local development<a class="headerlink" href="#non-touchstone-auth-for-pr-builds-and-local-development" title="Link to this heading">¶</a></h3>
 <p>Registering a local SP for Touchstone is probably more trouble than it’s worth.
 Using an alternative authentication strategy for local, test and PR builds is
 recommended. For Rails apps, we use the <code class="docutils literal notranslate"><span class="pre">developer</span></code> authentication that is include with <code class="docutils literal notranslate"><span class="pre">Devise</span></code>.</p>
@@ -245,7 +245,7 @@ recommended. For Rails apps, we use the <code class="docutils literal notranslat
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">Guides</a></h1>
 
@@ -256,26 +256,35 @@ recommended. For Rails apps, we use the <code class="docutils literal notranslat
 
 
 
-<h3>Navigation</h3>
-<p><span class="caption-text">Start Here</span></p>
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Start Here</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../basics/a11y.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github.html">GitHub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics/github_desktop.html">GitHub Desktop</a></li>
 </ul>
-<p><span class="caption-text">How We Work Together</span></p>
+<p class="caption" role="heading"><span class="caption-text">How We Work Together</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/code_review.html">Code review</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../collaboration/pairing.html">Pair programming</a></li>
 </ul>
-<p><span class="caption-text">Languages and Frameworks</span></p>
+<p class="caption" role="heading"><span class="caption-text">Languages and Frameworks</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../languages/python.html">Python Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/rails.html">Rails at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/vuejs.html">Vue.js at MIT Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../languages/wordpress.html">WordPress at MIT Libraries</a></li>
 </ul>
-<p><span class="caption-text">Authentication</span></p>
+<p class="caption" role="heading"><span class="caption-text">Authentication</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="oauth.html">OAuth at MIT (deprecated)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Touchstone / Shibboleth / SAML</a><ul>
@@ -287,9 +296,8 @@ recommended. For Rails apps, we use the <code class="docutils literal notranslat
 </ul>
 </li>
 </ul>
-<p><span class="caption-text">Deployment</span></p>
+<p class="caption" role="heading"><span class="caption-text">Deployment</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../deploy/airflow.html">Airflow: workflow engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/aws-2.0.html">AWS Organization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/cicd.html">Continuous Integration/Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/heroku.html">Heroku</a></li>
@@ -299,7 +307,7 @@ recommended. For Rails apps, we use the <code class="docutils literal notranslat
 <li class="toctree-l1"><a class="reference internal" href="../deploy/pantheon.html">Pantheon</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deploy/terraform-1.0.html">Terraform</a></li>
 </ul>
-<p><span class="caption-text">Everything else</span></p>
+<p class="caption" role="heading"><span class="caption-text">Everything else</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/adr.html">Architecture Decision Records</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/diagrams.html">Diagramming Guidelines</a></li>
@@ -317,20 +325,10 @@ recommended. For Rails apps, we use the <code class="docutils literal notranslat
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="oauth.html" title="previous chapter">OAuth at MIT (deprecated)</a></li>
-      <li>Next: <a href="../deploy/airflow.html" title="next chapter">Airflow: workflow engine</a></li>
+      <li>Next: <a href="../deploy/aws-2.0.html" title="next chapter">AWS Organization</a></li>
   </ul></li>
 </ul>
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
 
 
 
@@ -344,11 +342,11 @@ recommended. For Rails apps, we use the <code class="docutils literal notranslat
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2019, MIT Libraries.
+      &#169;2019, MIT Libraries.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../_sources/authentication/touchstone_saml.md.txt"

@@ -1,6 +1,6 @@
 # AWS Organization
 
-As of December 2021, MIT Libraries has shifted to an AWS Organization containing multiple AWS Accounts. We have enabled AWS SSO, integrated with Touchstone, for access to all of our AWS Accounts in our AWS Organization.
+As of December 2021, MIT Libraries has shifted to an AWS Organization containing multiple AWS Accounts. We have enabled AWS SSO, integrated with Touchstone/Okta, for access to all of our AWS Accounts in our AWS Organization.
 
 ## Getting Started
 
