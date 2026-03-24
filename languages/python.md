@@ -17,11 +17,17 @@ Note: it's important that you follow all of the setup instructions in the templa
 
 If you notice anything that needs to be updated in either of the templates, please submit a PR!
 
+## Python Project Specification
+
+The [Python Project Specification](https://github.com/MITLibraries/spec-python-projects) repository is a declarative standard for Python projects. It defines the tooling, configuration, file structure, and workflow targets that a compliant project should have.  The [SPECIFICATION.md](https://github.com/MITLibraries/spec-python-projects/blob/main/SPECIFICATION.md) file in that repository is designed to be a living document with fairly constant updates.
+
+Where this page provides general principles and recommendations, the specification aims to provide auditable, concrete requirements, e.g. `pyproject.toml` configuration, Makefile targets, pre-commit hooks, CI workflows, Dockerfile patterns, etc.
+
 ## Style and coding Conventions
 
 In general, you should follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) and [PEP 257](https://www.python.org/dev/peps/pep-0257/). Unless otherwise stated here, assume those two guidelines are in effect.
 
-If you are providing function docstrings, use [reST](http://docutils.sourceforge.net/rst.html). In addition to a description of what a function does, you should document the parameters:
+If you are providing function docstrings, use [Google style](https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings). In addition to a description of what a function does, you should document the parameters:
 
 ```python
 def widgetize(widget):
@@ -30,7 +36,8 @@ def widgetize(widget):
   This ensures that the widget conforms to the strict standards
   governing conformant widgets.
 
-  :param widget: a widget what needs widgetizing
+  Args:
+    widget: A widget what needs widgetizing.
   """
 
   standardize(widget)
@@ -40,25 +47,17 @@ def widgetize(widget):
 
 Our standard Python code checkers in all repositories include:
 
-- [bandit](https://bandit.readthedocs.io/en/latest/) - security
-- [black](https://black.readthedocs.io/en/stable/) - formatting
-- [isort](https://pycqa.github.io/isort/) - import order
-- [mypy](https://mypy.readthedocs.io/en/stable/) - type hinting
-- [pylama](https://github.com/klen/pylama) - formatting and code quality (wrapper around several other tools)
+- [ruff](https://docs.astral.sh/ruff/) - formatting and linting (replaces black, isort, pylama, and bandit)
+- [mypy](https://mypy.readthedocs.io/en/stable/) - type checking
+- [pip-audit](https://pypi.org/project/pip-audit/) - dependency security auditing
 
 These tools should be used during development and are run automatically in Github Actions during CI. They are all included in the template repositories listed above, and have integrations for common code editors to allow automatic checking and reformatting during development.
 
-The linters are usually run together with the `make lint` command in a project's Makefile. See the template repositories for examples.
+The linters are usually run together with the `make lint` command in a project's Makefile, which runs `ruff check`, `ruff format`, and `mypy`. See the template repositories for examples.
 
 ## Dependencies
 
-Use [Pipenv](https://pipenv.readthedocs.io/en/latest/) to manage dependencies for Python applications. If there's some reason you need to support pip, then you should still manage dependencies with pipenv, but generate your `requirements.txt` file as needed with:
-
-```
-pipenv requirements > requirements.txt
-```
-
-If you are creating a Python library, [Poetry](https://python-poetry.org/) is the preferred package and distribution manager.
+Use [uv](https://docs.astral.sh/uv/) to manage dependencies for Python applications. Dependencies should be declared in `pyproject.toml` and locked with `uv lock`.
 
 ## Project Documentation
 
