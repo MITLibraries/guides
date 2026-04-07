@@ -50,17 +50,23 @@
 <p>Note: it’s important that you follow all of the setup instructions in the template’s README, particulary those regarding Github settings for the repository.</p>
 <p>If you notice anything that needs to be updated in either of the templates, please submit a PR!</p>
 </section>
+<section id="python-project-specification">
+<h2>Python Project Specification<a class="headerlink" href="#python-project-specification" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/MITLibraries/spec-python-projects">Python Project Specification</a> repository is a declarative standard for Python projects. It defines the tooling, configuration, file structure, and workflow targets that a compliant project should have.  The <a class="reference external" href="https://github.com/MITLibraries/spec-python-projects/blob/main/SPECIFICATION.md">SPECIFICATION.md</a> file in that repository is designed to be a living document with fairly constant updates.</p>
+<p>Where this page provides general principles and recommendations, the specification aims to provide auditable, concrete requirements, e.g. <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> configuration, Makefile targets, pre-commit hooks, CI workflows, Dockerfile patterns, etc.</p>
+</section>
 <section id="style-and-coding-conventions">
 <h2>Style and coding Conventions<a class="headerlink" href="#style-and-coding-conventions" title="Link to this heading">¶</a></h2>
 <p>In general, you should follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> and <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">PEP 257</a>. Unless otherwise stated here, assume those two guidelines are in effect.</p>
-<p>If you are providing function docstrings, use <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reST</a>. In addition to a description of what a function does, you should document the parameters:</p>
+<p>If you are providing function docstrings, use <a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google style</a>. In addition to a description of what a function does, you should document the parameters:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">widgetize</span><span class="p">(</span><span class="n">widget</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;Properly widgetize the widget.</span>
 
 <span class="sd">  This ensures that the widget conforms to the strict standards</span>
 <span class="sd">  governing conformant widgets.</span>
 
-<span class="sd">  :param widget: a widget what needs widgetizing</span>
+<span class="sd">  Args:</span>
+<span class="sd">    widget: A widget what needs widgetizing.</span>
 <span class="sd">  &quot;&quot;&quot;</span>
 
   <span class="n">standardize</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
@@ -70,23 +76,17 @@
 <h3>Linting, code quality, and code safety<a class="headerlink" href="#linting-code-quality-and-code-safety" title="Link to this heading">¶</a></h3>
 <p>Our standard Python code checkers in all repositories include:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://bandit.readthedocs.io/en/latest/">bandit</a> - security</p></li>
-<li><p><a class="reference external" href="https://black.readthedocs.io/en/stable/">black</a> - formatting</p></li>
-<li><p><a class="reference external" href="https://pycqa.github.io/isort/">isort</a> - import order</p></li>
-<li><p><a class="reference external" href="https://mypy.readthedocs.io/en/stable/">mypy</a> - type hinting</p></li>
-<li><p><a class="reference external" href="https://github.com/klen/pylama">pylama</a> - formatting and code quality (wrapper around several other tools)</p></li>
+<li><p><a class="reference external" href="https://docs.astral.sh/ruff/">ruff</a> - formatting and linting (replaces black, isort, pylama, and bandit)</p></li>
+<li><p><a class="reference external" href="https://mypy.readthedocs.io/en/stable/">mypy</a> - type checking</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pip-audit/">pip-audit</a> - dependency security auditing</p></li>
 </ul>
 <p>These tools should be used during development and are run automatically in Github Actions during CI. They are all included in the template repositories listed above, and have integrations for common code editors to allow automatic checking and reformatting during development.</p>
-<p>The linters are usually run together with the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> command in a project’s Makefile. See the template repositories for examples.</p>
+<p>The linters are usually run together with the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> command in a project’s Makefile.</p>
 </section>
 </section>
 <section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">¶</a></h2>
-<p>Use <a class="reference external" href="https://pipenv.readthedocs.io/en/latest/">Pipenv</a> to manage dependencies for Python applications. If there’s some reason you need to support pip, then you should still manage dependencies with pipenv, but generate your <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file as needed with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">requirements</span> <span class="o">&gt;</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
-</pre></div>
-</div>
-<p>If you are creating a Python library, <a class="reference external" href="https://python-poetry.org/">Poetry</a> is the preferred package and distribution manager.</p>
+<p>Use <a class="reference external" href="https://docs.astral.sh/uv/">uv</a> to manage dependencies for Python applications. Dependencies should be declared in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> and locked with <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">lock</span></code>.</p>
 </section>
 <section id="project-documentation">
 <h2>Project Documentation<a class="headerlink" href="#project-documentation" title="Link to this heading">¶</a></h2>
@@ -146,6 +146,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python Guidelines</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#python-versions">Python versions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-a-project-from-templates">Creating a project from templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-project-specification">Python Project Specification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#style-and-coding-conventions">Style and coding Conventions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#project-documentation">Project Documentation</a></li>
