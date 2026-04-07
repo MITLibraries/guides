@@ -53,7 +53,7 @@ Our standard Python code checkers in all repositories include:
 
 These tools should be used during development and are run automatically in Github Actions during CI. They are all included in the template repositories listed above, and have integrations for common code editors to allow automatic checking and reformatting during development.
 
-The linters are usually run together with the `make lint` command in a project's Makefile, which runs `ruff check`, `ruff format`, and `mypy`. See the template repositories for examples.
+The linters are usually run together with the `make lint` command in a project's Makefile.
 
 ## Dependencies
 
