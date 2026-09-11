@@ -1,8 +1,44 @@
 # Python Guidelines
 
+## Installing Python for Development
+
+At this time, the preferred way to handle both python virtual environments and the management of dependencies for a given project is to use [uv](https://docs.astral.sh/uv/).
+
+Once `uv` is installed on your machine (see [`uv` installation instructions](https://docs.astral.sh/uv/getting-started/installation/)), `Makefile` commands like `make install` will be sufficient for setting up a virtual environment to work with.
+
+To update `uv`, use `uv self update`.
+
+### `uv` Quick Reference
+
+#### Create a new, bare project
+```shell
+uv init --bare --python <VERSION, e.g. "3.14">
+```
+
+#### Create a virtual environment at `.venv`
+```shell
+uv venv .venv --python <VERSION, e.g. "3.14">
+```
+
+#### Add a dependency to a project
+```shell
+uv add <DEPENDENCY, e.g. "pandas">
+```
+
+Or to add a "dev" dependency (not built with Docker container):
+```shell
+uv add --dev <DEPENDENCY, e.g. "ipython">
+```
+
+#### Update all dependencies for project
+```shell
+uv lock --upgrade  # updates the uv.lock file, but nothing installed
+uv sync --dev      # install all versions from lock file, including "dev" section
+```
+
 ## Python versions
 
-You should be using the most recent stable version. Don't use Python 2. If creating AWS lambda functions, refer to [their docs](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) for information on the latest supported Python version (seems to lag behind the official Python releases).
+You should be using the most recent stable version. If creating AWS lambda functions, refer to [their docs](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) for information on the latest supported Python version (seems to lag behind the official Python releases).
 
 ## Creating a project from templates
 
