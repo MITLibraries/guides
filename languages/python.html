@@ -35,9 +35,47 @@
             
   <section id="python-guidelines">
 <h1>Python Guidelines<a class="headerlink" href="#python-guidelines" title="Link to this heading">¶</a></h1>
+<section id="installing-python-for-development">
+<h2>Installing Python for Development<a class="headerlink" href="#installing-python-for-development" title="Link to this heading">¶</a></h2>
+<p>At this time, the preferred way to handle both python virtual environments and the management of dependencies for a given project is to use <a class="reference external" href="https://docs.astral.sh/uv/">uv</a>.</p>
+<p>Once <code class="docutils literal notranslate"><span class="pre">uv</span></code> is installed on your machine (see <a class="reference external" href="https://docs.astral.sh/uv/getting-started/installation/"><code class="docutils literal notranslate"><span class="pre">uv</span></code> installation instructions</a>), <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> commands like <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> will be sufficient for setting up a virtual environment to work with.</p>
+<p>To update <code class="docutils literal notranslate"><span class="pre">uv</span></code>, use <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">self</span> <span class="pre">update</span></code>.</p>
+<section id="uv-quick-reference">
+<h3><code class="docutils literal notranslate"><span class="pre">uv</span></code> Quick Reference<a class="headerlink" href="#uv-quick-reference" title="Link to this heading">¶</a></h3>
+<section id="create-a-new-bare-project">
+<h4>Create a new, bare project<a class="headerlink" href="#create-a-new-bare-project" title="Link to this heading">¶</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>init<span class="w"> </span>--bare<span class="w"> </span>--python<span class="w"> </span>&lt;VERSION,<span class="w"> </span>e.g.<span class="w"> </span><span class="s2">&quot;3.14&quot;</span>&gt;
+</pre></div>
+</div>
+</section>
+<section id="create-a-virtual-environment-at-venv">
+<h4>Create a virtual environment at <code class="docutils literal notranslate"><span class="pre">.venv</span></code><a class="headerlink" href="#create-a-virtual-environment-at-venv" title="Link to this heading">¶</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w"> </span>--python<span class="w"> </span>&lt;VERSION,<span class="w"> </span>e.g.<span class="w"> </span><span class="s2">&quot;3.14&quot;</span>&gt;
+</pre></div>
+</div>
+</section>
+<section id="add-a-dependency-to-a-project">
+<h4>Add a dependency to a project<a class="headerlink" href="#add-a-dependency-to-a-project" title="Link to this heading">¶</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>&lt;DEPENDENCY,<span class="w"> </span>e.g.<span class="w"> </span><span class="s2">&quot;pandas&quot;</span>&gt;
+</pre></div>
+</div>
+<p>Or to add a “dev” dependency (not built with Docker container):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>--dev<span class="w"> </span>&lt;DEPENDENCY,<span class="w"> </span>e.g.<span class="w"> </span><span class="s2">&quot;ipython&quot;</span>&gt;
+</pre></div>
+</div>
+</section>
+<section id="update-all-dependencies-for-project">
+<h4>Update all dependencies for project<a class="headerlink" href="#update-all-dependencies-for-project" title="Link to this heading">¶</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade<span class="w">  </span><span class="c1"># updates the uv.lock file, but nothing installed</span>
+uv<span class="w"> </span>sync<span class="w"> </span>--dev<span class="w">      </span><span class="c1"># install all versions from lock file, including &quot;dev&quot; section</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
 <section id="python-versions">
 <h2>Python versions<a class="headerlink" href="#python-versions" title="Link to this heading">¶</a></h2>
-<p>You should be using the most recent stable version. Don’t use Python 2. If creating AWS lambda functions, refer to <a class="reference external" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">their docs</a> for information on the latest supported Python version (seems to lag behind the official Python releases).</p>
+<p>You should be using the most recent stable version. If creating AWS lambda functions, refer to <a class="reference external" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">their docs</a> for information on the latest supported Python version (seems to lag behind the official Python releases).</p>
 </section>
 <section id="creating-a-project-from-templates">
 <h2>Creating a project from templates<a class="headerlink" href="#creating-a-project-from-templates" title="Link to this heading">¶</a></h2>
@@ -144,6 +182,7 @@
 <p class="caption" role="heading"><span class="caption-text">Languages and Frameworks</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-python-for-development">Installing Python for Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python-versions">Python versions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-a-project-from-templates">Creating a project from templates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python-project-specification">Python Project Specification</a></li>
